@@ -1,5 +1,7 @@
 # DPVR: Dual-Path Vision Token Routing (`dpvr`)
 
+**English** | [简体中文](README.zh-CN.md)
+
 > **Late-Layer Fusion is Enough.** Vision-token representations saturate before
 > the final layers of an MLLM. We route vision tokens at the saturation point of
 > LLaVA-1.5 through a single trainable side-branch block, run the deep layers
