@@ -1,0 +1,29 @@
+# LoRA 13B: adapter fine-tuning on LLaVA-1.5-13B.
+# Use CUDA_VISIBLE_DEVICES=5 (RTX PRO 6000 Blackwell, 95 GB VRAM).
+
+defaults:
+  - _base.yaml
+
+model:
+  base_model: llava-1.5-13b-hf
+  llama_subdir: ~
+  vision_tower_subdir: ~
+  projector_subdir: ~
+
+method:
+  name: lora
+  lora_rank: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  lora_target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+
+training:
+  output_subdir: lora_13b/llava665k_r16
+  per_device_train_batch_size: 1
+  gradient_accumulation_steps: 4
+  gradient_checkpointing: false
+  optim: paged_adamw_8bit

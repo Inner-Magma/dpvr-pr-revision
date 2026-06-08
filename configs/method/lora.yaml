@@ -1,0 +1,17 @@
+defaults:
+  - _base.yaml
+
+method:
+  name: lora
+  lora_rank: 16           # Ablation: 16 | 64 (P1-T3)
+  lora_alpha: 32
+  lora_dropout: 0.05
+  lora_target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+
+training:
+  output_subdir: lora/llava665k_r16
+  gradient_checkpointing: true

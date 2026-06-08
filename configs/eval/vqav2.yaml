@@ -1,0 +1,10 @@
+eval:
+  task: vqav2
+  lmms_task_name: vqav2
+  metric: vqa_accuracy
+  question_type: open
+  is_perception: true
+  local_path: /path/to/benchmarks/vqav2
+  batch_size: 1
+  max_new_tokens: 16
+  notes: "VQAv2 validation set. Open-ended visual question answering."

@@ -1,0 +1,18 @@
+defaults:
+  - _base.yaml
+
+method:
+  name: token_diversion_x3_fusion
+  split_layer: 18
+  vision_depth: 1
+  fusion_count: 2
+  freeze_strategy: all_but_single
+
+training:
+  output_subdir: token_diversion_x3_fusion_last2/llava665k_split18_d1
+  per_device_train_batch_size: 4
+  gradient_accumulation_steps: 1
+  learning_rate: 1.0e-4
+  num_train_epochs: 1
+  warmup_ratio: 0.03
+  lr_scheduler_type: cosine

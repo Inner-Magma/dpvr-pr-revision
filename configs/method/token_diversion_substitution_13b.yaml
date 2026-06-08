@@ -1,0 +1,27 @@
+# Token-Diversion-Substitution (B-2) for 13B backbone.
+# Paper experiment: verify B-2 method scales beyond 7B.
+
+defaults:
+  - _base.yaml
+
+model:
+  base_model: llava-1.5-13b-hf
+  llama_subdir: ~
+  vision_tower_subdir: ~
+  projector_subdir: ~
+
+method:
+  name: token_diversion_substitution
+  split_layer: 28
+  vision_depth: 1
+  freeze_strategy: all_but_single
+
+training:
+  output_subdir: token_diversion_substitution_13b/llava665k_split28_d1
+  # 13B + 1 trainable layer: bf16 + grad_checkpointing + batch=1 → ~45-50GB VRAM per GPU.
+  # 4-GPU DDP: gradient_accumulation_steps=4 keeps effective batch = 4*1*4 = 16 (matches 7B).
+  per_device_train_batch_size: 1
+  gradient_accumulation_steps: 4
+  optim: paged_adamw_8bit
+  bf16: true
+  gradient_checkpointing: true

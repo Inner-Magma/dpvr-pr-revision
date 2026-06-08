@@ -1,0 +1,11 @@
+defaults:
+  - _base.yaml
+
+method:
+  name: full_ft
+
+training:
+  output_subdir: full_ft/llava665k
+  per_device_train_batch_size: 1
+  gradient_accumulation_steps: 4
+  optim: paged_adamw_8bit  # full-ft 7B needs 8-bit optimizer to fit on 48 GB

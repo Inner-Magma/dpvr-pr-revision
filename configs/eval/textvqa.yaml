@@ -1,0 +1,10 @@
+eval:
+  task: textvqa
+  lmms_task_name: textvqa_val
+  metric: vqa_accuracy
+  question_type: open
+  is_perception: true
+  local_path: /path/to/benchmarks/textvqa
+  batch_size: 1
+  max_new_tokens: 32
+  notes: "TextVQA validation set. OCR-based visual question answering."

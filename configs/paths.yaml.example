@@ -1,0 +1,9 @@
+# Copy to configs/paths.yaml and fill in for your machine.
+# Values here override the corresponding environment variables (.env).
+# paths.yaml is gitignored so each machine keeps its own.
+
+data_root: /path/to/datasets
+model_root: /path/to/models
+ckpt_root: /path/to/checkpoints
+lmms_eval_path: /path/to/lmms-eval
+hf_endpoint: https://hf-mirror.com

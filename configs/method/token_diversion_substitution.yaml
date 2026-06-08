@@ -1,0 +1,11 @@
+defaults:
+  - _base.yaml
+
+method:
+  name: token_diversion_substitution
+  split_layer: 18
+  vision_depth: 1
+  freeze_strategy: all_but_single
+
+training:
+  output_subdir: token_diversion_substitution/llava665k_split18_d1

@@ -1,0 +1,10 @@
+eval:
+  task: mme
+  lmms_task_name: mme
+  metric: overall_score          # MME reports Perception + Cognition total
+  question_type: yn
+  is_perception: true
+  local_path: /path/to/benchmarks/mme
+  batch_size: 1
+  max_new_tokens: 8
+  notes: "MME-Perception + MME-Cognition. 14 subtasks; yes/no questions."

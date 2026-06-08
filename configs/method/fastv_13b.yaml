@@ -1,0 +1,25 @@
+# FastV 13B: visual-token pruning on LLaVA-1.5-13B (full fine-tuning).
+# Use CUDA_VISIBLE_DEVICES=5 (RTX PRO 6000 Blackwell, 95 GB VRAM).
+
+defaults:
+  - _base.yaml
+
+model:
+  base_model: llava-1.5-13b-hf
+  llama_subdir: ~
+  vision_tower_subdir: ~
+  projector_subdir: ~
+
+method:
+  name: fastv
+  fastv_layer: 2
+  fastv_ratio: 0.5
+  freeze_strategy: full_ft
+
+training:
+  output_subdir: fastv_13b/llava665k_l2_r50
+  per_device_train_batch_size: 1
+  gradient_accumulation_steps: 4
+  optim: paged_adamw_8bit
+  bf16: true
+  gradient_checkpointing: true

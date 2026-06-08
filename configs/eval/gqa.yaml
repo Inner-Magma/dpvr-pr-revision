@@ -1,0 +1,10 @@
+eval:
+  task: gqa
+  lmms_task_name: gqa
+  metric: vqa_accuracy           # Exact match on open-ended VQA answers
+  question_type: open
+  is_perception: true
+  local_path: /path/to/benchmarks/gqa
+  batch_size: 1
+  max_new_tokens: 16
+  notes: "GQA testdev balanced questions. Open-ended compositional VQA."

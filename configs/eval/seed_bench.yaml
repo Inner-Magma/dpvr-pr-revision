@@ -1,0 +1,10 @@
+eval:
+  task: seed_bench
+  lmms_task_name: seedbench
+  metric: mc_accuracy            # Multiple-choice accuracy (A/B/C/D)
+  question_type: mc
+  is_perception: true
+  local_path: /path/to/benchmarks/seed_bench
+  batch_size: 1
+  max_new_tokens: 4
+  notes: "SEED-Bench image subset. 9 perception dimensions, MC questions."

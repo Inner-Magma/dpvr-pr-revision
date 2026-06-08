@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dpvr"
+version = "0.1.0"
+description = "Dual-Path Vision-Token Routing for Efficient MLLMs"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Siyuan Liu" },
+    { name = "Jinyang Wu" },
+]
+keywords = ["multimodal", "llava", "mllm", "efficient-training", "token-routing"]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+
+# Versions are intentionally pinned loosely; lock via pip-compile / uv in CI.
+dependencies = [
+    "torch>=2.2",
+    "transformers>=4.45",
+    "trl>=0.11",
+    "datasets>=2.20",
+    "accelerate>=0.33",
+    "safetensors>=0.4",
+    "Pillow>=10",
+    "tqdm>=4.66",
+    "numpy>=1.26",
+    "pyyaml>=6.0",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+eval = ["lmms-eval"]
+analysis = ["matplotlib>=3.8", "seaborn>=0.13", "scikit-learn>=1.4"]
+profile = ["fvcore>=0.1.5"]
+dev = ["pytest>=8", "ruff>=0.5"]
+
+[project.urls]
+Homepage = "https://github.com/Inner-Magma/DPVR"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"

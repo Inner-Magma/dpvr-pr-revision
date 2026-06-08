@@ -1,0 +1,16 @@
+defaults:
+  - _base.yaml
+
+method:
+  name: fastv
+  fastv_layer: 2          # Layer index where visual tokens are pruned.
+  fastv_ratio: 0.5        # Fraction of visual tokens to KEEP.
+  freeze_strategy: full_ft
+
+training:
+  output_subdir: fastv/llava665k_l2_r50
+  per_device_train_batch_size: 1
+  gradient_accumulation_steps: 4
+  optim: paged_adamw_8bit  # full-ft 7B needs 8-bit optimizer to fit on 48 GB
+  bf16: true
+  gradient_checkpointing: true

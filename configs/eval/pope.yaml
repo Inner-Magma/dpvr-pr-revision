@@ -1,0 +1,10 @@
+eval:
+  task: pope
+  lmms_task_name: pope
+  metric: yn_accuracy            # F1 / accuracy on yes/no object hallucination
+  question_type: yn
+  is_perception: true
+  local_path: /path/to/benchmarks/pope
+  batch_size: 1
+  max_new_tokens: 8
+  notes: "POPE adversarial/popular/random splits. Hallucination benchmark."

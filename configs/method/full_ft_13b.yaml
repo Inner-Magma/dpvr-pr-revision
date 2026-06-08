@@ -1,0 +1,23 @@
+# Full fine-tuning 13B: all parameters trainable on LLaVA-1.5-13B.
+# Use CUDA_VISIBLE_DEVICES=5 (95 GB Blackwell).
+# 8-bit AdamW keeps optimizer states < 20 GB.
+
+defaults:
+  - _base.yaml
+
+model:
+  base_model: llava-1.5-13b-hf
+  llama_subdir: ~
+  vision_tower_subdir: ~
+  projector_subdir: ~
+
+method:
+  name: full_ft
+
+training:
+  output_subdir: full_ft_13b/llava665k
+  per_device_train_batch_size: 1
+  gradient_accumulation_steps: 4
+  optim: paged_adamw_8bit
+  bf16: true
+  gradient_checkpointing: true

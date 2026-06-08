@@ -1,0 +1,10 @@
+eval:
+  task: mmbench
+  lmms_task_name: mmbench_en
+  metric: mc_accuracy
+  question_type: mc
+  is_perception: true
+  local_path: /path/to/benchmarks/mmbench
+  batch_size: 1
+  max_new_tokens: 4
+  notes: "MMBench English dev set. Multiple-choice multimodal benchmark."

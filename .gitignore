@@ -1,0 +1,71 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtualenv / IDE / OS
+.venv/
+venv/
+.vscode/
+.idea/
+.DS_Store
+*.swp
+
+# Local config & secrets
+.env
+.env.local
+*.local
+configs/paths.yaml
+
+# Training artefacts (directory structure kept via .gitkeep)
+results/checkpoints/
+results/logs/
+results/eval/
+results/analysis/
+results/profile/
+wandb/
+trained_models/
+checkpoints/
+outputs/
+
+# Large binaries
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.ckpt
+
+# Raw datasets never committed (anchored to repo root so src/dpvr/data/ is not excluded)
+/data/
+/datasets/
+
+# Logs
+*.log
+logs/
+
+# Notebook checkpoints
+.ipynb_checkpoints/
+
+# Stray temp files (e.g. filenames containing colons)
+*:*.py
+
+# Paper Overleaf build artifact (regen via paper/build_overleaf.sh)
+paper/overleaf_upload.zip
+paper/overleaf_full.zip
+
+# Original Elsevier template download (do not redistribute)
+els-cas-templates/
+
+# Overleaf snapshot scratch dirs (use --keep-snapshot to bake them)
+paper/_overleaf_snapshot_*/
+
+# Claude Code session data (user-specific, never commit)
+.claude/

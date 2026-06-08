@@ -1,0 +1,13 @@
+defaults:
+  - _base.yaml
+
+method:
+  name: td_plus_fastv
+  split_layer: 18
+  vision_depth: 1
+  freeze_strategy: all_but_single
+  fastv_layer: 22         # Must be > split_layer.
+  fastv_ratio: 0.5
+
+training:
+  output_subdir: td_plus_fastv/llava665k_split18_fastv22

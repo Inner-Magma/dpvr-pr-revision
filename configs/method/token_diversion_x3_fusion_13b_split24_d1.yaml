@@ -1,0 +1,40 @@
+# DPVR-LF 13B, split_layer=24 (paper Fig 4 / §6.7 ablation).
+# Base = 7B X3-fusion method recipe + 13B model + 13B-specific sizing.
+# 13B has 40 LLaMA layers; split=24 means shallow=L0..L23, deep=L24..L39
+# (16 deep layers), last-1 fusion at L39 (fusion_count=1 default).
+
+defaults:
+  - _base.yaml
+
+model:
+  base_model: llava-1.5-13b-hf
+  llama_subdir: ~
+  vision_tower_subdir: ~
+  projector_subdir: ~
+
+method:
+  name: token_diversion_x3_fusion
+  split_layer: 24
+  vision_depth: 1
+  fusion_count: 1
+  freeze_strategy: all_but_single
+
+training:
+  output_subdir: token_diversion_x3_fusion_13b/llava665k_split24_d1
+  # eb=4 = per_device(1) * accum(4); DPVR-LF must (see lesson_x3_design_and_implementation)
+  per_device_train_batch_size: 1
+  gradient_accumulation_steps: 4
+  # LR=1e-4 compensates the sparse-gradient regime of DPVR-LF
+  learning_rate: 1.0e-4
+  num_train_epochs: 1
+  warmup_ratio: 0.03
+  lr_scheduler_type: cosine
+  weight_decay: 0.0
+  optim: paged_adamw_8bit
+  bf16: true
+  gradient_checkpointing: true
+  save_strategy: steps
+  save_steps: 78000
+  save_total_limit: 2
+  logging_steps: 100
+  report_to: none

@@ -1,0 +1,166 @@
+#!/usr/bin/env python
+"""Aggregate evaluation + profiling JSONs into a method × benchmark pivot table.
+
+Usage:
+    python scripts/aggregate_results.py \\
+        --results_dir results/ \\
+        --output results/main_table
+
+Produces:
+    results/main_table.csv   — machine-readable pivot
+    results/main_table.md    — Markdown table (paste directly into paper)
+"""
+from __future__ import annotations
+
+import argparse
+import csv
+import json
+from pathlib import Path
+
+
+# ---------------------------------------------------------------------------
+# Helpers
+# ---------------------------------------------------------------------------
+
+def _load_envelope(p: Path) -> dict | None:
+    try:
+        d = json.loads(p.read_text())
+        # Accept either envelope format (with 'method' key) or raw results.
+        if "method" not in d:
+            return None
+        return d
+    except Exception:
+        return None
+
+
+def _load_profiling(root: Path) -> dict[str, dict]:
+    """Return {method_tag: {param_pct, peak_vram_mib, gpu_hours, gflops}}."""
+    prof: dict[str, dict] = {}
+    for p in root.glob("profiling/**/*.json"):
+        try:
+            d = json.loads(p.read_text())
+            tag = d.get("method", p.stem)
+            prof[tag] = {
+                "param_pct": d.get("trainable_pct"),
+                "peak_vram_mib": d.get("peak_vram_mib"),
+                "gpu_hours": d.get("gpu_hours"),
+                "gflops": d.get("gflops"),
+            }
+        except Exception:
+            pass
+    return prof
+
+
+def _fmt(v) -> str:
+    if v is None:
+        return ""
+    if isinstance(v, float):
+        return f"{v:.4f}" if v < 1.0 else f"{v:.2f}"
+    return str(v)
+
+
+def _md_table(headers: list[str], rows: list[list[str]]) -> str:
+    col_widths = [max(len(h), *(len(r[i]) for r in rows)) for i, h in enumerate(headers)]
+    sep = "| " + " | ".join("-" * w for w in col_widths) + " |"
+    header = "| " + " | ".join(h.ljust(col_widths[i]) for i, h in enumerate(headers)) + " |"
+    body = "\n".join(
+        "| " + " | ".join(c.ljust(col_widths[i]) for i, c in enumerate(row)) + " |"
+        for row in rows
+    )
+    return "\n".join([header, sep, body])
+
+
+# ---------------------------------------------------------------------------
+# Main
+# ---------------------------------------------------------------------------
+
+def main() -> None:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--results_dir", default="results")
+    ap.add_argument("--output", default="results/main_table",
+                    help="Output stem (no extension); .csv and .md are produced.")
+    args = ap.parse_args()
+
+    root = Path(args.results_dir)
+    envelopes = []
+    for p in sorted(root.glob("eval/**/*.json")):
+        env = _load_envelope(p)
+        if env:
+            envelopes.append(env)
+
+    print(f"Found {len(envelopes)} result envelopes under {root}/eval/")
+
+    if not envelopes:
+        print("No envelopes found. Run evaluate.py first.")
+        return
+
+    # Collect all (method, base_model) pairs and benchmarks.
+    methods_seen: list[tuple[str, str]] = []
+    benchmarks_seen: list[str] = []
+    cell: dict[tuple[str, str, str], dict] = {}
+
+    for env in envelopes:
+        m = env["method"]
+        bm = env["base_model"]
+        bk = env["benchmark"]
+        key_mb = (m, bm)
+        if key_mb not in methods_seen:
+            methods_seen.append(key_mb)
+        if bk not in benchmarks_seen:
+            benchmarks_seen.append(bk)
+        cell[(m, bm, bk)] = env.get("metrics", {})
+
+    # Load profiling data.
+    prof = _load_profiling(root)
+
+    # Build pivot: rows = (method, base_model), columns = benchmarks + efficiency.
+    eff_cols = ["param_pct", "peak_vram_mib", "gpu_hours", "gflops"]
+    all_benchmarks = sorted(benchmarks_seen)
+    headers = ["method", "base_model"] + all_benchmarks + eff_cols
+
+    rows: list[list[str]] = []
+    for (method, base_model) in sorted(methods_seen):
+        row = [method, base_model]
+        for bk in all_benchmarks:
+            metrics = cell.get((method, base_model, bk), {})
+            # Take the first numeric metric value.
+            val = None
+            for v in metrics.values():
+                if isinstance(v, (int, float)):
+                    val = v
+                    break
+            row.append(_fmt(val))
+        # Efficiency columns.
+        prof_data = prof.get(method, {})
+        for col in eff_cols:
+            row.append(_fmt(prof_data.get(col)))
+        rows.append(row)
+
+    # Write CSV.
+    out_stem = Path(args.output)
+    out_stem.parent.mkdir(parents=True, exist_ok=True)
+    csv_path = out_stem.with_suffix(".csv")
+    with open(csv_path, "w", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f)
+        writer.writerow(headers)
+        writer.writerows(rows)
+
+    # Write Markdown.
+    md_path = out_stem.with_suffix(".md")
+    md = _md_table(headers, rows)
+    header_note = (
+        "<!-- Auto-generated by scripts/aggregate_results.py. "
+        "Do not edit by hand. -->\n\n"
+        "## Main Results Table\n\n"
+    )
+    md_path.write_text(header_note + md + "\n")
+
+    print(f"Wrote {csv_path}")
+    print(f"Wrote {md_path}")
+
+    # Demo: print the table.
+    print("\n" + md)
+
+
+if __name__ == "__main__":
+    main()

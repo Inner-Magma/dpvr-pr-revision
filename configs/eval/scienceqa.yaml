@@ -1,0 +1,10 @@
+eval:
+  task: scienceqa
+  lmms_task_name: scienceqa_img
+  metric: mc_accuracy            # Multiple-choice accuracy on science questions
+  question_type: mc
+  is_perception: false           # Reasoning / knowledge benchmark
+  local_path: /path/to/benchmarks/scienceqa
+  batch_size: 1
+  max_new_tokens: 8
+  notes: "ScienceQA image-conditioned subset. Multi-subject MC questions."

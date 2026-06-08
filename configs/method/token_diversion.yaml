@@ -1,0 +1,14 @@
+# Token-Diversion training: freeze base LLaVA, train a single LlamaDecoderLayer
+# that processes only image tokens after split_layer.
+
+defaults:
+  - _base.yaml
+
+method:
+  name: token_diversion
+  split_layer: 18          # Depth at which vision tokens branch off. Ablation: P2-T7.
+  vision_depth: 1          # Number of layers in single_transformer. Phase 1 fixed at 1.
+  freeze_strategy: all_but_single   # all_but_single | shallow_unfrozen (P3-T10).
+
+training:
+  output_subdir: token_diversion/llava665k_split18_d1
