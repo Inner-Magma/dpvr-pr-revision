@@ -6,6 +6,7 @@ from .full_ft_baseline import FullFTLlava
 from .lora_baseline import LoRALlava
 from .fastv_baseline import FastVLlava
 from .td_fastv import TDFastVLlava
+from .token_reduction import ReducedLFLlava, ReducedVanillaLlava
 
 __all__ = [
     "build_model",
@@ -18,4 +19,6 @@ __all__ = [
     "LoRALlava",
     "FastVLlava",
     "TDFastVLlava",
+    "ReducedVanillaLlava",
+    "ReducedLFLlava",
 ]

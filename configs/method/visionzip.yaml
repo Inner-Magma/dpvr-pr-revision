@@ -1,0 +1,10 @@
+defaults:
+  - _base.yaml
+
+# VisionZip (CVPR 2025), training-free: dominant tokens by [CLS] attention plus
+# contextual tokens merged by key similarity. (54, 10) is the 64-token setting;
+# (108, 20) -> 128, (162, 30) -> 192.
+method:
+  name: reduced
+  reduction: visionzip
+  params: {dominant: 54, contextual: 10, keep_cls: true}

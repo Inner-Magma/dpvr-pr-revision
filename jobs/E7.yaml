@@ -1,0 +1,37 @@
+# E7 (C4): DPVR-LF stacked with token compression, inference only (R2.6).
+# Needs a trained 7B DPVR-LF s=18 checkpoint (E9 seed 1, or the migrated paper run).
+#   python scripts/revision/run_queue.py jobs/E7.yaml --gpus 0-7 --set lf7b_ckpt=<dir>
+experiment: E7
+vars:
+  lf7b_ckpt: REQUIRED
+defaults:
+  gpus: 1
+  min_free_gb: 30
+jobs:
+  - name: lf7b_fastv_k2_r{r}
+    matrix: {r: [0.5, 0.25]}
+    cmd: >
+      python scripts/revision/eval_lmms.py --method_config configs/method/lf_fastv.yaml
+      --override method.checkpoint={lf7b_ckpt} --override method.params.keep_ratio={r}
+      --tasks eight --out {out}
+
+  - name: lf7b_prumerge
+    cmd: >
+      python scripts/revision/eval_lmms.py --method_config configs/method/lf_prumerge.yaml
+      --override method.checkpoint={lf7b_ckpt} --tasks eight --out {out}
+
+  - name: lf7b_visionzip_64
+    cmd: >
+      python scripts/revision/eval_lmms.py --method_config configs/method/lf_prumerge.yaml
+      --override method.checkpoint={lf7b_ckpt} --override method.reduction=visionzip
+      --override method.params.dominant=54 --override method.params.contextual=10
+      --override method.params.keep_cls=True
+      --tasks eight --out {out}
+
+  - name: lat7b_lf_fastv_k2_r{r}
+    matrix: {r: [0.5, 0.25]}
+    min_free_gb: 70
+    cmd: >
+      python scripts/revision/bench_latency.py --config configs/method/lf_fastv.yaml
+      --batch 1 --n_txt 128 --out {out}/latency.json
+      method.checkpoint={lf7b_ckpt} method.params.keep_ratio={r}

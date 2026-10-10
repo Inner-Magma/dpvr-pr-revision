@@ -1,0 +1,9 @@
+defaults:
+  - _base.yaml
+
+# C4: trained DPVR-LF fed PruMerge-reduced image tokens (inference only).
+method:
+  name: lf_reduced
+  checkpoint: null
+  reduction: prumerge
+  params: {n_keep: null, k_neighbors: 32, feature_layer: -2, key_layer: -1}
