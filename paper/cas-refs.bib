@@ -1,0 +1,481 @@
+% ============================================================
+% References for the DPVR paper (Pattern Recognition submission).
+%
+% Conventions:
+%   - Every entry has either a venue DOI (preferred) or an arXiv DOI
+%     (10.48550/arXiv.XXXX.XXXXX) so cas-model2-names can hyperlink.
+%   - Where a paper has a peer-reviewed venue, that is the primary
+%     citation; the arXiv ID stays in `eprint` for traceability.
+%   - Entries marked TODO need a manual cross-check of pages /
+%     proceedings volume before camera-ready submission (Elsevier
+%     style; not blocking for first review).
+% ============================================================
+
+%==================================================
+% MLLM foundations
+%==================================================
+
+@inproceedings{liu2024llava,
+  title     = {Visual Instruction Tuning},
+  author    = {Liu, Haotian and Li, Chunyuan and Wu, Qingyang and Lee, Yong Jae},
+  booktitle = {Advances in Neural Information Processing Systems},
+  volume    = {36},
+  year      = {2023},
+  eprint    = {2304.08485},
+  archivePrefix = {arXiv},
+  doi       = {10.48550/arXiv.2304.08485}
+}
+
+@inproceedings{liu2024llava15,
+  title     = {Improved Baselines with Visual Instruction Tuning},
+  author    = {Liu, Haotian and Li, Chunyuan and Li, Yuheng and Lee, Yong Jae},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages     = {26296--26306},
+  year      = {2024},
+  eprint    = {2310.03744},
+  archivePrefix = {arXiv},
+  doi       = {10.48550/arXiv.2310.03744}
+}
+
+@inproceedings{li2023blip2,
+  title     = {{BLIP-2}: Bootstrapping Language--Image Pre-training with Frozen Image Encoders and Large Language Models},
+  author    = {Li, Junnan and Li, Dongxu and Savarese, Silvio and Hoi, Steven C.\ H.},
+  booktitle = {Proceedings of the 40th International Conference on Machine Learning},
+  series    = {Proceedings of Machine Learning Research},
+  volume    = {202},
+  pages     = {19730--19742},
+  year      = {2023},
+  publisher = {PMLR},
+  eprint    = {2301.12597},
+  archivePrefix = {arXiv},
+  doi       = {10.48550/arXiv.2301.12597}
+}
+
+@article{bai2023qwenvl,
+  title   = {{Qwen-VL}: A Versatile Vision--Language Model for Understanding, Localization, Text Reading, and Beyond},
+  author  = {Bai, Jinze and Bai, Shuai and Yang, Shusheng and Wang, Shijie and Tan, Sinan and Wang, Peng and Lin, Junyang and Zhou, Chang and Zhou, Jingren},
+  journal = {arXiv preprint arXiv:2308.12966},
+  year    = {2023},
+  doi     = {10.48550/arXiv.2308.12966}
+}
+
+@inproceedings{zhu2023minigpt4,
+  title     = {{MiniGPT-4}: Enhancing Vision--Language Understanding with Advanced Large Language Models},
+  author    = {Zhu, Deyao and Chen, Jun and Shen, Xiaoqian and Li, Xiang and Elhoseiny, Mohamed},
+  booktitle = {International Conference on Learning Representations},
+  year      = {2024},
+  eprint    = {2304.10592},
+  archivePrefix = {arXiv},
+  doi       = {10.48550/arXiv.2304.10592}
+}
+
+@inproceedings{alayrac2022flamingo,
+  title     = {{Flamingo}: a Visual Language Model for Few-Shot Learning},
+  author    = {Alayrac, Jean-Baptiste and Donahue, Jeff and Luc, Pauline and Miech, Antoine and Barr, Iain and Hasson, Yana and Lenc, Karel and Mensch, Arthur and Millican, Katherine and Reynolds, Malcolm and others},
+  booktitle = {Advances in Neural Information Processing Systems},
+  volume    = {35},
+  pages     = {23716--23736},
+  year      = {2022},
+  eprint    = {2204.14198},
+  archivePrefix = {arXiv},
+  doi       = {10.48550/arXiv.2204.14198}
+}
+
+%==================================================
+% Token reduction in MLLMs
+%==================================================
+
+@inproceedings{cai2024fastv,
+  title     = {An Image is Worth $1/2$ Tokens After Layer~$2$: Plug-and-Play Inference Acceleration for Large Vision--Language Models},
+  author    = {Chen, Liang and Zhao, Haozhe and Liu, Tianyu and Bai, Shuai and Lin, Junyang and Zhou, Chang and Chang, Baobao},
+  booktitle = {European Conference on Computer Vision},
+  year      = {2024},
+  eprint    = {2403.06764},
+  archivePrefix = {arXiv},
+  doi       = {10.48550/arXiv.2403.06764}
+}
+
+@article{lin2024vtw,
+  title   = {{VTW}: Visual Token Withdrawal for Efficient Multimodal Large Language Models},
+  author  = {Lin, Zhihang and Lin, Mingbao and Lin, Luxi and Ji, Rongrong},
+  journal = {arXiv preprint arXiv:2405.05803},
+  year    = {2024},
+  doi     = {10.48550/arXiv.2405.05803}
+}
+
+@article{shang2024prumerge,
+  title   = {{LLaVA-PruMerge}: Adaptive Token Reduction for Efficient Large Multimodal Models},
+  author  = {Shang, Yuzhang and Cai, Mu and Xu, Bingxin and Lee, Yong Jae and Yan, Yan},
+  journal = {arXiv preprint arXiv:2403.15388},
+  year    = {2024},
+  doi     = {10.48550/arXiv.2403.15388}
+}
+
+@article{li2024tokenpacker,
+  title   = {{TokenPacker}: Efficient Visual Projector for Multimodal {LLM}},
+  author  = {Li, Wentong and Yuan, Yuqian and Liu, Jian and Tang, Dongqi and Wang, Song and Zhu, Jianke and Zhang, Lei},
+  journal = {arXiv preprint arXiv:2407.02392},
+  year    = {2024},
+  doi     = {10.48550/arXiv.2407.02392}
+}
+
+%==================================================
+% Parameter-efficient fine-tuning
+%==================================================
+
+@inproceedings{hu2022lora,
+  title     = {{LoRA}: Low-Rank Adaptation of Large Language Models},
+  author    = {Hu, Edward J. and Shen, Yelong and Wallis, Phillip and Allen-Zhu, Zeyuan and Li, Yuanzhi and Wang, Shean and Wang, Lu and Chen, Weizhu},
+  booktitle = {International Conference on Learning Representations},
+  year      = {2022},
+  eprint    = {2106.09685},
+  archivePrefix = {arXiv},
+  doi       = {10.48550/arXiv.2106.09685}
+}
+
+@inproceedings{dettmers2023qlora,
+  title     = {{QLoRA}: Efficient Finetuning of Quantized {LLM}s},
+  author    = {Dettmers, Tim and Pagnoni, Artidoro and Holtzman, Ari and Zettlemoyer, Luke},
+  booktitle = {Advances in Neural Information Processing Systems},
+  volume    = {36},
+  year      = {2023},
+  eprint    = {2305.14314},
+  archivePrefix = {arXiv},
+  doi       = {10.48550/arXiv.2305.14314}
+}
+
+@inproceedings{houlsby2019adapter,
+  title     = {Parameter-Efficient Transfer Learning for {NLP}},
+  author    = {Houlsby, Neil and Giurgiu, Andrei and Jastrzebski, Stanislaw and Morrone, Bruna and de Laroussilhe, Quentin and Gesmundo, Andrea and Attariyan, Mona and Gelly, Sylvain},
+  booktitle = {Proceedings of the 36th International Conference on Machine Learning},
+  series    = {Proceedings of Machine Learning Research},
+  volume    = {97},
+  pages     = {2790--2799},
+  year      = {2019},
+  publisher = {PMLR},
+  eprint    = {1902.00751},
+  archivePrefix = {arXiv},
+  doi       = {10.48550/arXiv.1902.00751}
+}
+
+%==================================================
+% Cross-layer analysis of LLMs
+%==================================================
+
+@misc{nostalgebraist2020logitlens,
+  author       = {{nostalgebraist}},
+  title        = {Interpreting {GPT}: The Logit Lens},
+  year         = {2020},
+  howpublished = {LessWrong post},
+  url          = {https://www.lesswrong.com/posts/AcKRB8wDpdaN6v6ru/interpreting-gpt-the-logit-lens},
+  note         = {Accessed: 2026-05-14}
+}
+
+@article{belrose2023tunedlens,
+  title   = {Eliciting Latent Predictions from Transformers with the Tuned Lens},
+  author  = {Belrose, Nora and Furman, Zach and Smith, Logan and Halawi, Danny and Ostrovsky, Igor and McKinney, Lev and Biderman, Stella and Steinhardt, Jacob},
+  journal = {arXiv preprint arXiv:2303.08112},
+  year    = {2023},
+  doi     = {10.48550/arXiv.2303.08112}
+}
+
+@inproceedings{liang2022modalitygap,
+  title     = {Mind the Gap: Understanding the Modality Gap in Multi-modal Contrastive Representation Learning},
+  author    = {Liang, Weixin and Zhang, Yuhui and Kwon, Yongchan and Yeung, Serena and Zou, James},
+  booktitle = {Advances in Neural Information Processing Systems},
+  volume    = {35},
+  pages     = {17612--17625},
+  year      = {2022},
+  eprint    = {2203.02053},
+  archivePrefix = {arXiv},
+  doi       = {10.48550/arXiv.2203.02053}
+}
+
+%==================================================
+% Token pruning / selection (general ViT)
+%==================================================
+
+@inproceedings{liang2022evit,
+  title     = {Not All Patches are What You Need: Expediting Vision Transformers via Token Reorganizations},
+  author    = {Liang, Youwei and Ge, Chongjian and Tong, Zhan and Song, Yibing and Wang, Jue and Xie, Pengtao},
+  booktitle = {International Conference on Learning Representations},
+  year      = {2022},
+  eprint    = {2202.07800},
+  archivePrefix = {arXiv},
+  doi       = {10.48550/arXiv.2202.07800}
+}
+
+@inproceedings{bolya2023tome,
+  title     = {Token Merging: Your {ViT} But Faster},
+  author    = {Bolya, Daniel and Fu, Cheng-Yang and Dai, Xiaoliang and Zhang, Peizhao and Feichtenhofer, Christoph and Hoffman, Judy},
+  booktitle = {International Conference on Learning Representations},
+  year      = {2023},
+  eprint    = {2210.09461},
+  archivePrefix = {arXiv},
+  doi       = {10.48550/arXiv.2210.09461}
+}
+
+%==================================================
+% Layer skipping / conditional compute
+%==================================================
+
+@inproceedings{fan2020layerdrop,
+  title     = {Reducing Transformer Depth on Demand with Structured Dropout},
+  author    = {Fan, Angela and Grave, Edouard and Joulin, Armand},
+  booktitle = {International Conference on Learning Representations},
+  year      = {2020},
+  eprint    = {1909.11556},
+  archivePrefix = {arXiv},
+  doi       = {10.48550/arXiv.1909.11556}
+}
+
+@inproceedings{huang2016stochasticdepth,
+  title     = {Deep Networks with Stochastic Depth},
+  author    = {Huang, Gao and Sun, Yu and Liu, Zhuang and Sedra, Daniel and Weinberger, Kilian Q.},
+  booktitle = {European Conference on Computer Vision},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {9908},
+  pages     = {646--661},
+  year      = {2016},
+  publisher = {Springer},
+  doi       = {10.1007/978-3-319-46493-0_39},
+  eprint    = {1603.09382},
+  archivePrefix = {arXiv}
+}
+
+@article{fedus2022switchtransformer,
+  title   = {Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity},
+  author  = {Fedus, William and Zoph, Barret and Shazeer, Noam},
+  journal = {Journal of Machine Learning Research},
+  volume  = {23},
+  number  = {120},
+  pages   = {1--39},
+  year    = {2022},
+  eprint  = {2101.03961},
+  archivePrefix = {arXiv},
+  doi     = {10.48550/arXiv.2101.03961}
+}
+
+%==================================================
+% Vision encoder
+%==================================================
+
+@inproceedings{radford2021clip,
+  title     = {Learning Transferable Visual Models from Natural Language Supervision},
+  author    = {Radford, Alec and Kim, Jong Wook and Hallacy, Chris and Ramesh, Aditya and Goh, Gabriel and Agarwal, Sandhini and Sastry, Girish and Askell, Amanda and Mishkin, Pamela and Clark, Jack and Krueger, Gretchen and Sutskever, Ilya},
+  booktitle = {Proceedings of the 38th International Conference on Machine Learning},
+  series    = {Proceedings of Machine Learning Research},
+  volume    = {139},
+  pages     = {8748--8763},
+  year      = {2021},
+  publisher = {PMLR},
+  eprint    = {2103.00020},
+  archivePrefix = {arXiv},
+  doi       = {10.48550/arXiv.2103.00020}
+}
+
+%==================================================
+% Backbone (Llama / Vicuna)
+%==================================================
+
+@article{touvron2023llama,
+  title   = {{LLaMA}: Open and Efficient Foundation Language Models},
+  author  = {Touvron, Hugo and Lavril, Thibaut and Izacard, Gautier and Martinet, Xavier and Lachaux, Marie-Anne and Lacroix, Timoth{\'e}e and Rozi{\`e}re, Baptiste and Goyal, Naman and Hambro, Eric and Azhar, Faisal and others},
+  journal = {arXiv preprint arXiv:2302.13971},
+  year    = {2023},
+  doi     = {10.48550/arXiv.2302.13971}
+}
+
+@misc{vicuna2023,
+  title        = {Vicuna: An Open-Source Chatbot Impressing {GPT}-4 with $90\%$* {ChatGPT} Quality},
+  author       = {Chiang, Wei-Lin and Li, Zhuohan and Lin, Zi and Sheng, Ying and Wu, Zhanghao and Zhang, Hao and Zheng, Lianmin and Zhuang, Siyuan and Zhuang, Yonghao and Gonzalez, Joseph E.\ and Stoica, Ion and Xing, Eric P.},
+  year         = {2023},
+  howpublished = {Blog post (\url{https://lmsys.org/blog/2023-03-30-vicuna/})},
+  note         = {Accessed: 2026-05-14}
+}
+
+%==================================================
+% Knowledge distillation / model compression
+%==================================================
+
+@article{hinton2015distillation,
+  title   = {Distilling the Knowledge in a Neural Network},
+  author  = {Hinton, Geoffrey and Vinyals, Oriol and Dean, Jeff},
+  journal = {arXiv preprint arXiv:1503.02531},
+  year    = {2015},
+  note    = {NeurIPS Deep Learning Workshop},
+  doi     = {10.48550/arXiv.1503.02531}
+}
+
+@article{sanh2019distilbert,
+  title   = {{DistilBERT}, a Distilled Version of {BERT}: Smaller, Faster, Cheaper and Lighter},
+  author  = {Sanh, Victor and Debut, Lysandre and Chaumond, Julien and Wolf, Thomas},
+  journal = {arXiv preprint arXiv:1910.01108},
+  year    = {2019},
+  note    = {NeurIPS EMC$^2$ Workshop},
+  doi     = {10.48550/arXiv.1910.01108}
+}
+
+%==================================================
+% Benchmarks
+%==================================================
+
+@inproceedings{li2023pope,
+  title     = {Evaluating Object Hallucination in Large Vision--Language Models},
+  author    = {Li, Yifan and Du, Yifan and Zhou, Kun and Wang, Jinpeng and Zhao, Wayne Xin and Wen, Ji-Rong},
+  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing},
+  pages     = {292--305},
+  year      = {2023},
+  publisher = {Association for Computational Linguistics},
+  eprint    = {2305.10355},
+  archivePrefix = {arXiv},
+  doi       = {10.18653/v1/2023.emnlp-main.20}
+}
+
+@article{fu2023mme,
+  title   = {{MME}: A Comprehensive Evaluation Benchmark for Multimodal Large Language Models},
+  author  = {Fu, Chaoyou and Chen, Peixian and Shen, Yunhang and Qin, Yulei and Zhang, Mengdan and Lin, Xu and Yang, Jinrui and Zheng, Xiawu and Li, Ke and Sun, Xing and Wu, Yunsheng and Ji, Rongrong},
+  journal = {arXiv preprint arXiv:2306.13394},
+  year    = {2023},
+  doi     = {10.48550/arXiv.2306.13394}
+}
+
+@inproceedings{liu2023mmbench,
+  title     = {{MMBench}: Is Your Multi-modal Model an All-around Player?},
+  author    = {Liu, Yuan and Duan, Haodong and Zhang, Yuanhan and Li, Bo and Zhang, Songyang and Zhao, Wangbo and Yuan, Yike and Wang, Jiaqi and He, Conghui and Liu, Ziwei and Chen, Kai and Lin, Dahua},
+  booktitle = {European Conference on Computer Vision},
+  year      = {2024},
+  eprint    = {2307.06281},
+  archivePrefix = {arXiv},
+  doi       = {10.48550/arXiv.2307.06281}
+}
+
+@inproceedings{lu2022scienceqa,
+  title     = {Learn to Explain: Multimodal Reasoning via Thought Chains for Science Question Answering},
+  author    = {Lu, Pan and Mishra, Swaroop and Xia, Tony and Qiu, Liang and Chang, Kai-Wei and Zhu, Song-Chun and Tafjord, Oyvind and Clark, Peter and Kalyan, Ashwin},
+  booktitle = {Advances in Neural Information Processing Systems},
+  volume    = {35},
+  pages     = {2507--2521},
+  year      = {2022},
+  eprint    = {2209.09513},
+  archivePrefix = {arXiv},
+  doi       = {10.48550/arXiv.2209.09513}
+}
+
+@inproceedings{li2024seedbench,
+  title     = {{SEED-Bench}: Benchmarking Multimodal {LLM}s with Generative Comprehension},
+  author    = {Li, Bohao and Wang, Rui and Wang, Guangzhi and Ge, Yuying and Ge, Yixiao and Shan, Ying},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages     = {13299--13308},
+  year      = {2024},
+  eprint    = {2307.16125},
+  archivePrefix = {arXiv},
+  doi       = {10.48550/arXiv.2307.16125}
+}
+
+@inproceedings{fu2024blink,
+  title     = {{BLINK}: Multimodal Large Language Models Can See but Not Perceive},
+  author    = {Fu, Xingyu and Hu, Yushi and Li, Bangzheng and Feng, Yu and Wang, Haoyu and Lin, Xudong and Roth, Dan and Smith, Noah A. and Ma, Wei-Chiu and Krishna, Ranjay},
+  booktitle = {European Conference on Computer Vision},
+  year      = {2024},
+  eprint    = {2404.12390},
+  archivePrefix = {arXiv},
+  doi       = {10.48550/arXiv.2404.12390}
+}
+
+%==================================================
+% Adjacent LLM directions (compression, distillation, routing,
+% reasoning, MLLM downstream). Used in \S\ref{sec:related} for
+% completeness on recent LLM/MLLM efficiency and reasoning work.
+%==================================================
+
+@article{feng2025two,
+  title     = {Two-Stage Regularization-Based Structured Pruning for {LLM}s},
+  author    = {Feng, Mingkuan and Wu, Jinyang and Liu, Siyuan and Zhang, Shuai and Jin, Ruihan and Che, Feihu and Shao, Pengpeng and Wen, Zhengqi and Tao, Jianhua},
+  journal   = {arXiv preprint arXiv:2505.18232},
+  year      = {2025},
+  eprint    = {2505.18232},
+  archivePrefix = {arXiv},
+  doi       = {10.48550/arXiv.2505.18232}
+}
+
+@article{feng2025dress,
+  title     = {{DRESS}: Data-Driven Regularized Structured Streamlining for Large Language Models},
+  author    = {Feng, Mingkuan and Wu, Jinyang and Zhang, Shuai and Shao, Pengpeng and Jin, Ruihan and Wen, Zhengqi and Tao, Jianhua and Che, Feihu},
+  journal   = {arXiv preprint arXiv:2501.17905},
+  year      = {2025},
+  eprint    = {2501.17905},
+  archivePrefix = {arXiv},
+  doi       = {10.48550/arXiv.2501.17905}
+}
+
+@article{jin2025radialrouter,
+  title     = {{RadialRouter}: Structured Representation for Efficient and Robust Large Language Models Routing},
+  author    = {Jin, Ruihan and Shao, Pengpeng and Wen, Zhengqi and Wu, Jinyang and Feng, Mingkuan and Zhang, Shuai and Tao, Jianhua},
+  journal   = {arXiv preprint arXiv:2506.03880},
+  year      = {2025},
+  eprint    = {2506.03880},
+  archivePrefix = {arXiv},
+  doi       = {10.48550/arXiv.2506.03880}
+}
+
+@article{jin2026exploring,
+  title     = {Exploring Knowledge Purification in Multi-Teacher Knowledge Distillation for {LLM}s},
+  author    = {Jin, Ruihan and Shao, Pengpeng and Wen, Zhengqi and Wu, Jinyang and Feng, Mingkuan and Yang, Shuo and Zhang, Chu Yuan and Tao, Jianhua},
+  journal   = {arXiv preprint arXiv:2602.01064},
+  year      = {2026},
+  eprint    = {2602.01064},
+  archivePrefix = {arXiv},
+  doi       = {10.48550/arXiv.2602.01064}
+}
+
+@article{liu2025better,
+  title     = {Better, Stronger, Faster: Tackling the Trilemma in {MLLM}-Based Segmentation with Simultaneous Textual Mask Prediction},
+  author    = {Liu, Jiazhen and Feng, Mingkuan and Chen, Long},
+  journal   = {arXiv preprint arXiv:2512.00395},
+  year      = {2025},
+  eprint    = {2512.00395},
+  archivePrefix = {arXiv},
+  doi       = {10.48550/arXiv.2512.00395}
+}
+
+@inproceedings{wu2026astar,
+  title     = {{AStar}: Boosting Multimodal Reasoning with Automated Structured Thinking},
+  author    = {Wu, Jinyang and Feng, Mingkuan and Zhai, Guocheng and Zhang, Shuai and Lian, Zheng and Lv, Fangrui and Shao, Pengpeng and Jin, Ruihan and Wen, Zhengqi and Tao, Jianhua},
+  booktitle = {Proceedings of the {AAAI} Conference on Artificial Intelligence},
+  volume    = {40},
+  number    = {40},
+  pages     = {33926--33934},
+  year      = {2026}
+}
+
+@inproceedings{wu2025pandora,
+  title     = {Pandora's Box or Aladdin's Lamp: A Comprehensive Analysis Revealing the Role of {RAG} Noise in Large Language Models},
+  author    = {Wu, Jinyang and Zhang, Shuai and Che, Feihu and Feng, Mingkuan and Shao, Pengpeng and Tao, Jianhua},
+  booktitle = {Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+  pages     = {5019--5039},
+  year      = {2025}
+}
+
+@article{wu2024beyond,
+  title     = {Beyond Examples: High-Level Automated Reasoning Paradigm in In-Context Learning via {MCTS}},
+  author    = {Wu, Jinyang and Feng, Mingkuan and Zhang, Shuai and Che, Feihu and Wen, Zengqi and Liao, Chonghua and Tao, Jianhua},
+  journal   = {arXiv preprint arXiv:2411.18478},
+  year      = {2024},
+  eprint    = {2411.18478},
+  archivePrefix = {arXiv},
+  doi       = {10.48550/arXiv.2411.18478}
+}
+
+@article{wu2025thought,
+  title     = {Thought-Augmented Policy Optimization: Bridging External Guidance and Internal Capabilities},
+  author    = {Wu, Jinyang and Liao, Chonghua and Feng, Mingkuan and Zhang, Shuai and Wen, Zhengqi and Shao, Pengpeng and Xu, Huazhe and Tao, Jianhua},
+  journal   = {arXiv preprint arXiv:2505.15692},
+  volume    = {1},
+  number    = {8},
+  pages     = {10},
+  year      = {2025},
+  eprint    = {2505.15692},
+  archivePrefix = {arXiv},
+  doi       = {10.48550/arXiv.2505.15692}
+}

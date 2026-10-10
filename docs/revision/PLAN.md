@@ -1,0 +1,43 @@
+# DPVR 大修总体规划（PR-D-26-07438）
+
+本仓库专门用于这次 Pattern Recognition 大修，内容 = `Inner-Magma/dpvr` main 的完整历史 + 大修期间的代码、实验结果与论文源文件。原 `dpvr` 仓库保持不动。
+
+- 审稿意见原文与编号：[REVIEWS.md](REVIEWS.md)
+- 服务器端执行手册：[SERVER_HANDOFF.md](SERVER_HANDOFF.md)
+- 实验结果总表：[RESULTS.md](RESULTS.md)
+- 论文源文件：[`paper/`](../../paper/)（`ms.tex`，cas-sc 单栏双倍行距，当前 33 页，上限 35 页）
+- 详细分析（Claude Docs，作者可在线批注）：审稿意见分析与修改计划、大修执行规划
+
+## 四个阶段
+
+1. **环境**：新服务器复现论文已有数字后才进入实验（见 SERVER_HANDOFF §1）。
+2. **代码**：每项改动一个 PR（C1–C10），带单元测试；作者 review 后合入 main。
+3. **实验**：服务器 Claude Code 按 SERVER_HANDOFF §3 的顺序运行 E0–E11，结果写入 RESULTS.md。
+4. **论文**：先改不依赖实验的部分，实验出结果后填表；用 latexdiff 生成标红版本。
+
+## 代码改动清单
+
+| 编号 | 改动 | 主要文件 | 验收 | 服务实验 |
+| --- | --- | --- | --- | --- |
+| C1 | seed 传入 `TrainingArguments`（`seed`、`data_seed`）；锁定依赖版本 | `src/dpvr/training/trainer.py`、`requirements-lock.txt` | 不同 seed 的前 10 个 batch 样本 id 不同 | E9 |
+| C2 | DPVR-LF KV-cache 解码：深层（s..L-K-1）只缓存文本 KV，融合层和浅层缓存全序列；支持左 padding | `src/dpvr/models/token_diversion_x3_fusion.py` | 有/无 cache 的 greedy 输出一致，logits 误差 < 1e-3 | E1 |
+| C3 | 免训练变体：VTW；无侧枝 + 末层融合；从第 s 层起冻结图像隐状态 | 新 `src/dpvr/models/vtw_baseline.py` 等，注册到 `registry.py` | 复现 VTW 原文至少一个数字 | E3, E4 |
+| C4 | DPVR-LF + FastV / PruMerge | 仿 `td_fastv.py` 新增 `lf_fastv.py` | 剪枝比例为 0 时与 DPVR-LF 输出一致 | E7 |
+| C5 | 外部基线接入（PruMerge + 2–3 个近期方法） | `src/dpvr/models/` | 各复现原文一个数字 | E3 |
+| C6 | 饱和分析通用化：去掉写死的 576 / image token id 32000；残差范数指标；图像 token 池化 | `scripts/preliminary*.py`、`src/dpvr/analysis/` | LLaVA-1.5-7B 上重画出 Figure 2 | E2, E8 |
+| C7 | 效率测量：解析 FLOPs（独立求 ρ）；统一 B=1；端到端生成延迟；去掉写死的 `cuda:5` | `src/dpvr/profiling/flops.py`、`scripts/profile_efficiency.py` | 解析 FLOPs 与 fvcore 误差 < 5% | E1, E5 |
+| C8 | 第二骨干支持（默认 LLaVA-1.6-Mistral-7B，待服务器配置确定）；解除 `T_txt = S - max_img` 的"batch 内图像 token 数相同"假设 | `token_diversion_x3_fusion.py`、新 config | 变长图像 token 的单测；smoke 训练 | E6 |
+| C9 | 侧枝变体：MLP-only、LoRA 侧枝；可选用第 s 层权重初始化 | `token_diversion_x3_fusion.py` | 参数量正确；梯度可达 | E10 |
+| C10 | README 降调；统一论文中的代码链接 | `README*.md` | 链接可匿名访问 | — |
+
+## 时间（按延期至 2026-11-25 假设）
+
+| 周 | 内容 |
+| --- | --- |
+| 10/10–10/17 | 延期申请；服务器搭建与验收（E0）；C1、C2、C3、C8；E6 开训；论文改写不依赖实验的部分 |
+| 10/18–10/24 | C4–C7；E2、E4、E9；回复信初稿 |
+| 10/25–10/31 | E1、E3、E5；E6 评测 |
+| 11/01–11/09 | E7、E8、E10；结果填入论文 |
+| 11/10–11/25 | 通读、合作者审阅、标红版、提交 |
+
+延期未获批时的最低配置：C1–C3、C7；E1、E3（仅 VTW）、E4、E5；全文降调。
