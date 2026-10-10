@@ -1,10 +1,16 @@
 # Versions used for every result in the paper (Appendix B). Install these exactly;
-# pyproject.toml only states lower bounds.
-# torch: install the CUDA 12.8 build, e.g.
-#   pip install torch==2.9.0 --index-url https://download.pytorch.org/whl/cu128
+# pyproject.toml only states lower bounds. scripts/revision/setup_env.sh installs
+# from this file and also passes it as a constraints file to lmms-eval and to
+# `pip install -e .`, so nothing gets upgraded behind your back (installing trl
+# unconstrained pulls transformers 5.x, which breaks model construction).
+# torch: the CUDA 12.8 build, e.g.
+#   pip install torch==2.9.0 torchvision==0.24.0 --index-url https://download.pytorch.org/whl/cu128
 torch==2.9.0
+torchvision==0.24.0
 transformers==4.57.1
 trl==0.23.0
 accelerate==1.11.0
 bitsandbytes==0.49.2
-# lmms-eval 0.5.0 is installed from a local clone at $LMMS_EVAL_PATH (pip install -e).
+lmms_eval==0.5.0
+# lmms-eval 0.5.0 pins numpy==1.26.4 itself; listed so the constraint holds everywhere.
+numpy==1.26.4

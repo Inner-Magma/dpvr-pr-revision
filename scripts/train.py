@@ -88,6 +88,12 @@ def main() -> None:
     if trainer.args.should_save:
         tokenizer.save_pretrained(t["output_dir"])
         processor.save_pretrained(t["output_dir"])
+        # ConfigSaveCallback only writes into checkpoint-N/; from_trained and the
+        # revision eval need it next to the final weights too.
+        import json
+        (Path(t["output_dir"]) / "training_config.json").write_text(
+            json.dumps(cfg, indent=2, default=str)
+        )
     print(f"model saved to {t['output_dir']}")
 
 

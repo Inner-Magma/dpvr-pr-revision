@@ -5,7 +5,7 @@ This repo is for the Pattern Recognition major revision of the DPVR paper (manus
 Read these first:
 - `docs/revision/PLAN.md`: overall plan, code items C1–C10, timeline
 - `docs/revision/REVIEWS.md`: reviewer comments, numbered R1.x / R2.x
-- `docs/revision/SERVER_HANDOFF.md`: **if you are running on the GPU server, this is your operating manual**
+- `docs/revision/SERVER_HANDOFF.md`: **if you are running on the GPU server, this is your operating manual**. Experiments run through `scripts/revision/run_queue.py jobs/E*.yaml`; accuracy always goes through `scripts/revision/eval_lmms.py`.
 - `docs/revision/RESULTS.md`: experiment results ledger
 
 Conventions:

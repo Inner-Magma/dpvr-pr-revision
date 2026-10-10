@@ -19,6 +19,7 @@
 
 | 编号 | 改动 | 主要文件 | 验收 | 服务实验 |
 | --- | --- | --- | --- | --- |
+| C0 | 服务器流水线：锁版本的环境脚本与自检；8 卡任务队列；统一评测入口（lmms-eval `llava_hf` + DPVR 插件，`use_cache=False`）；训练起点权重比对；延迟基准；E0/E9 任务文件 | `scripts/revision/`、`jobs/`、`src/dpvr/pipeline/`、`src/dpvr/lmms_plugin/` | 单测通过；服务器上 E0 全部通过 | E0 及之后全部 |
 | C1 | seed 传入 `TrainingArguments`（`seed`、`data_seed`）；锁定依赖版本 | `src/dpvr/training/trainer.py`、`requirements-lock.txt` | 不同 seed 的前 10 个 batch 样本 id 不同 | E9 |
 | C2 | DPVR-LF KV-cache 解码：深层（s..L-K-1）只缓存文本 KV，融合层和浅层缓存全序列；支持左 padding | `src/dpvr/models/token_diversion_x3_fusion.py` | 有/无 cache 的 greedy 输出一致，logits 误差 < 1e-3 | E1 |
 | C3 | 免训练变体：VTW；无侧枝 + 末层融合；从第 s 层起冻结图像隐状态 | 新 `src/dpvr/models/vtw_baseline.py` 等，注册到 `registry.py` | 复现 VTW 原文至少一个数字 | E3, E4 |
