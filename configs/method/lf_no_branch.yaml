@@ -1,0 +1,9 @@
+defaults:
+  - _base.yaml
+
+# Training-free (C3): vanilla LLaVA-1.5 weights, nothing trained.
+# Evaluate with scripts/revision/eval_lmms.py --method_config configs/method/lf_no_branch.yaml
+method:
+  name: lf_no_branch
+  split_layer: 18
+  fusion_count: 1

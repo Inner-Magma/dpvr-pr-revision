@@ -1,0 +1,24 @@
+# E4: training-free causal checks on vanilla LLaVA-1.5-7B (§3.1, R1.1).
+# - freeze_image: image hidden states held at layer s; text still attends to them.
+#   If accuracy holds, the image tokens' deep updates are not needed.
+# - lf_no_branch: DPVR-LF's graph with the side branch replaced by identity
+#   (no training). The gap to trained DPVR-LF is what the side branch buys.
+# Compare against E3's vanilla7b and vtw7b_s* rows.
+#   python scripts/revision/run_queue.py jobs/E4.yaml --gpus 0-7
+experiment: E4
+defaults:
+  gpus: 1
+  min_free_gb: 30
+jobs:
+  - name: freeze7b_s{s}
+    matrix: {s: [8, 12, 16, 18, 20, 24, 28]}
+    cmd: >
+      python scripts/revision/eval_lmms.py --method_config configs/method/freeze_image.yaml
+      --override method.split_layer={s} --tasks eight --out {out}
+
+  - name: nobranch7b_s18_k{k}
+    matrix: {k: [1, 2, 3, 4]}
+    cmd: >
+      python scripts/revision/eval_lmms.py --method_config configs/method/lf_no_branch.yaml
+      --override method.split_layer=18 --override method.fusion_count={k}
+      --tasks eight --out {out}
