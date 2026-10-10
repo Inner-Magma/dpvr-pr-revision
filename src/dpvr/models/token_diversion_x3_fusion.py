@@ -34,11 +34,11 @@ import torch.nn as nn
 from transformers import AutoConfig, PreTrainedModel
 from transformers.generation import GenerationMixin
 from transformers.modeling_outputs import CausalLMOutputWithPast
-from transformers.models.llama.modeling_llama import LlamaDecoderLayer
 
 from .modeling_llama import LlamaModel
 from .modeling_llava import LlavaForConditionalGeneration
 from .registry import register_method
+from .side_branch import build_side_branch, set_branch_trainable
 
 
 def _build_text_only_causal_mask(
@@ -81,6 +81,10 @@ class TokenDiversionX3FusionLlava(PreTrainedModel, GenerationMixin):
         vision_depth: int = 1,
         fusion_count: int = 1,
         freeze_strategy: str = "all_but_single",
+        branch_type: str = "transformer",
+        branch_init: str = "random",
+        lora_rank: int = 16,
+        lora_alpha: float = 32.0,
     ):
         llava_config = AutoConfig.from_pretrained(base_model_path)
         super().__init__(llava_config)
@@ -134,11 +138,13 @@ class TokenDiversionX3FusionLlava(PreTrainedModel, GenerationMixin):
                 f"(deep layers between split_layer={split_layer} and end={n_total})"
             )
 
-        self.single_transformer = nn.ModuleList([
-            LlamaDecoderLayer(llama_cfg, layer_idx=split_layer + i)
-            for i in range(vision_depth)
-        ])
-        self.single_transformer.to(torch.bfloat16)
+        # Side branch (C9): default is vision_depth random decoder layers; see side_branch.py.
+        self.branch_type = branch_type
+        self.single_transformer = build_side_branch(
+            llama_cfg, split_layer, depth=vision_depth, branch_type=branch_type,
+            branch_init=branch_init, source_layers=self.llava_model.language_model.layers,
+            lora_rank=lora_rank, lora_alpha=lora_alpha,
+        )
 
         apply_llava_freeze_strategy(
             self.llava_model,
@@ -146,6 +152,7 @@ class TokenDiversionX3FusionLlava(PreTrainedModel, GenerationMixin):
             split_layer=split_layer,
             trainable_modules=list(self.single_transformer),
         )
+        set_branch_trainable(self.single_transformer, branch_type)
 
     # ---------------------------------------------------------- registry glue
     @classmethod
@@ -159,6 +166,10 @@ class TokenDiversionX3FusionLlava(PreTrainedModel, GenerationMixin):
             vision_depth=cfg["method"].get("vision_depth", 1),
             fusion_count=cfg["method"].get("fusion_count", 1),
             freeze_strategy=cfg["method"].get("freeze_strategy", "all_but_single"),
+            branch_type=cfg["method"].get("branch_type", "transformer"),
+            branch_init=cfg["method"].get("branch_init", "random"),
+            lora_rank=cfg["method"].get("lora_rank", 16),
+            lora_alpha=cfg["method"].get("lora_alpha", 32.0),
         )
 
     @classmethod
@@ -443,6 +454,9 @@ class TokenDiversionX3FusionLlava(PreTrainedModel, GenerationMixin):
         split_layer: int = 2,
         vision_depth: int = 1,
         fusion_count: int = 1,
+        branch_type: str = "transformer",
+        branch_init: str = "random",
+        lora_rank: int = 4,
     ) -> "TokenDiversionX3FusionLlava":
         """Build a random-weight instance for CPU unit tests (no pretrained loading).
 
@@ -513,9 +527,11 @@ class TokenDiversionX3FusionLlava(PreTrainedModel, GenerationMixin):
             raise ValueError(
                 f"fusion_count={obj.fusion_count} must be in [1, {n_deep}]"
             )
-        obj.single_transformer = nn.ModuleList([
-            LlamaDecoderLayer(llama_cfg, layer_idx=split_layer + i)
-            for i in range(vision_depth)
-        ])
+        obj.branch_type = branch_type
+        obj.single_transformer = build_side_branch(
+            llama_cfg, split_layer, depth=vision_depth, branch_type=branch_type,
+            branch_init=branch_init, source_layers=lm.layers, lora_rank=lora_rank,
+            lora_alpha=2 * lora_rank, dtype=torch.float32,
+        )
 
         return obj
