@@ -1,0 +1,42 @@
+# E5: prefill efficiency under one protocol (R1.5–R1.7, R1.10).
+# Analytic FLOPs (independent of any measurement) + measured B=1 forward latency
+# for vanilla and DPVR-LF on this server's GPU; B=4 rows reproduce the setting of
+# the manuscript's Figure 1 for comparison.
+# Latency numbers interfere when several run at once: give the queue ONE card,
+#   python scripts/revision/run_queue.py jobs/E5.yaml --gpus 0
+experiment: E5
+defaults:
+  gpus: 1
+  min_free_gb: 70
+jobs:
+  - name: analytic_flops
+    gpus: 0
+    cmd: >
+      python scripts/revision/analytic_flops.py --out {out}/analytic_flops.json
+      > {out}/analytic_flops.md
+
+  - name: lat7b_vanilla_b{b}
+    matrix: {b: [1, 4]}
+    cmd: >
+      python scripts/revision/bench_latency.py --vanilla --base_model llava-1.5-7b-hf
+      --batch {b} --n_txt 128 --out {out}/latency.json
+
+  - name: lat7b_lf_s18_k{k}_b{b}
+    matrix: {k: [1, 2], b: [1, 4]}
+    cmd: >
+      python scripts/revision/bench_latency.py
+      --config configs/method/token_diversion_x3_fusion.yaml
+      --batch {b} --n_txt 128 --out {out}/latency.json method.fusion_count={k}
+
+  - name: lat13b_vanilla_b1
+    cmd: >
+      python scripts/revision/bench_latency.py --vanilla --base_model llava-1.5-13b-hf
+      --batch 1 --n_txt 128 --out {out}/latency.json
+
+  # s=28 is the 13B accuracy configuration (Table 3); 24 / 34 were profiled in Table 6.
+  - name: lat13b_lf_s{s}_b1
+    matrix: {s: [24, 28, 34]}
+    cmd: >
+      python scripts/revision/bench_latency.py
+      --config configs/method/token_diversion_x3_fusion_13b_split{s}_d1.yaml
+      --batch 1 --n_txt 128 --out {out}/latency.json
