@@ -48,11 +48,21 @@ from transformers import AutoProcessor, LlavaForConditionalGeneration
 # ---------------------------------------------------------------------------
 # Constants — must match the loaded model config
 # ---------------------------------------------------------------------------
-_IMAGE_TOKEN_INDEX = 32000   # LLaVA-1.5 <image> special token id
+# Legacy LLaVA-1.5 script kept to reproduce the submitted figures; the token id
+# and image-token count are read from model.config at load time. For other
+# model families use scripts/revision/saturation.py (dpvr.analysis.saturation).
+_IMAGE_TOKEN_INDEX = 32000  # overwritten from model.config by _bind_image_token()
 _IMAGE_SEQ_LENGTH_DEFAULT = 576  # fallback; real value read from model.config at runtime
 
 _DATA_ROOT = Path("/path/to/llava-1.5-665k-instructions")
 
+
+
+def _bind_image_token(model) -> None:
+    """Use the loaded model's image token id instead of the LLaVA-1.5 default."""
+    global _IMAGE_TOKEN_INDEX
+    cfg = model.config
+    _IMAGE_TOKEN_INDEX = int(getattr(cfg, "image_token_id", None) or cfg.image_token_index)
 
 # ---------------------------------------------------------------------------
 # 1. Data loading
@@ -517,6 +527,7 @@ def run_analysis(
         low_cpu_mem_usage=True,
     ).to(device).eval()
     processor = AutoProcessor.from_pretrained(model_path)
+    _bind_image_token(model)
     n_layers = len(get_llm_layers(model))
     # Read image_seq_length from model config; fall back to 576 for LLaVA-1.5
     image_seq_length = int(getattr(model.config, "image_seq_length", _IMAGE_SEQ_LENGTH_DEFAULT))

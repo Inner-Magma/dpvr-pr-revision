@@ -131,6 +131,12 @@ python scripts/revision/run_queue.py jobs/E9.yaml --gpus 0-7
 | 5 | E10 | C9 | MLP-only / LoRA 侧枝，30% 数据（`configs/data/llava665k_30pct.yaml`） | Table 4 |
 | 5 | E11 | — | 整理已有 K=1–4 的分 benchmark 结果 | Table 5 |
 
+E2 / E8（`jobs/E2.yaml`、`jobs/E8.yaml`，入口 `scripts/revision/saturation.py`）：
+- 每个模型 500 个 LLaVA-665k 样本（seed 0），单卡 bf16、eager attention；输出 `curves.npz`（逐样本逐层）、`summary.json`（逐层中位数与 IQR、各指标的转折层）、`saturation.pdf`；`compare` 任务把各模型叠在一张图上（横轴 layer/L）并写转折层表 `compare.md`。
+- 先跑 `llava15_7b`，核对与论文 Figure 2 一致（图像余弦 ≥0.92、L18 后注意力质量约 0.04、图像 KL 50% 转折在 L22），不一致先停下排查，再跑其他模型。
+- LLaVA-1.5 以外的模型要先下载 HF 格式权重到 `${MODEL_ROOT}/<目录名>`（目录名见任务文件；第二骨干定下后按需增删）。Qwen2.5-VL 的图像 token 数用 `--max_pixels` 限制在约 640。
+- E8 在 projector 之后把 24×24 图像特征平均池化成 12×24 / 12×12 / 6×6，只支持 LLaVA-1.5 结构。
+
 ## 4. 汇报方式
 
 每完成一项，在 RESULTS.md 追加一行并 commit + push 到 main（只改 RESULTS.md 和 `results/revision/`）。提交信息格式：`results(E3): VTW 7B eight-bench`。

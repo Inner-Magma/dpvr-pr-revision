@@ -1,0 +1,25 @@
+# E8: saturation curves vs. image-token count (C6; R2.4, R2.7). The projected
+# 24x24 patch features of LLaVA-1.5 are average-pooled to the grid before the
+# LLM: 576 (native), 288 (12x24), 144 (12x12), 36 (6x6).
+#   python scripts/revision/run_queue.py jobs/E8.yaml --gpus 0-7
+experiment: E8
+vars:
+  n: 500
+defaults:
+  gpus: 1
+  min_free_gb: 40
+jobs:
+  - name: "{size}_g{grid}"
+    matrix: {size: [7b, 13b], grid: ["24x24", "12x24", "12x12", "6x6"]}
+    cmd: >
+      python scripts/revision/saturation.py --model llava-1.5-{size}-hf
+      --image_grid {grid} --n_samples {n} --out {out}
+
+  - name: compare_{size}
+    matrix: {size: [7b, 13b]}
+    gpus: 0
+    after: ["{size}_g24x24", "{size}_g12x24", "{size}_g12x12", "{size}_g6x6"]
+    cmd: >
+      python scripts/revision/compare_saturation.py
+      "576={out}/../{size}_g24x24" "288={out}/../{size}_g12x24"
+      "144={out}/../{size}_g12x12" "36={out}/../{size}_g6x6" --out {out}/compare
