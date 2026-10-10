@@ -8,6 +8,8 @@ the ``dpvr_hf`` plugin, so vanilla and DPVR rows go through identical code.
 Usage:
     python scripts/revision/eval_lmms.py --checkpoint /ckpt/run --tasks eight --out /runs/E9/eval_seed1
     python scripts/revision/eval_lmms.py --checkpoint none --tasks pope,scienceqa --out /runs/E0/vanilla
+    python scripts/revision/eval_lmms.py --method_config configs/method/vtw.yaml \
+        --override method.split_layer=16 --tasks eight --out /runs/E3/vtw_s16   # training-free
     python scripts/revision/eval_lmms.py ... --limit 20          # quick smoke check
 
 Benchmarks are read from ``--bench_root`` (default ``$BENCH_ROOT`` or
@@ -104,7 +106,8 @@ def collect_metrics(lmms_out: Path) -> dict[str, dict]:
 def run_meta(args, checkpoint: str) -> dict:
     import platform
 
-    meta = {"checkpoint": checkpoint, "use_cache": args.use_cache, "limit": args.limit,
+    meta = {"checkpoint": checkpoint, "method_config": args.method_config,
+            "overrides": args.override, "use_cache": args.use_cache, "limit": args.limit,
             "python": platform.python_version()}
     try:
         meta["git_sha"] = subprocess.check_output(
@@ -135,7 +138,12 @@ def run_meta(args, checkpoint: str) -> dict:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--checkpoint", required=True, help="checkpoint dir, or 'none' for vanilla")
+    src = ap.add_mutually_exclusive_group(required=True)
+    src.add_argument("--checkpoint", help="checkpoint dir, or 'none' for vanilla")
+    src.add_argument("--method_config",
+                     help="build an untrained model from this method YAML (training-free variants)")
+    ap.add_argument("--override", action="append", default=[], metavar="KEY=VALUE",
+                    help="config override for --method_config (repeatable)")
     ap.add_argument("--tasks", default="eight")
     ap.add_argument("--out", required=True)
     ap.add_argument("--base_model", default="llava-1.5-7b-hf",
@@ -162,9 +170,17 @@ def main() -> None:
     missing = [str(p) for p in referenced if not p.exists()]
     if missing and not args.dry_run:
         raise SystemExit(f"benchmark data not found: {missing}")
-    checkpoint = args.checkpoint
+    checkpoint = args.checkpoint or "none"
     if checkpoint.lower() != "none" and not Path(checkpoint).exists():
         raise SystemExit(f"checkpoint not found: {checkpoint}")
+    if args.method_config:
+        # Resolved here so the run directory records exactly what was built.
+        from dpvr.utils import apply_cli_overrides, load_config, resolve_paths
+
+        cfg = resolve_paths(apply_cli_overrides(load_config(args.method_config), args.override), paths)
+        out.mkdir(parents=True, exist_ok=True)
+        checkpoint = f"config:{out / 'method_config.json'}"
+        (out / "method_config.json").write_text(json.dumps(cfg, indent=2, default=str))
     if not base.exists() and not args.dry_run:
         raise SystemExit(f"base model not found: {base}")
 

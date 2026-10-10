@@ -11,6 +11,9 @@ tokenizer), then replaces it with the trained checkpoint.
 
 ``checkpoint=none`` evaluates the vanilla base model through the same code
 path, so vanilla and DPVR rows share one evaluation chain.
+``checkpoint=config:<file.json>`` builds an untrained model from a resolved
+method config (training-free variants such as VTW); ``eval_lmms.py
+--method_config`` writes that file.
 """
 from __future__ import annotations
 
@@ -40,15 +43,25 @@ class DPVRHf(LlavaHf):
             eval_logger.info(f"[dpvr_hf] vanilla model {pretrained}, use_cache={self.use_cache}")
             return
 
-        from dpvr.models.checkpoint_io import load_trained
-
         base_dtype = self._model.dtype
         self._model = None
         torch.cuda.empty_cache()
-        model, report = load_trained(self.checkpoint)
-        eval_logger.info(f"[dpvr_hf] loaded {self.checkpoint}: {report.summary()}")
-        if report.missing:
-            eval_logger.warning(f"[dpvr_hf] missing keys (first 10): {report.missing[:10]}")
+        if self.checkpoint.startswith("config:"):
+            import json
+            from pathlib import Path
+
+            from dpvr.models import build_model
+
+            cfg = json.loads(Path(self.checkpoint[len("config:"):]).read_text())
+            model = build_model(cfg)
+            eval_logger.info(f"[dpvr_hf] built {cfg['method']} from config (no checkpoint)")
+        else:
+            from dpvr.models.checkpoint_io import load_trained
+
+            model, report = load_trained(self.checkpoint)
+            eval_logger.info(f"[dpvr_hf] loaded {self.checkpoint}: {report.summary()}")
+            if report.missing:
+                eval_logger.warning(f"[dpvr_hf] missing keys (first 10): {report.missing[:10]}")
         model = model.to(self._device, dtype=base_dtype)
         model.eval()
         self._model = model
