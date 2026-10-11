@@ -69,3 +69,4 @@ paper/_overleaf_snapshot_*/
 
 # Claude Code session data (user-specific, never commit)
 .claude/
+results/revision/summary/mail.eml

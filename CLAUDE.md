@@ -2,11 +2,16 @@
 
 This repo is for the Pattern Recognition major revision of the DPVR paper (manuscript PR-D-26-07438). It holds the code from `Inner-Magma/dpvr` plus the revision work. The author writes in Chinese, so reply in Chinese.
 
+On the GPU server, `AGENTS.md` is your entry point (imported below); follow its red lines.
+
+@AGENTS.md
+
 Read these first:
 - `docs/revision/PLAN.md`: overall plan, code items C1–C10, timeline
 - `docs/revision/REVIEWS.md`: reviewer comments, numbered R1.x / R2.x
 - `docs/revision/SERVER_HANDOFF.md`: **if you are running on the GPU server, this is your operating manual**. Experiments run through `scripts/revision/run_queue.py jobs/E*.yaml`; accuracy always goes through `scripts/revision/eval_lmms.py`.
 - `docs/revision/RESULTS.md`: experiment results ledger
+- `docs/revision/SERVER_PROMPTS.md`: the prompts the author gives the server session, phase by phase
 
 Conventions:
 - Code changes go through a PR (one per C-item, with tests). The author reviews and merges.

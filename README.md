@@ -128,14 +128,15 @@ python scripts/train.py --config configs/method/token_diversion_x3_fusion.yaml \
 
 ## Evaluation
 
-Evaluation uses [`lmms-eval`](https://github.com/EvolvingLMMs-Lab/lmms-eval)
-(install with the `eval` extra and set `LMMS_EVAL_PATH`). Task configs are under
-[`configs/lmms_tasks/`](configs/lmms_tasks/); the `*_local.yaml` files are
-templates — point their `dataset_path` at your local benchmark copies.
+Evaluation uses [`lmms-eval`](https://github.com/EvolvingLMMs-Lab/lmms-eval) 0.5.0
+from PyPI (pinned in `requirements-lock.txt`). Task configs are under
+[`configs/lmms_tasks/`](configs/lmms_tasks/); benchmarks are read from
+`${DATA_ROOT}/benchmarks` (or `BENCH_ROOT`), and
+`scripts/revision/download_assets.py benchmarks` fetches them there.
 
 ```bash
-python scripts/evaluate.py --checkpoint /path/to/checkpoints/token_diversion_x3_fusion/... \
-    --data_root /path/to/benchmarks
+python scripts/revision/eval_lmms.py --checkpoint /path/to/checkpoints/token_diversion_x3_fusion/... \
+    --tasks eight --out /path/to/output
 ```
 
 > Note: pass `use_cache=False` for all lmms-eval runs. The ScienceQA metric key
