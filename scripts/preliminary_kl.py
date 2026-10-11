@@ -66,11 +66,21 @@ from transformers import AutoProcessor, LlavaForConditionalGeneration
 # ---------------------------------------------------------------------------
 # Constants
 # ---------------------------------------------------------------------------
-_IMAGE_TOKEN_INDEX = 32000
+# Legacy LLaVA-1.5 script kept to reproduce the submitted figures; the token id
+# and image-token count are read from model.config at load time. For other
+# model families use scripts/revision/saturation.py (dpvr.analysis.saturation).
+_IMAGE_TOKEN_INDEX = 32000  # overwritten from model.config by _bind_image_token()
 _IMAGE_SEQ_LENGTH_DEFAULT = 576
 _DATA_ROOT = Path("/path/to/llava-1.5-665k-instructions")
 _EPS = 1e-6  # matches Zero paper
 
+
+
+def _bind_image_token(model) -> None:
+    """Use the loaded model's image token id instead of the LLaVA-1.5 default."""
+    global _IMAGE_TOKEN_INDEX
+    cfg = model.config
+    _IMAGE_TOKEN_INDEX = int(getattr(cfg, "image_token_id", None) or cfg.image_token_index)
 
 # ---------------------------------------------------------------------------
 # 1. Data loading
@@ -163,7 +173,7 @@ def build_text_batches(
         )
         has_img_tok = (enc["input_ids"] == _IMAGE_TOKEN_INDEX).any().item()
         assert not has_img_tok, (
-            "Tokenized text batch contains IMAGE_TOKEN_INDEX (32000). "
+            f"Tokenized text batch contains IMAGE_TOKEN_INDEX ({_IMAGE_TOKEN_INDEX}). "
             "Strip <image> from questions before building text batches."
         )
         batches.append({k: v.to(device) for k, v in enc.items()})
@@ -365,7 +375,7 @@ def compute_kl_text_only_batch(
     Returns dict 'text_only_kl' of shape (B, n_layers).
     """
     assert not (batch["input_ids"] == _IMAGE_TOKEN_INDEX).any().item(), (
-        "text_only batch contains IMAGE_TOKEN_INDEX (32000). "
+        f"text_only batch contains IMAGE_TOKEN_INDEX ({_IMAGE_TOKEN_INDEX}). "
         "Questions must have <image> stripped before tokenisation."
     )
     assert "pixel_values" not in batch, (
@@ -906,6 +916,7 @@ def run_vlm_analysis(
         local_files_only=True,
     ).to(device).eval()
     processor = AutoProcessor.from_pretrained(model_path, local_files_only=True)
+    _bind_image_token(model)
 
     n_layers         = len(get_llm_layers(model))
     image_seq_length = int(getattr(model.config, "image_seq_length", _IMAGE_SEQ_LENGTH_DEFAULT))
@@ -1170,6 +1181,7 @@ def run_text_only_analysis(
         local_files_only=True,
     ).to(device).eval()
     processor = AutoProcessor.from_pretrained(model_path, local_files_only=True)
+    _bind_image_token(model)
 
     n_layers = len(get_llm_layers(model))
     lm_head, final_norm = get_lm_head_and_norm(model)
