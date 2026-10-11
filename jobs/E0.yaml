@@ -1,0 +1,51 @@
+# E0: acceptance checks on the new server (SERVER_HANDOFF §1.4–1.5).
+#   python scripts/revision/run_queue.py jobs/E0.yaml --gpus 0-7 \
+#       --set lf7b_seed1_ckpt=<migrated 7B DPVR-LF s=18 seed=1 checkpoint dir>
+# The checkpoint dir must hold the weights and training_config.json (if it only has
+# checkpoint-N/ subdirs, point at the last one).
+experiment: E0
+vars:
+  lf7b_seed1_ckpt: REQUIRED
+defaults:
+  gpus: 1
+  min_free_gb: 30
+jobs:
+  - name: provenance_lf7b_seed1
+    gpus: 0
+    cmd: >
+      python scripts/revision/check_weight_provenance.py
+      --checkpoint {lf7b_seed1_ckpt} --out {out}/provenance.json
+
+  # Paper Table 10: POPE .8567, SQA .6465 for this checkpoint.
+  - name: reeval_lf7b_seed1
+    cmd: >
+      python scripts/revision/eval_lmms.py --checkpoint {lf7b_seed1_ckpt}
+      --tasks pope,scienceqa --out {out}
+
+  - name: reeval_vanilla7b
+    cmd: >
+      python scripts/revision/eval_lmms.py --checkpoint none
+      --tasks pope,scienceqa --out {out}
+
+  # Latency wants an idle card: ask for nearly all of its memory.
+  - name: latency_vanilla7b
+    min_free_gb: 70
+    cmd: >
+      python scripts/revision/bench_latency.py --vanilla --base_model llava-1.5-7b-hf
+      --batch 1 --n_txt 128 --out {out}/latency.json
+
+  - name: latency_lf7b
+    min_free_gb: 70
+    after: [latency_vanilla7b]
+    cmd: >
+      python scripts/revision/bench_latency.py
+      --config configs/method/token_diversion_x3_fusion.yaml
+      --batch 1 --n_txt 128 --out {out}/latency.json
+
+  # 50-step training smoke test: loss should fall, memory close to the paper's run.
+  - name: smoke_train_lf7b
+    min_free_gb: 60
+    cmd: >
+      python scripts/train.py --config configs/method/token_diversion_x3_fusion.yaml
+      seed=1 training.max_steps=50 training.save_strategy=no
+      training.output_subdir=revision/E0/smoke_train_lf7b

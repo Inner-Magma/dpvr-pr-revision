@@ -1,0 +1,23 @@
+# E9: 7B DPVR-LF s=18 retrained with the seed fix (C1), seeds 1/2/3, then the
+# eight-benchmark evaluation. One GPU per run keeps the paper's effective batch
+# size of 4 (Appendix B), so the three seeds train side by side.
+#   python scripts/revision/run_queue.py jobs/E9.yaml --gpus 0-7
+experiment: E9
+defaults:
+  gpus: 1
+  min_free_gb: 60
+jobs:
+  - name: train_seed{seed}
+    matrix: {seed: [1, 2, 3]}
+    cmd: >
+      python scripts/train.py --config configs/method/token_diversion_x3_fusion.yaml
+      seed={seed} training.output_subdir=revision/E9/lf7b_s18_seed{seed}
+
+  - name: eval_seed{seed}
+    matrix: {seed: [1, 2, 3]}
+    after: ["train_seed{seed}"]
+    min_free_gb: 30
+    cmd: >
+      python scripts/revision/eval_lmms.py
+      --checkpoint ${CKPT_ROOT}/revision/E9/lf7b_s18_seed{seed}
+      --tasks eight --out {out}

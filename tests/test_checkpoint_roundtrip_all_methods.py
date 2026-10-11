@@ -38,8 +38,14 @@ from dpvr.models import build_model
 def _load_cfg(method_name: str) -> dict:
     cfg_path = REPO_ROOT / f"configs/method/{method_name}.yaml"
     cfg = load_config(str(cfg_path))
-    paths = load_paths()
-    return resolve_paths(cfg, paths)
+    try:
+        paths = load_paths()
+    except RuntimeError:
+        pytest.skip("path roots not set (.env / configs/paths.yaml)")
+    cfg = resolve_paths(cfg, paths)
+    if not Path(cfg["model"]["base_model_path"]).exists():
+        pytest.skip(f"base model not found at {cfg['model']['base_model_path']}")
+    return cfg
 
 
 METHODS = [
