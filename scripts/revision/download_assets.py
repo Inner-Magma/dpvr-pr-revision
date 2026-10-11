@@ -60,8 +60,12 @@ BENCHMARKS = {
 }
 
 # Samples behind the paper's numbers (lmms-eval n-samples in the old results.json).
+# SEED: the 7B main rows (all seeds) were evaluated on the full SEED-Bench test
+# split (17,990 questions; the paper reports seed_image). An incomplete local copy
+# with 5,874 rows was used for the 13B runs and some 7B ablations, so those rows
+# are not comparable with a full-split re-run (SERVER_HANDOFF §1.3).
 EXPECTED = {"pope": 9000, "mme": 2374, "mmbench_en": 4329, "mmbench_cn": 4329,
-            "scienceqa": 2017, "seedbench": 5874, "blink": 1901}
+            "scienceqa": 2017, "seedbench": 17990, "blink": 1901}
 
 LLAVA_JSON = ("liuhaotian/LLaVA-Instruct-150K", "llava_v1_5_mix665k.json")
 

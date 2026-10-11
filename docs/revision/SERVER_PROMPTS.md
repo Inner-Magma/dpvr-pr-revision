@@ -16,8 +16,8 @@
    - `MAIL_TO`：收件地址。
    `.env` 已被 `.gitignore` 忽略，不会被提交。
 3. 旧数据（有就拷，没有就跳过，代理会按缺失处理）：
-   - 旧 checkpoint 和 `results.json` 拷到 `${CKPT_ROOT}`，保持原目录结构；至少要 7B DPVR-LF s=18 seed=1 那一个（目录里要有 `training_config.json`）；
-   - 旧服务器上的评测数据目录（特别是 5874 条的 SEED 子集）拷到 `${DATA_ROOT}/benchmarks/`。
+   - 论文的 7B DPVR-LF checkpoint 已丢失，不用找。从 hsf 拷一个同代码训练的 7B checkpoint 到 `${CKPT_ROOT}`，只用来核查训练起点：推荐 `token_diversion/llava665k_split18_d1`（43 GB，目录里要有 `training_config.json`）。拷不了就跳过，E0 里只有起点核查一项会缺；
+   - 评测数据不用拷，全部重新下载（hsf 上的 SEED 副本不完整）。
 4. 启动 Claude Code：
    ```bash
    npm install -g @anthropic-ai/claude-code   # 已装可跳过
@@ -32,7 +32,7 @@
 读 AGENTS.md 和 docs/revision/SERVER_HANDOFF.md，执行阶段 1（E0）：
 1. 按 §1.1 用 scripts/revision/setup_env.sh 建环境（国内镜像按 §1.1 设置），跑 check_env.py。
 2. 按 §1.3 用 download_assets.py 下载模型、评测数据和 665k（图像用 download_llava_images.sh），已存在的跳过。
-3. 找到旧的 7B DPVR-LF s=18 seed=1 checkpoint，跑 jobs/E0.yaml（先 --dry-run）。没有旧 checkpoint 时用 --only 跳过依赖它的两项，并在 RESULTS.md 写明。
+3. 跑 jobs/E0.yaml（先 --dry-run），prov_ckpt 用 ${CKPT_ROOT} 下拷来的 7B checkpoint（§1.3）；没有就不传，起点核查那一项会拒绝启动，其余照跑，在 RESULTS.md 写明。
 4. 跑 pytest tests/。
 5. 填 RESULTS.md 的"服务器信息"，按 AGENTS.md 的"汇报"流程汇总、push、发邮件（主题 "E0 done" 或 "BLOCKED: E0 ..."）。
 最后告诉我验收清单（§1.5）每一项的结果。
@@ -44,10 +44,10 @@
 执行 AGENTS.md 阶段 2：确认 8 张卡上没有任何其他任务后，在 tmux 里依次跑 jobs/E1.yaml 和 jobs/E5.yaml（都用 --gpus 0）。启动后告诉我各自的任务数，然后结束这一轮。
 ```
 
-## 指令 3：饱和分析与 Qwen 分割层（E2、E8）
+## 指令 3：饱和分析与 Qwen 分割层（E2）
 
 ```
-执行 AGENTS.md 阶段 3：jobs/E2.yaml 和 jobs/E8.yaml，--gpus 0-7（两个队列分开卡）。先只跑 E2 的 llava15_7b，按 SERVER_HANDOFF §3.1 核对它与论文 Figure 2 一致，再放开其余任务。E2 结束后根据 qwen25vl_7b 的曲线给出 Qwen2.5-VL 的分割层建议；不明确就跑 jobs/E6_split.yaml。告诉我建议值和依据。
+执行 AGENTS.md 阶段 3：jobs/E2.yaml，--gpus 0-7。先只跑 E2 的 llava15_7b，按 SERVER_HANDOFF §3.1 核对它与论文 Figure 2 一致，再放开其余任务。E2 结束后根据 qwen25vl_7b 的曲线给出 Qwen2.5-VL 的分割层建议；不明确就跑 jobs/E6_split.yaml。告诉我建议值和依据。
 ```
 
 ## 指令 4：第二骨干与三个 seed（E6、E9）
@@ -56,10 +56,10 @@
 执行 AGENTS.md 阶段 4：分割层用 <s>（填上一步的结论）。jobs/E6.yaml 用 --gpus 0-4 --set split=<s>，jobs/E9.yaml 用 --gpus 5-7，各开一个 tmux 窗口。E6 冒烟评测通过前不放开全量训练。启动后结束这一轮。
 ```
 
-## 指令 5：基线与其余实验（E3、E4、E7、E10）
+## 指令 5：基线与其余实验（E3、E4、E8、E7、E10）
 
 ```
-执行 AGENTS.md 阶段 5：在空闲的卡上跑 jobs/E3_vtw.yaml、jobs/E3_baselines.yaml、jobs/E4.yaml、jobs/E7.yaml、jobs/E10.yaml，队列之间的 --gpus 不相交，不要占用 E6/E9 还在用的卡。启动后告诉我分配方案，然后结束这一轮。
+执行 AGENTS.md 阶段 5：在空闲的卡上按优先级跑 jobs/E3_vtw.yaml、jobs/E4.yaml，然后 jobs/E3_baselines.yaml、jobs/E8.yaml、jobs/E7.yaml、jobs/E10.yaml，队列之间的 --gpus 不相交，不要占用 E6/E9 还在用的卡。估一下各队列能否在 10/21 前结束，赶不上的按 AGENTS.md 的放弃顺序不启动。启动后告诉我分配方案和预计完成时间，然后结束这一轮。
 ```
 
 ## 随时可用：检查进度

@@ -1,20 +1,26 @@
 # E0: acceptance checks on the new server (SERVER_HANDOFF §1.4–1.5).
 #   python scripts/revision/run_queue.py jobs/E0.yaml --gpus 0-7 \
-#       --set lf7b_seed1_ckpt=<migrated 7B DPVR-LF s=18 seed=1 checkpoint dir>
-# The checkpoint dir must hold the weights and training_config.json (if it only has
-# checkpoint-N/ subdirs, point at the last one).
+#       --set prov_ckpt=<a 7B checkpoint trained with this code, see below>
+# The 7B DPVR-LF seed=1 checkpoint of the paper is lost (its server is gone), so
+# the old-checkpoint re-evaluation is dropped: the eval chain is checked with
+# vanilla, and E9 seed=1 is compared with the old seed=1 scores instead.
+# prov_ckpt only settles the training start (frozen weights): any 7B LLaVA-1.5
+# checkpoint from the same codebase works, e.g. token_diversion/llava665k_split18_d1
+# (DPVR-TD, 43 GB). It must hold the weights and training_config.json (if it only
+# has checkpoint-N/ subdirs, point at the last one). Without one, provenance_7b refuses
+# to start and the other jobs still run.
 experiment: E0
 vars:
-  lf7b_seed1_ckpt: REQUIRED
+  prov_ckpt: REQUIRED
 defaults:
   gpus: 1
   min_free_gb: 30
 jobs:
-  - name: provenance_lf7b_seed1
+  - name: provenance_7b
     gpus: 0
     cmd: >
       python scripts/revision/check_weight_provenance.py
-      --checkpoint {lf7b_seed1_ckpt} --out {out}/provenance.json
+      --checkpoint {prov_ckpt} --out {out}/provenance.json
       --vicuna ${MODEL_ROOT}/reference/vicuna-7b-v1.5
       --projector ${MODEL_ROOT}/reference/llava-v1.5-7b-pretrain/mm_projector.bin
 
@@ -25,16 +31,11 @@ jobs:
     cmd: >
       python scripts/revision/download_assets.py --verify --out {out}/assets.json
 
-  # Paper Table 10: POPE .8567, SQA .6465 for this checkpoint.
-  - name: reeval_lf7b_seed1
-    cmd: >
-      python scripts/revision/eval_lmms.py --checkpoint {lf7b_seed1_ckpt}
-      --tasks pope,scienceqa --out {out}
-
+  # Eval-chain check: compare with the paper's vanilla LLaVA-1.5-7B row.
   - name: reeval_vanilla7b
     cmd: >
       python scripts/revision/eval_lmms.py --checkpoint none
-      --tasks pope,scienceqa --out {out}
+      --tasks eight --out {out}
 
   # Latency wants an idle card: ask for nearly all of its memory.
   - name: latency_vanilla7b

@@ -40,7 +40,7 @@ conda activate dpvr
 
 ### 1.3 模型与数据
 
-除旧 checkpoint 外都可以用一条脚本下载到下面的位置（走 `.env` 的 `HF_ENDPOINT`，可断点续传，重跑会跳过已下载的）：
+全部可以用一条脚本下载到下面的位置（走 `.env` 的 `HF_ENDPOINT`，可断点续传，重跑会跳过已下载的）：
 
 ```bash
 python scripts/revision/download_assets.py --list                          # 看清单
@@ -49,12 +49,12 @@ bash scripts/download_llava_images.sh ${DATA_ROOT}/llava-1.5-665k-instructions  
 python scripts/revision/download_assets.py --verify                        # 评测集样本数与论文对照
 ```
 
-`--verify` 把每个评测集的样本数和论文数字背后的样本数（POPE 9000、MME 2374、MMB-EN/CN 4329、SQA 2017、SEED 5874、BLINK 1901）对照，写到 `results/revision/E0/assets.json`。**SEED 论文用的是 5874 条的子集**，新下载的完整版条数不同：旧服务器上有原文件时优先拷过来；拷不到就照常评测，但在 RESULTS.md "问题"里写明 SEED 列与论文不可直接比较。
+`--verify` 把每个评测集的样本数和论文数字背后的样本数（POPE 9000、MME 2374、MMB-EN/CN 4329、SQA 2017、SEED 17990、BLINK 1901）对照，写到 `results/revision/E0/assets.json`。SEED 一律用 HF `lmms-lab/SEED-Bench` 的完整 test（17,990 题，报 `seed_image`），与论文 7B 主实验各 seed 一致。旧 hsf 上那份 5,874 行的 `seed-bench` 是没下完整的副本（13B 和部分 7B 消融用过它），**不要拷过来用**；新结果里的 SEED 都是完整集。
 
 - `${MODEL_ROOT}/llava-1.5-7b-hf`、`llava-1.5-13b-hf`（llava-hf 格式）
 - 训练数据：`${DATA_ROOT}/llava-1.5-665k-instructions/`（JSON + COCO/GQA/OCR-VQA/TextVQA/VG 图像；`scripts/download_llava_images.sh`、`scripts/prepare_data.py`）
 - 评测数据（`configs/lmms_tasks/*_local.yaml` 里 `/path/to/benchmarks` 换成 `${BENCH_ROOT}` 后的位置）：`pope/`、`mme/`、`mmbench_en/en/`、`mmbench_cn/cn/dev-00000-of-00001.parquet`、`scienceqa/ScienceQA-IMG/`、`seed-bench/`、`blink/blink_val_combined.parquet`
-- 旧服务器的 checkpoint 与 `results.json` 整体迁移到 `${CKPT_ROOT}`，保持原目录结构
+- 论文 7B DPVR-LF 的 checkpoint 已随旧服务器丢失，不再迁移。只需要一个用同一套代码训练的 7B LLaVA-1.5 checkpoint 做 §1.4 的起点核查（推荐 hsf 上的 `token_diversion/llava665k_split18_d1`，43 GB，放到 `${CKPT_ROOT}` 下）
 
 装好后跑自检，全部 ✓ 再往下（`!` 是可选项，只提示）：
 
@@ -69,7 +69,7 @@ python scripts/revision/check_env.py --out results/revision/E0/env_check.json
 这些模块在 DPVR 训练中是冻结的，checkpoint 里原样保存着它们，**直接比对权重就能确定起点**，不需要靠评测数字去猜：
 
 ```bash
-python scripts/revision/check_weight_provenance.py --checkpoint <7B DPVR-LF seed=1 checkpoint> \
+python scripts/revision/check_weight_provenance.py --checkpoint <7B checkpoint，见 §1.3> \
     --out results/revision/E0/provenance.json
 ```
 
@@ -82,18 +82,18 @@ python scripts/revision/check_weight_provenance.py --checkpoint <7B DPVR-LF seed
 E0 的检查都写在 `jobs/E0.yaml` 里，一条命令并行跑完（用法见 §2.1）：
 
 ```bash
-python scripts/revision/run_queue.py jobs/E0.yaml --gpus 0-7 --set lf7b_seed1_ckpt=<同上 checkpoint>
+python scripts/revision/run_queue.py jobs/E0.yaml --gpus 0-7 --set prov_ckpt=<同上 checkpoint>
 ```
 
 - [ ] `pytest tests/` 全部通过（无权重时部分测试会 skip，属正常）
 - [ ] `check_env.py` 无 ✗
-- [ ] `provenance_lf7b_seed1`：起点结论写入 RESULTS.md
-- [ ] `assets_verify`：八项评测集样本数与论文一致；不一致的（多半是 SEED）写进 RESULTS.md "问题"
-- [ ] `reeval_lf7b_seed1`：POPE、SQA 与论文 Table 10 的 .8567 / .6465 差距 < 0.3pp（同时看 `reeval_vanilla7b` 是否与论文 vanilla 行一致，以区分"评测链路不同"和"模型不同"）
+- [ ] `provenance_7b`：起点结论写入 RESULTS.md（13B 配置显式关掉了替换，起点就是 llava-1.5-13b-hf，不用核查）
+- [ ] `assets_verify`：八项评测集样本数与上表一致；不一致的写进 RESULTS.md "问题"
+- [ ] `reeval_vanilla7b`：八项与论文 vanilla LLaVA-1.5-7B 行差距 < 0.3pp（SEED 只和完整集的行比）。对不上说明评测链路不同，先停
 - [ ] `latency_vanilla7b` / `latency_lf7b`：B=1、n_img=576、n_txt=128、bf16、10 warmup + 100 次，记录 GPU 型号
 - [ ] `smoke_train_lf7b`：50 步 loss 正常下降，显存与论文相近
 
-POPE / SQA 对不上时先停，在 RESULTS.md "问题"里贴 `summary.json` 和 `lmms/` 里的样本日志，等云端排查。
+vanilla 对不上时先停，在 RESULTS.md "问题"里贴 `summary.json` 和 `lmms/` 里的样本日志，等云端排查。
 
 ### 1.6 评测入口
 
@@ -155,7 +155,7 @@ C0–C10 已全部合入 main（2026-10-11），下列任务文件都可以直�
 
 | 任务文件 | 实验 | 内容 | 需要的卡 |
 | --- | --- | --- | --- |
-| `jobs/E0.yaml` | E0 | 环境与旧 checkpoint 验收（§1） | 多卡并行 |
+| `jobs/E0.yaml` | E0 | 环境、评测链路与训练起点验收（§1） | 多卡并行 |
 | `jobs/E6.yaml` | E6 | Qwen2.5-VL-7B：vanilla 评测、冒烟训练、全量训练（4 卡）与评测 | 1 + 4 |
 | `jobs/E6_split.yaml` | E6 | Qwen2.5-VL-7B 分割层 s=12/16/20，10% 数据 | 每项 1 |
 | `jobs/E9.yaml` | E9 | 7B DPVR-LF s=18 三个 seed 重训与评测 | 每项 1 |
@@ -183,6 +183,16 @@ E2 / E8（`jobs/E2.yaml`、`jobs/E8.yaml`，入口 `scripts/revision/saturation.
 - 分割层：默认 s=16（28 层，与 7B 的 18/32 同比例）。先看 E2 里 `qwen25vl_7b` 的饱和曲线；不明确时跑 `jobs/E6_split.yaml`（s=12/16/20，10% 数据），用 `--set split=<s>` 把选定值传给 `jobs/E6.yaml`，并在 RESULTS.md 写明依据。
 - 顺序：`vanilla_eval` 与 `smoke_train` 立即开始；冒烟评测通过后才开全量训练。冒烟失败（显存、数据、checkpoint 格式）先修，不要直接跑全量。
 - 解码无 KV cache（每步重算全序列），只影响速度，不影响精度协议。
+
+### E9 说明（代替旧 checkpoint 复评）
+
+论文 7B DPVR-LF s=18 seed=1 的 checkpoint 已丢失，复现性改由 E9 的 seed=1 重训来验证。旧 seed=1 的八项分数（yun 服务器报告，SEED 为完整集）：
+
+| POPE | MME-P | MME-C | MMB-EN | MMB-CN | SQA | SEED |
+| --- | --- | --- | --- | --- | --- | --- |
+| 85.67 | 1461.67 | 325.36 | 73.69 | 70.29 | 64.65 | 64.92 |
+
+C1 修了 seed 传递，数据顺序与旧训练不同，所以不要求逐位一致；任一项偏离超过 2pp（MME 超过 30 分）按"异常就停"处理。
 
 ## 4. 汇报方式
 

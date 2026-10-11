@@ -4,7 +4,7 @@
 Usage:
     python scripts/revision/run_queue.py jobs/E0.yaml --gpus 0-7 --dry-run
     python scripts/revision/run_queue.py jobs/E0.yaml --gpus 0-7 \
-        --set lf7b_seed1_ckpt=/data/ckpt/token_diversion_x3_fusion/seed1
+        --set prov_ckpt=/data/ckpt/token_diversion/llava665k_split18_d1
     python scripts/revision/run_queue.py jobs/E9.yaml --gpus 0-7 --only train_seed1
 
 Run it inside tmux; it returns when every job has finished. Re-running the same
