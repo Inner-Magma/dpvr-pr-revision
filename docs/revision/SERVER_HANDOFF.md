@@ -109,12 +109,12 @@ python scripts/revision/run_queue.py jobs/E9.yaml --gpus 0-7
 ### 2.2 分配
 
 - 训练任务（E6、E9、E10）每个占一张卡，优先 E6；评测、分析在其余卡上并行。
-- 延迟任务要求整卡空闲（任务文件里 `min_free_gb` 接近整卡显存），排在训练之前或训练结束后跑，不要和训练同时在一台机器上测。
+- 延迟任务（`jobs/E1.yaml` 生成延迟、`jobs/E5.yaml` 预填充延迟与解析 FLOPs）要求整卡空闲，排在训练之前或训练结束后跑，不要和训练同时在一台机器上测；运行时只给队列一张卡（`--gpus 0`），让各项依次测。E1 需要 C2 已合入。
 - 延迟实验最好在论文用过的型号上测（A800 80G PCIe、RTX 5880 Ada 48G、RTX PRO 6000 Blackwell 97G）。新服务器是 H20 时整张延迟表都要在 H20 上重测（vanilla 与各方法同卡同协议），并在 RESULTS.md 写明。
 
 ## 3. 实验顺序
 
-依赖的代码项（C*）未合入 main 前不要开始对应实验。每项实验的任务文件随对应 C 项的 PR 一起加入 `jobs/`；目前已有 `jobs/E0.yaml`、`jobs/E9.yaml`；C8 加入 `jobs/E6.yaml`、`jobs/E6_split.yaml`。
+依赖的代码项（C*）未合入 main 前不要开始对应实验。任务文件索引见下方 §3.1。
 
 | 顺序 | 实验 | 依赖 | 内容 | 产出对应论文 |
 | --- | --- | --- | --- | --- |
@@ -130,6 +130,32 @@ python scripts/revision/run_queue.py jobs/E9.yaml --gpus 0-7
 | 4 | E8 | C6 | 图像 token 数 144/288/576 下的饱和曲线 | §3.1 / 附录 |
 | 5 | E10 | C9 | MLP-only / LoRA 侧枝，30% 数据（`configs/data/llava665k_30pct.yaml`） | Table 4 |
 | 5 | E11 | — | 整理已有 K=1–4 的分 benchmark 结果 | Table 5 |
+
+### 3.1 任务文件索引
+
+C0–C10 已全部合入 main（2026-10-11），下列任务文件都可以直接跑；先 `--dry-run` 看展开后的命令。
+
+| 任务文件 | 实验 | 内容 | 需要的卡 |
+| --- | --- | --- | --- |
+| `jobs/E0.yaml` | E0 | 环境与旧 checkpoint 验收（§1） | 多卡并行 |
+| `jobs/E6.yaml` | E6 | Qwen2.5-VL-7B：vanilla 评测、冒烟训练、全量训练（4 卡）与评测 | 1 + 4 |
+| `jobs/E6_split.yaml` | E6 | Qwen2.5-VL-7B 分割层 s=12/16/20，10% 数据 | 每项 1 |
+| `jobs/E9.yaml` | E9 | 7B DPVR-LF s=18 三个 seed 重训与评测 | 每项 1 |
+| `jobs/E2.yaml` | E2 | 五个模型家族的饱和分析 | 每项 1 |
+| `jobs/E8.yaml` | E8 | LLaVA-1.5 7B/13B 不同图像 token 数的饱和曲线 | 每项 1 |
+| `jobs/E4.yaml` | E4 | 免训练因果检查（冻结图像隐状态、无侧枝末层融合） | 每项 1 |
+| `jobs/E3_vtw.yaml` | E3 | VTW 与 vanilla 八项 | 每项 1 |
+| `jobs/E3_baselines.yaml` | E3 | FastV、PyramidDrop、PruMerge、VisionZip 基线 | 每项 1 |
+| `jobs/E1.yaml` | E1 | 端到端生成延迟（KV cache） | 整卡独占，`--gpus 0` |
+| `jobs/E5.yaml` | E5 | 预填充延迟与解析 FLOPs | 整卡独占，`--gpus 0` |
+| `jobs/E7.yaml` | E7 | DPVR-LF 叠加 token 压缩 | 每项 1 |
+| `jobs/E10.yaml` | E10 | 侧枝变体（MLP-only、LoRA、第 s 层初始化） | 每项 1 |
+
+E2 / E8（`jobs/E2.yaml`、`jobs/E8.yaml`，入口 `scripts/revision/saturation.py`）：
+- 每个模型 500 个 LLaVA-665k 样本（seed 0），单卡 bf16、eager attention；输出 `curves.npz`（逐样本逐层）、`summary.json`（逐层中位数与 IQR、各指标的转折层）、`saturation.pdf`；`compare` 任务把各模型叠在一张图上（横轴 layer/L）并写转折层表 `compare.md`。
+- 先跑 `llava15_7b`，核对与论文 Figure 2 一致（图像余弦 ≥0.92、L18 后注意力质量约 0.04、图像 KL 50% 转折在 L22），不一致先停下排查，再跑其他模型。
+- LLaVA-1.5 以外的模型要先下载 HF 格式权重到 `${MODEL_ROOT}/<目录名>`（目录名见任务文件；第二骨干已定为 Qwen2.5-VL-7B-Instruct，即 `qwen25vl_7b` 一项）。Qwen2.5-VL 的图像 token 数用 `--max_pixels` 限制在约 640。
+- E8 在 projector 之后把 24×24 图像特征平均池化成 12×24 / 12×12 / 6×6，只支持 LLaVA-1.5 结构。
 
 ### E6 说明（第二骨干）
 

@@ -1,0 +1,34 @@
+# E3 (VTW part): Visual Tokens Withdrawal on vanilla LLaVA-1.5, training-free,
+# eight benchmarks through the same evaluation chain as every other row.
+# The split sweep also shows where withdrawal starts to hurt (R1.1, R1.12).
+# Check the VTW paper's own LLaVA-1.5-7B setting against the s=16 row.
+#   python scripts/revision/run_queue.py jobs/E3_vtw.yaml --gpus 0-7
+experiment: E3
+defaults:
+  gpus: 1
+  min_free_gb: 30
+jobs:
+  - name: vanilla7b
+    cmd: >
+      python scripts/revision/eval_lmms.py --checkpoint none --tasks eight --out {out}
+
+  - name: vtw7b_s{s}
+    matrix: {s: [8, 12, 16, 18, 20, 24]}
+    cmd: >
+      python scripts/revision/eval_lmms.py --method_config configs/method/vtw.yaml
+      --override method.split_layer={s} --tasks eight --out {out}
+
+  - name: vanilla13b
+    min_free_gb: 45
+    cmd: >
+      python scripts/revision/eval_lmms.py --checkpoint none --base_model llava-1.5-13b-hf
+      --tasks eight --out {out}
+
+  # 13B splits used in the paper (Table 3 accuracy at 28, Table 6 latency at 24 / 34).
+  - name: vtw13b_s{s}
+    matrix: {s: [24, 28, 34]}
+    min_free_gb: 45
+    cmd: >
+      python scripts/revision/eval_lmms.py --method_config configs/method/vtw.yaml
+      --override method.split_layer={s} --override model.base_model=llava-1.5-13b-hf
+      --base_model llava-1.5-13b-hf --tasks eight --out {out}

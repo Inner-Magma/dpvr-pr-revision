@@ -1,0 +1,9 @@
+defaults:
+  - _base.yaml
+
+# PyramidDrop (CVPR 2025), training-free: keep keep_ratio of the remaining image
+# tokens at each stage boundary, ranked by the last instruction token's attention.
+method:
+  name: reduced
+  reduction: pdrop
+  params: {layers: [8, 16, 24], keep_ratio: 0.5, score: last}

@@ -1,0 +1,105 @@
+# E10 (C9): side-branch alternatives for 7B DPVR-LF s=18 (R2.5), one GPU per run.
+# Variants: MLP-only (random / copied from layer s), LoRA branch on a frozen copy of
+# layer s (r=16, 64), full layer initialised from layer s, two-layer branch.
+# Everything else (lr 1e-4, effective batch 4, seed) as the main DPVR-LF run.
+# frac=1.0 compares directly with E9; with a subset also run `ref` (default branch
+# on the same subset), e.g.
+#   python scripts/revision/run_queue.py jobs/E10.yaml --gpus 0-7 --set frac=0.3
+experiment: E10
+vars:
+  frac: 1.0
+  seed: 1
+defaults:
+  gpus: 1
+  min_free_gb: 60
+jobs:
+  - name: train_mlp_f{frac}
+    cmd: >
+      python scripts/train.py --config configs/method/token_diversion_x3_fusion.yaml
+      data.subset_fraction={frac} seed={seed} method.branch_type=mlp
+      training.output_subdir=revision/E10/lf7b_s18_mlp_f{frac}
+
+  - name: eval_mlp_f{frac}
+    after: ["train_mlp_f{frac}"]
+    min_free_gb: 30
+    cmd: >
+      python scripts/revision/eval_lmms.py
+      --checkpoint ${CKPT_ROOT}/revision/E10/lf7b_s18_mlp_f{frac} --tasks eight --out {out}
+
+  - name: train_mlp_layerinit_f{frac}
+    cmd: >
+      python scripts/train.py --config configs/method/token_diversion_x3_fusion.yaml
+      data.subset_fraction={frac} seed={seed} method.branch_type=mlp method.branch_init=layer
+      training.output_subdir=revision/E10/lf7b_s18_mlp_layerinit_f{frac}
+
+  - name: eval_mlp_layerinit_f{frac}
+    after: ["train_mlp_layerinit_f{frac}"]
+    min_free_gb: 30
+    cmd: >
+      python scripts/revision/eval_lmms.py
+      --checkpoint ${CKPT_ROOT}/revision/E10/lf7b_s18_mlp_layerinit_f{frac} --tasks eight --out {out}
+
+  - name: train_lora16_f{frac}
+    cmd: >
+      python scripts/train.py --config configs/method/token_diversion_x3_fusion.yaml
+      data.subset_fraction={frac} seed={seed} method.branch_type=lora method.lora_rank=16 method.lora_alpha=32
+      training.output_subdir=revision/E10/lf7b_s18_lora16_f{frac}
+
+  - name: eval_lora16_f{frac}
+    after: ["train_lora16_f{frac}"]
+    min_free_gb: 30
+    cmd: >
+      python scripts/revision/eval_lmms.py
+      --checkpoint ${CKPT_ROOT}/revision/E10/lf7b_s18_lora16_f{frac} --tasks eight --out {out}
+
+  - name: train_lora64_f{frac}
+    cmd: >
+      python scripts/train.py --config configs/method/token_diversion_x3_fusion.yaml
+      data.subset_fraction={frac} seed={seed} method.branch_type=lora method.lora_rank=64 method.lora_alpha=128
+      training.output_subdir=revision/E10/lf7b_s18_lora64_f{frac}
+
+  - name: eval_lora64_f{frac}
+    after: ["train_lora64_f{frac}"]
+    min_free_gb: 30
+    cmd: >
+      python scripts/revision/eval_lmms.py
+      --checkpoint ${CKPT_ROOT}/revision/E10/lf7b_s18_lora64_f{frac} --tasks eight --out {out}
+
+  - name: train_layerinit_f{frac}
+    cmd: >
+      python scripts/train.py --config configs/method/token_diversion_x3_fusion.yaml
+      data.subset_fraction={frac} seed={seed} method.branch_init=layer
+      training.output_subdir=revision/E10/lf7b_s18_layerinit_f{frac}
+
+  - name: eval_layerinit_f{frac}
+    after: ["train_layerinit_f{frac}"]
+    min_free_gb: 30
+    cmd: >
+      python scripts/revision/eval_lmms.py
+      --checkpoint ${CKPT_ROOT}/revision/E10/lf7b_s18_layerinit_f{frac} --tasks eight --out {out}
+
+  - name: train_depth2_f{frac}
+    cmd: >
+      python scripts/train.py --config configs/method/token_diversion_x3_fusion.yaml
+      data.subset_fraction={frac} seed={seed} method.vision_depth=2
+      training.output_subdir=revision/E10/lf7b_s18_depth2_f{frac}
+
+  - name: eval_depth2_f{frac}
+    after: ["train_depth2_f{frac}"]
+    min_free_gb: 30
+    cmd: >
+      python scripts/revision/eval_lmms.py
+      --checkpoint ${CKPT_ROOT}/revision/E10/lf7b_s18_depth2_f{frac} --tasks eight --out {out}
+
+  - name: train_ref_f{frac}
+    cmd: >
+      python scripts/train.py --config configs/method/token_diversion_x3_fusion.yaml
+      data.subset_fraction={frac} seed={seed} 
+      training.output_subdir=revision/E10/lf7b_s18_ref_f{frac}
+
+  - name: eval_ref_f{frac}
+    after: ["train_ref_f{frac}"]
+    min_free_gb: 30
+    cmd: >
+      python scripts/revision/eval_lmms.py
+      --checkpoint ${CKPT_ROOT}/revision/E10/lf7b_s18_ref_f{frac} --tasks eight --out {out}

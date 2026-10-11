@@ -1,0 +1,43 @@
+# E3 (token-reduction baselines, C5): training-free FastV, PyramidDrop, PruMerge and
+# VisionZip on vanilla LLaVA-1.5-7B, eight benchmarks, same evaluation chain.
+# Each method must reproduce at least one number of its paper before it goes in
+# Table 2 (check e.g. POPE / MME / SQA against the published LLaVA-1.5-7B rows).
+#   python scripts/revision/run_queue.py jobs/E3_baselines.yaml --gpus 0-7
+experiment: E3
+defaults:
+  gpus: 1
+  min_free_gb: 30
+jobs:
+  - name: fastv7b_k2_r{r}_{score}
+    matrix: {r: [0.5, 0.25], score: [last, mean]}
+    cmd: >
+      python scripts/revision/eval_lmms.py --method_config configs/method/fastv_tf.yaml
+      --override method.params.keep_ratio={r} --override method.params.score={score}
+      --tasks eight --out {out}
+
+  - name: pdrop7b
+    cmd: >
+      python scripts/revision/eval_lmms.py --method_config configs/method/pdrop.yaml
+      --tasks eight --out {out}
+
+  - name: prumerge7b
+    cmd: >
+      python scripts/revision/eval_lmms.py --method_config configs/method/prumerge.yaml
+      --tasks eight --out {out}
+
+  - name: visionzip7b_{n}
+    matrix: {n: [64, 128, 192]}
+    cmd: >
+      python scripts/revision/eval_lmms.py --method_config configs/method/visionzip.yaml
+      --override method.params.dominant=$(( {n} * 54 / 64 ))
+      --override method.params.contextual=$(( {n} * 10 / 64 ))
+      --tasks eight --out {out}
+
+  # Prefill latency for the LLM-side methods (vision-side counts depend on the image,
+  # so their latency needs real images; report those from the eval logs instead).
+  - name: lat7b_{m}
+    matrix: {m: [fastv_tf, pdrop]}
+    min_free_gb: 70
+    cmd: >
+      python scripts/revision/bench_latency.py --config configs/method/{m}.yaml
+      --batch 1 --n_txt 128 --out {out}/latency.json
