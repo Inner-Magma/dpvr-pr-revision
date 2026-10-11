@@ -118,14 +118,14 @@ python scripts/train.py --config configs/method/token_diversion_x3_fusion.yaml \
 
 ## 评测
 
-评测使用 [`lmms-eval`](https://github.com/EvolvingLMMs-Lab/lmms-eval)(用 `eval`
-可选依赖安装,并设置 `LMMS_EVAL_PATH`)。任务配置在
-[`configs/lmms_tasks/`](configs/lmms_tasks/);其中 `*_local.yaml` 是模板——把它们的
-`dataset_path` 指向你本地的基准数据副本。
+评测使用 PyPI 上的 [`lmms-eval`](https://github.com/EvolvingLMMs-Lab/lmms-eval) 0.5.0
+(版本锁在 `requirements-lock.txt`)。任务配置在 [`configs/lmms_tasks/`](configs/lmms_tasks/);
+基准数据从 `${DATA_ROOT}/benchmarks`(或 `BENCH_ROOT`)读取,可用
+`scripts/revision/download_assets.py benchmarks` 下载到该位置。
 
 ```bash
-python scripts/evaluate.py --checkpoint /path/to/checkpoints/token_diversion_x3_fusion/... \
-    --data_root /path/to/benchmarks
+python scripts/revision/eval_lmms.py --checkpoint /path/to/checkpoints/token_diversion_x3_fusion/... \
+    --tasks eight --out /path/to/output
 ```
 
 > 注意:所有 lmms-eval 运行都要传 `use_cache=False`。ScienceQA 的指标键名是

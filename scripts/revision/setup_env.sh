@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# E0: build the locked environment on the GPU server (H20 or A800; CUDA 12.8 wheels
-# cover both sm_90 and sm_80).
+# E0: build the locked environment on the GPU server (8x H800; CUDA 12.8 wheels
+# cover sm_90 (H800/H20/H100) and sm_80 (A800/A100)).
 #
 # Usage:
 #   bash scripts/revision/setup_env.sh            # conda env "dpvr"

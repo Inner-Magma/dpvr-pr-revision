@@ -15,6 +15,15 @@ jobs:
     cmd: >
       python scripts/revision/check_weight_provenance.py
       --checkpoint {lf7b_seed1_ckpt} --out {out}/provenance.json
+      --vicuna ${MODEL_ROOT}/reference/vicuna-7b-v1.5
+      --projector ${MODEL_ROOT}/reference/llava-v1.5-7b-pretrain/mm_projector.bin
+
+  # Benchmark sample counts against the paper's (SERVER_HANDOFF §1.3). Fails on a
+  # mismatch; nothing depends on it, but a mismatch must go into RESULTS.md.
+  - name: assets_verify
+    gpus: 0
+    cmd: >
+      python scripts/revision/download_assets.py --verify --out {out}/assets.json
 
   # Paper Table 10: POPE .8567, SQA .6465 for this checkpoint.
   - name: reeval_lf7b_seed1
