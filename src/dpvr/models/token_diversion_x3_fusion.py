@@ -21,8 +21,15 @@ stronger gradient signal.
 Compute saving vs Method A (K=1): ~25-30%; (K=2): ~22-27%.
 Gradient signal: ~5% of A for K=1; ~10% for K=2 (2 paths vs 14).
 
-DECODING (autoregressive after PREFILL): pixel_values is None, image_token_mask
-is None — falls back to vanilla deep forward identical to Method A's fallback.
+DECODING with KV cache (use_cache=True): the prefill stores, per layer, the K/V
+that layer actually computed — image+text for the shallow and fusion layers,
+text only for the text-only deep layers — and tags the cache with
+``_DPVR_LF_TEXT_LEN``. Each decode step then attends to exactly the context it
+would see in a full prefill over the extended sequence, so cached decoding
+matches the training/prefill semantics without recomputing the image path.
+
+DECODING without a tagged cache (pixel_values is None, no image tokens): falls
+back to the vanilla deep forward, identical to Method A's fallback.
 """
 from __future__ import annotations
 
@@ -60,6 +67,37 @@ def _build_text_only_causal_mask(
         )
         mask = mask + triu.unsqueeze(0).unsqueeze(0)
     return mask
+
+
+def _build_text_decode_mask(
+    B: int,
+    q_len: int,
+    past_len: int,
+    device: torch.device,
+    dtype: torch.dtype,
+) -> torch.Tensor:
+    """4D additive mask for decode steps in the text-only deep layers.
+
+    Queries are the ``q_len`` new tokens; keys are the ``past_len`` cached text
+    positions followed by the new tokens. Cached keys are always visible and the
+    new tokens are causal among themselves. Like the prefill text-only mask,
+    padding is not masked here, so cached decoding reproduces the prefill exactly.
+    Returns shape (B, 1, q_len, past_len + q_len).
+    """
+    neg_inf = torch.finfo(dtype).min / 2
+    mask = torch.zeros(B, 1, q_len, past_len + q_len, dtype=dtype, device=device)
+    if q_len > 1:
+        triu = torch.triu(
+            torch.full((q_len, q_len), neg_inf, dtype=dtype, device=device),
+            diagonal=1,
+        )
+        mask[..., past_len:] = mask[..., past_len:] + triu
+    return mask
+
+
+# Attribute set on the KV cache after a DPVR-LF prefill. It holds the number of
+# text positions cached in the text-only deep layers.
+_DPVR_LF_TEXT_LEN = "_dpvr_lf_text_len"
 
 
 @register_method("token_diversion_x3_fusion")
@@ -227,14 +265,18 @@ class TokenDiversionX3FusionLlava(PreTrainedModel, GenerationMixin):
         cache_position=None,
         **kwargs,
     ) -> dict:
+        is_decode_step = cache_position is not None and cache_position[0] != 0
+        if is_decode_step and getattr(past_key_values, _DPVR_LF_TEXT_LEN, None) is not None:
+            # The cache already holds the prompt: feed only the new tokens.
+            input_ids = input_ids[:, -cache_position.shape[0]:]
         model_inputs = {
             "input_ids": input_ids,
             "attention_mask": attention_mask,
             "past_key_values": past_key_values,
-            "use_cache": True,
+            "use_cache": kwargs.get("use_cache", True),
             "cache_position": cache_position,
         }
-        if cache_position is None or cache_position[0] == 0:
+        if not is_decode_step:
             model_inputs["pixel_values"] = pixel_values
         return model_inputs
 
@@ -259,9 +301,20 @@ class TokenDiversionX3FusionLlava(PreTrainedModel, GenerationMixin):
 
         language_model = self.llava_model.language_model
 
+        lf_cached_decode = (
+            use_cache
+            and pixel_values is None
+            and getattr(past_key_values, _DPVR_LF_TEXT_LEN, None) is not None
+        )
+
         if attention_mask is not None and cache_position is None:
             position_ids = attention_mask.long().cumsum(-1) - 1
             position_ids.masked_fill_(~attention_mask, 0)
+        elif attention_mask is not None and lf_cached_decode:
+            # Same position ids the prefill would assign to these tokens.
+            position_ids = attention_mask.long().cumsum(-1) - 1
+            position_ids.masked_fill_(~attention_mask, 0)
+            position_ids = position_ids[:, -inputs_embeds.shape[1]:]
         else:
             position_ids = None
 
@@ -361,19 +414,26 @@ class TokenDiversionX3FusionLlava(PreTrainedModel, GenerationMixin):
                 B, T_txt, hidden_states.device, hidden_states.dtype
             )
 
-            # Text-only deep loop: split_layer..fusion_start-1
+            # Text-only deep loop: split_layer..fusion_start-1. With use_cache,
+            # these layers cache text-only K/V for the decode steps.
+            text_cache = past_key_values if use_cache else None
+            text_cache_pos = (
+                torch.arange(T_txt, device=hidden_states.device) if use_cache else None
+            )
             for i in range(self.split_layer, fusion_start):
                 layer = language_model.layers[i]
                 out = layer(
                     text_h,
                     position_embeddings=text_pos_emb,
                     attention_mask=text_attn_mask,
-                    past_key_values=None,
-                    cache_position=None,
+                    past_key_values=text_cache,
+                    cache_position=text_cache_pos,
                     output_attentions=False,
-                    use_cache=False,
+                    use_cache=use_cache,
                 )
                 text_h = out[0] if isinstance(out, (tuple, list)) else out
+            if use_cache and past_key_values is not None:
+                setattr(past_key_values, _DPVR_LF_TEXT_LEN, T_txt)
 
             # Reassemble before fusion stack; OVERWRITE image positions with
             # out_image so the FIRST fusion layer's K/V projection on image
@@ -394,6 +454,42 @@ class TokenDiversionX3FusionLlava(PreTrainedModel, GenerationMixin):
                     cache_position=cache_position,
                     output_attentions=False,
                     use_cache=use_cache,
+                )
+                hidden_states = out[0] if isinstance(out, (tuple, list)) else out
+        elif lf_cached_decode:
+            # Cached decode step: the text-only deep layers see only cached text
+            # K/V (as in the prefill); the fusion layers see the full context.
+            B, q_len, _ = hidden_states.shape
+            if fusion_start > self.split_layer:
+                text_past = past_key_values.get_seq_length(self.split_layer)
+                text_attn_mask = _build_text_decode_mask(
+                    B, q_len, text_past, hidden_states.device, hidden_states.dtype
+                )
+                text_cache_pos = torch.arange(
+                    text_past, text_past + q_len, device=hidden_states.device
+                )
+            for i in range(self.split_layer, fusion_start):
+                layer = language_model.layers[i]
+                out = layer(
+                    hidden_states,
+                    position_embeddings=position_embeddings,
+                    attention_mask=text_attn_mask,
+                    past_key_values=past_key_values,
+                    cache_position=text_cache_pos,
+                    output_attentions=False,
+                    use_cache=True,
+                )
+                hidden_states = out[0] if isinstance(out, (tuple, list)) else out
+            for i in range(fusion_start, end_idx):
+                layer = language_model.layers[i]
+                out = layer(
+                    hidden_states,
+                    position_embeddings=position_embeddings,
+                    attention_mask=causal_mask,
+                    past_key_values=past_key_values,
+                    cache_position=cache_position,
+                    output_attentions=False,
+                    use_cache=True,
                 )
                 hidden_states = out[0] if isinstance(out, (tuple, list)) else out
         else:
