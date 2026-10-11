@@ -8,8 +8,13 @@ from .callbacks import EfficiencyCallback, ConfigSaveCallback
 
 def build_training_args(cfg: dict) -> TrainingArguments:
     t = cfg["training"]
+    seed = int(cfg.get("seed", 42))
     return TrainingArguments(
         output_dir=t["output_dir"],
+        # Without these the HF Trainer falls back to its default seed (42) for
+        # the data-loader shuffle, so every run shares one batch order.
+        seed=seed,
+        data_seed=int(t.get("data_seed", seed)),
         per_device_train_batch_size=t["per_device_train_batch_size"],
         gradient_accumulation_steps=t["gradient_accumulation_steps"],
         learning_rate=t["learning_rate"],
