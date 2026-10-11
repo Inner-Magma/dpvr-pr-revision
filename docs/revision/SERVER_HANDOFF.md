@@ -104,7 +104,7 @@ python scripts/revision/run_queue.py jobs/E9.yaml --gpus 0-7
 - 显存占用超过 2 GB 的卡视为别人在用，不会分配（`--busy_mb` 可调）；`--gpus` 只写允许用的卡。
 - 日志和状态在 `${CKPT_ROOT}/revision_runs/<实验>/<任务>/`（`log.txt`、`status.json`、成功后 `DONE`）。崩溃或中断后**原命令重跑即可**，已完成的任务自动跳过；`--only <任务>` 单跑某项，`--force` 强制重跑。
 - 某任务失败时，依赖它的任务标为 blocked，其余继续；队列结束后退出码非 0。
-- 训练保持论文设置：单卡、有效 batch 4。8 张卡的用处是让不同 seed / 配置同时跑，不要改成多卡 DDP（会改变有效 batch）。
+- 训练保持论文设置：单卡、有效 batch 4。8 张卡的用处是让不同 seed / 配置同时跑，不要改成多卡 DDP（会改变有效 batch）。唯一例外是 E6 的全量训练：4 卡 × 每卡 1 条，有效 batch 仍是 4（`jobs/E6.yaml`）。
 
 ### 2.2 分配
 
@@ -114,12 +114,12 @@ python scripts/revision/run_queue.py jobs/E9.yaml --gpus 0-7
 
 ## 3. 实验顺序
 
-依赖的代码项（C*）未合入 main 前不要开始对应实验。每项实验的任务文件随对应 C 项的 PR 一起加入 `jobs/`；目前已有 `jobs/E0.yaml`、`jobs/E9.yaml`、`jobs/E3_vtw.yaml`（E3 的 VTW 部分与 vanilla 八项）、`jobs/E4.yaml`。
+依赖的代码项（C*）未合入 main 前不要开始对应实验。任务文件索引见下方 §3.1。
 
 | 顺序 | 实验 | 依赖 | 内容 | 产出对应论文 |
 | --- | --- | --- | --- | --- |
 | 0 | E0 | — | §1 环境与验收 | — |
-| 1 | E6 | C8 | 第二骨干 DPVR-LF 完整训练 + 该骨干 vanilla 评测（骨干待作者确定） | 新表：跨骨干 |
+| 1 | E6 | C8 | 第二骨干 Qwen2.5-VL-7B-Instruct：vanilla 评测 + DPVR-LF 冒烟训练 + 全量训练与八项评测（`jobs/E6.yaml`；分割层不确定时先跑 `jobs/E6_split.yaml`） | 新表：跨骨干 |
 | 1 | E9 | C1 | 修复 seed 后 7B DPVR-LF s=18 三个 seed（1/2/3）重训与八项评测 | Table 2、附录 C |
 | 2 | E2 | C6 | 3–4 个模型家族的免训练饱和分析（余弦、注意力质量、logit-lens、残差范数） | Figure 2 扩展 |
 | 2 | E4 | C3 | 免训练：从 s 层起冻结图像隐状态；无侧枝 + 末层融合 | §3.1 因果证据 |
@@ -131,11 +131,40 @@ python scripts/revision/run_queue.py jobs/E9.yaml --gpus 0-7
 | 5 | E10 | C9 | MLP-only / LoRA 侧枝，30% 数据（`configs/data/llava665k_30pct.yaml`） | Table 4 |
 | 5 | E11 | — | 整理已有 K=1–4 的分 benchmark 结果 | Table 5 |
 
+### 3.1 任务文件索引
+
+C0–C10 已全部合入 main（2026-10-11），下列任务文件都可以直接跑；先 `--dry-run` 看展开后的命令。
+
+| 任务文件 | 实验 | 内容 | 需要的卡 |
+| --- | --- | --- | --- |
+| `jobs/E0.yaml` | E0 | 环境与旧 checkpoint 验收（§1） | 多卡并行 |
+| `jobs/E6.yaml` | E6 | Qwen2.5-VL-7B：vanilla 评测、冒烟训练、全量训练（4 卡）与评测 | 1 + 4 |
+| `jobs/E6_split.yaml` | E6 | Qwen2.5-VL-7B 分割层 s=12/16/20，10% 数据 | 每项 1 |
+| `jobs/E9.yaml` | E9 | 7B DPVR-LF s=18 三个 seed 重训与评测 | 每项 1 |
+| `jobs/E2.yaml` | E2 | 五个模型家族的饱和分析 | 每项 1 |
+| `jobs/E8.yaml` | E8 | LLaVA-1.5 7B/13B 不同图像 token 数的饱和曲线 | 每项 1 |
+| `jobs/E4.yaml` | E4 | 免训练因果检查（冻结图像隐状态、无侧枝末层融合） | 每项 1 |
+| `jobs/E3_vtw.yaml` | E3 | VTW 与 vanilla 八项 | 每项 1 |
+| `jobs/E3_baselines.yaml` | E3 | FastV、PyramidDrop、PruMerge、VisionZip 基线 | 每项 1 |
+| `jobs/E1.yaml` | E1 | 端到端生成延迟（KV cache） | 整卡独占，`--gpus 0` |
+| `jobs/E5.yaml` | E5 | 预填充延迟与解析 FLOPs | 整卡独占，`--gpus 0` |
+| `jobs/E7.yaml` | E7 | DPVR-LF 叠加 token 压缩 | 每项 1 |
+| `jobs/E10.yaml` | E10 | 侧枝变体（MLP-only、LoRA、第 s 层初始化） | 每项 1 |
+
 E2 / E8（`jobs/E2.yaml`、`jobs/E8.yaml`，入口 `scripts/revision/saturation.py`）：
 - 每个模型 500 个 LLaVA-665k 样本（seed 0），单卡 bf16、eager attention；输出 `curves.npz`（逐样本逐层）、`summary.json`（逐层中位数与 IQR、各指标的转折层）、`saturation.pdf`；`compare` 任务把各模型叠在一张图上（横轴 layer/L）并写转折层表 `compare.md`。
 - 先跑 `llava15_7b`，核对与论文 Figure 2 一致（图像余弦 ≥0.92、L18 后注意力质量约 0.04、图像 KL 50% 转折在 L22），不一致先停下排查，再跑其他模型。
-- LLaVA-1.5 以外的模型要先下载 HF 格式权重到 `${MODEL_ROOT}/<目录名>`（目录名见任务文件；第二骨干定下后按需增删）。Qwen2.5-VL 的图像 token 数用 `--max_pixels` 限制在约 640。
+- LLaVA-1.5 以外的模型要先下载 HF 格式权重到 `${MODEL_ROOT}/<目录名>`（目录名见任务文件；第二骨干已定为 Qwen2.5-VL-7B-Instruct，即 `qwen25vl_7b` 一项）。Qwen2.5-VL 的图像 token 数用 `--max_pixels` 限制在约 640。
 - E8 在 projector 之后把 24×24 图像特征平均池化成 12×24 / 12×12 / 6×6，只支持 LLaVA-1.5 结构。
+
+### E6 说明（第二骨干）
+
+- 模型：`${MODEL_ROOT}/Qwen2.5-VL-7B-Instruct`（HF 格式，transformers 4.57.1 直接加载）。
+- 评测走 lmms-eval 0.5.0 自带的 `qwen2_5_vl` handler（插件 `dpvr_qwen25vl`，`use_cache=False`），提示词和图像分辨率（`min_pixels=256·28²`、`max_pixels=2048·28²`）都用 handler 默认值；`eval_lmms.py` 按基座名或 checkpoint 的 method 自动选 handler。vanilla 与 DPVR 同一条链。依赖 `qwen-vl-utils==0.0.14`（已在 lock 文件里）。
+- 训练：`configs/method/token_diversion_x3_fusion_qwen25vl.yaml`，和 7B LLaVA 同配方（冻结主干、1 层侧枝、K=1、665k 一个 epoch、lr 1e-4、有效 batch 4），训练图像分辨率与评测一致。注意力必须是 sdpa 或 eager（层接收显式 4D mask）。
+- 分割层：默认 s=16（28 层，与 7B 的 18/32 同比例）。先看 E2 里 `qwen25vl_7b` 的饱和曲线；不明确时跑 `jobs/E6_split.yaml`（s=12/16/20，10% 数据），用 `--set split=<s>` 把选定值传给 `jobs/E6.yaml`，并在 RESULTS.md 写明依据。
+- 顺序：`vanilla_eval` 与 `smoke_train` 立即开始；冒烟评测通过后才开全量训练。冒烟失败（显存、数据、checkpoint 格式）先修，不要直接跑全量。
+- 解码无 KV cache（每步重算全序列），只影响速度，不影响精度协议。
 
 ## 4. 汇报方式
 

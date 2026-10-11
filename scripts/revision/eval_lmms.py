@@ -4,6 +4,9 @@
 This is the single evaluation entry point for the revision. It uses the
 ``llava_hf`` handler with ``use_cache=False`` (the paper's protocol) through
 the ``dpvr_hf`` plugin, so vanilla and DPVR rows go through identical code.
+Qwen2.5-VL (second backbone, E6) goes through lmms-eval's ``qwen2_5_vl``
+handler the same way (plugin ``dpvr_qwen25vl``); ``--backbone auto`` picks it
+from the base model name or the checkpoint's method.
 
 Usage:
     python scripts/revision/eval_lmms.py --checkpoint /ckpt/run --tasks eight --out /runs/E9/eval_seed1
@@ -11,6 +14,8 @@ Usage:
     python scripts/revision/eval_lmms.py --method_config configs/method/vtw.yaml \
         --override method.split_layer=16 --tasks eight --out /runs/E3/vtw_s16   # training-free
     python scripts/revision/eval_lmms.py ... --limit 20          # quick smoke check
+    python scripts/revision/eval_lmms.py --checkpoint none --base_model Qwen2.5-VL-7B-Instruct \
+        --tasks eight --out /runs/E6/qwen_vanilla                   # second backbone
 
 Benchmarks are read from ``--bench_root`` (default ``$BENCH_ROOT`` or
 ``${DATA_ROOT}/benchmarks``); the task templates in ``configs/lmms_tasks``
@@ -103,10 +108,27 @@ def collect_metrics(lmms_out: Path) -> dict[str, dict]:
     return metrics
 
 
+HANDLERS = {"llava": "dpvr_hf", "qwen2_5_vl": "dpvr_qwen25vl"}
+
+
+def pick_backbone(choice: str, base: Path, checkpoint: str) -> str:
+    """llava or qwen2_5_vl, from --backbone, the checkpoint's method or the base model name."""
+    if choice != "auto":
+        return choice
+    cfg = Path(checkpoint) / "training_config.json"
+    if checkpoint.lower() != "none" and not checkpoint.startswith("config:") and cfg.exists():
+        method = (json.loads(cfg.read_text()).get("method") or {}).get("name", "")
+        if method.endswith("qwen25vl"):
+            return "qwen2_5_vl"
+    name = base.name.lower().replace("_", "").replace("-", "").replace(".", "")
+    return "qwen2_5_vl" if "qwen25vl" in name else "llava"
+
+
 def run_meta(args, checkpoint: str) -> dict:
     import platform
 
-    meta = {"checkpoint": checkpoint, "method_config": args.method_config,
+    meta = {"checkpoint": checkpoint, "base_model": args.base_model, "backbone": args.backbone,
+            "method_config": args.method_config,
             "overrides": args.override, "use_cache": args.use_cache, "limit": args.limit,
             "python": platform.python_version()}
     try:
@@ -147,7 +169,9 @@ def main() -> None:
     ap.add_argument("--tasks", default="eight")
     ap.add_argument("--out", required=True)
     ap.add_argument("--base_model", default="llava-1.5-7b-hf",
-                    help="LLaVA-HF dir, absolute or under MODEL_ROOT (processor/tokenizer source)")
+                    help="LLaVA-HF or Qwen2.5-VL dir, absolute or under MODEL_ROOT (processor/tokenizer source)")
+    ap.add_argument("--backbone", default="auto", choices=["auto", *HANDLERS],
+                    help="lmms-eval handler family; auto reads the checkpoint method / base model name")
     ap.add_argument("--bench_root", default=None)
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--batch_size", type=int, default=1)
@@ -184,10 +208,13 @@ def main() -> None:
     if not base.exists() and not args.dry_run:
         raise SystemExit(f"base model not found: {base}")
 
-    model_args = f"pretrained={base},checkpoint={checkpoint},use_cache={args.use_cache},dtype=bfloat16"
+    backbone = args.backbone = pick_backbone(args.backbone, base, checkpoint)
+    model_args = f"pretrained={base},checkpoint={checkpoint},use_cache={args.use_cache}"
+    if backbone == "llava":
+        model_args += ",dtype=bfloat16"  # the qwen2_5_vl handler is always bf16 and takes no dtype
     cmd = [
         sys.executable, "-m", "lmms_eval",
-        "--model", "dpvr_hf",
+        "--model", HANDLERS[backbone],
         "--model_args", model_args,
         "--tasks", ",".join(TASKS[n][1] for n in names),
         "--include_path", str(out / "tasks"),

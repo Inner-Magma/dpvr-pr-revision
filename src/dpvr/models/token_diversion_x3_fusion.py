@@ -45,6 +45,7 @@ from transformers.modeling_outputs import CausalLMOutputWithPast
 from .modeling_llama import LlamaModel
 from .modeling_llava import LlavaForConditionalGeneration
 from .registry import register_method
+from .routing import causal_padding_mask, gather_rows, pack_index, scatter_rows
 from .side_branch import build_side_branch, set_branch_trainable
 
 
@@ -363,10 +364,14 @@ class TokenDiversionX3FusionLlava(PreTrainedModel, GenerationMixin):
         has_image = image_token_mask is not None and image_token_mask.any()
         if has_image:
             B, S, H = hidden_states.shape
-            max_img = int(image_token_mask.sum(dim=1).max().item())
+            image_token_mask_2d = image_token_mask.any(dim=-1)  # (B, S)
 
-            image_part_features = hidden_states[image_token_mask].view(B, max_img, H)
-            image_attn_mask = torch.ones(B, max_img, dtype=torch.bool, device=hidden_states.device)
+            # Rows may hold different numbers of image tokens (C8): pack each
+            # row's image tokens to the front and pad to the longest row.
+            img_plan = pack_index(image_token_mask_2d)
+            max_img = img_plan.length
+            image_part_features = gather_rows(hidden_states, img_plan)
+            image_attn_mask = img_plan.valid
             image_pos_ids = torch.arange(max_img, device=hidden_states.device).unsqueeze(0).expand(B, -1)
 
             (
@@ -395,8 +400,6 @@ class TokenDiversionX3FusionLlava(PreTrainedModel, GenerationMixin):
                     use_cache=False,
                 )
                 out_image = out_image[0] if isinstance(out_image, (tuple, list)) else out_image
-
-            image_token_mask_2d = image_token_mask.any(dim=-1)  # (B, S)
         else:
             out_image = None
             image_token_mask_2d = None
@@ -407,23 +410,24 @@ class TokenDiversionX3FusionLlava(PreTrainedModel, GenerationMixin):
         fusion_start = end_idx - K  # first index of the fusion stack
 
         if has_image:
-            text_mask_2d = ~image_token_mask_2d  # (B, S)
-            T_txt = S - max_img  # uniform: every batch row has same count
+            # Text rows are packed like the image rows, so T_txt can differ
+            # per row; with equal image counts this equals the old view().
+            text_plan = pack_index(~image_token_mask_2d)
+            T_txt = text_plan.length
 
             # Extract text hidden + original position_ids (preserve RoPE indices)
-            text_h = hidden_states[text_mask_2d].view(B, T_txt, H)
+            text_h = gather_rows(hidden_states, text_plan)
 
-            full_pos = position_ids.expand(B, S) if position_ids.dim() == 1 else position_ids
-            text_pos_ids_orig = full_pos[text_mask_2d].view(B, T_txt)
+            full_pos = position_ids if position_ids.dim() == 2 else position_ids.unsqueeze(0)
+            text_pos_ids_orig = gather_rows(full_pos.expand(B, S), text_plan)
 
             # Recompute position_embeddings for text-only subseq using ORIGINAL
             # position_ids — RoPE indices must match the fusion layers'.
             text_pos_emb = language_model.rotary_emb(text_h, text_pos_ids_orig)
 
-            # Text-only causal mask
-            text_attn_mask = _build_text_only_causal_mask(
-                B, T_txt, hidden_states.device, hidden_states.dtype
-            )
+            # Text-only causal mask; packing slots of shorter rows are hidden.
+            # Batch padding tokens stay visible as before (they are text tokens).
+            text_attn_mask = causal_padding_mask(text_plan.valid, hidden_states.dtype)
 
             # Text-only deep loop: split_layer..fusion_start-1. With use_cache,
             # these layers cache text-only K/V for the decode steps.
@@ -449,10 +453,8 @@ class TokenDiversionX3FusionLlava(PreTrainedModel, GenerationMixin):
             # Reassemble before fusion stack; OVERWRITE image positions with
             # out_image so the FIRST fusion layer's K/V projection on image
             # positions sees single_transformer output (gradient path source).
-            hidden_states_new = hidden_states.clone()
-            hidden_states_new[text_mask_2d] = text_h.reshape(-1, H)
-            hidden_states_new[image_token_mask_2d] = out_image.reshape(-1, H)
-            hidden_states = hidden_states_new
+            hidden_states = scatter_rows(hidden_states, text_h, text_plan)
+            hidden_states = scatter_rows(hidden_states, out_image, img_plan)
 
             # Fusion stack (last K layers): full vanilla forward, image+text fused.
             for i in range(fusion_start, end_idx):

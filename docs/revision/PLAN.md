@@ -27,9 +27,18 @@
 | C5 | 外部基线接入（PruMerge + 2–3 个近期方法） | `src/dpvr/models/` | 各复现原文一个数字 | E3 |
 | C6 | 饱和分析通用化：去掉写死的 576 / image token id 32000；残差范数指标；图像 token 池化 | `scripts/preliminary*.py`、`src/dpvr/analysis/` | LLaVA-1.5-7B 上重画出 Figure 2 | E2, E8 |
 | C7 | 效率测量：解析 FLOPs（独立求 ρ）；统一 B=1；端到端生成延迟；去掉写死的 `cuda:5` | `src/dpvr/profiling/flops.py`、`scripts/profile_efficiency.py` | 解析 FLOPs 与 fvcore 误差 < 5% | E1, E5 |
-| C8 | 第二骨干支持（默认 LLaVA-1.6-Mistral-7B，待服务器配置确定）；解除 `T_txt = S - max_img` 的"batch 内图像 token 数相同"假设 | `token_diversion_x3_fusion.py`、新 config | 变长图像 token 的单测；smoke 训练 | E6 |
+| C8 | 第二骨干支持：Qwen2.5-VL-7B-Instruct（2026-10-11 定，见下）；解除 `T_txt = S - max_img` 的"batch 内图像 token 数相同"假设 | `routing.py`、`token_diversion_x3_fusion.py`、`token_diversion_x3_fusion_qwen.py`、`data/qwen.py`、插件 `dpvr_qwen25vl`、新 config | 变长图像 token 的单测；smoke 训练 | E6 |
 | C9 | 侧枝变体：MLP-only、LoRA 侧枝；可选用第 s 层权重初始化 | `token_diversion_x3_fusion.py` | 参数量正确；梯度可达 | E10 |
 | C10 | README 降调；统一论文中的代码链接 | `README*.md` | 链接可匿名访问 | — |
+
+### 第二骨干：Qwen2.5-VL-7B-Instruct
+
+作者 2026-10-11 要求用"最好的"第二骨干。选 Qwen2.5-VL-7B-Instruct 的理由：
+
+- R2.2 点名的 Qwen-VL 系列；与 LLaVA/Vicuna 无关（Qwen2.5 LLM、自研 ViT、M-RoPE），能回应 R1.14 "LLaVA/Vicuna 特有"的质疑。
+- lmms-eval 0.5.0 有官方 `qwen2_5_vl` handler，vanilla 数字可与公开结果对照；Qwen3-VL 虽更强，但 0.5.0 没有 handler（要自写评测，审稿人难核对），且有 DeepStack 往前几层注入视觉特征。
+- 动态分辨率，每张图 token 数不同，正好覆盖 C8 的变长路由和 R2.7 "分割层与图像 token 数的关系"。
+- 7B 档与论文主实验同规模，单卡训得动；32B/72B 训练成本高一个量级且无同规模 LLaVA 对照。
 
 ## 时间（按延期至 2026-11-25 假设）
 

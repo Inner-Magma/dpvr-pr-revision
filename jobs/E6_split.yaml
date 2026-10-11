@@ -1,0 +1,27 @@
+# E6 split-layer check for Qwen2.5-VL-7B (28 layers): DPVR-LF at three split
+# layers on 10% of LLaVA-665k, one GPU each, then eight-benchmark eval. Use it
+# to choose `split` for jobs/E6.yaml if the E2 saturation curve is ambiguous.
+#   python scripts/revision/run_queue.py jobs/E6_split.yaml --gpus 0-7
+experiment: E6_split
+vars:
+  base: Qwen2.5-VL-7B-Instruct
+  cfg: configs/method/token_diversion_x3_fusion_qwen25vl.yaml
+defaults:
+  gpus: 1
+  min_free_gb: 60
+jobs:
+  - name: train_s{s}
+    matrix: {s: [12, 16, 20]}
+    cmd: >
+      python scripts/train.py --config {cfg} method.split_layer={s}
+      data.subset_fraction=0.10 training.per_device_train_batch_size=4
+      training.output_subdir=revision/E6_split/qwen25vl_lf_s{s}_10pct
+
+  - name: eval_s{s}
+    matrix: {s: [12, 16, 20]}
+    after: ["train_s{s}"]
+    min_free_gb: 30
+    cmd: >
+      python scripts/revision/eval_lmms.py
+      --checkpoint ${CKPT_ROOT}/revision/E6_split/qwen25vl_lf_s{s}_10pct --base_model {base}
+      --tasks eight --out {out}
