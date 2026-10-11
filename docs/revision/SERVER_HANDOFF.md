@@ -114,7 +114,7 @@ python scripts/revision/run_queue.py jobs/E9.yaml --gpus 0-7
 
 ## 3. 实验顺序
 
-依赖的代码项（C*）未合入 main 前不要开始对应实验。每项实验的任务文件随对应 C 项的 PR 一起加入 `jobs/`；目前已有 `jobs/E0.yaml`、`jobs/E9.yaml`。
+依赖的代码项（C*）未合入 main 前不要开始对应实验。每项实验的任务文件随对应 C 项的 PR 一起加入 `jobs/`；目前已有 `jobs/E0.yaml`、`jobs/E9.yaml`、`jobs/E3_vtw.yaml`（E3 的 VTW 部分与 vanilla 八项）、`jobs/E4.yaml`。
 
 | 顺序 | 实验 | 依赖 | 内容 | 产出对应论文 |
 | --- | --- | --- | --- | --- |
