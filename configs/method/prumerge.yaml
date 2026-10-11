@@ -1,0 +1,11 @@
+defaults:
+  - _base.yaml
+
+# LLaVA-PruMerge, training-free: keep [CLS]-attention IQR outliers (adaptive count,
+# n_keep: null), merge each with its k nearest patches by key cosine.
+# key_layer -1 follows the official code (keys hooked on CLIP layer 23); the
+# attention comes from the feature layer (-2). Verify against the paper's numbers.
+method:
+  name: reduced
+  reduction: prumerge
+  params: {n_keep: null, k_neighbors: 32, feature_layer: -2, key_layer: -1}

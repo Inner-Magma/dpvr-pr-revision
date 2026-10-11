@@ -1,0 +1,11 @@
+defaults:
+  - _base.yaml
+
+# FastV (ECCV 2024), training-free: at layer K keep the top keep_ratio image tokens
+# ranked by the last token's attention in layer K-1 (official implementation;
+# score: mean ranks by the mean over all queries, the paper's description).
+# The older configs/method/fastv.yaml is the trained in-house variant.
+method:
+  name: reduced
+  reduction: fastv
+  params: {layer: 2, keep_ratio: 0.5, score: last}

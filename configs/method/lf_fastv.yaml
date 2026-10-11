@@ -1,0 +1,10 @@
+defaults:
+  - _base.yaml
+
+# C4: trained DPVR-LF + FastV pruning before the split layer (inference only).
+# Set method.checkpoint to a DPVR-LF run, e.g. --override method.checkpoint=/ckpt/run
+method:
+  name: lf_reduced
+  checkpoint: null
+  reduction: fastv
+  params: {layer: 2, keep_ratio: 0.5, score: last}
