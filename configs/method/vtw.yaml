@@ -1,0 +1,8 @@
+defaults:
+  - _base.yaml
+
+# Training-free (C3): vanilla LLaVA-1.5 weights, nothing trained.
+# Evaluate with scripts/revision/eval_lmms.py --method_config configs/method/vtw.yaml
+method:
+  name: vtw
+  split_layer: 18

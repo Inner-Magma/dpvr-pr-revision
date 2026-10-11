@@ -2,13 +2,14 @@
 
 **English** | [简体中文](README.zh-CN.md)
 
-> **Late-Layer Fusion is Enough.** Vision-token representations saturate before
-> the final layers of an MLLM. We route vision tokens at the saturation point of
-> LLaVA-1.5 through a single trainable side-branch block, run the deep layers
-> **text-only**, and re-fuse the visual and textual streams **only at the final
-> layer**. With ~3 % trainable parameters, this matches or exceeds dense
-> fine-tuning across standard benchmarks while cutting measured A800 latency by
-> ~28 %.
+> In LLaVA-1.5, vision-token hidden states change little across the deep layers
+> (adjacent-layer cosine ≥ 0.92; text-to-image attention mass ≈ 0.04 after layer
+> 18), while text tokens keep changing. DPVR-LF routes vision tokens at layer
+> *s* through a single trainable side-branch block, runs the deep layers on text
+> tokens only, and fuses the two streams again in the last layer. With about 3 %
+> trainable parameters it stays competitive with full fine-tuning on standard
+> benchmarks (per-benchmark numbers and gaps in the paper's Table 2) and reduces
+> measured prefill latency of LLaVA-1.5-7B on an A800 by about 28 %.
 
 Reference implementation for the **Dual-Path Vision Token Routing (DPVR)** method
 and its core instantiation **DPVR-LF (Late-Layer Fusion)** — a *Pattern
@@ -28,8 +29,8 @@ input ─► layers 0…17 (frozen, shared)  ─► split @ s=18
             │        └─ produces the image representation
             │
             └─► layers 18…30  (frozen): TEXT-ONLY forward
-            │     image positions fully skipped — no Q/K/V/O/FFN computed
-            │     for image tokens across these 13 deep layers  → full compute saving
+            │     image positions skipped — no Q/K/V/O/FFN computed for image
+            │     tokens in these 13 layers
             │
             └─► layer 31  (frozen): single IMAGE-TEXT FUSION
                   image positions reassembled from the side-branch output,
@@ -37,11 +38,19 @@ input ─► layers 0…17 (frozen, shared)  ─► split @ s=18
 ```
 
 - Image tokens are skipped in the 13 deep layers and re-fused only at the last
-  layer → the full compute saving, unlike per-layer routing baselines.
+  layer, so unlike the per-layer routing variants below these layers do no work
+  for image tokens. The vision tower, the shallow layers and the fusion layer
+  still process them, so the end-to-end saving is smaller than 13/32 of the
+  compute (about 28 % measured prefill latency for 7B).
 - For the 7B model (32 layers) fusion happens at the final layer, index **31**;
-  for the 13B model the split is `s = 24`.
-- The fusion-layer count saturates at **K = 1** — a second fusion layer adds only
-  ~0.18 pp, so one late fusion layer is sufficient.
+  for the 13B model (40 layers) the main model uses `s = 28`, with `s ∈ {20, 24, 28, 34}`
+  in the split sweep.
+- In the fusion-count ablation, a second fusion layer (K = 2) adds about 0.18 pp
+  on average over K = 1, so the released configuration uses one fusion layer.
+- Decoding note: the DPVR-LF generation path in this release recomputes the
+  full sequence at every step (no KV-cache reuse), so per-token decoding is
+  slower than vanilla LLaVA-1.5. The latency numbers above are for the prefill
+  forward pass.
 - Implementation: [`src/dpvr/models/token_diversion_x3_fusion.py`](src/dpvr/models/token_diversion_x3_fusion.py)
 - Config: [`configs/method/token_diversion_x3_fusion.yaml`](configs/method/token_diversion_x3_fusion.yaml)
 
@@ -58,7 +67,7 @@ ablation (Figure 3 in the paper):
 |---------|--------------------------------------|----------------|------|
 | **DPVR-PC** (per-layer copy) | image positions reset to the side-branch output at **every** deep layer; full attention still runs | none | [`token_diversion.py`](src/dpvr/models/token_diversion.py) |
 | **DPVR-KV** (cached-KV substitution) | image positions contribute **only K/V** in the deep stack | partial (~25–35 %) | [`token_diversion_substitution.py`](src/dpvr/models/token_diversion_substitution.py) |
-| **DPVR-LF** (late-layer fusion) ★ | image positions **fully skipped** for 13 layers, fused only at the last layer | full | [`token_diversion_x3_fusion.py`](src/dpvr/models/token_diversion_x3_fusion.py) |
+| **DPVR-LF** (late-layer fusion) ★ | image positions skipped for 13 layers, fused only at the last layer | largest of the three | [`token_diversion_x3_fusion.py`](src/dpvr/models/token_diversion_x3_fusion.py) |
 
 ### Shared setup
 
@@ -72,8 +81,8 @@ ablation (Figure 3 in the paper):
 ## Installation
 
 ```bash
-git clone https://github.com/Inner-Magma/DPVR.git
-cd DPVR
+git clone https://github.com/Inner-Magma/Dual-Path-Token-Routing.git
+cd Dual-Path-Token-Routing
 pip install -e .            # add [eval,analysis,profile] for optional extras
 ```
 

@@ -98,3 +98,26 @@ def test_lmms_plugin_registers_dpvr_hf():
         pytest.skip(f"lmms_eval dependencies missing: {r.stderr.strip().splitlines()[-1]}")
     assert r.returncode == 0, r.stderr
     assert "dpvr.lmms_plugin.models.dpvr_hf" in r.stdout
+
+
+def test_dpvr_hf_defaults_to_paper_vicuna_template(monkeypatch):
+    """The paper's handlers forced VICUNA_CHAT_TEMPLATE; dpvr_hf must do the same."""
+    pytest.importorskip("lmms_eval")
+    try:
+        from lmms_eval.models.simple import llava_hf
+    except ImportError as e:
+        pytest.skip(f"lmms_eval dependencies missing: {e}")
+    from dpvr.lmms_plugin.models.dpvr_hf import DPVRHf
+
+    seen = {}
+
+    def fake_init(self, **kw):
+        seen.update(kw)
+        self.use_cache = kw["use_cache"]
+
+    monkeypatch.setattr(llava_hf.LlavaHf, "__init__", fake_init)
+    DPVRHf(pretrained="x", checkpoint="none")
+    assert seen["chat_template"] == llava_hf.VICUNA_CHAT_TEMPLATE
+    assert seen["use_cache"] is False
+    DPVRHf(pretrained="x", checkpoint="none", chat_template="T")
+    assert seen["chat_template"] == "T"

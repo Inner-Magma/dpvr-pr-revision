@@ -11,6 +11,13 @@ tokenizer), then replaces it with the trained checkpoint.
 
 ``checkpoint=none`` evaluates the vanilla base model through the same code
 path, so vanilla and DPVR rows share one evaluation chain.
+
+The prompt template defaults to lmms-eval's ``VICUNA_CHAT_TEMPLATE``, as in
+the handlers that produced the paper's numbers (Dual-Path-Token-Routing
+``scripts/h20_handlers/*``, which set it for vanilla, LoRA, full FT and
+DPVR alike). Stock ``llava_hf`` would instead use the template shipped with
+the LLaVA-HF processor, a different prompt. Pass ``chat_template=...`` to
+override.
 ``checkpoint=config:<file.json>`` builds an untrained model from a resolved
 method config (training-free variants such as VTW); ``eval_lmms.py
 --method_config`` writes that file.
@@ -18,7 +25,7 @@ method config (training-free variants such as VTW); ``eval_lmms.py
 from __future__ import annotations
 
 import torch
-from lmms_eval.models.simple.llava_hf import LlavaHf
+from lmms_eval.models.simple.llava_hf import VICUNA_CHAT_TEMPLATE, LlavaHf
 from loguru import logger as eval_logger
 
 
@@ -35,9 +42,11 @@ class DPVRHf(LlavaHf):
         checkpoint: str = "none",
         use_cache=False,
         dtype: str = "bfloat16",
+        chat_template=None,
         **kwargs,
     ) -> None:
-        super().__init__(pretrained=pretrained, dtype=dtype, use_cache=_as_bool(use_cache), **kwargs)
+        super().__init__(pretrained=pretrained, dtype=dtype, use_cache=_as_bool(use_cache),
+                         chat_template=chat_template or VICUNA_CHAT_TEMPLATE, **kwargs)
         self.checkpoint = str(checkpoint)
         if self.checkpoint.lower() in ("", "none", "vanilla"):
             eval_logger.info(f"[dpvr_hf] vanilla model {pretrained}, use_cache={self.use_cache}")

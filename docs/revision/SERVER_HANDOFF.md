@@ -109,12 +109,12 @@ python scripts/revision/run_queue.py jobs/E9.yaml --gpus 0-7
 ### 2.2 分配
 
 - 训练任务（E6、E9、E10）每个占一张卡，优先 E6；评测、分析在其余卡上并行。
-- 延迟任务要求整卡空闲（任务文件里 `min_free_gb` 接近整卡显存），排在训练之前或训练结束后跑，不要和训练同时在一台机器上测。
+- 延迟任务（`jobs/E1.yaml` 生成延迟、`jobs/E5.yaml` 预填充延迟与解析 FLOPs）要求整卡空闲，排在训练之前或训练结束后跑，不要和训练同时在一台机器上测；运行时只给队列一张卡（`--gpus 0`），让各项依次测。E1 需要 C2 已合入。
 - 延迟实验最好在论文用过的型号上测（A800 80G PCIe、RTX 5880 Ada 48G、RTX PRO 6000 Blackwell 97G）。新服务器是 H20 时整张延迟表都要在 H20 上重测（vanilla 与各方法同卡同协议），并在 RESULTS.md 写明。
 
 ## 3. 实验顺序
 
-依赖的代码项（C*）未合入 main 前不要开始对应实验。每项实验的任务文件随对应 C 项的 PR 一起加入 `jobs/`；目前已有 `jobs/E0.yaml`、`jobs/E9.yaml`。
+依赖的代码项（C*）未合入 main 前不要开始对应实验。每项实验的任务文件随对应 C 项的 PR 一起加入 `jobs/`；目前已有 `jobs/E0.yaml`、`jobs/E9.yaml`、`jobs/E3_vtw.yaml`（E3 的 VTW 部分与 vanilla 八项）、`jobs/E4.yaml`。
 
 | 顺序 | 实验 | 依赖 | 内容 | 产出对应论文 |
 | --- | --- | --- | --- | --- |
