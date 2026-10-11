@@ -54,9 +54,9 @@ python scripts/revision/download_assets.py --verify                        # 评
 - `${MODEL_ROOT}/llava-1.5-7b-hf`、`llava-1.5-13b-hf`（llava-hf 格式）
 - 训练数据：`${DATA_ROOT}/llava-1.5-665k-instructions/`（JSON + COCO/GQA/OCR-VQA/TextVQA/VG 图像；`scripts/download_llava_images.sh`、`scripts/prepare_data.py`）
 - 评测数据（`configs/lmms_tasks/*_local.yaml` 里 `/path/to/benchmarks` 换成 `${BENCH_ROOT}` 后的位置）：`pope/`、`mme/`、`mmbench_en/en/`、`mmbench_cn/cn/dev-00000-of-00001.parquet`、`scienceqa/ScienceQA-IMG/`、`seed-bench/`、`blink/blink_val_combined.parquet`
-- 论文 7B DPVR-LF 的 checkpoint 已随旧服务器丢失。hsf 上的部分旧 checkpoint 和旧评测日志由作者传到 Hugging Face 私有**数据集**仓库（`.env` 的 `HF_CKPT_REPO`，读权限 token 在 `HF_TOKEN`；清单见 SERVER_PROMPTS"在 hsf 上上传"）。下载到 `${CKPT_ROOT}/hsf/`，保持仓库里的目录结构：
+- 论文 7B DPVR-LF 的 checkpoint 已随旧服务器丢失。hsf 上的部分旧 checkpoint 和旧评测日志由作者传到 Hugging Face 私有模型仓库（`.env` 的 `HF_CKPT_REPO`，读权限 token 在 `HF_TOKEN`；清单见 SERVER_PROMPTS"在 hsf 上上传"）。下载到 `${CKPT_ROOT}/hsf/`，保持仓库里的目录结构：
   ```bash
-  huggingface-cli download $HF_CKPT_REPO --repo-type dataset --local-dir ${CKPT_ROOT}/hsf --token $HF_TOKEN
+  huggingface-cli download $HF_CKPT_REPO --local-dir ${CKPT_ROOT}/hsf --token $HF_TOKEN
   ```
   私有仓库经 `HF_ENDPOINT` 镜像下载失败（401/404）时，这一条命令临时加 `HF_ENDPOINT=https://huggingface.co`。`full_ft/`、`lora/` 下多一层运行目录，有的运行只有最大的 `checkpoint-N` 里有最终权重：E12 用 `scripts/revision/find_ckpt.py` 自动找，不用手填路径。仓库里缺哪个就少哪项实验（E0 起点核查、E12 各行），不要用别的 checkpoint 顶替。`dpvr_old_eval.tgz` 解压到 `${CKPT_ROOT}/hsf/old_eval/`，只读参考。
 

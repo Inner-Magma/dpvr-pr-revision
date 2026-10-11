@@ -16,7 +16,7 @@
    - `MAIL_TO`：收件地址。
    `.env` 已被 `.gitignore` 忽略，不会被提交。
 3. 旧数据经 Hugging Face 私有仓库中转（hsf 与 H800 不能直连；见下一节"在 hsf 上上传"）。传了的部分由代理下载到 `${CKPT_ROOT}/hsf/`，没传的代理按缺失处理，大修照常进行。评测数据不用拷，全部重新下载（hsf 上的 SEED 副本不完整）。
-4. 在 `.env` 里再加两行：`HF_TOKEN=<有该私有仓库读权限的 token>`、`HF_CKPT_REPO=<在 hsf 上建的私有数据集仓库，形如 用户名/仓库名>`。
+4. 在 `.env` 里再加两行：`HF_TOKEN=<有该私有仓库读权限的 token>`、`HF_CKPT_REPO=<在 hsf 上建的私有模型仓库，形如 用户名/仓库名>`。
 5. 启动 Claude Code：
    ```bash
    npm install -g @anthropic-ai/claude-code   # 已装可跳过
@@ -43,12 +43,12 @@
 ```bash
 pip install -U "huggingface_hub[cli]" && huggingface-cli login     # 用有写权限的 token
 cd /nvme/lsy && tar czf dpvr_old_eval.tgz Dual-Path-Token-Routing/results/eval_lmms Dual-Path-Token-Routing/reports
-huggingface-cli repo create <仓库名> --repo-type dataset --private -y
-huggingface-cli upload <用户名>/<仓库名> dpvr_old_eval.tgz dpvr_old_eval.tgz --repo-type dataset
+huggingface-cli repo create <仓库名> --private -y
+huggingface-cli upload <用户名>/<仓库名> dpvr_old_eval.tgz dpvr_old_eval.tgz
 cd /nvme/lsy/checkpoints
 for d in token_diversion/llava665k_split18_d1 hsf_lf_13b/llava665k_s24_d1 \
          token_diversion/llava665k_13b_split28_d1 full_ft lora; do
-  huggingface-cli upload <用户名>/<仓库名> "$d" "$d" --repo-type dataset --exclude "checkpoint-*/*" "*/checkpoint-*/*"
+  huggingface-cli upload <用户名>/<仓库名> "$d" "$d" --exclude "checkpoint-*/*" "*/checkpoint-*/*"
 done
 ```
 
