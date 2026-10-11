@@ -8,13 +8,12 @@ Profiles TD main and LoRA r=16 ckpt-144000:
   - Peak VRAM during training-step simulation (batch=1, forward+backward, with image)
   - Single forward latency (ms, batch=1, seq≈2048, avg 10 runs)
 
-Must be run on cuda:5 only (CUDA_VISIBLE_DEVICES=5).
+Legacy script for the original Section 5.5 numbers. Revision measurements use
+scripts/revision/bench_latency.py (prefill), bench_generate.py (generation) and
+analytic_flops.py, driven by jobs/E1.yaml and jobs/E5.yaml.
 
-Usage:
-  CUDA_VISIBLE_DEVICES=5 python scripts/profile_efficiency.py
-  # or via nohup for background:
-  nohup bash -c "CUDA_VISIBLE_DEVICES=5 python scripts/profile_efficiency.py" \
-    > /tmp/profile_efficiency.out 2>&1 &
+Usage (runs on the first visible GPU):
+  CUDA_VISIBLE_DEVICES=<gpu> python scripts/profile_efficiency.py
 """
 from __future__ import annotations
 
@@ -35,7 +34,7 @@ sys.path.insert(0, str(REPO_ROOT / "src"))
 os.environ.setdefault("WANDB_MODE", "offline")
 os.environ.setdefault("HF_DATASETS_OFFLINE", "1")
 
-# Ensure cuda:5 (mapped to cuda:0 inside this process after CUDA_VISIBLE_DEVICES=5 export)
+# First visible GPU; pick the card with CUDA_VISIBLE_DEVICES.
 DEVICE = "cuda:0"
 DTYPE = torch.bfloat16
 IMAGE_TOKEN_ID = 32000  # <image> in LLaVA-1.5 tokenizer
