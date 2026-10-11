@@ -62,8 +62,10 @@ def main() -> None:
     from transformers import AutoProcessor, AutoTokenizer
 
     tokenizer = AutoTokenizer.from_pretrained(cfg["model"]["base_model_path"])
-    tokenizer.chat_template = cfg["chat_template"]
-    processor = AutoProcessor.from_pretrained(cfg["model"]["base_model_path"])
+    if cfg.get("chat_template"):  # null keeps the backbone's own template (Qwen2.5-VL)
+        tokenizer.chat_template = cfg["chat_template"]
+    processor = AutoProcessor.from_pretrained(cfg["model"]["base_model_path"],
+                                              **cfg["model"].get("processor_kwargs", {}))
     processor.tokenizer = tokenizer
 
     # Registry-based model construction — no method-specific if-else here.
@@ -77,7 +79,13 @@ def main() -> None:
         cfg["data"]["json_path"],
         subset_fraction=cfg["data"].get("subset_fraction", 1.0),
     )
-    collator = LlavaDataCollator(processor, image_base_path=cfg["data"]["image_base_path"])
+    if cfg["data"].get("collator", "llava") == "qwen2_5_vl":
+        from dpvr.data.qwen import QwenVLDataCollator
+
+        collator = QwenVLDataCollator(processor, image_base_path=cfg["data"]["image_base_path"],
+                                      max_length=cfg["data"].get("max_length", 4096))
+    else:
+        collator = LlavaDataCollator(processor, image_base_path=cfg["data"]["image_base_path"])
 
     trainer = build_trainer(cfg, model, raw_datasets["train"], collator,
                              track_efficiency=cfg.get("runtime", {}).get("track_efficiency", False))

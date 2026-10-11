@@ -1,0 +1,48 @@
+# DPVR-LF on Qwen2.5-VL-7B-Instruct (second backbone, C8 / E6; R1.14, R2.2).
+# Same recipe as the 7B LLaVA run: frozen backbone, one trainable side-branch
+# layer, last layer fuses (K=1), LLaVA-665k for one epoch, lr 1e-4, effective
+# batch 4. Run on 4 GPUs x 1 sample (jobs/E6.yaml) instead of 1 GPU x 4.
+#
+# split_layer: 16 of 28 layers is the 7B LLaVA ratio (18/32). Set it from the
+# E2 saturation result for this model (results/revision/E2/qwen25vl_7b) before
+# the full run.
+
+defaults:
+  - _base.yaml
+
+model:
+  base_model: Qwen2.5-VL-7B-Instruct
+  llama_subdir: ~
+  vision_tower_subdir: ~
+  projector_subdir: ~
+  attn_implementation: sdpa
+  # Same image budget as lmms-eval's qwen2_5_vl handler (its defaults), so
+  # training and evaluation see the same token counts per image.
+  processor_kwargs:
+    min_pixels: 200704     # 256 * 28 * 28
+    max_pixels: 1605632    # 2048 * 28 * 28
+
+method:
+  name: token_diversion_x3_fusion_qwen25vl
+  split_layer: 16
+  vision_depth: 1
+  fusion_count: 1
+  freeze_strategy: all_but_single
+  branch_init: random
+
+data:
+  collator: qwen2_5_vl
+  max_length: 4096
+  subset_fraction: 1.00
+
+training:
+  output_subdir: revision/E6/qwen25vl_lf_s16
+  per_device_train_batch_size: 1
+  gradient_accumulation_steps: 1
+  learning_rate: 1.0e-4
+  num_train_epochs: 1
+  warmup_ratio: 0.03
+  lr_scheduler_type: cosine
+
+# The backbone's own chat template (system prompt "You are a helpful assistant.").
+chat_template: ~
