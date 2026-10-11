@@ -15,10 +15,9 @@
    - `SMTP_HOST`、`SMTP_PORT`、`SMTP_USER`、`SMTP_PASSWORD`：发件邮箱和它的 SMTP 授权码（QQ 邮箱：设置 → 账户 → 开启 SMTP 服务后生成授权码，`smtp.qq.com`、端口 465）；
    - `MAIL_TO`：收件地址。
    `.env` 已被 `.gitignore` 忽略，不会被提交。
-3. 旧数据（有就拷，没有就跳过，代理会按缺失处理）：
-   - 论文的 7B DPVR-LF checkpoint 已丢失，不用找。从 hsf 拷一个同代码训练的 7B checkpoint 到 `${CKPT_ROOT}`，只用来核查训练起点：推荐 `token_diversion/llava665k_split18_d1`（43 GB，目录里要有 `training_config.json`）。拷不了就跳过，E0 里只有起点核查一项会缺；
-   - 评测数据不用拷，全部重新下载（hsf 上的 SEED 副本不完整）。
-4. 启动 Claude Code：
+3. 旧数据经 Hugging Face 私有仓库中转（hsf 与 H800 不能直连；见下一节"在 hsf 上上传"）。传了的部分由代理下载到 `${CKPT_ROOT}/hsf/`，没传的代理按缺失处理，大修照常进行。评测数据不用拷，全部重新下载（hsf 上的 SEED 副本不完整）。
+4. 在 `.env` 里再加两行：`HF_TOKEN=<有该私有仓库读权限的 token>`、`HF_CKPT_REPO=<你的 HF 用户名>/dpvr-hsf-ckpts`。
+5. 启动 Claude Code：
    ```bash
    npm install -g @anthropic-ai/claude-code   # 已装可跳过
    tmux new -s claude
@@ -26,13 +25,42 @@
    ```
    在 tmux 里开，断开 SSH 也不影响。
 
+## 在 hsf 上上传（人工，hsf 掉线前尽快）
+
+只传顶层权重（不传 `checkpoint-*` 中间存档），按优先级从上往下，掉线前传到哪里算哪里。合计约 80 GB（按各目录顶层大小估计）。
+
+| 优先级 | hsf 路径（`/nvme/lsy/` 下） | 用途 |
+| --- | --- | --- |
+| 1 | `Dual-Path-Token-Routing/results/eval_lmms`、`Dual-Path-Token-Routing/reports`（打成一个 tar，约 1 GB） | 旧逐题日志，核对论文每行的 SEED 用的哪套题 |
+| 2 | `checkpoints/token_diversion/llava665k_split18_d1` | 训练起点核查（E0）；Table 2 DPVR-PC 行用完整 SEED 重测（E12） |
+| 3 | `checkpoints/hsf_lf_13b/llava665k_s24_d1` | 13B DPVR-LF 在训练好的权重上做 KV cache 一致性验证（E12；论文的 s=28 已丢，这是留下的 13B LF） |
+| 4 | `checkpoints/token_diversion/llava665k_13b_split28_d1` | 13B 主行重测（E12） |
+| 5 | `checkpoints/full_ft` | Table 2 的 FullFT 改成实测行，回应"与全量微调比较"的质疑（E12） |
+| 6 | `checkpoints/lora` | Table 2 LoRA 行重测（E12） |
+
+不传：`fastv`（论文 FastV 行是免训练的，E3 会重测）、`token_diversion_13b/*` 和 `token_diversion/ablate_split_*`（分割层扫描表保留旧数字，标注 SEED 题集）。
+
+```bash
+pip install -U "huggingface_hub[cli]" && huggingface-cli login     # 用有写权限的 token
+cd /nvme/lsy && tar czf dpvr_old_eval.tgz Dual-Path-Token-Routing/results/eval_lmms Dual-Path-Token-Routing/reports
+huggingface-cli repo create dpvr-hsf-ckpts --private -y
+huggingface-cli upload <你的 HF 用户名>/dpvr-hsf-ckpts dpvr_old_eval.tgz dpvr_old_eval.tgz
+cd /nvme/lsy/checkpoints
+for d in token_diversion/llava665k_split18_d1 hsf_lf_13b/llava665k_s24_d1 \
+         token_diversion/llava665k_13b_split28_d1 full_ft lora; do
+  huggingface-cli upload <你的 HF 用户名>/dpvr-hsf-ckpts "$d" "$d" --exclude "checkpoint-*/*" "*/checkpoint-*/*"
+done
+```
+
+中断后重跑同一条命令即可（已上传的文件会跳过）。
+
 ## 指令 1：环境与验收（E0）
 
 ```
 读 AGENTS.md 和 docs/revision/SERVER_HANDOFF.md，执行阶段 1（E0）：
 1. 按 §1.1 用 scripts/revision/setup_env.sh 建环境（国内镜像按 §1.1 设置），跑 check_env.py。
 2. 按 §1.3 用 download_assets.py 下载模型、评测数据和 665k（图像用 download_llava_images.sh），已存在的跳过。
-3. 跑 jobs/E0.yaml（先 --dry-run），prov_ckpt 用 ${CKPT_ROOT} 下拷来的 7B checkpoint（§1.3）；没有就不传，起点核查那一项会拒绝启动，其余照跑，在 RESULTS.md 写明。
+3. 按 §1.3 从 .env 的 HF_CKPT_REPO 下载 hsf 中转的文件到 ${CKPT_ROOT}/hsf/（没有就跳过）。跑 jobs/E0.yaml（先 --dry-run），prov_ckpt=${CKPT_ROOT}/hsf/token_diversion/llava665k_split18_d1；没有这个目录就不传，起点核查那一项会拒绝启动，其余照跑，在 RESULTS.md 写明。
 4. 跑 pytest tests/。
 5. 填 RESULTS.md 的"服务器信息"，按 AGENTS.md 的"汇报"流程汇总、push、发邮件（主题 "E0 done" 或 "BLOCKED: E0 ..."）。
 最后告诉我验收清单（§1.5）每一项的结果。
@@ -47,7 +75,7 @@
 ## 指令 3：饱和分析与 Qwen 分割层（E2）
 
 ```
-执行 AGENTS.md 阶段 3：jobs/E2.yaml，--gpus 0-7。先只跑 E2 的 llava15_7b，按 SERVER_HANDOFF §3.1 核对它与论文 Figure 2 一致，再放开其余任务。E2 结束后根据 qwen25vl_7b 的曲线给出 Qwen2.5-VL 的分割层建议；不明确就跑 jobs/E6_split.yaml。告诉我建议值和依据。
+执行 AGENTS.md 阶段 3：jobs/E12.yaml 用 --gpus 0-2（lora_ckpt、fullft_ckpt 指向 ${CKPT_ROOT}/hsf 下对应目录，没有就不传），jobs/E2.yaml 用 --gpus 3-7。E12 里 lf13b_s24 有/无 KV cache 两次的分数不一致要报告。先只跑 E2 的 llava15_7b，按 SERVER_HANDOFF §3.1 核对它与论文 Figure 2 一致，再放开其余任务。E2 结束后根据 qwen25vl_7b 的曲线给出 Qwen2.5-VL 的分割层建议；不明确就跑 jobs/E6_split.yaml。告诉我建议值和依据。
 ```
 
 ## 指令 4：第二骨干与三个 seed（E6、E9）

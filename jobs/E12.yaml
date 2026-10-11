@@ -1,0 +1,49 @@
+# E12: re-measure the checkpoints copied from the old hsf server (through a
+# private Hugging Face repo, SERVER_HANDOFF §1.3) on the same eval chain as every
+# new row: lmms-eval 0.5.0, use_cache=False, full SEED-Bench. This replaces the old
+# numbers for the paper rows these checkpoints belong to, so all rows share one
+# SEED split. A checkpoint that was not copied makes its job fail; the rest run.
+#   python scripts/revision/run_queue.py jobs/E12.yaml --gpus 0-7 \
+#       --set lora_ckpt=<dir> --set fullft_ckpt=<dir>
+# Rough cost on H800: 2-3 GPU-hours per 7B model, 4-5 per 13B model (eight benchmarks).
+experiment: E12
+vars:
+  hsf: ${CKPT_ROOT}/hsf
+  lora_ckpt: REQUIRED      # LoRA run under hsf/lora/ (top-level weights + training_config.json)
+  fullft_ckpt: REQUIRED    # full fine-tuning run under hsf/full_ft/
+defaults:
+  gpus: 1
+  min_free_gb: 40
+jobs:
+  # Table 2, DPVR-PC (7B, split 18).
+  - name: pc7b_s18
+    cmd: >
+      python scripts/revision/eval_lmms.py --checkpoint {hsf}/token_diversion/llava665k_split18_d1
+      --tasks eight --out {out}
+
+  # Table 2, LoRA row.
+  - name: lora7b
+    cmd: >
+      python scripts/revision/eval_lmms.py --checkpoint {lora_ckpt} --tasks eight --out {out}
+
+  # Table 2, FullFT: a measured row instead of the cited numbers (R1 overclaim).
+  - name: fullft7b
+    cmd: >
+      python scripts/revision/eval_lmms.py --checkpoint {fullft_ckpt} --tasks eight --out {out}
+
+  # 13B table, DPVR-PC s=28 (main 13B row).
+  - name: pc13b_s28
+    min_free_gb: 60
+    cmd: >
+      python scripts/revision/eval_lmms.py --checkpoint {hsf}/token_diversion/llava665k_13b_split28_d1
+      --base_model llava-1.5-13b-hf --tasks eight --out {out}
+
+  # 13B DPVR-LF on trained weights, without and with the KV cache (C2): the two
+  # summaries must agree (R2.3). The paper's 13B LF row is s=28, whose
+  # checkpoint is lost; s=24 is the trained 13B LF that survives.
+  - name: lf13b_s24_cache_{c}
+    matrix: {c: ["False", "True"]}
+    min_free_gb: 60
+    cmd: >
+      python scripts/revision/eval_lmms.py --checkpoint {hsf}/hsf_lf_13b/llava665k_s24_d1
+      --base_model llava-1.5-13b-hf --tasks eight --use_cache {c} --out {out}

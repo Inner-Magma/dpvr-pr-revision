@@ -54,7 +54,11 @@ python scripts/revision/download_assets.py --verify                        # 评
 - `${MODEL_ROOT}/llava-1.5-7b-hf`、`llava-1.5-13b-hf`（llava-hf 格式）
 - 训练数据：`${DATA_ROOT}/llava-1.5-665k-instructions/`（JSON + COCO/GQA/OCR-VQA/TextVQA/VG 图像；`scripts/download_llava_images.sh`、`scripts/prepare_data.py`）
 - 评测数据（`configs/lmms_tasks/*_local.yaml` 里 `/path/to/benchmarks` 换成 `${BENCH_ROOT}` 后的位置）：`pope/`、`mme/`、`mmbench_en/en/`、`mmbench_cn/cn/dev-00000-of-00001.parquet`、`scienceqa/ScienceQA-IMG/`、`seed-bench/`、`blink/blink_val_combined.parquet`
-- 论文 7B DPVR-LF 的 checkpoint 已随旧服务器丢失，不再迁移。只需要一个用同一套代码训练的 7B LLaVA-1.5 checkpoint 做 §1.4 的起点核查（推荐 hsf 上的 `token_diversion/llava665k_split18_d1`，43 GB，放到 `${CKPT_ROOT}` 下）
+- 论文 7B DPVR-LF 的 checkpoint 已随旧服务器丢失。hsf 上的部分旧 checkpoint 和旧评测日志由作者传到 Hugging Face 私有仓库（`.env` 的 `HF_CKPT_REPO`，读权限 token 在 `HF_TOKEN`；清单见 SERVER_PROMPTS"在 hsf 上上传"）。下载到 `${CKPT_ROOT}/hsf/`，保持仓库里的目录结构：
+  ```bash
+  huggingface-cli download $HF_CKPT_REPO --local-dir ${CKPT_ROOT}/hsf --token $HF_TOKEN
+  ```
+  私有仓库经 `HF_ENDPOINT` 镜像下载失败（401/404）时，这一条命令临时加 `HF_ENDPOINT=https://huggingface.co`。仓库里缺哪个就少哪项实验（E0 起点核查、E12 各行），不要用别的 checkpoint 顶替。`dpvr_old_eval.tgz` 解压到 `${CKPT_ROOT}/hsf/old_eval/`，只读参考。
 
 装好后跑自检，全部 ✓ 再往下（`!` 是可选项，只提示）：
 
@@ -148,6 +152,7 @@ python scripts/revision/run_queue.py jobs/E9.yaml --gpus 0-7
 | 4 | E8 | C6 | 图像 token 数 144/288/576 下的饱和曲线 | §3.1 / 附录 |
 | 5 | E10 | C9 | MLP-only / LoRA 侧枝，30% 数据（`configs/data/llava665k_30pct.yaml`） | Table 4 |
 | 5 | E11 | — | 整理已有 K=1–4 的分 benchmark 结果 | Table 5 |
+| 2 | E12 | C2 | hsf 中转来的 checkpoint 同口径重测（完整 SEED）：7B DPVR-PC、LoRA、FullFT、13B PC s=28；13B LF s=24 有/无 KV cache 两次评测须一致 | Table 2、13B 表、R2.3 |
 
 ### 3.1 任务文件索引
 
@@ -168,6 +173,7 @@ C0–C10 已全部合入 main（2026-10-11），下列任务文件都可以直�
 | `jobs/E5.yaml` | E5 | 预填充延迟与解析 FLOPs | 整卡独占，`--gpus 0` |
 | `jobs/E7.yaml` | E7 | DPVR-LF 叠加 token 压缩 | 每项 1 |
 | `jobs/E10.yaml` | E10 | 侧枝变体（MLP-only、LoRA、第 s 层初始化） | 每项 1 |
+| `jobs/E12.yaml` | E12 | hsf 中转 checkpoint 重测；13B LF KV cache 一致性 | 每项 1 |
 
 E2 / E8（`jobs/E2.yaml`、`jobs/E8.yaml`，入口 `scripts/revision/saturation.py`）：
 - 每个模型 500 个 LLaVA-665k 样本（seed 0），单卡 bf16、eager attention；输出 `curves.npz`（逐样本逐层）、`summary.json`（逐层中位数与 IQR、各指标的转折层）、`saturation.pdf`；`compare` 任务把各模型叠在一张图上（横轴 layer/L）并写转折层表 `compare.md`。

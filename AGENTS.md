@@ -27,7 +27,7 @@
 | --- | --- | --- |
 | 1 | E0：环境、下载、验收（SERVER_HANDOFF §1） | 0-7 |
 | 2 | E1 + E5：H800 上重测整张延迟表，整机空闲时依次跑 | `--gpus 0`，其他卡不跑任何任务 |
-| 3 | E2：饱和分析；据 `qwen25vl_7b` 曲线定 Qwen 分割层，不明确时跑 `jobs/E6_split.yaml` | 0-7 |
+| 3 | E12（hsf 中转来的 checkpoint 重测，传了哪些跑哪些）与 E2 并行，卡分开；E2：饱和分析；据 `qwen25vl_7b` 曲线定 Qwen 分割层，不明确时跑 `jobs/E6_split.yaml` | 0-7 |
 | 4 | E6（Qwen2.5-VL-7B）与 E9（7B 三个 seed）并行 | E6 `0-4`，E9 `5-7` |
 | 5 | 按优先级：E3_vtw、E4 → E3_baselines → E8 → E7 → E10 | 空出来的卡，队列间不相交 |
 

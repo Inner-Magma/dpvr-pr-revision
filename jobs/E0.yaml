@@ -5,8 +5,8 @@
 # the old-checkpoint re-evaluation is dropped: the eval chain is checked with
 # vanilla, and E9 seed=1 is compared with the old seed=1 scores instead.
 # prov_ckpt only settles the training start (frozen weights): any 7B LLaVA-1.5
-# checkpoint from the same codebase works, e.g. token_diversion/llava665k_split18_d1
-# (DPVR-TD, 43 GB). It must hold the weights and training_config.json (if it only
+# checkpoint from the same codebase works, e.g.
+# ${CKPT_ROOT}/hsf/token_diversion/llava665k_split18_d1 (DPVR-PC, relayed from hsf). It must hold the weights and training_config.json (if it only
 # has checkpoint-N/ subdirs, point at the last one). Without one, provenance_7b refuses
 # to start and the other jobs still run.
 experiment: E0
