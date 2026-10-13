@@ -1,0 +1,363 @@
+{
+  "gpus": [
+    {
+      "index": 0,
+      "name": "NVIDIA H20-3e",
+      "capability": "9.0",
+      "total_gb": 139.7,
+      "free_gb": 103.8
+    },
+    {
+      "index": 1,
+      "name": "NVIDIA H20-3e",
+      "capability": "9.0",
+      "total_gb": 139.7,
+      "free_gb": 91.4
+    },
+    {
+      "index": 2,
+      "name": "NVIDIA H20-3e",
+      "capability": "9.0",
+      "total_gb": 139.7,
+      "free_gb": 89.0
+    },
+    {
+      "index": 3,
+      "name": "NVIDIA H20-3e",
+      "capability": "9.0",
+      "total_gb": 139.7,
+      "free_gb": 91.6
+    },
+    {
+      "index": 4,
+      "name": "NVIDIA H20-3e",
+      "capability": "9.0",
+      "total_gb": 139.7,
+      "free_gb": 99.0
+    },
+    {
+      "index": 5,
+      "name": "NVIDIA H20-3e",
+      "capability": "9.0",
+      "total_gb": 139.7,
+      "free_gb": 90.6
+    },
+    {
+      "index": 6,
+      "name": "NVIDIA H20-3e",
+      "capability": "9.0",
+      "total_gb": 139.7,
+      "free_gb": 86.1
+    },
+    {
+      "index": 7,
+      "name": "NVIDIA H20-3e",
+      "capability": "9.0",
+      "total_gb": 139.7,
+      "free_gb": 86.6
+    }
+  ],
+  "checks": [
+    {
+      "group": "software",
+      "name": "python 3.10",
+      "ok": true,
+      "required": true,
+      "detail": "3.10.22"
+    },
+    {
+      "group": "software",
+      "name": "torch==2.9.0",
+      "ok": true,
+      "required": true,
+      "detail": "2.9.0+cu128"
+    },
+    {
+      "group": "software",
+      "name": "torchvision==0.24.0",
+      "ok": true,
+      "required": true,
+      "detail": "0.24.0+cu128"
+    },
+    {
+      "group": "software",
+      "name": "transformers==4.57.1",
+      "ok": true,
+      "required": true,
+      "detail": "4.57.1"
+    },
+    {
+      "group": "software",
+      "name": "trl==0.23.0",
+      "ok": true,
+      "required": true,
+      "detail": "0.23.0"
+    },
+    {
+      "group": "software",
+      "name": "accelerate==1.11.0",
+      "ok": true,
+      "required": true,
+      "detail": "1.11.0"
+    },
+    {
+      "group": "software",
+      "name": "bitsandbytes==0.49.2",
+      "ok": true,
+      "required": true,
+      "detail": "0.49.2"
+    },
+    {
+      "group": "software",
+      "name": "lmms_eval==0.5.0",
+      "ok": true,
+      "required": true,
+      "detail": "0.5.0"
+    },
+    {
+      "group": "software",
+      "name": "numpy==1.26.4",
+      "ok": true,
+      "required": true,
+      "detail": "1.26.4"
+    },
+    {
+      "group": "software",
+      "name": "qwen-vl-utils==0.0.14",
+      "ok": true,
+      "required": true,
+      "detail": "0.0.14"
+    },
+    {
+      "group": "gpu",
+      "name": "CUDA available",
+      "ok": true,
+      "required": true,
+      "detail": "torch CUDA 12.8"
+    },
+    {
+      "group": "gpu",
+      "name": "cuda:0 bf16 matmul",
+      "ok": true,
+      "required": true,
+      "detail": "NVIDIA H20-3e sm_90 140 GB, 104 GB free"
+    },
+    {
+      "group": "gpu",
+      "name": "cuda:1 bf16 matmul",
+      "ok": true,
+      "required": true,
+      "detail": "NVIDIA H20-3e sm_90 140 GB, 91 GB free"
+    },
+    {
+      "group": "gpu",
+      "name": "cuda:2 bf16 matmul",
+      "ok": true,
+      "required": true,
+      "detail": "NVIDIA H20-3e sm_90 140 GB, 89 GB free"
+    },
+    {
+      "group": "gpu",
+      "name": "cuda:3 bf16 matmul",
+      "ok": true,
+      "required": true,
+      "detail": "NVIDIA H20-3e sm_90 140 GB, 92 GB free"
+    },
+    {
+      "group": "gpu",
+      "name": "cuda:4 bf16 matmul",
+      "ok": true,
+      "required": true,
+      "detail": "NVIDIA H20-3e sm_90 140 GB, 99 GB free"
+    },
+    {
+      "group": "gpu",
+      "name": "cuda:5 bf16 matmul",
+      "ok": true,
+      "required": true,
+      "detail": "NVIDIA H20-3e sm_90 140 GB, 91 GB free"
+    },
+    {
+      "group": "gpu",
+      "name": "cuda:6 bf16 matmul",
+      "ok": true,
+      "required": true,
+      "detail": "NVIDIA H20-3e sm_90 140 GB, 86 GB free"
+    },
+    {
+      "group": "gpu",
+      "name": "cuda:7 bf16 matmul",
+      "ok": true,
+      "required": true,
+      "detail": "NVIDIA H20-3e sm_90 140 GB, 87 GB free"
+    },
+    {
+      "group": "software",
+      "name": "lmms-eval plugin dpvr_hf",
+      "ok": true,
+      "required": true,
+      "detail": "dpvr.lmms_plugin.models.dpvr_hf"
+    },
+    {
+      "group": "paths",
+      "name": "data_root",
+      "ok": true,
+      "required": true,
+      "detail": "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/datasets"
+    },
+    {
+      "group": "paths",
+      "name": "model_root",
+      "ok": true,
+      "required": true,
+      "detail": "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/models"
+    },
+    {
+      "group": "paths",
+      "name": "ckpt_root",
+      "ok": true,
+      "required": true,
+      "detail": "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints"
+    },
+    {
+      "group": "models",
+      "name": "llava-1.5-7b-hf",
+      "ok": false,
+      "required": true,
+      "detail": "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/models/llava-1.5-7b-hf"
+    },
+    {
+      "group": "models",
+      "name": "llava-1.5-13b-hf",
+      "ok": false,
+      "required": false,
+      "detail": "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/models/llava-1.5-13b-hf"
+    },
+    {
+      "group": "models",
+      "name": "vicuna-7b-v1.5 (llama_subdir)",
+      "ok": false,
+      "required": false,
+      "detail": "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/models/llava1.5-7b-pretrained/vicuna-7b-v1.5 — must match the §1.4 provenance result"
+    },
+    {
+      "group": "models",
+      "name": "stage-1 mm_projector.bin (projector_subdir)",
+      "ok": false,
+      "required": false,
+      "detail": "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/models/llava1.5-7b-pretrained/llava-v1.5-7b-pretrain/mm_projector.bin — must match the §1.4 provenance result"
+    },
+    {
+      "group": "models",
+      "name": "clip-vit-large-patch14-336 (vision_tower_subdir)",
+      "ok": false,
+      "required": false,
+      "detail": "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/models/llava1.5-7b-pretrained/clip-vit-large-patch14-336 — must match the §1.4 provenance result"
+    },
+    {
+      "group": "data",
+      "name": "llava_v1_5_mix665k.json",
+      "ok": false,
+      "required": true,
+      "detail": "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/datasets/llava-1.5-665k-instructions/llava_v1_5_mix665k.json"
+    },
+    {
+      "group": "data",
+      "name": "images/coco/train2017",
+      "ok": false,
+      "required": true,
+      "detail": "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/datasets/llava-1.5-665k-instructions/coco/train2017"
+    },
+    {
+      "group": "data",
+      "name": "images/gqa/images",
+      "ok": false,
+      "required": true,
+      "detail": "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/datasets/llava-1.5-665k-instructions/gqa/images"
+    },
+    {
+      "group": "data",
+      "name": "images/ocr_vqa/images",
+      "ok": false,
+      "required": true,
+      "detail": "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/datasets/llava-1.5-665k-instructions/ocr_vqa/images"
+    },
+    {
+      "group": "data",
+      "name": "images/textvqa/train_images",
+      "ok": false,
+      "required": true,
+      "detail": "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/datasets/llava-1.5-665k-instructions/textvqa/train_images"
+    },
+    {
+      "group": "data",
+      "name": "images/vg/VG_100K",
+      "ok": false,
+      "required": true,
+      "detail": "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/datasets/llava-1.5-665k-instructions/vg/VG_100K"
+    },
+    {
+      "group": "data",
+      "name": "images/vg/VG_100K_2",
+      "ok": false,
+      "required": true,
+      "detail": "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/datasets/llava-1.5-665k-instructions/vg/VG_100K_2"
+    },
+    {
+      "group": "benchmarks",
+      "name": "pope",
+      "ok": false,
+      "required": true,
+      "detail": "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/datasets/benchmarks/pope"
+    },
+    {
+      "group": "benchmarks",
+      "name": "mme",
+      "ok": false,
+      "required": true,
+      "detail": "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/datasets/benchmarks/mme"
+    },
+    {
+      "group": "benchmarks",
+      "name": "mmbench_en",
+      "ok": false,
+      "required": true,
+      "detail": "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/datasets/benchmarks/mmbench_en/en"
+    },
+    {
+      "group": "benchmarks",
+      "name": "mmbench_cn",
+      "ok": false,
+      "required": true,
+      "detail": "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/datasets/benchmarks/mmbench_cn/cn/dev-00000-of-00001.parquet"
+    },
+    {
+      "group": "benchmarks",
+      "name": "scienceqa",
+      "ok": false,
+      "required": true,
+      "detail": "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/datasets/benchmarks/scienceqa/ScienceQA-IMG"
+    },
+    {
+      "group": "benchmarks",
+      "name": "seedbench",
+      "ok": false,
+      "required": true,
+      "detail": "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/datasets/benchmarks/seed-bench"
+    },
+    {
+      "group": "benchmarks",
+      "name": "blink",
+      "ok": false,
+      "required": true,
+      "detail": "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/datasets/benchmarks/blink/blink_val_combined.parquet"
+    },
+    {
+      "group": "benchmarks",
+      "name": "gqa",
+      "ok": false,
+      "required": false,
+      "detail": "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/datasets/benchmarks/gqa"
+    }
+  ]
+}
