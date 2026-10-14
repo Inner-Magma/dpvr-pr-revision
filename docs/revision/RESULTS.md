@@ -228,3 +228,40 @@ AGENTS.md 要求「E0 验收结束、每个实验结束、任何『异常就停�
 ```bash
 awk -F= '/^(SMTP|MAIL)/{k=$1; v=substr($0, index($0,"=")+1); gsub(/^[ \t]+|[ \t]+$/,"",v); printf "%s: 长度=%d\n", k, length(v)}' .env
 ```
+
+### 10. 【凭据泄露，已处理】lmms-eval 把 HF token 原文写进日志，被 GitHub push protection 拦下
+
+第一次提交 E0 结果时 `git push` 被拒：
+
+```
+remote: error: GH013: Repository rule violations found for refs/heads/main.
+remote:   —— Hugging Face User Access Token —
+remote:        - commit: d19023e... path: results/revision/E0/reeval_vanilla7b/log_tail.txt:14
+remote:        - commit: d19023e... path: results/revision/E0/reeval_vanilla7b/log_tail.txt:31
+```
+
+**链路**：`eval_lmms.py` 通过 `--token` 把 HF token 传给 lmms-eval，而 lmms-eval 在
+`__main__.py:400` 把整个 evaluation tracker 的构造参数**原样 INFO 打出来**：
+
+```
+Evaluation tracker args: {'output_path': '.../lmms', 'token': 'hf_...'}
+```
+
+`collect_results.py` 又把该任务的 `log.txt` / `log_tail.txt` 拷进 `results/revision/E0/<任务>/`，
+于是 token 进了待提交目录。
+
+**处理**（本次已做，未污染远端）：本地 `sed` 把 `hf_[A-Za-z0-9]{20,}` 替换成 `hf_**REDACTED**`，
+`git commit --amend` 后重推成功（`014ea25..e13be9a`）。被拦的 `d19023e` 从未到达远端。
+
+**每次提交前的硬性检查**（已写进巡检 cron）：
+
+```bash
+grep -rn 'hf_[A-Za-z0-9]\{20,\}' results/ docs/    # 必须无输出
+```
+
+**给作者的建议（影响所有精度实验）**：`eval_lmms.py` 调 lmms-eval 时把 token 放进命令行参数，
+日志必然带出来。建议改成走环境变量（`HF_TOKEN` / `HUGGING_FACE_HUB_TOKEN`）而不是 `--token`，
+或者在 `collect_results.py` 拷日志前统一脱敏。**在改掉之前，每次提交前都要手工 grep 一遍。**
+
+**另注**：该 token 已不可信（写进了本地日志、也被 GitHub 存档在拦截记录里），
+**建议作者轮换一次 HF token**。
