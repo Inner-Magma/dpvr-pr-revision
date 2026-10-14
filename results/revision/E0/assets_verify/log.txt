@@ -1,0 +1,15 @@
+
+===== 2026-10-14T04:11:18+00:00 start assets_verify on GPUs [] =====
+bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)
+  File "scripts/revision/download_assets.py", line 11
+SyntaxError: Non-ASCII character '\xc2' in file scripts/revision/download_assets.py on line 12, but no encoding declared; see http://www.python.org/peps/pep-0263.html for details
+
+===== 2026-10-14T05:16:04+00:00 start assets_verify on GPUs [] =====
+bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)
+OK  pope        found=9000 paper=9000
+OK  mme         found=2374 paper=2374
+OK  mmbench_en  found=4329 paper=4329
+OK  mmbench_cn  found=4329 paper=4329
+OK  scienceqa   found=2017 paper=2017
+OK  seedbench   found=17990 paper=17990
+OK  blink       found=1901 paper=1901

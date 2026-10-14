@@ -1,0 +1,12 @@
+{
+  "state": "done",
+  "started": "2026-10-14T05:16:04+00:00",
+  "gpus": [],
+  "cmd": "python scripts/revision/download_assets.py --verify --out /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E0/assets_verify/assets.json",
+  "host": "psxne4gxrs7fieen-worker-0",
+  "git_sha": "014ea25",
+  "pid": 13748,
+  "returncode": 0,
+  "finished": "2026-10-14T05:16:24+00:00",
+  "duration_s": 20.6
+}

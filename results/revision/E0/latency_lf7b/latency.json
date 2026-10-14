@@ -1,0 +1,31 @@
+{
+  "method": {
+    "name": "token_diversion_x3_fusion",
+    "split_layer": 18,
+    "vision_depth": 1,
+    "freeze_strategy": "all_but_single"
+  },
+  "config": "configs/method/token_diversion_x3_fusion.yaml",
+  "overrides": [],
+  "protocol": {
+    "batch": 1,
+    "n_img": 576,
+    "n_txt": 128,
+    "dtype": "bfloat16",
+    "use_cache": false,
+    "warmup": 10,
+    "iters": 100
+  },
+  "latency_ms": {
+    "mean": 25.484596138000487,
+    "std": 0.9328424696864901,
+    "p50": 24.970160484313965,
+    "min": 24.807519912719727,
+    "max": 28.794111251831055
+  },
+  "peak_mem_gb": 13.641786098480225,
+  "gpu": "NVIDIA H100 80GB HBM3",
+  "torch": "2.9.0+cu128",
+  "cuda": "12.8",
+  "python": "3.10.22"
+}

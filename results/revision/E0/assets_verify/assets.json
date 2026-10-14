@@ -1,0 +1,40 @@
+{
+  "bench_root": "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/datasets/benchmarks",
+  "benchmarks": {
+    "pope": {
+      "found": 9000,
+      "paper": 9000,
+      "match": true
+    },
+    "mme": {
+      "found": 2374,
+      "paper": 2374,
+      "match": true
+    },
+    "mmbench_en": {
+      "found": 4329,
+      "paper": 4329,
+      "match": true
+    },
+    "mmbench_cn": {
+      "found": 4329,
+      "paper": 4329,
+      "match": true
+    },
+    "scienceqa": {
+      "found": 2017,
+      "paper": 2017,
+      "match": true
+    },
+    "seedbench": {
+      "found": 17990,
+      "paper": 17990,
+      "match": true
+    },
+    "blink": {
+      "found": 1901,
+      "paper": 1901,
+      "match": true
+    }
+  }
+}

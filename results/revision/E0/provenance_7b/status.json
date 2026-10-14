@@ -1,0 +1,12 @@
+{
+  "state": "done",
+  "started": "2026-10-14T05:16:04+00:00",
+  "gpus": [],
+  "cmd": "python scripts/revision/check_weight_provenance.py --checkpoint /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/legacy/token_diversion/llava665k_split18_d1 --out /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E0/provenance_7b/provenance.json --vicuna ${MODEL_ROOT}/reference/vicuna-7b-v1.5 --projector ${MODEL_ROOT}/reference/llava-v1.5-7b-pretrain/mm_projector.bin",
+  "host": "psxne4gxrs7fieen-worker-0",
+  "git_sha": "014ea25",
+  "pid": 13746,
+  "returncode": 0,
+  "finished": "2026-10-14T05:16:24+00:00",
+  "duration_s": 20.6
+}

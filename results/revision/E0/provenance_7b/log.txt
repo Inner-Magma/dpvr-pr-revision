@@ -1,0 +1,21 @@
+
+===== 2026-10-14T04:11:18+00:00 start provenance_7b on GPUs [] =====
+bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)
+  File "scripts/revision/check_weight_provenance.py", line 2
+SyntaxError: Non-ASCII character '\xc2' in file scripts/revision/check_weight_provenance.py on line 2, but no encoding declared; see http://www.python.org/peps/pep-0263.html for details
+
+===== 2026-10-14T05:16:04+00:00 start provenance_7b on GPUs [] =====
+bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)
+probe                      llava_hf  vicuna/stage1
+layer0.q_proj                     0        0.00404
+layer0.down_proj                  0         0.0083
+layer17.q_proj                    0        0.00476
+layer17.down_proj                 0        0.00423
+layer18.q_proj                    0        0.00455
+layer18.down_proj                 0        0.00418
+layer31.q_proj                    0        0.00488
+layer31.down_proj                 0        0.00586
+final_norm                        0        0.00061
+projector.linear_1                0         0.0127
+projector.linear_2                0        0.00497
+verdict: {"language_model": "llava_hf", "projector": "llava_hf"}

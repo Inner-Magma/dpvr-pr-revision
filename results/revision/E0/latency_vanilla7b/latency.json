@@ -1,0 +1,25 @@
+{
+  "method": "vanilla",
+  "base_model": "llava-1.5-7b-hf",
+  "protocol": {
+    "batch": 1,
+    "n_img": 576,
+    "n_txt": 128,
+    "dtype": "bfloat16",
+    "use_cache": false,
+    "warmup": 10,
+    "iters": 100
+  },
+  "latency_ms": {
+    "mean": 28.65052770614624,
+    "std": 0.3984543412197884,
+    "p50": 28.56171226501465,
+    "min": 28.15135955810547,
+    "max": 29.984575271606445
+  },
+  "peak_mem_gb": 13.259056568145752,
+  "gpu": "NVIDIA H100 80GB HBM3",
+  "torch": "2.9.0+cu128",
+  "cuda": "12.8",
+  "python": "3.10.22"
+}

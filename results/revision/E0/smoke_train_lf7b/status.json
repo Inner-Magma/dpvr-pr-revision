@@ -1,0 +1,14 @@
+{
+  "state": "done",
+  "started": "2026-10-14T05:16:04+00:00",
+  "gpus": [
+    2
+  ],
+  "cmd": "python scripts/train.py --config configs/method/token_diversion_x3_fusion.yaml seed=1 training.max_steps=50 training.save_strategy=no training.output_subdir=revision/E0/smoke_train_lf7b",
+  "host": "psxne4gxrs7fieen-worker-0",
+  "git_sha": "014ea25",
+  "pid": 13896,
+  "returncode": 0,
+  "finished": "2026-10-14T05:18:25+00:00",
+  "duration_s": 140.5
+}

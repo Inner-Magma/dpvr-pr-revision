@@ -1,0 +1,41 @@
+
+===== 2026-10-14T04:11:18+00:00 start reeval_vanilla7b on GPUs [0] =====
+bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)
+  File "scripts/revision/eval_lmms.py", line 57
+    def parse_tasks(spec: str) -> list[str]:
+                        ^
+SyntaxError: invalid syntax
+
+===== 2026-10-14T05:16:04+00:00 start reeval_vanilla7b on GPUs [0] =====
+bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)
+/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/install/conda_env_dpvr/bin/python -m lmms_eval --model dpvr_hf --model_args pretrained=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/models/llava-1.5-7b-hf,checkpoint=none,use_cache=False,dtype=bfloat16 --tasks pope_local,mme_local,mmbench_en_local,mmbench_cn_local,scienceqa_local,seedbench_local,blink_local --include_path /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E0/reeval_vanilla7b/tasks --batch_size 1 --output_path /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E0/reeval_vanilla7b/lmms --log_samples
+[32m2026-10-14 13:16:41[0m | [1mINFO    [0m | [36m__main__[0m:[36mcli_evaluate[0m:[36m311[0m - [1mVerbosity set to INFO[0m
+[32m2026-10-14 13:16:41[0m | [1mINFO    [0m | [36m__main__[0m:[36mcli_evaluate_single[0m:[36m390[0m - [1mIncluding path: /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E0/reeval_vanilla7b/tasks[0m
+[32m2026-10-14 13:17:15[0m | [1mINFO    [0m | [36m__main__[0m:[36mcli_evaluate_single[0m:[36m400[0m - [1mEvaluation tracker args: {'output_path': '/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E0/reeval_vanilla7b/lmms', 'token': 'hf_**REDACTED**'}[0m
+[32m2026-10-14 13:17:15[0m | [1mINFO    [0m | [36m__main__[0m:[36mcli_evaluate_single[0m:[36m424[0m - [1mIncluding path: /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E0/reeval_vanilla7b/tasks[0m
+Traceback (most recent call last):
+  File "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/install/conda_env_dpvr/lib/python3.10/site-packages/lmms_eval/__main__.py", line 349, in cli_evaluate
+    results, samples = cli_evaluate_single(args)
+  File "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/install/conda_env_dpvr/lib/python3.10/site-packages/lmms_eval/__main__.py", line 435, in cli_evaluate_single
+    package_tasks_location = importlib.util.find_spec(f"{plugin}.tasks").submodule_search_locations[0]
+AttributeError: 'NoneType' object has no attribute 'submodule_search_locations'
+[32m2026-10-14 13:17:15[0m | [31m[1mERROR   [0m | [36m__main__[0m:[36mcli_evaluate[0m:[36m371[0m - [31m[1mError during evaluation: 'NoneType' object has no attribute 'submodule_search_locations'. Please set `--verbosity=DEBUG` to get more information.[0m
+{}
+lmms-eval finished but no *_results.json was found
+
+===== 2026-10-14T05:23:20+00:00 start reeval_vanilla7b on GPUs [0] =====
+bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)
+/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/install/conda_env_dpvr/bin/python -m lmms_eval --model dpvr_hf --model_args pretrained=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/models/llava-1.5-7b-hf,checkpoint=none,use_cache=False,dtype=bfloat16 --tasks pope_local,mme_local,mmbench_en_local,mmbench_cn_local,scienceqa_local,seedbench_local,blink_local --include_path /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E0/reeval_vanilla7b/tasks --batch_size 1 --output_path /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E0/reeval_vanilla7b/lmms --log_samples
+[32m2026-10-14 13:23:34[0m | [1mINFO    [0m | [36m__main__[0m:[36mcli_evaluate[0m:[36m311[0m - [1mVerbosity set to INFO[0m
+[32m2026-10-14 13:23:35[0m | [1mINFO    [0m | [36m__main__[0m:[36mcli_evaluate_single[0m:[36m390[0m - [1mIncluding path: /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E0/reeval_vanilla7b/tasks[0m
+[32m2026-10-14 13:23:38[0m | [1mINFO    [0m | [36m__main__[0m:[36mcli_evaluate_single[0m:[36m400[0m - [1mEvaluation tracker args: {'output_path': '/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E0/reeval_vanilla7b/lmms', 'token': 'hf_**REDACTED**'}[0m
+[32m2026-10-14 13:23:38[0m | [1mINFO    [0m | [36m__main__[0m:[36mcli_evaluate_single[0m:[36m424[0m - [1mIncluding path: /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E0/reeval_vanilla7b/tasks[0m
+Traceback (most recent call last):
+  File "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/install/conda_env_dpvr/lib/python3.10/site-packages/lmms_eval/__main__.py", line 349, in cli_evaluate
+    results, samples = cli_evaluate_single(args)
+  File "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/install/conda_env_dpvr/lib/python3.10/site-packages/lmms_eval/__main__.py", line 435, in cli_evaluate_single
+    package_tasks_location = importlib.util.find_spec(f"{plugin}.tasks").submodule_search_locations[0]
+AttributeError: 'NoneType' object has no attribute 'submodule_search_locations'
+[32m2026-10-14 13:23:38[0m | [31m[1mERROR   [0m | [36m__main__[0m:[36mcli_evaluate[0m:[36m371[0m - [31m[1mError during evaluation: 'NoneType' object has no attribute 'submodule_search_locations'. Please set `--verbosity=DEBUG` to get more information.[0m
+{}
+lmms-eval finished but no *_results.json was found

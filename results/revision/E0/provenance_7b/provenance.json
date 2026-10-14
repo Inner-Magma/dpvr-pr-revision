@@ -1,0 +1,80 @@
+{
+  "rows": [
+    {
+      "probe": "layer0.q_proj",
+      "ckpt_key": "llava_model.model.language_model.layers.0.self_attn.q_proj.weight",
+      "llava_hf": 0.0,
+      "vicuna": 0.0040435791015625
+    },
+    {
+      "probe": "layer0.down_proj",
+      "ckpt_key": "llava_model.model.language_model.layers.0.mlp.down_proj.weight",
+      "llava_hf": 0.0,
+      "vicuna": 0.00830078125
+    },
+    {
+      "probe": "layer17.q_proj",
+      "ckpt_key": "llava_model.model.language_model.layers.17.self_attn.q_proj.weight",
+      "llava_hf": 0.0,
+      "vicuna": 0.0047607421875
+    },
+    {
+      "probe": "layer17.down_proj",
+      "ckpt_key": "llava_model.model.language_model.layers.17.mlp.down_proj.weight",
+      "llava_hf": 0.0,
+      "vicuna": 0.0042266845703125
+    },
+    {
+      "probe": "layer18.q_proj",
+      "ckpt_key": "llava_model.model.language_model.layers.18.self_attn.q_proj.weight",
+      "llava_hf": 0.0,
+      "vicuna": 0.004547119140625
+    },
+    {
+      "probe": "layer18.down_proj",
+      "ckpt_key": "llava_model.model.language_model.layers.18.mlp.down_proj.weight",
+      "llava_hf": 0.0,
+      "vicuna": 0.004180908203125
+    },
+    {
+      "probe": "layer31.q_proj",
+      "ckpt_key": "llava_model.model.language_model.layers.31.self_attn.q_proj.weight",
+      "llava_hf": 0.0,
+      "vicuna": 0.0048828125
+    },
+    {
+      "probe": "layer31.down_proj",
+      "ckpt_key": "llava_model.model.language_model.layers.31.mlp.down_proj.weight",
+      "llava_hf": 0.0,
+      "vicuna": 0.005859375
+    },
+    {
+      "probe": "final_norm",
+      "ckpt_key": "llava_model.model.language_model.norm.weight",
+      "llava_hf": 0.0,
+      "vicuna": 0.0006103515625
+    },
+    {
+      "probe": "projector.linear_1",
+      "ckpt_key": "llava_model.model.multi_modal_projector.linear_1.weight",
+      "llava_hf": 0.0,
+      "stage1_projector": 0.0126953125
+    },
+    {
+      "probe": "projector.linear_2",
+      "ckpt_key": "llava_model.model.multi_modal_projector.linear_2.weight",
+      "llava_hf": 0.0,
+      "stage1_projector": 0.004974365234375
+    }
+  ],
+  "verdict": {
+    "language_model": "llava_hf",
+    "projector": "llava_hf"
+  },
+  "checkpoint": "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/legacy/token_diversion/llava665k_split18_d1",
+  "references_found": {
+    "llava_hf": true,
+    "vicuna": true,
+    "stage1_projector": true
+  }
+}

@@ -32,8 +32,15 @@
 
 | 日期 | 实验 | 配置 | 关键数字 | 结果路径 | commit |
 | --- | --- | --- | --- | --- | --- |
+| 2026-10-14 | E0 验收 | `provenance_7b`（训练起点核查） | **verdict: language_model=llava_hf, projector=llava_hf**。11 个探针权重与 `llava-1.5-7b-hf` 的距离全为 **0.0**，与 vicuna / stage1_projector 参照均为非零（4e-3 ~ 1.3e-2）。即该 checkpoint 的 LM 与 projector 都等于 llava-1.5-7b-hf 原版 | `results/revision/E0/provenance.json` | 014ea25 |
+| 2026-10-14 | E0 验收 | `latency_vanilla7b` | **28.65 ± 0.40 ms**（p50 28.56），peak 13.26 GB。协议 batch=1, n_img=576, n_txt=128, bf16, use_cache=False, warmup=10, iters=100。卡型 **H100 80GB HBM3** | `results/revision/E0/latency_vanilla7b.json` | 014ea25 |
+| 2026-10-14 | E0 验收 | `latency_lf7b` | **25.48 ± 0.93 ms**（p50 24.97），peak 13.64 GB。同上协议；method=token_diversion_x3_fusion, split_layer=18, vision_depth=1, freeze=all_but_single。**相对 vanilla 加速 1.124×** | `results/revision/E0/latency_lf7b.json` | 014ea25 |
+| 2026-10-14 | E0 验收 | `smoke_train_lf7b`（50 step 冒烟） | **跑通**：50/50 step，train_loss 2.642，train_runtime 14.4 s（3.47 step/s）。无 NaN（loss 区间 1.05~7.17，grad_norm 0.22~1.27） | `results/revision/E0/smoke_train_lf7b.json`（status.json / log.txt 在 `revision_runs/E0/smoke_train_lf7b/`） | 014ea25 |
 | 2026-10-13 | E0 验收 | `download_assets.py --verify` | 7/7 benchmark 样本数与论文一致 | `results/revision/E0/assets.json` | 4b4f56a |
 | 2026-10-13 | E0 验收 | `check_env.py` | 软件栈/路径/8 卡可用性全过；模型与 665k 图像在跑这条时尚未下载完 | `results/revision/E0/env_check.json` | 4b4f56a |
+
+> 延迟两项与 `latency_vanilla7b`/`latency_lf7b` 的 `latency.json` 里都写了 `"gpu": "NVIDIA H100 80GB HBM3"`，Table 7 引用时按 H100 标注。
+> E0 六项里 **5 项 done、1 项 failed**（`reeval_vanilla7b`，见"问题" §8），因此 E0 验收**尚未全过**，按 AGENTS.md 阶段门不进阶段 2。
 
 ## 问题
 
@@ -149,3 +156,75 @@ train.py:9                    SyntaxError: Non-ASCII character '\xe2' ...
   ```
   并在日志第一段加了一行自证：`裸 python -> <路径> : <版本>`，正常必须打 `Python 3.10.22`，打 `2.7.*` 就说明这条没生效。
 - 建议（需作者改文档）：`worker.sh` 属于服务器侧一次性脚本、不进仓库，所以这条更适合写进 `SERVER_HANDOFF`——提醒后来者「容器入口脚本必须自己等价 activate，队列命令里的裸 `python` 不能指望子进程解析」；或者让 `run_queue.py` 用 `sys.executable` 解析 `python`。
+
+### 8. 【挡住所有精度实验】`dpvr.lmms_plugin` 缺 `tasks` 子包，lmms-eval CLI 直接抛 AttributeError
+
+`reeval_vanilla7b` 挂在这里，**根因在仓库侧，不是环境**。所有走 `eval_lmms.py` 的精度实验（E0 回评、E1/E2/E3/E9 全部）都会撞同一堵墙。
+
+**现象**（`${CKPT_ROOT}/revision_runs/E0/reeval_vanilla7b/log.txt`）：
+
+```
+File ".../lmms_eval/__main__.py", line 435, in cli_evaluate_single
+    package_tasks_location = importlib.util.find_spec(f"{plugin}.tasks").submodule_search_locations[0]
+AttributeError: 'NoneType' object has no attribute 'submodule_search_locations'
+```
+
+**根因**：`scripts/revision/eval_lmms.py:230` 无条件把 `dpvr.lmms_plugin` 加进 `LMMS_EVAL_PLUGINS`；而 lmms-eval 0.5.0 的 CLI 对插件列表里**每一项**都要求存在 `<plugin>.tasks` 子包（它把该目录追加进 `--include_path`）。仓库的 `src/dpvr/lmms_plugin/` 下只有 `models/`（`__init__.py` + `models/__init__.py` + `models/dpvr_hf.py` + `models/dpvr_qwen25vl.py`），没有 `tasks/`，于是 `find_spec("dpvr.lmms_plugin.tasks")` 返回 `None` → 解引用 `.submodule_search_locations` 抛异常。
+
+**上游是同一份代码，不是环境被改坏**：
+- 装了上游 `v0.5` 的 `lmms_eval/__main__.py` 对下来，第 432–436 行**逐字相同**（`https://raw.githubusercontent.com/EvolvingLMMs-Lab/lmms-eval/v0.5/lmms_eval/__main__.py`）；`direct_url.json` 为空，即 pip 正常安装、未被本地改动。
+- 也就是说：lmms-eval 的插件协议是「插件包必须同时提供 `models` 和 `tasks` 两个子包」——`src/dpvr/lmms_plugin/__init__.py` 的 docstring 只提了 `models`，少实现了 `tasks`。
+
+**为什么单测没拦住**：`tests/test_revision_eval.py:89 test_lmms_plugin_registers_dpvr_hf` 走的是**库内路径** `from lmms_eval.models import get_model` → `lmms_eval/models/__init__.py:126` 只做 `importlib.import_module(f"{plugin}.models")`，**不碰 `__main__.py`**。172 个测试全过，但 CLI 这条路没被覆盖。
+
+**复现（秒级，不加载任何模型）**：
+
+```bash
+cd <repo>
+LMMS_EVAL_PLUGINS=dpvr.lmms_plugin PYTHONPATH=<repo>/src \
+  <env>/bin/python -m lmms_eval --tasks list
+# → AttributeError: 'NoneType' object has no attribute 'submodule_search_locations'
+# 反证：去掉 LMMS_EVAL_PLUGINS 前缀即正常列出任务
+```
+
+**为什么我没法在服务器侧绕过**（三条路都要动红线内文件，故按 AGENTS.md 第 1 条停在这一项）：
+1. 让插件包解析到别的目录 —— `eval_lmms.py:231` 自己把 `PYTHONPATH` 写成 `<repo>/src` **在最前**，我预先设的环境变量会被它压掉；
+2. 给 `src/dpvr/lmms_plugin/` 补一个空的 `tasks/__init__.py` —— 改 `src/`，红线禁止；
+3. 改 `eval_lmms.py` 让它在找不到 `tasks` 时跳过 —— 改 `scripts/`，红线禁止。
+
+**建议的修法（请云端提 PR，作者定夺）**，任选其一：
+- 在 `src/dpvr/lmms_plugin/` 下补 `tasks/__init__.py`（最简单，插件的任务是 `--include_path` 另外给的，空目录即可）；
+- 或改 `scripts/revision/eval_lmms.py:229-231`，只在确实有 `tasks` 子包时才把插件追加进 `LMMS_EVAL_PLUGINS`；
+- 或把模型注册改成不走 `LMMS_EVAL_PLUGINS`（`lmms_eval.models` 的注册表直接注入）。
+
+**影响面**：E0 的 `reeval_vanilla7b`（vanilla 7B 八基准基线）拿不到；阶段 3/4 的 E1/E2/E3/E9 全部走 `eval_lmms.py`，会一起挂。**这是当前最该先修的一项。**
+
+**邮件**：按 AGENTS.md 第 7 条应发主题 `BLOCKED: E0 reeval_vanilla7b 插件缺 tasks 子包`，但 `.env` 里 SMTP 配置为空（见 §9），**邮件发不出去**。
+
+### 9. `.env` 的 SMTP 配置只有端口，其余全空 → `send_results.py` 发不出任何邮件
+
+AGENTS.md 要求「E0 验收结束、每个实验结束、任何『异常就停』、全部结束」各发一封邮件，但本机上邮件通道从头就是断的。
+
+**现象**（`.env`，只报长度、不落值）：
+
+| 键 | 值长度 | 说明 |
+| --- | --- | --- |
+| `SMTP_HOST` | 0 | 空 |
+| `SMTP_PORT` | 3 | 有值（形如 `465`） |
+| `SMTP_USER` | 0 | 空 |
+| `SMTP_PASSWORD` | 0 | 空（授权码没给） |
+| `MAIL_TO` | 0 | 空（收件地址没给） |
+
+**后果**：`scripts/revision/send_results.py` 起不来——主机、账号、授权码、收件人四者缺一不可。所以：
+
+- §8 那条 `BLOCKED:` 邮件**没发出去**；
+- E0 验收结束的那封邮件**没发出去**；
+- 后续每个实验结束的邮件也不会发。
+
+**我按 AGENTS.md 的处理**：「邮件发送失败时不要换别的途径，记进 RESULTS.md『问题』后继续」——所以没有改用别的通道（不发 IM、不写别处），只在这里记录，并由每次汇报直接告知作者。**请作者补 `.env` 的这四个键**，否则整条邮件链路等于没有，所有「异常就停」的通知都只能靠 RESULTS.md 和汇报。
+
+**日志路径**：无独立日志（脚本在读取 `.env` 阶段就因缺配置退出）。复核命令：
+
+```bash
+awk -F= '/^(SMTP|MAIL)/{k=$1; v=substr($0, index($0,"=")+1); gsub(/^[ \t]+|[ \t]+$/,"",v); printf "%s: 长度=%d\n", k, length(v)}' .env
+```
