@@ -8,7 +8,7 @@
     "use_cache": "False",
     "limit": null,
     "python": "3.10.22",
-    "git_sha": "014ea25",
+    "git_sha": "75444e5",
     "torch": "2.9.0+cu128",
     "transformers": "4.57.1",
     "gpu": "NVIDIA H100 80GB HBM3",
@@ -23,6 +23,39 @@
     "seedbench",
     "blink"
   ],
-  "metrics": {},
+  "metrics": {
+    "blink_local": {
+      "accuracy,none": 0.38979484481851656,
+      "accuracy_stderr,none": 0.011188688455461792
+    },
+    "mmbench_cn_local": {
+      "accuracy,none": 0.7137907137907138,
+      "accuracy_stderr,none": 0.006870426233540148
+    },
+    "mmbench_en_local": {
+      "accuracy,none": 0.7412797412797413,
+      "accuracy_stderr,none": 0.006656756300730221
+    },
+    "mme_local": {
+      "mme_cognition_score,none": 328.92857142857144,
+      "mme_perception_score,none": 1495.4552821128452
+    },
+    "pope_local": {
+      "pope_accuracy,none": 0.8535555555555555,
+      "pope_precision,none": 0.9351750547045952,
+      "pope_recall,none": 0.7597777777777778,
+      "pope_f1_score,none": 0.8384011770475722,
+      "pope_yes_ratio,none": 0.5
+    },
+    "scienceqa_local": {
+      "mc_accuracy,none": 0.6405552801189885,
+      "mc_accuracy_stderr,none": 0.010686834849595025
+    },
+    "seedbench_local": {
+      "seed_image,none": 0.653973160963957,
+      "seed_all,none": 0.6022790439132851,
+      "seed_video,none": 0.4064413095554964
+    }
+  },
   "returncode": 0
 }

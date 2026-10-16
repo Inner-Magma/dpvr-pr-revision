@@ -11,7 +11,7 @@
 | 容器镜像 | `.../aipnlp_base_pytorch2.3.1_cuda12.4.0_python3.9_1_18_glibc_2.28_2532322d`（CentOS 7 壳 + 换过的 glibc 2.28）。原镜像 glibc 2.17 跑不动本环境，见"问题" §6 |
 | 环境（pip freeze 路径） | `results/revision/E0/pip-freeze.txt`（175 包）。关键版本：`torch==2.9.0+cu128`、`torchvision==0.24.0+cu128`、`transformers==4.57.1`、`lmms_eval==0.5.0`、`accelerate==1.11.0`、`bitsandbytes==0.49.2`、`numpy==1.26.4`、`qwen-vl-utils==0.0.14` |
 | 环境位置 | conda 前缀环境 `$D/install/conda_env_dpvr`（不在 `~/.conda/envs`） |
-| 训练起点核查结论（SERVER_HANDOFF §1.4） | **待补**。checkpoint 已定位到 `${CKPT_ROOT}/legacy/token_diversion/llava665k_split18_d1`（7B DPVR-PC，3 个 safetensors + `training_config.json` + `config.json`，完整）；`provenance.json` 尚未生成，见"问题" §4 |
+| 训练起点核查结论（SERVER_HANDOFF §1.4） | **`language_model = llava_hf`，`projector = llava_hf`**（即 `llama_subdir` / `projector_subdir` 当时**不存在**，起点就是 `llava-1.5-7b-hf` 原版）。11 个探针权重与 `llava-1.5-7b-hf` 的距离全为 **0.0**，与 vicuna / stage1_projector 参照均为非零（4e-3 ~ 1.3e-2）。→ **新服务器上这两个目录必须保持不存在**，否则新训练起点会与论文不同。产物 `results/revision/E0/provenance.json` |
 | 评测集样本数核对结论（SERVER_HANDOFF §1.3） | **7/7 全部与论文一致**，见下表 |
 
 ### 评测集样本数核对（`download_assets.py --verify`）
@@ -32,6 +32,7 @@
 
 | 日期 | 实验 | 配置 | 关键数字 | 结果路径 | commit |
 | --- | --- | --- | --- | --- | --- |
+| 2026-10-16 | E0 验收 | `reeval_vanilla7b`（vanilla 7B 八基准重测，**首次跑通**） | **跑通但八项全部偏离论文 vanilla 行，验收不通过**。实测：POPE .8536 / MME-P 1495.46 / MME-C 328.93 / MMB-EN .7413 / MMB-CN .7138 / SQA .6406 / SEED(`seed_image`) .6540 / BLINK .3898。论文行（`paper/ms.tex:900`）：.857 / 1457 / 318 / .737 / .693 / .627 / .641 / .385。差：**−0.34pp / +38.5 / +10.9 / +0.43pp / +2.08pp / +1.36pp / +1.30pp / +0.48pp**，门槛是 <0.3pp，**八项全在外**，MMB-CN 已过 §7 的 2pp 线。详见"问题" §11 | `results/revision/E0/reeval_vanilla7b/`（`summary.json`、`log_tail.txt`、`lmms/` 样本） | 见本次提交 |
 | 2026-10-14 | E0 验收 | `provenance_7b`（训练起点核查） | **verdict: language_model=llava_hf, projector=llava_hf**。11 个探针权重与 `llava-1.5-7b-hf` 的距离全为 **0.0**，与 vicuna / stage1_projector 参照均为非零（4e-3 ~ 1.3e-2）。即该 checkpoint 的 LM 与 projector 都等于 llava-1.5-7b-hf 原版 | `results/revision/E0/provenance.json` | 014ea25 |
 | 2026-10-14 | E0 验收 | `latency_vanilla7b` | **28.65 ± 0.40 ms**（p50 28.56），peak 13.26 GB。协议 batch=1, n_img=576, n_txt=128, bf16, use_cache=False, warmup=10, iters=100。卡型 **H100 80GB HBM3** | `results/revision/E0/latency_vanilla7b.json` | 014ea25 |
 | 2026-10-14 | E0 验收 | `latency_lf7b` | **25.48 ± 0.93 ms**（p50 24.97），peak 13.64 GB。同上协议；method=token_diversion_x3_fusion, split_layer=18, vision_depth=1, freeze=all_but_single。**相对 vanilla 加速 1.124×** | `results/revision/E0/latency_lf7b.json` | 014ea25 |
@@ -40,7 +41,7 @@
 | 2026-10-13 | E0 验收 | `check_env.py` | 软件栈/路径/8 卡可用性全过；模型与 665k 图像在跑这条时尚未下载完 | `results/revision/E0/env_check.json` | 4b4f56a |
 
 > 延迟两项与 `latency_vanilla7b`/`latency_lf7b` 的 `latency.json` 里都写了 `"gpu": "NVIDIA H100 80GB HBM3"`，Table 7 引用时按 H100 标注。
-> E0 六项里 **5 项 done、1 项 failed**（`reeval_vanilla7b`，见"问题" §8），因此 E0 验收**尚未全过**，按 AGENTS.md 阶段门不进阶段 2。
+> **E0 六项 2026-10-16 已全部 done**（`reeval_vanilla7b` 于 18:05 跑完，rc=0，耗时 4834.8 s）。但 §1.5 的验收**仍未全过**：`reeval_vanilla7b` 八项指标与论文 vanilla 行全部偏离 >0.3pp，见"问题" §11。按 AGENTS.md 阶段门，**不进阶段 2**，等云端排查。
 
 ## 问题
 
@@ -87,16 +88,44 @@ HF datasets 默认把 arrow 缓存写进 `~/.cache/huggingface/datasets`，落�
 - 复现：不带上面三个变量直接跑 `python scripts/revision/download_assets.py --verify`。
 - 建议（需作者改代码）：`download_assets.py` / `run_queue.py` 应该把 datasets 缓存默认指到 `DATA_ROOT` 或 `CKPT_ROOT` 下的大盘，否则每次新容器都会撞同一堵墙。
 
-### 4. E0 尚未真正跑完
+### 4. E0 尚未真正跑完（**2026-10-16 已作废，见下**）
 
-`results/revision/E0/` 目前只有环境与资产核对产物（`env_check.json`、`nvidia-smi.txt`、`pip-freeze.txt`、`assets.json`）。以下 E0 项**还没有产物**：
+> ⚠️ **本条已过时，保留只为记录当时的判断。** 当时 `results/revision/E0/` 只有环境与资产核对产物，
+> `provenance.json` / `reeval_vanilla7b` / 延迟两项 / `smoke_train_lf7b` 全都还没有产物。
 
-- `provenance.json`（训练起点核查，需要 `--set prov_ckpt=...`）
-- `reeval_vanilla7b`（vanilla 7B 八基准重测）
-- `latency_vanilla7b` / `latency_lf7b`（延迟，且受问题 §1 卡型影响）
-- `smoke_train_lf7b`（50 step 冒烟训练）
+**2026-10-16 实际状态：六项全部 `done`、`returncode=0`。**
 
-另：665k 图像还缺两项——`coco/train2017`（0 张）、`vg/VG_100K`（0 张，`vg_images1.zip` 在 cs.stanford.edu 上三轮 404），`ocr_vqa/images` 抽取返回 0 张。`DL_IMAGES_DONE 有缺项，未放行`。这三项补齐前不能进阶段 2。
+| 任务 | 状态 | 耗时 |
+| --- | --- | --- |
+| `assets_verify` | done | — |
+| `provenance_7b` | done | — |
+| `reeval_vanilla7b` | done | 4834.8 s |
+| `latency_vanilla7b` | done | — |
+| `latency_lf7b` | done | — |
+| `smoke_train_lf7b` | done | — |
+
+**关于 665k 图像：当日「缺项」的判断也是错的，是查错了目录。** 当时脚本与文档假定的根是
+`$DATA_ROOT`，而实际落在 `$R/dpvr/datasets/llava-1.5-665k-instructions/`。按正确根复核，六项**全齐、无一缺**：
+
+| 子集 | 实测张数 |
+| --- | --- |
+| `coco/train2017` | 118287 |
+| `gqa/images` | 148854 |
+| `ocr_vqa/images` | 166022 |
+| `textvqa/train_images` | 25119 |
+| `vg/VG_100K` | 64346 |
+| `vg/VG_100K_2` | 43903 |
+
+复核命令：
+
+```bash
+B=<R>/dpvr/datasets/llava-1.5-665k-instructions
+for d in coco/train2017 gqa/images ocr_vqa/images textvqa/train_images vg/VG_100K vg/VG_100K_2; do
+  printf '%-24s %s\n' "$d" "$(ls $B/$d | wc -l)"
+done
+```
+
+**但 E0 的验收仍未过**——不是资产问题，是 §1.5 的精度门槛，见 §11。
 
 ### 5. `.env` 缺 `HF_CKPT_REPO`
 
@@ -201,6 +230,28 @@ LMMS_EVAL_PLUGINS=dpvr.lmms_plugin PYTHONPATH=<repo>/src \
 
 **邮件**：按 AGENTS.md 第 7 条应发主题 `BLOCKED: E0 reeval_vanilla7b 插件缺 tasks 子包`，但 `.env` 里 SMTP 配置为空（见 §9），**邮件发不出去**。
 
+#### 8.1 补记（2026-10-16）：本条已在服务器侧绕过，根因仍未修
+
+作者 2026-10-16 批准在**红线外**做运行时绕行，于是写了仓库外的 shim
+（`workspace/dpvr_job/shim/sitecustomize.py` + 空的 `empty_tasks_stub/`，
+由 `worker.sh` 在 `unset PYTHONPATH` **之后** `export PYTHONPATH=<shim>` 挂上，
+`eval_lmms.py:231` 会把 `<repo>/src` 前置、原样保留这个尾巴，所以 shim 能穿到子进程）。
+
+修法：在 `sys.meta_path` 最前插一个 finder，**只截 `dpvr.lmms_plugin.tasks` 这一个名字**，
+返回 search location 指向真实存在的空目录的 spec，其余名字一律 `return None` 交还 `PathFinder`。
+
+为什么对评测口径零影响：`lmms_eval/__main__.py:391` 已用原始 `include_path` 建好 `TaskManager`，
+433–436 那段在其**之后**才改 `args.include_path`、改完无人再读，是死代码。
+
+已双向验证：无 shim 复现（`log.txt` 里完整栈，`AttributeError: 'NoneType' object has no attribute
+'submodule_search_locations'`）；有 shim 时同一命令 rc=0、列出 1217 行任务、零异常。
+
+⚠️ **两条正解仍请云端提 PR**（服务器侧只是运行时绕行，根因一字未动）：
+1. 在 `src/dpvr/lmms_plugin/` 下补 `tasks/__init__.py`；或
+2. 给 `scripts/revision/eval_lmms.py:229-231` 加 `find_spec(...) is not None` 守卫。
+
+**订正**：本条原先写「三条路都要动红线内文件」。**第 1 条是错的** —— 让插件解析到别的目录确实不需要改红线内文件（shim 已证明可行，`PYTHONPATH` 被前置也没关系，只要不靠 `sys.path` 顺序、而是靠 `meta_path` 拦截即可）。
+
 ### 9. `.env` 的 SMTP 配置只有端口，其余全空 → `send_results.py` 发不出任何邮件
 
 AGENTS.md 要求「E0 验收结束、每个实验结束、任何『异常就停』、全部结束」各发一封邮件，但本机上邮件通道从头就是断的。
@@ -265,3 +316,204 @@ grep -rn 'hf_[A-Za-z0-9]\{20,\}' results/ docs/    # 必须无输出
 
 **另注**：该 token 已不可信（写进了本地日志、也被 GitHub 存档在拦截记录里），
 **建议作者轮换一次 HF token**。
+
+#### 10.1 补记（2026-10-16）：这条「已处理」是错的，机制还在，而且比 §10 更危险
+
+§10 说「已处理」，那指的是 **那一次提交**处理干净了。这次重新跑完 E0、重跑 `collect_results.py`
+之后我把整条链路拆开重算了一遍，发现 **§10 描述的现象当时判断错了，而真正的漏洞没堵**。
+
+**先把当时的判断订正掉。** §10 现在隐含的说法是「token 在 `log.txt` 深处，只是恰好落进了
+被拷走的那 200 行」。**这是错的** —— token 根本不在深处，就在**第 14 行**开始的头几行。
+实测（本次 `reeval_vanilla7b` 的 `log.txt`，1,967,396 字节）：
+
+| 量 | 值 |
+| --- | --- |
+| `log.txt` 总行数（Python `splitlines()`） | **23482** |
+| 其中 `\r` 字符个数 | **0**（这份日志是干净的 `\n` 行，不存在 CR 膨胀） |
+| token 所在行号 | **14 / 31 / 48 / 65 / 106 / 147 / 188** |
+| `log_tail.txt` 取的窗口 | 第 **23283** – 23482 行（= `splitlines()[-200:]`） |
+| 窗口与 token 的距离 | **相隔 23000+ 行** |
+
+也就是说：`collect_results.py` 那句 `splitlines()[-200:]` 拷的是**日志尾巴**，
+而 token 在**日志开头**。两者差了整整两万三千行。**这不是「侥幸擦肩」，是这两个位置在正常
+情况下**永远不会**重合** —— 只要日志是「开头打一次配置、中间刷几万行进度、结尾打一次汇总」
+这个形状（lmms-eval 的 17990 条 SEED 样本必然刷出这个形状），尾窗口就永远够不到 token。
+
+**所以真正的结论是反过来的：§10 当年的拦截不是「运气好躲过了」，而是那次评测的日志形状
+恰好在某个中间状态被抓拍**，而它之所以能被拦截，是因为**它当时确实在窗口里**。
+换句话说 —— **能不能拦住 token，取决于日志刷了多少行进度，而不取决于任何一段代码**。
+这是个纯粹的巧合依赖，没有任何机制保证。
+
+**现在的风险点**：只要有一次评测的生成阶段刷的行数少于 200（`--limit` 冒烟、任务在早期就
+rc≠0 退出、某个 benchmark 的进度条走得慢），`splitlines()[-200:]` 就会一路前移到第 14 行，
+`log_tail.txt` **直接带着 token 进 `results/revision/`**。`--limit 20` 的快速冒烟评测
+（`eval_lmms.py` 支持、文档里也推荐先跑）是**最可能踩中的那个**：样本少、行数少、尾巴短，
+窗口几乎必然覆盖开头。
+
+**三个事实叠起来才是完整的**：
+1. `collect_results.py` 对 `log_tail.txt` **没有任何脱敏**（读进来、`splitlines()[-200:]`、
+   写出去，全程原样）；
+2. 仓库里**没有 `.gitattributes`、没有 git filter**，本地没有兜底；
+3. 唯一的防线是提交前手工 `grep`（§10 那条命令），**依赖人去执行**。
+
+**服务器侧的实际做法**：我每次 `git add` 前都跑一遍 §10 的 grep，本次跑完是**空的**——
+but 如上所述，这次为空是**因为窗口位置恰好够远**，**不代表这条 grep 有本事在下次也拦住**。
+提交这一步我会照旧走 grep，但把它记为「人工兜底，非机制」。
+
+**建议（请云端提 PR，两条都改最稳）**：
+1. `collect_results.py` 在写 `log_tail.txt` 之前统一脱敏：
+   `re.sub(r'hf_[A-Za-z0-9]{20,}', 'hf_**REDACTED**', text)` —— 一行，覆盖所有形状；
+2. `eval_lmms.py` 别把 token 放进 `--token` 命令行参数，改走环境变量
+   （`HF_TOKEN` / `HUGGING_FACE_HUB_TOKEN`），从源头上不让它进日志。
+
+在 1 或 2 落地之前，**每次提交都必须跑一遍 grep，不能省**。
+
+#### 10.2 顺带发现：`collect_results.py` 会让 `results/` 里的 `log.txt` **永久停在上一次失败的那份**
+
+同一个函数里的另一个 bug，本次实测撞上了。
+
+`copy_small()` 的循环有个大小过滤：
+
+```python
+if f.suffix not in SMALL_SUFFIXES or f.stat().st_size > max_kb * 1024:
+    continue      # 超过 --max_kb（默认 512 KB）就整个跳过
+```
+
+而 `log.txt` 是**无条件**单独写的：
+
+```python
+log = src_dir / "log.txt"
+if log.exists():
+    lines = log.read_text(errors="replace").splitlines()[-200:]
+    (dst_dir / "log_tail.txt").write_text("\n".join(lines) + "\n")
+```
+
+于是结果目录里出现**两个日志文件、语义完全相反**：
+
+| 文件 | 谁写的 | 本次实际内容 |
+| --- | --- | --- |
+| `log.txt` | `copy_small()` 的循环，**受 512 KB 限制** | **旧文件**：2026-10-14 那次失败运行的（6,332 字节，末尾是 `'NoneType' object has no attribute 'submodule_search_locations'`） |
+| `log_tail.txt` | 下面那段，**无限额** | **新文件**：本次成功运行的最后 200 行 |
+
+原因：本次运行的 `log.txt` 是 **1.97 MB**，**超过 512 KB → 被跳过 → 旧的那份原地不动**。
+而失败那次的日志小（6 KB），当年拷进来了，就一直留在仓库里。
+
+**危害**：任何只看 `results/` 的人（包括云端）会看到一份 `log.txt`，
+**它写着 `AttributeError` 和 `2026-10-14 13:23:38`，会被当成「这次的 reeval 又失败了」**——
+而实际上这次成功了。§11 排查时我自己就先被它误导了一下。
+
+**建议（请云端提 PR）**：`copy_small()` 里对 `log.txt` 的处理改成
+「超限就**删除**目标目录里的旧 `log.txt`」，或者干脆在 `collect()` 每轮开始时先清空
+`out_root/<exp>/<job>/` 再拷，避免**旧产物伪装成新产物**。现在这个行为
+等于「只要日志变大，`results/` 里的 `log.txt` 就永久冻结在上一次触发大小限制之前的状态」。
+
+#### 10.3 一句话总结这三条日志相关的问题
+
+**都在同一个函数里，方向还正好相反**：
+
+- `log_tail.txt` —— **可能漏 token**（§10.1，尾巴够不到开头，但形状一变就带进来）；
+- `log.txt` —— **可能陈旧**（§10.2，超 512 KB 就不覆盖，旧失败日志冒充新结果）；
+- 两者**都没有任何「这份日志属于哪一次运行」的标记**（没有时间戳、没有 run id、
+  没有 git sha），只能靠肉眼看内容推断。
+
+**根子上是同一件事**：`collect_results.py` 把「日志」当成了随手拷贝的附属文件，
+而不是需要**脱敏 + 带版本 + 明确新旧**的产物。建议云端重做这一小段。
+
+### 11. 【E0 验收未过】`reeval_vanilla7b` 八项全部偏离论文 vanilla 行，远超 0.3pp 门槛
+
+E0 六项 2026-10-16 全部 `done`、`rc=0`，`reeval_vanilla7b` 耗时 4834.8 s。**但 SERVER_HANDOFF §1.5 的验收门槛（八项差距 < 0.3pp）八项全不满足**，按 AGENTS.md 阶段门**不进阶段 2**。
+
+**这是本条最该看的结果**——请云端排查后再放行。
+
+**实测 vs 论文**（`paper/ms.tex:900`，第 900 行是 `Vanilla LLaVA-1.5-7B` 那一行）：
+
+| 指标 | 本次实测 | 论文 vanilla | 差 | 门槛 <0.3pp |
+| --- | --- | --- | --- | --- |
+| POPE | **.8536** | .857 | **−0.34 pp** | ❌ |
+| MME-P | **1495.46** | 1457 | **+38.5 分** | ❌ |
+| MME-C | **328.93** | 318 | **+10.9 分** | ❌ |
+| MMB-EN | **.7413** | .737 | **+0.43 pp** | ❌ |
+| MMB-CN | **.7138** | .693 | **+2.08 pp** | ❌ **已过 §7 的 2pp 红线** |
+| SQA | **.6406** | .627 | **+1.36 pp** | ❌ |
+| SEED (`seed_image`) | **.6540** | .641 | **+1.30 pp** | ❌ |
+| BLINK | **.3898** | .385 | **+0.48 pp** | ❌ |
+
+**八个指标里七个是「往上偏」，只有 POPE 是往下偏。** 这个方向性很关键：不是随机噪声，
+而是**同向的系统性偏移**。
+
+**最值得注意的一条**：这一行**明显更接近论文里 `DPVR-PC (3-seed)` 那一行**，而不是 vanilla 行——
+对照 `paper/ms.tex` 同表：
+
+| 指标 | 本次实测 | 论文 DPVR-PC | 差 |
+| --- | --- | --- | --- |
+| POPE | .8536 | .850 | +0.36 |
+| MME-P | 1495.46 | 1499 | −3.5 |
+| MME-C | 328.93 | 326 | +2.9 |
+| MMB-EN | .7413 | .742 | −0.07 |
+| MMB-CN | .7138 | .715 | −0.12 |
+| SQA | .6406 | .635 | +0.56 |
+| SEED | .6540 | .652 | +0.20 |
+| BLINK | .3898 | .397 | −0.71 |
+
+八项里有六项与 DPVR-PC 的差距比与 vanilla 的差距**小一个量级**。
+**「vanilla 跑出了 DPVR-PC 的分」是本次最反常的现象**，请云端优先看这一点。
+
+**已排除的可能**（都做过检查，不是这些原因）：
+
+- **不是样本数不对**：`n-samples` 与 §1.5 完全一致（seedbench 17990 / pope 9000 /
+  mmbench_en 4329 / mmbench_cn 4329 / mme 2374 / scienceqa 2017 / blink 1901，`original == effective`）。
+- **不是解析失败**：抽查 `pope_local` 样本，`filtered_resps` **9000 条全是 `Yes`/`No` 两种**
+  （5344 `No` / 3656 `Yes`），零条未解析。精度是真算出来的，不是解析漏答导致的假分。
+- **不是 shim 改了口径**：§8.1 那两处绕行都只改「本来必然失败」的输入
+  （一个是不存在的 `tasks` 子包、一个是空串 `device_map`），评测任务的发现与打分路径都没动。
+- **不是 8k 截断之类的长度问题**：这是八基准评测，不是长链推理，不适用那条经验。
+- **不是没加载对权重**：`checkpoint=none`，`summary.json` 里 `meta.checkpoint = "none"`、
+  `base_model = llava-1.5-7b-hf`，`--model dpvr_hf` 走 vanilla 分支
+  （`dpvr_hf.py` 里 `checkpoint in ("", "none", "vanilla")` 直接 return，不加载任何迁移权重）。
+
+**还没排除、最可能是原因的三条（请云端定夺，我不猜）**：
+
+1. **handler 不是论文那个 `llava_hf`，而是 `dpvr_hf`**。`results.json` 里
+   `model_source = "dpvr_hf"`。论文 `ms.tex:877-882` 的说法是「vanilla 行是用
+   `lmms-eval` 的 `llava_hf` handler 重测的」。`dpvr_hf.DPVRHf` 继承 `LlavaHf`，
+   但**把 chat template 换成了 `VICUNA_CHAT_TEMPLATE`**（见 `dpvr_hf.py` docstring：
+   默认取 lmms-eval 的 `VICUNA_CHAT_TEMPLATE`，而**原版 `llava_hf` 用的是 LLaVA-HF
+   processor 自带的模板，是另一个 prompt**）。docstring 声称论文的数也是用这个模板跑的
+   （来自 Dual-Path-Token-Routing 的 `scripts/h20_handlers/*`），但**那个目录不在本仓库**，
+   服务器侧**无法核对**。
+   → **模板/prompt 不一致会同时抬高所有生成式基准，方向与此完全吻合。**
+2. **评测集本身版本不同**：本地跑的是 `$BENCH_ROOT` 下这批 parquet/json，
+   论文当时用的可能是上游原始数据集。同一 benchmark 的不同版本（尤其是 MMBench、SEED）
+   差 1–2pp 是常见的。
+3. **论文那一行本身可能不是当前这条链路跑出来的**，或者当时用了不同的
+   `lmms-eval` 版本 / 不同的 postprocess。
+
+**我按 §1.5 和 §7 停在这一项，没有自己「修」任何东西。**
+
+**复现**：
+
+```bash
+# 结果
+<CK>/revision_runs/E0/reeval_vanilla7b/summary.json
+<CK>/revision_runs/E0/reeval_vanilla7b/lmms/models__llava-1.5-7b-hf/20261016_164523_results.json
+# 逐样本日志（八份 jsonl，共 42504 行）
+<CK>/revision_runs/E0/reeval_vanilla7b/lmms/models__llava-1.5-7b-hf/20261016_164523_samples_*.jsonl
+# 完整日志（1.97 MB，token 在第 14 行起，见 §10.1，不要把整份拷进仓库）
+<CK>/revision_runs/E0/reeval_vanilla7b/log.txt
+```
+
+已按 §1.5 的要求把 `summary.json` 贴出来（见上表数字的来源），
+**但 `lmms/` 样本日志进不了仓库**——`collect_results.py` 的 `SKIP_DIRS = {"lmms", "tasks", "checkpoint"}`
+把整个 `lmms/` 目录排除掉了，而它在服务器上共 21 MB（`pope` 一份就 6.5 MB），
+远超 `--max_kb 512` 的上限。**样本日志只存在于服务器路径**，云端要看得去机器上取（见上面复现段）。
+
+⚠️ **注意 `results/revision/E0/reeval_vanilla7b/log.txt` 是旧的，别当成本次日志看。** 那是 **2026-10-14
+那次失败运行**留下的（6,332 字节，末尾是 `Error during evaluation: 'NoneType' object has no attribute
+'submodule_search_locations'`）。本次运行的 `log.txt` 有 **1.97 MB**，而 `copy_small()` 只拷
+`--max_kb 512` 以下的文件，**所以它根本没被覆盖**——`results/` 里那份从头到尾都是坏的旧文件。
+**本次运行的完整日志只在服务器上**：`<CK>/revision_runs/E0/reeval_vanilla7b/log.txt`。
+`log_tail.txt` 是新的（18 KB，末尾是完整的 `seedbench_local` 三项指标）。
+
+**邮件**：按 AGENTS.md 第 7 条应发主题
+`BLOCKED: E0 reeval_vanilla7b 八项偏离论文 vanilla > 2pp`，
+但 `.env` 的 SMTP 配置仍为空（§9），**邮件发不出去**，只在此记录。

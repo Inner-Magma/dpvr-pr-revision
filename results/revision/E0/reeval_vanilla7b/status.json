@@ -1,14 +1,14 @@
 {
-  "state": "failed",
-  "started": "2026-10-14T05:23:20+00:00",
+  "state": "done",
+  "started": "2026-10-16T08:45:04+00:00",
   "gpus": [
     0
   ],
   "cmd": "python scripts/revision/eval_lmms.py --checkpoint none --tasks eight --out /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E0/reeval_vanilla7b",
-  "host": "psxne4gxrs7fieen-worker-0",
-  "git_sha": "014ea25",
-  "pid": 13355,
-  "returncode": 1,
-  "finished": "2026-10-14T05:23:50+00:00",
-  "duration_s": 30.1
+  "host": "psxq80cxrs643dy3-worker-0",
+  "git_sha": "75444e5",
+  "pid": 13968,
+  "returncode": 0,
+  "finished": "2026-10-16T10:05:39+00:00",
+  "duration_s": 4834.8
 }

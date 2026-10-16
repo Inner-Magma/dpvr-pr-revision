@@ -1,41 +1,200 @@
+Model Responding: 100%|█████████▉| 41782/41940 [1:18:51<00:10, 14.92it/s]
+Model Responding: 100%|█████████▉| 41784/41940 [1:18:51<00:10, 14.97it/s]
+Model Responding: 100%|█████████▉| 41786/41940 [1:18:51<00:10, 14.98it/s]
+Model Responding: 100%|█████████▉| 41788/41940 [1:18:51<00:10, 15.00it/s]
+Model Responding: 100%|█████████▉| 41790/41940 [1:18:51<00:10, 14.87it/s]
+Model Responding: 100%|█████████▉| 41792/41940 [1:18:51<00:09, 14.86it/s]
+Model Responding: 100%|█████████▉| 41794/41940 [1:18:51<00:09, 14.69it/s]
+Model Responding: 100%|█████████▉| 41796/41940 [1:18:52<00:09, 14.67it/s]
+Model Responding: 100%|█████████▉| 41798/41940 [1:18:52<00:09, 14.52it/s]
+Model Responding: 100%|█████████▉| 41800/41940 [1:18:52<00:09, 14.63it/s]
+Model Responding: 100%|█████████▉| 41802/41940 [1:18:52<00:09, 14.78it/s]
+Model Responding: 100%|█████████▉| 41804/41940 [1:18:52<00:09, 14.87it/s]
+Model Responding: 100%|█████████▉| 41806/41940 [1:18:52<00:08, 14.89it/s]
+Model Responding: 100%|█████████▉| 41808/41940 [1:18:52<00:09, 14.66it/s]
+Model Responding: 100%|█████████▉| 41810/41940 [1:18:53<00:08, 14.51it/s]
+Model Responding: 100%|█████████▉| 41812/41940 [1:18:53<00:08, 14.29it/s]
+Model Responding: 100%|█████████▉| 41814/41940 [1:18:53<00:08, 14.23it/s]
+Model Responding: 100%|█████████▉| 41816/41940 [1:18:53<00:08, 14.20it/s]
+Model Responding: 100%|█████████▉| 41818/41940 [1:18:53<00:08, 14.24it/s]
+Model Responding: 100%|█████████▉| 41820/41940 [1:18:53<00:08, 14.16it/s]
+Model Responding: 100%|█████████▉| 41822/41940 [1:18:53<00:08, 14.11it/s]
+Model Responding: 100%|█████████▉| 41824/41940 [1:18:54<00:08, 14.19it/s]
+Model Responding: 100%|█████████▉| 41826/41940 [1:18:54<00:07, 14.42it/s]
+Model Responding: 100%|█████████▉| 41828/41940 [1:18:54<00:07, 14.67it/s]
+Model Responding: 100%|█████████▉| 41830/41940 [1:18:54<00:07, 14.76it/s]
+Model Responding: 100%|█████████▉| 41832/41940 [1:18:54<00:07, 14.78it/s]
+Model Responding: 100%|█████████▉| 41834/41940 [1:18:54<00:07, 14.82it/s]
+Model Responding: 100%|█████████▉| 41836/41940 [1:18:54<00:07, 14.78it/s]
+Model Responding: 100%|█████████▉| 41838/41940 [1:18:54<00:06, 14.69it/s]
+Model Responding: 100%|█████████▉| 41840/41940 [1:18:55<00:06, 14.72it/s]
+Model Responding: 100%|█████████▉| 41842/41940 [1:18:55<00:06, 14.84it/s]
+Model Responding: 100%|█████████▉| 41844/41940 [1:18:55<00:06, 14.86it/s]
+Model Responding: 100%|█████████▉| 41846/41940 [1:18:55<00:06, 14.93it/s]
+Model Responding: 100%|█████████▉| 41848/41940 [1:18:55<00:06, 14.98it/s]
+Model Responding: 100%|█████████▉| 41850/41940 [1:18:55<00:05, 15.05it/s]
+Model Responding: 100%|█████████▉| 41852/41940 [1:18:55<00:05, 14.90it/s]
+Model Responding: 100%|█████████▉| 41854/41940 [1:18:56<00:05, 14.95it/s]
+Model Responding: 100%|█████████▉| 41856/41940 [1:18:56<00:05, 15.02it/s]
+Model Responding: 100%|█████████▉| 41858/41940 [1:18:56<00:05, 14.93it/s]
+Model Responding: 100%|█████████▉| 41860/41940 [1:18:56<00:05, 14.94it/s]
+Model Responding: 100%|█████████▉| 41862/41940 [1:18:56<00:05, 15.01it/s]
+Model Responding: 100%|█████████▉| 41864/41940 [1:18:56<00:05, 14.94it/s]
+Model Responding: 100%|█████████▉| 41866/41940 [1:18:56<00:04, 15.00it/s]
+Model Responding: 100%|█████████▉| 41868/41940 [1:18:56<00:04, 14.76it/s]
+Model Responding: 100%|█████████▉| 41870/41940 [1:18:57<00:04, 14.84it/s]
+Model Responding: 100%|█████████▉| 41872/41940 [1:18:57<00:04, 14.93it/s]
+Model Responding: 100%|█████████▉| 41874/41940 [1:18:57<00:04, 14.89it/s]
+Model Responding: 100%|█████████▉| 41876/41940 [1:18:57<00:04, 14.95it/s]
+Model Responding: 100%|█████████▉| 41878/41940 [1:18:57<00:04, 14.83it/s]
+Model Responding: 100%|█████████▉| 41880/41940 [1:18:57<00:04, 14.89it/s]
+Model Responding: 100%|█████████▉| 41882/41940 [1:18:57<00:03, 14.81it/s]
+Model Responding: 100%|█████████▉| 41884/41940 [1:18:58<00:03, 14.76it/s]
+Model Responding: 100%|█████████▉| 41886/41940 [1:18:58<00:03, 14.83it/s]
+Model Responding: 100%|█████████▉| 41888/41940 [1:18:58<00:03, 14.93it/s]
+Model Responding: 100%|█████████▉| 41890/41940 [1:18:58<00:03, 14.96it/s]
+Model Responding: 100%|█████████▉| 41892/41940 [1:18:58<00:03, 14.95it/s]
+Model Responding: 100%|█████████▉| 41894/41940 [1:18:58<00:03, 14.81it/s]
+Model Responding: 100%|█████████▉| 41896/41940 [1:18:58<00:02, 14.84it/s]
+Model Responding: 100%|█████████▉| 41898/41940 [1:18:59<00:02, 14.80it/s]
+Model Responding: 100%|█████████▉| 41900/41940 [1:18:59<00:02, 14.89it/s]
+Model Responding: 100%|█████████▉| 41902/41940 [1:18:59<00:02, 14.93it/s]
+Model Responding: 100%|█████████▉| 41904/41940 [1:18:59<00:02, 15.01it/s]
+Model Responding: 100%|█████████▉| 41906/41940 [1:18:59<00:02, 15.03it/s]
+Model Responding: 100%|█████████▉| 41908/41940 [1:18:59<00:02, 14.82it/s]
+Model Responding: 100%|█████████▉| 41910/41940 [1:18:59<00:02, 14.59it/s]
+Model Responding: 100%|█████████▉| 41912/41940 [1:18:59<00:01, 14.31it/s]
+Model Responding: 100%|█████████▉| 41914/41940 [1:19:00<00:01, 14.45it/s]
+Model Responding: 100%|█████████▉| 41916/41940 [1:19:00<00:01, 14.51it/s]
+Model Responding: 100%|█████████▉| 41918/41940 [1:19:00<00:01, 14.62it/s]
+Model Responding: 100%|█████████▉| 41920/41940 [1:19:00<00:01, 14.75it/s]
+Model Responding: 100%|█████████▉| 41922/41940 [1:19:00<00:01, 14.82it/s]
+Model Responding: 100%|█████████▉| 41924/41940 [1:19:00<00:01, 14.83it/s]
+Model Responding: 100%|█████████▉| 41926/41940 [1:19:00<00:00, 14.80it/s]
+Model Responding: 100%|█████████▉| 41928/41940 [1:19:01<00:00, 14.78it/s]
+Model Responding: 100%|█████████▉| 41930/41940 [1:19:01<00:00, 14.79it/s]
+Model Responding: 100%|█████████▉| 41932/41940 [1:19:01<00:00, 14.93it/s]
+Model Responding: 100%|█████████▉| 41934/41940 [1:19:01<00:00, 14.93it/s]
+Model Responding: 100%|█████████▉| 41936/41940 [1:19:01<00:00, 15.00it/s]
+Model Responding: 100%|█████████▉| 41938/41940 [1:19:01<00:00, 14.99it/s]
+Model Responding: 100%|██████████| 41940/41940 [1:19:01<00:00, 14.94it/s]
+Model Responding: 100%|██████████| 41940/41940 [1:19:01<00:00,  8.84it/s]
 
-===== 2026-10-14T04:11:18+00:00 start reeval_vanilla7b on GPUs [0] =====
-bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)
-  File "scripts/revision/eval_lmms.py", line 57
-    def parse_tasks(spec: str) -> list[str]:
-                        ^
-SyntaxError: invalid syntax
+Postprocessing:   0%|          | 0/17990 [00:00<?, ?it/s]
+Postprocessing:   9%|▊         | 1553/17990 [00:00<00:01, 15528.46it/s]
+Postprocessing:  17%|█▋        | 3118/17990 [00:00<00:00, 15597.86it/s]
+Postprocessing:  26%|██▌       | 4678/17990 [00:00<00:00, 15435.66it/s]
+Postprocessing:  35%|███▍      | 6222/17990 [00:00<00:00, 15380.12it/s]
+Postprocessing:  43%|████▎     | 7782/17990 [00:00<00:00, 15457.71it/s]
+Postprocessing:  52%|█████▏    | 9342/17990 [00:00<00:00, 15503.83it/s]
+Postprocessing:  61%|██████    | 10901/17990 [00:00<00:00, 15529.98it/s]
+Postprocessing:  69%|██████▉   | 12455/17990 [00:00<00:00, 15414.33it/s]
+Postprocessing:  78%|███████▊  | 13997/17990 [00:00<00:00, 14583.13it/s]
+Postprocessing:  86%|████████▌ | 15464/17990 [00:01<00:00, 14273.08it/s]
+Postprocessing:  94%|█████████▍| 16898/17990 [00:01<00:00, 14061.83it/s]
+Postprocessing: 100%|██████████| 17990/17990 [00:01<00:00, 14711.93it/s]
 
-===== 2026-10-14T05:16:04+00:00 start reeval_vanilla7b on GPUs [0] =====
-bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)
-/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/install/conda_env_dpvr/bin/python -m lmms_eval --model dpvr_hf --model_args pretrained=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/models/llava-1.5-7b-hf,checkpoint=none,use_cache=False,dtype=bfloat16 --tasks pope_local,mme_local,mmbench_en_local,mmbench_cn_local,scienceqa_local,seedbench_local,blink_local --include_path /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E0/reeval_vanilla7b/tasks --batch_size 1 --output_path /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E0/reeval_vanilla7b/lmms --log_samples
-[32m2026-10-14 13:16:41[0m | [1mINFO    [0m | [36m__main__[0m:[36mcli_evaluate[0m:[36m311[0m - [1mVerbosity set to INFO[0m
-[32m2026-10-14 13:16:41[0m | [1mINFO    [0m | [36m__main__[0m:[36mcli_evaluate_single[0m:[36m390[0m - [1mIncluding path: /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E0/reeval_vanilla7b/tasks[0m
-[32m2026-10-14 13:17:15[0m | [1mINFO    [0m | [36m__main__[0m:[36mcli_evaluate_single[0m:[36m400[0m - [1mEvaluation tracker args: {'output_path': '/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E0/reeval_vanilla7b/lmms', 'token': 'hf_**REDACTED**'}[0m
-[32m2026-10-14 13:17:15[0m | [1mINFO    [0m | [36m__main__[0m:[36mcli_evaluate_single[0m:[36m424[0m - [1mIncluding path: /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E0/reeval_vanilla7b/tasks[0m
-Traceback (most recent call last):
-  File "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/install/conda_env_dpvr/lib/python3.10/site-packages/lmms_eval/__main__.py", line 349, in cli_evaluate
-    results, samples = cli_evaluate_single(args)
-  File "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/install/conda_env_dpvr/lib/python3.10/site-packages/lmms_eval/__main__.py", line 435, in cli_evaluate_single
-    package_tasks_location = importlib.util.find_spec(f"{plugin}.tasks").submodule_search_locations[0]
-AttributeError: 'NoneType' object has no attribute 'submodule_search_locations'
-[32m2026-10-14 13:17:15[0m | [31m[1mERROR   [0m | [36m__main__[0m:[36mcli_evaluate[0m:[36m371[0m - [31m[1mError during evaluation: 'NoneType' object has no attribute 'submodule_search_locations'. Please set `--verbosity=DEBUG` to get more information.[0m
-{}
-lmms-eval finished but no *_results.json was found
+Postprocessing:   0%|          | 0/2017 [00:00<?, ?it/s]
+Postprocessing:  59%|█████▉    | 1193/2017 [00:00<00:00, 11926.91it/s]
+Postprocessing: 100%|██████████| 2017/2017 [00:00<00:00, 12292.34it/s]
 
-===== 2026-10-14T05:23:20+00:00 start reeval_vanilla7b on GPUs [0] =====
-bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)
-/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/install/conda_env_dpvr/bin/python -m lmms_eval --model dpvr_hf --model_args pretrained=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/models/llava-1.5-7b-hf,checkpoint=none,use_cache=False,dtype=bfloat16 --tasks pope_local,mme_local,mmbench_en_local,mmbench_cn_local,scienceqa_local,seedbench_local,blink_local --include_path /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E0/reeval_vanilla7b/tasks --batch_size 1 --output_path /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E0/reeval_vanilla7b/lmms --log_samples
-[32m2026-10-14 13:23:34[0m | [1mINFO    [0m | [36m__main__[0m:[36mcli_evaluate[0m:[36m311[0m - [1mVerbosity set to INFO[0m
-[32m2026-10-14 13:23:35[0m | [1mINFO    [0m | [36m__main__[0m:[36mcli_evaluate_single[0m:[36m390[0m - [1mIncluding path: /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E0/reeval_vanilla7b/tasks[0m
-[32m2026-10-14 13:23:38[0m | [1mINFO    [0m | [36m__main__[0m:[36mcli_evaluate_single[0m:[36m400[0m - [1mEvaluation tracker args: {'output_path': '/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E0/reeval_vanilla7b/lmms', 'token': 'hf_**REDACTED**'}[0m
-[32m2026-10-14 13:23:38[0m | [1mINFO    [0m | [36m__main__[0m:[36mcli_evaluate_single[0m:[36m424[0m - [1mIncluding path: /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E0/reeval_vanilla7b/tasks[0m
-Traceback (most recent call last):
-  File "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/install/conda_env_dpvr/lib/python3.10/site-packages/lmms_eval/__main__.py", line 349, in cli_evaluate
-    results, samples = cli_evaluate_single(args)
-  File "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/install/conda_env_dpvr/lib/python3.10/site-packages/lmms_eval/__main__.py", line 435, in cli_evaluate_single
-    package_tasks_location = importlib.util.find_spec(f"{plugin}.tasks").submodule_search_locations[0]
-AttributeError: 'NoneType' object has no attribute 'submodule_search_locations'
-[32m2026-10-14 13:23:38[0m | [31m[1mERROR   [0m | [36m__main__[0m:[36mcli_evaluate[0m:[36m371[0m - [31m[1mError during evaluation: 'NoneType' object has no attribute 'submodule_search_locations'. Please set `--verbosity=DEBUG` to get more information.[0m
-{}
-lmms-eval finished but no *_results.json was found
+Postprocessing:   0%|          | 0/9000 [00:00<?, ?it/s]
+Postprocessing:  22%|██▏       | 1945/9000 [00:00<00:00, 19437.04it/s]
+Postprocessing:  44%|████▍     | 3944/9000 [00:00<00:00, 19745.82it/s]
+Postprocessing:  66%|██████▌   | 5934/9000 [00:00<00:00, 19812.95it/s]
+Postprocessing:  88%|████████▊ | 7917/9000 [00:00<00:00, 19815.75it/s]
+Postprocessing: 100%|██████████| 9000/9000 [00:00<00:00, 19576.67it/s]
+
+Postprocessing:   0%|          | 0/2374 [00:00<?, ?it/s]
+Postprocessing:  81%|████████▏ | 1929/2374 [00:00<00:00, 19286.16it/s]
+Postprocessing: 100%|██████████| 2374/2374 [00:00<00:00, 19066.41it/s]
+
+Postprocessing:   0%|          | 0/4329 [00:00<?, ?it/s]
+Postprocessing:   3%|▎         | 149/4329 [00:00<00:09, 449.97it/s]
+Postprocessing:  33%|███▎      | 1425/4329 [00:00<00:00, 4159.18it/s]
+Postprocessing:  66%|██████▌   | 2845/4329 [00:00<00:00, 7180.23it/s]
+Postprocessing: 100%|██████████| 4329/4329 [00:00<00:00, 6880.90it/s]
+
+Postprocessing:   0%|          | 0/4329 [00:00<?, ?it/s]
+Postprocessing:  35%|███▍      | 1500/4329 [00:00<00:00, 14994.19it/s]
+Postprocessing:  69%|██████▉   | 3002/4329 [00:00<00:00, 15006.79it/s]
+Postprocessing: 100%|██████████| 4329/4329 [00:00<00:00, 14851.42it/s]
+
+Postprocessing:   0%|          | 0/1901 [00:00<?, ?it/s]
+Postprocessing:  46%|████▌     | 869/1901 [00:00<00:00, 8677.55it/s]
+Postprocessing:  98%|█████████▊| 1872/1901 [00:00<00:00, 9470.10it/s]
+Postprocessing: 100%|██████████| 1901/1901 [00:00<00:00, 9268.93it/s]
+[32m2026-10-16 18:04:47[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mcode_reasoning: 65.00[0m
+[32m2026-10-16 18:04:47[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mnumerical_calculation: 55.00[0m
+[32m2026-10-16 18:04:47[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mtext_translation: 92.50[0m
+[32m2026-10-16 18:04:47[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mcommonsense_reasoning: 116.43[0m
+[32m2026-10-16 18:04:47[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1martwork: 124.25[0m
+[32m2026-10-16 18:04:47[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mcelebrity: 141.47[0m
+[32m2026-10-16 18:04:47[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mcount: 143.33[0m
+[32m2026-10-16 18:04:47[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mcolor: 168.33[0m
+[32m2026-10-16 18:04:47[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mposition: 138.33[0m
+[32m2026-10-16 18:04:47[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mOCR: 137.50[0m
+[32m2026-10-16 18:04:47[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mlandmark: 160.00[0m
+[32m2026-10-16 18:04:47[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mscene: 155.50[0m
+[32m2026-10-16 18:04:47[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mexistence: 190.00[0m
+[32m2026-10-16 18:04:47[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mposters: 136.73[0m
+[32m2026-10-16 18:04:47[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_aggregated[0m:[36m188[0m - [1mSaving results aggregated[0m
+[32m2026-10-16 18:04:49[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E0/reeval_vanilla7b/lmms/models__llava-1.5-7b-hf/20261016_164523_samples_blink_local.jsonl[0m
+[32m2026-10-16 18:04:53[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E0/reeval_vanilla7b/lmms/models__llava-1.5-7b-hf/20261016_164523_samples_mmbench_cn_local.jsonl[0m
+[32m2026-10-16 18:04:58[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E0/reeval_vanilla7b/lmms/models__llava-1.5-7b-hf/20261016_164523_samples_mmbench_en_local.jsonl[0m
+[32m2026-10-16 18:05:00[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E0/reeval_vanilla7b/lmms/models__llava-1.5-7b-hf/20261016_164523_samples_mme_local.jsonl[0m
+[32m2026-10-16 18:05:09[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E0/reeval_vanilla7b/lmms/models__llava-1.5-7b-hf/20261016_164523_samples_pope_local.jsonl[0m
+[32m2026-10-16 18:05:10[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E0/reeval_vanilla7b/lmms/models__llava-1.5-7b-hf/20261016_164523_samples_scienceqa_local.jsonl[0m
+[32m2026-10-16 18:05:26[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E0/reeval_vanilla7b/lmms/models__llava-1.5-7b-hf/20261016_164523_samples_seedbench_local.jsonl[0m
+dpvr_hf (pretrained=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/models/llava-1.5-7b-hf,checkpoint=none,use_cache=False,dtype=bfloat16), gen_kwargs: (), limit: None, num_fewshot: None, batch_size: 1
+|     Tasks      |Version|Filter|n-shot|       Metric       |   |  Value  |   |Stderr|
+|----------------|-------|------|-----:|--------------------|---|--------:|---|------|
+|blink_local     |Yaml   |none  |     0|accuracy            |↑  |   0.3898|±  |0.0112|
+|mmbench_cn_local|Yaml   |none  |     0|accuracy            |↑  |   0.7138|±  |0.0069|
+|mmbench_en_local|Yaml   |none  |     0|accuracy            |↑  |   0.7413|±  |0.0067|
+|mme_local       |Yaml   |none  |     0|mme_cognition_score |↑  | 328.9286|±  |   N/A|
+|mme_local       |Yaml   |none  |     0|mme_perception_score|↑  |1495.4553|±  |   N/A|
+|pope_local      |Yaml   |none  |     0|pope_accuracy       |↑  |   0.8536|±  |   N/A|
+|pope_local      |Yaml   |none  |     0|pope_f1_score       |↑  |   0.8384|±  |   N/A|
+|pope_local      |Yaml   |none  |     0|pope_precision      |↑  |   0.9352|±  |   N/A|
+|pope_local      |Yaml   |none  |     0|pope_recall         |↑  |   0.7598|±  |   N/A|
+|pope_local      |Yaml   |none  |     0|pope_yes_ratio      |↑  |   0.5000|±  |   N/A|
+|scienceqa_local |Yaml   |none  |     0|mc_accuracy         |↑  |   0.6406|±  |0.0107|
+|seedbench_local |Yaml   |none  |     0|seed_all            |↑  |   0.6023|±  |   N/A|
+|seedbench_local |Yaml   |none  |     0|seed_image          |↑  |   0.6540|±  |   N/A|
+|seedbench_local |Yaml   |none  |     0|seed_video          |↑  |   0.4064|±  |   N/A|
+
+{
+  "blink_local": {
+    "accuracy,none": 0.38979484481851656,
+    "accuracy_stderr,none": 0.011188688455461792
+  },
+  "mmbench_cn_local": {
+    "accuracy,none": 0.7137907137907138,
+    "accuracy_stderr,none": 0.006870426233540148
+  },
+  "mmbench_en_local": {
+    "accuracy,none": 0.7412797412797413,
+    "accuracy_stderr,none": 0.006656756300730221
+  },
+  "mme_local": {
+    "mme_cognition_score,none": 328.92857142857144,
+    "mme_perception_score,none": 1495.4552821128452
+  },
+  "pope_local": {
+    "pope_accuracy,none": 0.8535555555555555,
+    "pope_precision,none": 0.9351750547045952,
+    "pope_recall,none": 0.7597777777777778,
+    "pope_f1_score,none": 0.8384011770475722,
+    "pope_yes_ratio,none": 0.5
+  },
+  "scienceqa_local": {
+    "mc_accuracy,none": 0.6405552801189885,
+    "mc_accuracy_stderr,none": 0.010686834849595025
+  },
+  "seedbench_local": {
+    "seed_image,none": 0.653973160963957,
+    "seed_all,none": 0.6022790439132851,
+    "seed_video,none": 0.4064413095554964
+  }
+}
