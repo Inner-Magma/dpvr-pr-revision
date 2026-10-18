@@ -22,6 +22,7 @@ import argparse
 import csv
 import json
 import os
+import re
 import shutil
 import sys
 from pathlib import Path
@@ -43,6 +44,21 @@ COLUMNS = [
 SMALL_SUFFIXES = {".json", ".md", ".csv", ".txt", ".pdf", ".png", ".yaml"}
 SKIP_DIRS = {"lmms", "tasks", "checkpoint"}
 
+# 凭据脱敏：lmms-eval 会把 HF token 原文打进日志，结果文件要能安全提交。
+_SECRET_PATTERNS = [
+    (re.compile(r"hf_[A-Za-z0-9]{20,}"), "hf_**REDACTED**"),
+    (re.compile(r"ghp_[A-Za-z0-9]{20,}"), "ghp_**REDACTED**"),
+    (re.compile(r"github_pat_[A-Za-z0-9_]{20,}"), "github_pat_**REDACTED**"),
+    (re.compile(r"sk-[A-Za-z0-9_-]{20,}"), "sk-**REDACTED**"),
+]
+_TEXT_SUFFIXES = {".json", ".md", ".csv", ".txt", ".yaml"}
+
+
+def redact(text: str) -> str:
+    for pat, repl in _SECRET_PATTERNS:
+        text = pat.sub(repl, text)
+    return text
+
 
 def eval_row(exp: str, job: str, summary: dict) -> dict:
     metrics = summary.get("metrics", {})
@@ -57,6 +73,11 @@ def eval_row(exp: str, job: str, summary: dict) -> dict:
 
 
 def copy_small(src_dir: Path, dst_dir: Path, max_kb: int) -> int:
+    # 上一次拷贝留下的 log.txt 可能是**早已被绕过**的失败运行（源日志超过 --max_kb 就
+    # 不会被覆盖，见 RESULTS.md 问题 §10.2）。先删掉，避免 results/ 里留着误导性的旧日志。
+    stale_log = dst_dir / "log.txt"
+    if stale_log.exists():
+        stale_log.unlink()
     n = 0
     for f in src_dir.rglob("*"):
         rel = f.relative_to(src_dir)
@@ -68,13 +89,16 @@ def copy_small(src_dir: Path, dst_dir: Path, max_kb: int) -> int:
             continue
         out = dst_dir / rel
         out.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(f, out)
+        if f.suffix in _TEXT_SUFFIXES:
+            out.write_text(redact(f.read_text(errors="replace")), encoding="utf-8")
+        else:
+            shutil.copy2(f, out)
         n += 1
     log = src_dir / "log.txt"
     if log.exists():  # keep the tail of the log: enough to see how a job ended
-        lines = log.read_text(errors="replace").splitlines()[-200:]
+        lines = redact(log.read_text(errors="replace")).splitlines()[-200:]
         (dst_dir / "log_tail.txt").parent.mkdir(parents=True, exist_ok=True)
-        (dst_dir / "log_tail.txt").write_text("\n".join(lines) + "\n")
+        (dst_dir / "log_tail.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
     return n
 
 

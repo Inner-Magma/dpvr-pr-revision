@@ -90,6 +90,35 @@ def test_collect_is_rerunnable(run_root, tmp_path):
     assert collect_results.collect(run_root, out)["jobs"] == 3
 
 
+def test_collect_redacts_secrets(tmp_path):
+    root = tmp_path / "revision_runs"
+    token = "hf_" + "A" * 30
+    _job(root, "E0", "r", "done",
+         extra={"note.txt": f"using {token}\n".encode(),
+                "log.txt": f"start\n{token}\n".encode()})
+    out = tmp_path / "results"
+    collect_results.collect(root, out)
+    dst = out / "E0" / "r"
+    assert token not in (dst / "note.txt").read_text()
+    assert "hf_**REDACTED**" in (dst / "note.txt").read_text()
+    assert token not in (dst / "log_tail.txt").read_text()
+    assert "hf_**REDACTED**" in (dst / "log_tail.txt").read_text()
+
+
+def test_collect_drops_stale_log_copy(tmp_path):
+    """源 log.txt 超过 max_kb 时不会覆盖，旧副本必须被删掉而不是留着误导人。"""
+    root = tmp_path / "revision_runs"
+    job = _job(root, "E0", "r", "done")
+    out = tmp_path / "results"
+    collect_results.collect(root, out)
+    assert (out / "E0" / "r" / "log.txt").exists()
+
+    (job / "log.txt").write_text("y" * 2000)
+    collect_results.collect(root, out, max_kb=1)
+    assert not (out / "E0" / "r" / "log.txt").exists()   # 旧日志已删
+    assert (out / "E0" / "r" / "log_tail.txt").exists()  # 新日志的尾巴还在
+
+
 @pytest.fixture
 def results_tree(tmp_path, monkeypatch, run_root):
     res = tmp_path / "repo" / "results" / "revision"
