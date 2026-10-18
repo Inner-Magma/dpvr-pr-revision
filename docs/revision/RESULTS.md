@@ -526,3 +526,39 @@ E0 六项 2026-10-16 全部 `done`、`rc=0`，`reeval_vanilla7b` 耗时 4834.8 s
 `BLOCKED: E0 reeval_vanilla7b 八项偏离论文 vanilla > 2pp`，
 但 `.env` 的 SMTP 配置仍为空（§9），**邮件发不出去**，只在此记录。
 2026-10-17 门槛取消后已无需发信。
+
+### 12. 【BLOCKED：容器根分区写满】`server-fixes` 分支的修复已写好但无法提交/测试
+
+**2026-10-18 14:2x 起，本容器的 overlay 根分区（`/`，含 `/tmp`）ENOSPC 写满。**
+
+- 表现：Bash 工具每次启动都失败，`ENOSPC: no space left on device, open '/proc/self/fd/16/*.output'`；
+  Write 到 `/tmp` 同样失败；dolphinfs 挂载（仓库所在盘）仍可写。
+- 触发点：`python -m pytest tests/` 全量跑完（4 failed, 150 passed, 20 errors）之后开始。
+  errors/failures 本身也是 ENOSPC 造成的（`OSError: could not create ...`），
+  测试逻辑没有问题；`tests/test_results_mail.py tests/test_revision_eval.py` 在磁盘耗尽前
+  单独跑过，**19 passed**。
+- 推测占用者：pytest 的临时目录 `/tmp/pytest-of-root`（checkpoint roundtrip 类测试会写大文件），
+  但我**没有 shell 就无法列出或删除**它们。按 AGENTS.md「必须停下来问作者」，
+  磁盘满了且自己清不出空间属于要作者处理的情况。
+- 需要作者做：在容器里清 `/tmp/pytest-of-root`（或重启容器），然后继续第 2 步。
+
+**第 2 步（`server-fixes`）已完成但未提交的改动**（都在 dolphinfs 上，磁盘恢复后可直接继续）：
+
+| 文件 | 改动 |
+| --- | --- |
+| `src/dpvr/lmms_plugin/tasks/__init__.py` | 新增空包，修 §8 的 `find_spec(...).submodule_search_locations[0]` 崩溃 |
+| `scripts/revision/collect_results.py` | 新增 `redact()`，对所有拷出的文本文件与 `log_tail.txt` 脱敏（修 §10.1） |
+| 同上 | `copy_small()` 先删目标端旧 `log.txt`（修 §10.2） |
+| `tests/test_results_mail.py` | 新增两条回归测试：脱敏、旧日志清除 |
+
+**2026-10-18 已解除。** 容器重启后根盘恢复（45 G 空闲）。原因确认是 pytest 的临时目录落在根盘
+（`/tmp` 在 overlay 上）；把 `TMPDIR` 指到 `/workdir/dpvr_tmp`（本地 nvme，非根盘）后一切正常。
+注意：`TMPDIR` 指到 dolphinfs 也不行——pytest 的捕获文件在 beegfs 上会 `FileNotFoundError`。
+
+**已提交：** `server-fixes` 分支 `dc0ce0c`（`fix(lmms_plugin,collect): ...`），已 `git push -u origin server-fixes`。
+全量 `pytest tests/`：**174 passed**。
+**PR 未开**：本机没有 `gh` CLI 也没有 `GITHUB_TOKEN`，只能由作者在网页上开：
+<https://github.com/Inner-Magma/dpvr-pr-revision/compare/main...server-fixes>。
+
+此后实验改用 `server-fixes` 的代码跑。`worker.sh` 里 shim 的补丁 1（`tasks` 子包）已不再需要，
+补丁 2（空 `device_map`）仍需要，下次提作业前把 shim 精简掉。
