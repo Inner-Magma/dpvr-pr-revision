@@ -2,6 +2,11 @@
 ===== 2026-10-18T08:26:49+00:00 start gen7b_lf_s18_cache_false on GPUs [0] =====
 所有指定的模块已尝试导入。
 `torch_dtype` is deprecated! Use `dtype` instead!
-Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.95it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:00,  1.71it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  1.77it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  1.78it/s]
+
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.95it/s]
+Loading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:00,  1.71it/s]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  1.77it/s]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  1.78it/s]
 token_diversion_x3_fusion N=64: total 4720.4 ms, decode 73.77 ms/token (cache=False, NVIDIA H20-3e)
 token_diversion_x3_fusion N=256: total 21851.6 ms, decode 85.41 ms/token (cache=False, NVIDIA H20-3e)

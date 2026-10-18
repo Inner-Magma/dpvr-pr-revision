@@ -1,7 +1,12 @@
 
 ===== 2026-10-18T17:35:05+00:00 start 7b_g6x6 on GPUs [0] =====
 `torch_dtype` is deprecated! Use `dtype` instead!
-Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:01<00:02,  1.26s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:02<00:01,  1.09s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:03<00:00,  1.01it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:03<00:00,  1.04s/it]
+
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:01<00:02,  1.26s/it]
+Loading checkpoint shards:  67%|██████▋   | 2/3 [00:02<00:01,  1.09s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:03<00:00,  1.01it/s]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:03<00:00,  1.04s/it]
 Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
 [run] 50/500  5s
 [run] 100/500  9s

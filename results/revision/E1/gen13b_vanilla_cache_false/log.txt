@@ -1,6 +1,14 @@
 
 ===== 2026-10-18T08:32:30+00:00 start gen13b_vanilla_cache_false on GPUs [0] =====
 `torch_dtype` is deprecated! Use `dtype` instead!
-Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:00<00:04,  1.01it/s]Loading checkpoint shards:  33%|███▎      | 2/6 [00:01<00:02,  1.36it/s]Loading checkpoint shards:  50%|█████     | 3/6 [00:02<00:01,  1.55it/s]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:02<00:01,  1.65it/s]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:03<00:00,  1.72it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:03<00:00,  2.16it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:03<00:00,  1.76it/s]
+
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]
+Loading checkpoint shards:  17%|█▋        | 1/6 [00:00<00:04,  1.01it/s]
+Loading checkpoint shards:  33%|███▎      | 2/6 [00:01<00:02,  1.36it/s]
+Loading checkpoint shards:  50%|█████     | 3/6 [00:02<00:01,  1.55it/s]
+Loading checkpoint shards:  67%|██████▋   | 4/6 [00:02<00:01,  1.65it/s]
+Loading checkpoint shards:  83%|████████▎ | 5/6 [00:03<00:00,  1.72it/s]
+Loading checkpoint shards: 100%|██████████| 6/6 [00:03<00:00,  2.16it/s]
+Loading checkpoint shards: 100%|██████████| 6/6 [00:03<00:00,  1.76it/s]
 vanilla N=64: total 11046.1 ms, decode 172.63 ms/token (cache=False, NVIDIA H20-3e)
 vanilla N=256: total 49860.6 ms, decode 194.86 ms/token (cache=False, NVIDIA H20-3e)

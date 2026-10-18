@@ -1,7 +1,15 @@
 
 ===== 2026-10-18T17:38:54+00:00 start 13b_g12x12 on GPUs [0] =====
 `torch_dtype` is deprecated! Use `dtype` instead!
-Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:01<00:05,  1.03s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:01<00:03,  1.07it/s]Loading checkpoint shards:  50%|█████     | 3/6 [00:02<00:02,  1.13it/s]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:03<00:01,  1.16it/s]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:04<00:00,  1.18it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:04<00:00,  1.46it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:04<00:00,  1.26it/s]
+
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]
+Loading checkpoint shards:  17%|█▋        | 1/6 [00:01<00:05,  1.03s/it]
+Loading checkpoint shards:  33%|███▎      | 2/6 [00:01<00:03,  1.07it/s]
+Loading checkpoint shards:  50%|█████     | 3/6 [00:02<00:02,  1.13it/s]
+Loading checkpoint shards:  67%|██████▋   | 4/6 [00:03<00:01,  1.16it/s]
+Loading checkpoint shards:  83%|████████▎ | 5/6 [00:04<00:00,  1.18it/s]
+Loading checkpoint shards: 100%|██████████| 6/6 [00:04<00:00,  1.46it/s]
+Loading checkpoint shards: 100%|██████████| 6/6 [00:04<00:00,  1.26it/s]
 Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
 [run] 50/500  8s
 [run] 100/500  14s

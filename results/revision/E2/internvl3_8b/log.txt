@@ -1,7 +1,13 @@
 
 ===== 2026-10-18T09:10:59+00:00 start internvl3_8b on GPUs [4] =====
 `torch_dtype` is deprecated! Use `dtype` instead!
-Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:29<01:27, 29.04s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:57<00:56, 28.45s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [01:08<00:20, 20.72s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:15<00:00, 15.30s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:15<00:00, 18.90s/it]
+
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]
+Loading checkpoint shards:  25%|██▌       | 1/4 [00:29<01:27, 29.04s/it]
+Loading checkpoint shards:  50%|█████     | 2/4 [00:57<00:56, 28.45s/it]
+Loading checkpoint shards:  75%|███████▌  | 3/4 [01:08<00:20, 20.72s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [01:15<00:00, 15.30s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [01:15<00:00, 18.90s/it]
 [run] 50/500  95s
 [run] 100/500  201s
 [run] 150/500  288s

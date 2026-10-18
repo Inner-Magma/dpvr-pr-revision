@@ -1,6 +1,11 @@
 
 ===== 2026-10-18T08:21:13+00:00 start gen7b_vanilla_cache_false on GPUs [0] =====
 `torch_dtype` is deprecated! Use `dtype` instead!
-Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.84it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:00,  1.73it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  2.07it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  1.98it/s]
+
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.84it/s]
+Loading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:00,  1.73it/s]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  2.07it/s]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  1.98it/s]
 vanilla N=64: total 6036.8 ms, decode 94.31 ms/token (cache=False, NVIDIA H20-3e)
 vanilla N=256: total 27049.5 ms, decode 105.70 ms/token (cache=False, NVIDIA H20-3e)

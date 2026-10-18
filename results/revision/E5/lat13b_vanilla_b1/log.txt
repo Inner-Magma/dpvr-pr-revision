@@ -1,5 +1,13 @@
 
 ===== 2026-10-18T09:01:09+00:00 start lat13b_vanilla_b1 on GPUs [0] =====
 `torch_dtype` is deprecated! Use `dtype` instead!
-Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:00<00:03,  1.34it/s]Loading checkpoint shards:  33%|███▎      | 2/6 [00:01<00:02,  1.84it/s]Loading checkpoint shards:  50%|█████     | 3/6 [00:01<00:01,  2.14it/s]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:01<00:00,  2.26it/s]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:02<00:00,  2.38it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:02<00:00,  3.03it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:02<00:00,  2.43it/s]
+
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]
+Loading checkpoint shards:  17%|█▋        | 1/6 [00:00<00:03,  1.34it/s]
+Loading checkpoint shards:  33%|███▎      | 2/6 [00:01<00:02,  1.84it/s]
+Loading checkpoint shards:  50%|█████     | 3/6 [00:01<00:01,  2.14it/s]
+Loading checkpoint shards:  67%|██████▋   | 4/6 [00:01<00:00,  2.26it/s]
+Loading checkpoint shards:  83%|████████▎ | 5/6 [00:02<00:00,  2.38it/s]
+Loading checkpoint shards: 100%|██████████| 6/6 [00:02<00:00,  3.03it/s]
+Loading checkpoint shards: 100%|██████████| 6/6 [00:02<00:00,  2.43it/s]
 vanilla: 170.17 ± 0.11 ms on NVIDIA H20-3e

@@ -1,0 +1,11 @@
+{
+  "state": "running",
+  "started": "2026-10-18T20:33:47+00:00",
+  "gpus": [
+    4
+  ],
+  "cmd": "python scripts/revision/eval_lmms.py --method_config configs/method/fastv_tf.yaml --override method.params.keep_ratio=0.5 --override method.params.score=last --tasks eight --out /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E3/fastv7b_k2_r0.5_last",
+  "host": "psxob0gxrs643dy3-worker-0",
+  "git_sha": "16c6817",
+  "pid": 3511119
+}
