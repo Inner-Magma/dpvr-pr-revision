@@ -1,0 +1,63 @@
+{
+  "meta": {
+    "checkpoint": "config:/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E4/freeze7b_s16/method_config.json",
+    "base_model": "llava-1.5-7b-hf",
+    "backbone": "llava",
+    "method_config": "configs/method/freeze_image.yaml",
+    "overrides": [
+      "method.split_layer=16"
+    ],
+    "use_cache": "False",
+    "limit": null,
+    "python": "3.10.22",
+    "git_sha": "97a32d6",
+    "torch": "2.9.0+cu128",
+    "transformers": "4.57.1",
+    "gpu": "NVIDIA H20-3e",
+    "lmms_eval": "0.5.0"
+  },
+  "tasks": [
+    "pope",
+    "mme",
+    "mmbench_en",
+    "mmbench_cn",
+    "scienceqa",
+    "seedbench",
+    "blink"
+  ],
+  "metrics": {
+    "blink_local": {
+      "accuracy,none": 0.3924250394529195,
+      "accuracy_stderr,none": 0.011202152703440727
+    },
+    "mmbench_cn_local": {
+      "accuracy,none": 0.7126357126357127,
+      "accuracy_stderr,none": 0.006878703064415933
+    },
+    "mmbench_en_local": {
+      "accuracy,none": 0.7405867405867406,
+      "accuracy_stderr,none": 0.006662549141042551
+    },
+    "mme_local": {
+      "mme_cognition_score,none": 316.07142857142856,
+      "mme_perception_score,none": 1488.1195478191278
+    },
+    "pope_local": {
+      "pope_accuracy,none": 0.8536666666666667,
+      "pope_precision,none": 0.9332970323985843,
+      "pope_recall,none": 0.7617777777777778,
+      "pope_f1_score,none": 0.8388596598556222,
+      "pope_yes_ratio,none": 0.5
+    },
+    "scienceqa_local": {
+      "mc_accuracy,none": 0.6420426375805652,
+      "mc_accuracy_stderr,none": 0.010677075676168189
+    },
+    "seedbench_local": {
+      "seed_image,none": 0.6530597906274151,
+      "seed_all,none": 0.6016675931072818,
+      "seed_video,none": 0.4069736491881821
+    }
+  },
+  "returncode": 0
+}

@@ -1,200 +1,200 @@
-Model Responding:  35%|███▌      | 14788/41940 [1:08:18<1:54:08,  3.96it/s]
-Model Responding:  35%|███▌      | 14789/41940 [1:08:19<2:55:04,  2.58it/s]
-Model Responding:  35%|███▌      | 14790/41940 [1:08:19<2:36:52,  2.88it/s]
-Model Responding:  35%|███▌      | 14791/41940 [1:08:20<2:24:52,  3.12it/s]
-Model Responding:  35%|███▌      | 14792/41940 [1:08:20<2:18:29,  3.27it/s]
-Model Responding:  35%|███▌      | 14793/41940 [1:08:20<2:09:34,  3.49it/s]
-Model Responding:  35%|███▌      | 14794/41940 [1:08:20<2:02:28,  3.69it/s]
-Model Responding:  35%|███▌      | 14795/41940 [1:08:21<1:57:27,  3.85it/s]
-Model Responding:  35%|███▌      | 14796/41940 [1:08:21<1:51:23,  4.06it/s]
-Model Responding:  35%|███▌      | 14797/41940 [1:08:21<1:49:33,  4.13it/s]
-Model Responding:  35%|███▌      | 14798/41940 [1:08:21<1:49:38,  4.13it/s]
-Model Responding:  35%|███▌      | 14799/41940 [1:08:21<1:50:21,  4.10it/s]
-Model Responding:  35%|███▌      | 14800/41940 [1:08:22<1:47:35,  4.20it/s]
-Model Responding:  35%|███▌      | 14801/41940 [1:08:22<1:48:29,  4.17it/s]
-Model Responding:  35%|███▌      | 14802/41940 [1:08:22<1:45:47,  4.28it/s]
-Model Responding:  35%|███▌      | 14803/41940 [1:08:22<1:43:43,  4.36it/s]
-Model Responding:  35%|███▌      | 14804/41940 [1:08:23<1:46:17,  4.25it/s]
-Model Responding:  35%|███▌      | 14805/41940 [1:08:23<1:43:45,  4.36it/s]
-Model Responding:  35%|███▌      | 14806/41940 [1:08:23<1:41:58,  4.43it/s]
-Model Responding:  35%|███▌      | 14807/41940 [1:08:23<1:43:39,  4.36it/s]
-Model Responding:  35%|███▌      | 14808/41940 [1:08:24<1:43:30,  4.37it/s]
-Model Responding:  35%|███▌      | 14809/41940 [1:08:24<1:43:09,  4.38it/s]
-Model Responding:  35%|███▌      | 14810/41940 [1:08:24<1:41:56,  4.44it/s]
-Model Responding:  35%|███▌      | 14811/41940 [1:08:24<1:41:14,  4.47it/s]
-Model Responding:  35%|███▌      | 14812/41940 [1:08:24<1:43:22,  4.37it/s]
-Model Responding:  35%|███▌      | 14813/41940 [1:08:25<1:42:43,  4.40it/s]
-Model Responding:  35%|███▌      | 14814/41940 [1:08:25<1:44:20,  4.33it/s]
-Model Responding:  35%|███▌      | 14815/41940 [1:08:25<1:46:52,  4.23it/s]
-Model Responding:  35%|███▌      | 14816/41940 [1:08:25<1:50:58,  4.07it/s]
-Model Responding:  35%|███▌      | 14817/41940 [1:08:26<1:50:46,  4.08it/s]
-Model Responding:  35%|███▌      | 14818/41940 [1:08:26<1:47:22,  4.21it/s]
-Model Responding:  35%|███▌      | 14819/41940 [1:08:26<1:45:20,  4.29it/s]
-Model Responding:  35%|███▌      | 14820/41940 [1:08:26<1:43:09,  4.38it/s]
-Model Responding:  35%|███▌      | 14821/41940 [1:08:27<1:44:21,  4.33it/s]
-Model Responding:  35%|███▌      | 14822/41940 [1:08:27<1:43:45,  4.36it/s]
-Model Responding:  35%|███▌      | 14823/41940 [1:08:27<1:44:54,  4.31it/s]
-Model Responding:  35%|███▌      | 14824/41940 [1:08:27<1:47:19,  4.21it/s]
-Model Responding:  35%|███▌      | 14825/41940 [1:08:27<1:45:42,  4.28it/s]
-Model Responding:  35%|███▌      | 14826/41940 [1:08:28<1:46:53,  4.23it/s]
-Model Responding:  35%|███▌      | 14827/41940 [1:08:28<2:20:00,  3.23it/s]
-Model Responding:  35%|███▌      | 14828/41940 [1:08:28<2:16:52,  3.30it/s]
-Model Responding:  35%|███▌      | 14829/41940 [1:08:29<2:05:40,  3.60it/s]
-Model Responding:  35%|███▌      | 14830/41940 [1:08:29<1:55:56,  3.90it/s]
-Model Responding:  35%|███▌      | 14831/41940 [1:08:29<1:50:47,  4.08it/s]
-Model Responding:  35%|███▌      | 14832/41940 [1:08:29<1:45:42,  4.27it/s]
-Model Responding:  35%|███▌      | 14833/41940 [1:08:30<1:42:03,  4.43it/s]
-Model Responding:  35%|███▌      | 14834/41940 [1:08:30<1:39:52,  4.52it/s]
-Model Responding:  35%|███▌      | 14835/41940 [1:08:30<1:42:46,  4.40it/s]
-Model Responding:  35%|███▌      | 14836/41940 [1:08:30<1:42:12,  4.42it/s]
-Model Responding:  35%|███▌      | 14837/41940 [1:08:30<1:41:21,  4.46it/s]
-Model Responding:  35%|███▌      | 14838/41940 [1:08:31<1:38:44,  4.57it/s]
-Model Responding:  35%|███▌      | 14839/41940 [1:08:31<1:38:25,  4.59it/s]
-Model Responding:  35%|███▌      | 14840/41940 [1:08:31<1:36:16,  4.69it/s]
-Model Responding:  35%|███▌      | 14841/41940 [1:08:31<1:35:17,  4.74it/s]
-Model Responding:  35%|███▌      | 14842/41940 [1:08:31<1:34:39,  4.77it/s]
-Model Responding:  35%|███▌      | 14843/41940 [1:08:32<1:33:38,  4.82it/s]
-Model Responding:  35%|███▌      | 14844/41940 [1:08:32<1:33:27,  4.83it/s]
-Model Responding:  35%|███▌      | 14845/41940 [1:08:32<1:32:44,  4.87it/s]
-Model Responding:  35%|███▌      | 14846/41940 [1:08:32<1:32:56,  4.86it/s]
-Model Responding:  35%|███▌      | 14847/41940 [1:08:32<1:32:18,  4.89it/s]
-Model Responding:  35%|███▌      | 14848/41940 [1:08:33<1:33:31,  4.83it/s]
-Model Responding:  35%|███▌      | 14849/41940 [1:08:33<1:32:41,  4.87it/s]
-Model Responding:  35%|███▌      | 14850/41940 [1:08:33<1:32:01,  4.91it/s]
-Model Responding:  35%|███▌      | 14851/41940 [1:08:33<1:32:27,  4.88it/s]
-Model Responding:  35%|███▌      | 14852/41940 [1:08:34<1:32:40,  4.87it/s]
-Model Responding:  35%|███▌      | 14853/41940 [1:08:34<1:32:18,  4.89it/s]
-Model Responding:  35%|███▌      | 14854/41940 [1:08:34<1:32:10,  4.90it/s]
-Model Responding:  35%|███▌      | 14855/41940 [1:08:34<1:31:52,  4.91it/s]
-Model Responding:  35%|███▌      | 14856/41940 [1:08:34<1:33:23,  4.83it/s]
-Model Responding:  35%|███▌      | 14857/41940 [1:08:35<1:33:19,  4.84it/s]
-Model Responding:  35%|███▌      | 14858/41940 [1:08:35<1:32:24,  4.88it/s]
-Model Responding:  35%|███▌      | 14859/41940 [1:08:35<1:31:51,  4.91it/s]
-Model Responding:  35%|███▌      | 14860/41940 [1:08:35<1:31:24,  4.94it/s]
-Model Responding:  35%|███▌      | 14861/41940 [1:08:35<1:35:29,  4.73it/s]
-Model Responding:  35%|███▌      | 14862/41940 [1:08:36<1:37:29,  4.63it/s]
-Model Responding:  35%|███▌      | 14863/41940 [1:08:36<1:39:50,  4.52it/s]
-Model Responding:  35%|███▌      | 14864/41940 [1:08:36<1:40:34,  4.49it/s]
-Model Responding:  35%|███▌      | 14865/41940 [1:08:36<1:43:29,  4.36it/s]
-Model Responding:  35%|███▌      | 14866/41940 [1:08:37<1:44:21,  4.32it/s]
-Model Responding:  35%|███▌      | 14867/41940 [1:08:37<1:55:45,  3.90it/s]
-Model Responding:  35%|███▌      | 14868/41940 [1:08:37<1:51:35,  4.04it/s]
-Model Responding:  35%|███▌      | 14869/41940 [1:08:37<1:48:17,  4.17it/s]
-Model Responding:  35%|███▌      | 14870/41940 [1:08:38<1:47:33,  4.19it/s]
-Model Responding:  35%|███▌      | 14871/41940 [1:08:38<1:47:50,  4.18it/s]
-Model Responding:  35%|███▌      | 14872/41940 [1:08:38<1:49:30,  4.12it/s]
-Model Responding:  35%|███▌      | 14873/41940 [1:08:38<1:54:56,  3.92it/s]
-Model Responding:  35%|███▌      | 14874/41940 [1:08:39<1:49:27,  4.12it/s]
-Model Responding:  35%|███▌      | 14875/41940 [1:08:39<1:50:00,  4.10it/s]
-Model Responding:  35%|███▌      | 14876/41940 [1:08:39<2:06:27,  3.57it/s]
-Model Responding:  35%|███▌      | 14877/41940 [1:08:39<2:00:19,  3.75it/s]
-Model Responding:  35%|███▌      | 14878/41940 [1:08:40<1:55:42,  3.90it/s]
-Model Responding:  35%|███▌      | 14879/41940 [1:08:40<1:50:13,  4.09it/s]
-Model Responding:  35%|███▌      | 14880/41940 [1:08:40<1:46:44,  4.23it/s]
-Model Responding:  35%|███▌      | 14881/41940 [1:08:40<1:45:19,  4.28it/s]
-Model Responding:  35%|███▌      | 14882/41940 [1:08:41<1:43:24,  4.36it/s]
-Model Responding:  35%|███▌      | 14883/41940 [1:08:41<1:41:05,  4.46it/s]
-Model Responding:  35%|███▌      | 14884/41940 [1:08:41<1:50:05,  4.10it/s]
-Model Responding:  35%|███▌      | 14885/41940 [1:08:41<1:46:09,  4.25it/s]
-Model Responding:  35%|███▌      | 14886/41940 [1:08:41<1:43:33,  4.35it/s]
-Model Responding:  35%|███▌      | 14887/41940 [1:08:42<1:49:45,  4.11it/s]
-Model Responding:  35%|███▌      | 14888/41940 [1:08:42<1:47:49,  4.18it/s]
-Model Responding:  36%|███▌      | 14889/41940 [1:08:42<1:45:44,  4.26it/s]
-Model Responding:  36%|███▌      | 14890/41940 [1:08:42<1:53:09,  3.98it/s]
-Model Responding:  36%|███▌      | 14891/41940 [1:08:43<2:47:13,  2.70it/s]
-Model Responding:  36%|███▌      | 14892/41940 [1:08:44<3:21:59,  2.23it/s]
-Model Responding:  36%|███▌      | 14893/41940 [1:08:44<3:44:57,  2.00it/s]
-Model Responding:  36%|███▌      | 14894/41940 [1:08:45<3:57:10,  1.90it/s]
-Model Responding:  36%|███▌      | 14895/41940 [1:08:46<4:11:32,  1.79it/s]
-Model Responding:  36%|███▌      | 14896/41940 [1:08:46<4:22:53,  1.71it/s]
-Model Responding:  36%|███▌      | 14897/41940 [1:08:47<4:27:50,  1.68it/s]
-Model Responding:  36%|███▌      | 14898/41940 [1:08:47<4:32:27,  1.65it/s]
-Model Responding:  36%|███▌      | 14899/41940 [1:08:48<4:37:09,  1.63it/s]
-Model Responding:  36%|███▌      | 14900/41940 [1:08:49<4:39:44,  1.61it/s]
-Model Responding:  36%|███▌      | 14901/41940 [1:08:49<4:41:49,  1.60it/s]
-Model Responding:  36%|███▌      | 14902/41940 [1:08:50<4:41:56,  1.60it/s]
-Model Responding:  36%|███▌      | 14903/41940 [1:08:51<4:41:33,  1.60it/s]
-Model Responding:  36%|███▌      | 14904/41940 [1:08:51<4:40:27,  1.61it/s]
-Model Responding:  36%|███▌      | 14905/41940 [1:08:52<4:41:49,  1.60it/s]
-Model Responding:  36%|███▌      | 14906/41940 [1:08:53<4:42:29,  1.60it/s]
-Model Responding:  36%|███▌      | 14907/41940 [1:08:53<4:43:05,  1.59it/s]
-Model Responding:  36%|███▌      | 14908/41940 [1:08:54<4:37:47,  1.62it/s]
-Model Responding:  36%|███▌      | 14909/41940 [1:08:54<4:40:06,  1.61it/s]
-Model Responding:  36%|███▌      | 14910/41940 [1:08:55<4:38:19,  1.62it/s]
-Model Responding:  36%|███▌      | 14911/41940 [1:08:56<4:36:47,  1.63it/s]
-Model Responding:  36%|███▌      | 14912/41940 [1:08:56<4:40:09,  1.61it/s]
-Model Responding:  36%|███▌      | 14913/41940 [1:08:57<4:40:23,  1.61it/s]
-Model Responding:  36%|███▌      | 14914/41940 [1:08:57<4:41:08,  1.60it/s]
-Model Responding:  36%|███▌      | 14915/41940 [1:08:58<4:43:15,  1.59it/s]
-Model Responding:  36%|███▌      | 14916/41940 [1:08:59<4:43:20,  1.59it/s]
-Model Responding:  36%|███▌      | 14917/41940 [1:08:59<4:45:03,  1.58it/s]
-Model Responding:  36%|███▌      | 14918/41940 [1:09:00<4:48:48,  1.56it/s]
-Model Responding:  36%|███▌      | 14919/41940 [1:09:01<4:51:14,  1.55it/s]
-Model Responding:  36%|███▌      | 14920/41940 [1:09:01<4:46:04,  1.57it/s]
-Model Responding:  36%|███▌      | 14921/41940 [1:09:02<4:45:57,  1.57it/s]
-Model Responding:  36%|███▌      | 14922/41940 [1:09:02<3:52:19,  1.94it/s]
-Model Responding:  36%|███▌      | 14923/41940 [1:09:02<3:13:20,  2.33it/s]
-Model Responding:  36%|███▌      | 14924/41940 [1:09:03<2:46:27,  2.70it/s]
-Model Responding:  36%|███▌      | 14925/41940 [1:09:03<2:26:03,  3.08it/s]
-Model Responding:  36%|███▌      | 14926/41940 [1:09:03<2:12:01,  3.41it/s]
-Model Responding:  36%|███▌      | 14927/41940 [1:09:03<2:03:40,  3.64it/s]
-Model Responding:  36%|███▌      | 14928/41940 [1:09:04<1:58:12,  3.81it/s]
-Model Responding:  36%|███▌      | 14929/41940 [1:09:04<1:53:30,  3.97it/s]
-Model Responding:  36%|███▌      | 14930/41940 [1:09:04<1:49:46,  4.10it/s]
-Model Responding:  36%|███▌      | 14931/41940 [1:09:05<2:44:40,  2.73it/s]
-Model Responding:  36%|███▌      | 14932/41940 [1:09:05<3:19:18,  2.26it/s]
-Model Responding:  36%|███▌      | 14933/41940 [1:09:06<3:46:50,  1.98it/s]
-Model Responding:  36%|███▌      | 14934/41940 [1:09:07<4:06:38,  1.82it/s]
-Model Responding:  36%|███▌      | 14935/41940 [1:09:07<4:14:23,  1.77it/s]
-Model Responding:  36%|███▌      | 14936/41940 [1:09:08<4:23:23,  1.71it/s]
-Model Responding:  36%|███▌      | 14937/41940 [1:09:08<4:27:56,  1.68it/s]
-Model Responding:  36%|███▌      | 14938/41940 [1:09:09<4:32:06,  1.65it/s]
-Model Responding:  36%|███▌      | 14939/41940 [1:09:10<4:36:11,  1.63it/s]
-Model Responding:  36%|███▌      | 14940/41940 [1:09:10<4:36:45,  1.63it/s]
-Model Responding:  36%|███▌      | 14941/41940 [1:09:11<4:42:17,  1.59it/s]
-Model Responding:  36%|███▌      | 14942/41940 [1:09:12<4:43:13,  1.59it/s]
-Model Responding:  36%|███▌      | 14943/41940 [1:09:12<4:41:58,  1.60it/s]
-Model Responding:  36%|███▌      | 14944/41940 [1:09:13<4:39:36,  1.61it/s]
-Model Responding:  36%|███▌      | 14945/41940 [1:09:13<4:42:15,  1.59it/s]
-Model Responding:  36%|███▌      | 14946/41940 [1:09:14<3:49:40,  1.96it/s]
-Model Responding:  36%|███▌      | 14947/41940 [1:09:14<3:12:00,  2.34it/s]
-Model Responding:  36%|███▌      | 14948/41940 [1:09:14<2:45:28,  2.72it/s]
-Model Responding:  36%|███▌      | 14949/41940 [1:09:15<3:24:34,  2.20it/s]
-Model Responding:  36%|███▌      | 14950/41940 [1:09:15<3:44:38,  2.00it/s]
-Model Responding:  36%|███▌      | 14951/41940 [1:09:16<4:02:54,  1.85it/s]
-Model Responding:  36%|███▌      | 14952/41940 [1:09:17<4:12:54,  1.78it/s]
-Model Responding:  36%|███▌      | 14953/41940 [1:09:17<4:22:35,  1.71it/s]
-Model Responding:  36%|███▌      | 14954/41940 [1:09:18<4:27:05,  1.68it/s]
-Model Responding:  36%|███▌      | 14955/41940 [1:09:19<4:31:37,  1.66it/s]
-Model Responding:  36%|███▌      | 14956/41940 [1:09:19<4:35:25,  1.63it/s]
-Model Responding:  36%|███▌      | 14957/41940 [1:09:20<4:38:42,  1.61it/s]
-Model Responding:  36%|███▌      | 14958/41940 [1:09:20<4:40:12,  1.60it/s]
-Model Responding:  36%|███▌      | 14959/41940 [1:09:21<3:44:13,  2.01it/s]
-Model Responding:  36%|███▌      | 14960/41940 [1:09:21<3:05:44,  2.42it/s]
-Model Responding:  36%|███▌      | 14961/41940 [1:09:21<2:37:56,  2.85it/s]
-Model Responding:  36%|███▌      | 14962/41940 [1:09:21<2:18:23,  3.25it/s]
-Model Responding:  36%|███▌      | 14963/41940 [1:09:21<2:04:38,  3.61it/s]
-Model Responding:  36%|███▌      | 14964/41940 [1:09:22<1:54:07,  3.94it/s]
-Model Responding:  36%|███▌      | 14965/41940 [1:09:22<1:46:33,  4.22it/s]
-Model Responding:  36%|███▌      | 14966/41940 [1:09:22<1:42:40,  4.38it/s]
-Model Responding:  36%|███▌      | 14967/41940 [1:09:22<1:38:34,  4.56it/s]
-Model Responding:  36%|███▌      | 14968/41940 [1:09:22<1:36:32,  4.66it/s]
-Model Responding:  36%|███▌      | 14969/41940 [1:09:23<1:38:14,  4.58it/s]
-Model Responding:  36%|███▌      | 14970/41940 [1:09:23<1:38:08,  4.58it/s]
-Model Responding:  36%|███▌      | 14971/41940 [1:09:23<1:35:49,  4.69it/s]
-Model Responding:  36%|███▌      | 14972/41940 [1:09:23<1:34:07,  4.78it/s]
-Model Responding:  36%|███▌      | 14973/41940 [1:09:24<1:32:41,  4.85it/s]
-Model Responding:  36%|███▌      | 14974/41940 [1:09:24<1:31:33,  4.91it/s]
-Model Responding:  36%|███▌      | 14975/41940 [1:09:24<1:30:45,  4.95it/s]
-Model Responding:  36%|███▌      | 14976/41940 [1:09:24<1:30:11,  4.98it/s]
-Model Responding:  36%|███▌      | 14977/41940 [1:09:24<1:29:45,  5.01it/s]
-Model Responding:  36%|███▌      | 14978/41940 [1:09:25<1:29:37,  5.01it/s]
-Model Responding:  36%|███▌      | 14979/41940 [1:09:25<1:30:33,  4.96it/s]
-Model Responding:  36%|███▌      | 14980/41940 [1:09:25<1:30:06,  4.99it/s]
-Model Responding:  36%|███▌      | 14981/41940 [1:09:25<1:30:06,  4.99it/s]
-Model Responding:  36%|███▌      | 14982/41940 [1:09:25<1:30:07,  4.99it/s]
-Model Responding:  36%|███▌      | 14983/41940 [1:09:26<1:32:25,  4.86it/s]
-Model Responding:  36%|███▌      | 14984/41940 [1:09:26<2:32:09,  2.95it/s]
-Model Responding:  36%|███▌      | 14985/41940 [1:09:27<3:12:46,  2.33it/s]
-Model Responding:  36%|███▌      | 14986/41940 [1:09:27<3:38:12,  2.06it/s]
-Model Responding:  36%|███▌      | 14987/41940 [1:09:28<3:56:28,  1.90it/s]
+Model Responding: 100%|█████████▉| 41867/41940 [2:51:19<00:14,  5.11it/s]
+Model Responding: 100%|█████████▉| 41868/41940 [2:51:19<00:14,  5.04it/s]
+Model Responding: 100%|█████████▉| 41869/41940 [2:51:19<00:14,  5.02it/s]
+Model Responding: 100%|█████████▉| 41870/41940 [2:51:20<00:13,  5.05it/s]
+Model Responding: 100%|█████████▉| 41871/41940 [2:51:20<00:13,  5.10it/s]
+Model Responding: 100%|█████████▉| 41872/41940 [2:51:20<00:13,  5.07it/s]
+Model Responding: 100%|█████████▉| 41873/41940 [2:51:20<00:13,  5.08it/s]
+Model Responding: 100%|█████████▉| 41874/41940 [2:51:20<00:13,  4.95it/s]
+Model Responding: 100%|█████████▉| 41875/41940 [2:51:21<00:13,  4.99it/s]
+Model Responding: 100%|█████████▉| 41876/41940 [2:51:21<00:12,  5.01it/s]
+Model Responding: 100%|█████████▉| 41877/41940 [2:51:21<00:12,  5.07it/s]
+Model Responding: 100%|█████████▉| 41878/41940 [2:51:21<00:12,  5.10it/s]
+Model Responding: 100%|█████████▉| 41879/41940 [2:51:21<00:11,  5.13it/s]
+Model Responding: 100%|█████████▉| 41880/41940 [2:51:22<00:11,  5.14it/s]
+Model Responding: 100%|█████████▉| 41881/41940 [2:51:22<00:11,  5.10it/s]
+Model Responding: 100%|█████████▉| 41882/41940 [2:51:22<00:11,  5.10it/s]
+Model Responding: 100%|█████████▉| 41883/41940 [2:51:22<00:11,  5.07it/s]
+Model Responding: 100%|█████████▉| 41884/41940 [2:51:22<00:10,  5.10it/s]
+Model Responding: 100%|█████████▉| 41885/41940 [2:51:23<00:10,  5.07it/s]
+Model Responding: 100%|█████████▉| 41886/41940 [2:51:23<00:10,  5.05it/s]
+Model Responding: 100%|█████████▉| 41887/41940 [2:51:23<00:10,  5.06it/s]
+Model Responding: 100%|█████████▉| 41888/41940 [2:51:23<00:10,  5.00it/s]
+Model Responding: 100%|█████████▉| 41889/41940 [2:51:23<00:10,  5.00it/s]
+Model Responding: 100%|█████████▉| 41890/41940 [2:51:24<00:09,  5.05it/s]
+Model Responding: 100%|█████████▉| 41891/41940 [2:51:24<00:09,  5.08it/s]
+Model Responding: 100%|█████████▉| 41892/41940 [2:51:24<00:09,  5.11it/s]
+Model Responding: 100%|█████████▉| 41893/41940 [2:51:24<00:09,  5.11it/s]
+Model Responding: 100%|█████████▉| 41894/41940 [2:51:24<00:08,  5.13it/s]
+Model Responding: 100%|█████████▉| 41895/41940 [2:51:25<00:08,  5.12it/s]
+Model Responding: 100%|█████████▉| 41896/41940 [2:51:25<00:08,  5.10it/s]
+Model Responding: 100%|█████████▉| 41897/41940 [2:51:25<00:08,  5.09it/s]
+Model Responding: 100%|█████████▉| 41898/41940 [2:51:25<00:08,  5.02it/s]
+Model Responding: 100%|█████████▉| 41899/41940 [2:51:25<00:08,  5.04it/s]
+Model Responding: 100%|█████████▉| 41900/41940 [2:51:26<00:08,  4.98it/s]
+Model Responding: 100%|█████████▉| 41901/41940 [2:51:26<00:07,  5.03it/s]
+Model Responding: 100%|█████████▉| 41902/41940 [2:51:26<00:07,  5.05it/s]
+Model Responding: 100%|█████████▉| 41903/41940 [2:51:26<00:07,  5.10it/s]
+Model Responding: 100%|█████████▉| 41904/41940 [2:51:26<00:07,  5.09it/s]
+Model Responding: 100%|█████████▉| 41905/41940 [2:51:27<00:06,  5.12it/s]
+Model Responding: 100%|█████████▉| 41906/41940 [2:51:27<00:06,  5.11it/s]
+Model Responding: 100%|█████████▉| 41907/41940 [2:51:27<00:06,  5.12it/s]
+Model Responding: 100%|█████████▉| 41908/41940 [2:51:27<00:06,  5.13it/s]
+Model Responding: 100%|█████████▉| 41909/41940 [2:51:27<00:06,  5.14it/s]
+Model Responding: 100%|█████████▉| 41910/41940 [2:51:28<00:05,  5.14it/s]
+Model Responding: 100%|█████████▉| 41911/41940 [2:51:28<00:05,  5.15it/s]
+Model Responding: 100%|█████████▉| 41912/41940 [2:51:28<00:05,  5.07it/s]
+Model Responding: 100%|█████████▉| 41913/41940 [2:51:28<00:05,  5.10it/s]
+Model Responding: 100%|█████████▉| 41914/41940 [2:51:28<00:05,  5.10it/s]
+Model Responding: 100%|█████████▉| 41915/41940 [2:51:29<00:04,  5.11it/s]
+Model Responding: 100%|█████████▉| 41916/41940 [2:51:29<00:04,  5.10it/s]
+Model Responding: 100%|█████████▉| 41917/41940 [2:51:29<00:04,  5.06it/s]
+Model Responding: 100%|█████████▉| 41918/41940 [2:51:29<00:04,  5.08it/s]
+Model Responding: 100%|█████████▉| 41919/41940 [2:51:29<00:04,  5.10it/s]
+Model Responding: 100%|█████████▉| 41920/41940 [2:51:30<00:03,  5.11it/s]
+Model Responding: 100%|█████████▉| 41921/41940 [2:51:30<00:03,  5.06it/s]
+Model Responding: 100%|█████████▉| 41922/41940 [2:51:30<00:03,  5.09it/s]
+Model Responding: 100%|█████████▉| 41923/41940 [2:51:30<00:03,  5.07it/s]
+Model Responding: 100%|█████████▉| 41924/41940 [2:51:30<00:03,  4.94it/s]
+Model Responding: 100%|█████████▉| 41925/41940 [2:51:31<00:03,  4.94it/s]
+Model Responding: 100%|█████████▉| 41926/41940 [2:51:31<00:02,  4.82it/s]
+Model Responding: 100%|█████████▉| 41927/41940 [2:51:31<00:02,  4.91it/s]
+Model Responding: 100%|█████████▉| 41928/41940 [2:51:31<00:02,  4.98it/s]
+Model Responding: 100%|█████████▉| 41929/41940 [2:51:31<00:02,  4.95it/s]
+Model Responding: 100%|█████████▉| 41930/41940 [2:51:32<00:02,  4.97it/s]
+Model Responding: 100%|█████████▉| 41931/41940 [2:51:32<00:01,  5.05it/s]
+Model Responding: 100%|█████████▉| 41932/41940 [2:51:32<00:01,  5.07it/s]
+Model Responding: 100%|█████████▉| 41933/41940 [2:51:32<00:01,  5.11it/s]
+Model Responding: 100%|█████████▉| 41934/41940 [2:51:32<00:01,  5.08it/s]
+Model Responding: 100%|█████████▉| 41935/41940 [2:51:33<00:00,  5.10it/s]
+Model Responding: 100%|█████████▉| 41936/41940 [2:51:33<00:00,  5.15it/s]
+Model Responding: 100%|█████████▉| 41937/41940 [2:51:33<00:00,  5.12it/s]
+Model Responding: 100%|█████████▉| 41938/41940 [2:51:33<00:00,  5.14it/s]
+Model Responding: 100%|█████████▉| 41939/41940 [2:51:33<00:00,  5.15it/s]
+Model Responding: 100%|██████████| 41940/41940 [2:51:33<00:00,  5.15it/s]
+Model Responding: 100%|██████████| 41940/41940 [2:51:33<00:00,  4.07it/s]
+
+Postprocessing:   0%|          | 0/17990 [00:00<?, ?it/s]
+Postprocessing:   7%|▋         | 1208/17990 [00:00<00:01, 12075.23it/s]
+Postprocessing:  13%|█▎        | 2416/17990 [00:00<00:01, 12005.27it/s]
+Postprocessing:  20%|██        | 3644/17990 [00:00<00:01, 12130.23it/s]
+Postprocessing:  27%|██▋       | 4871/17990 [00:00<00:01, 12184.18it/s]
+Postprocessing:  34%|███▍      | 6090/17990 [00:00<00:00, 12057.12it/s]
+Postprocessing:  41%|████      | 7299/17990 [00:00<00:00, 12067.87it/s]
+Postprocessing:  47%|████▋     | 8506/17990 [00:00<00:00, 12027.46it/s]
+Postprocessing:  54%|█████▍    | 9726/17990 [00:00<00:00, 12080.40it/s]
+Postprocessing:  61%|██████    | 10947/17990 [00:00<00:00, 12119.68it/s]
+Postprocessing:  68%|██████▊   | 12160/17990 [00:01<00:00, 12018.13it/s]
+Postprocessing:  74%|███████▍  | 13363/17990 [00:01<00:00, 11939.58it/s]
+Postprocessing:  81%|████████  | 14573/17990 [00:01<00:00, 11985.29it/s]
+Postprocessing:  88%|████████▊ | 15772/17990 [00:01<00:00, 11791.89it/s]
+Postprocessing:  94%|█████████▍| 16988/17990 [00:01<00:00, 11900.65it/s]
+Postprocessing: 100%|██████████| 17990/17990 [00:01<00:00, 11987.89it/s]
+
+Postprocessing:   0%|          | 0/2017 [00:00<?, ?it/s]
+Postprocessing:  54%|█████▍    | 1092/2017 [00:00<00:00, 10914.68it/s]
+Postprocessing: 100%|██████████| 2017/2017 [00:00<00:00, 11156.56it/s]
+
+Postprocessing:   0%|          | 0/9000 [00:00<?, ?it/s]
+Postprocessing:  18%|█▊        | 1583/9000 [00:00<00:00, 15824.73it/s]
+Postprocessing:  35%|███▌      | 3166/9000 [00:00<00:00, 15719.08it/s]
+Postprocessing:  53%|█████▎    | 4758/9000 [00:00<00:00, 15810.45it/s]
+Postprocessing:  70%|███████   | 6340/9000 [00:00<00:00, 15785.06it/s]
+Postprocessing:  88%|████████▊ | 7919/9000 [00:00<00:00, 15570.24it/s]
+Postprocessing: 100%|██████████| 9000/9000 [00:00<00:00, 15683.27it/s]
+
+Postprocessing:   0%|          | 0/2374 [00:00<?, ?it/s]
+Postprocessing:  73%|███████▎  | 1732/2374 [00:00<00:00, 17319.98it/s]
+Postprocessing: 100%|██████████| 2374/2374 [00:00<00:00, 17356.34it/s]
+
+Postprocessing:   0%|          | 0/4329 [00:00<?, ?it/s]
+Postprocessing:   3%|▎         | 149/4329 [00:00<00:11, 363.37it/s]
+Postprocessing:  30%|███       | 1306/4329 [00:00<00:00, 3258.77it/s]
+Postprocessing:  58%|█████▊    | 2495/4329 [00:00<00:00, 5585.09it/s]
+Postprocessing:  85%|████████▌ | 3695/4329 [00:00<00:00, 7367.64it/s]
+Postprocessing: 100%|██████████| 4329/4329 [00:00<00:00, 5670.93it/s]
+
+Postprocessing:   0%|          | 0/4329 [00:00<?, ?it/s]
+Postprocessing:  27%|██▋       | 1173/4329 [00:00<00:00, 11729.28it/s]
+Postprocessing:  54%|█████▍    | 2346/4329 [00:00<00:00, 11489.61it/s]
+Postprocessing:  81%|████████  | 3516/4329 [00:00<00:00, 11582.15it/s]
+Postprocessing: 100%|██████████| 4329/4329 [00:00<00:00, 11623.83it/s]
+
+Postprocessing:   0%|          | 0/1901 [00:00<?, ?it/s]
+Postprocessing:  38%|███▊      | 730/1901 [00:00<00:00, 7293.12it/s]
+Postprocessing:  88%|████████▊ | 1667/1901 [00:00<00:00, 8506.20it/s]
+Postprocessing: 100%|██████████| 1901/1901 [00:00<00:00, 8192.39it/s]
+[32m2026-10-19 06:23:19[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mcode_reasoning: 65.00[0m
+[32m2026-10-19 06:23:19[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mnumerical_calculation: 47.50[0m
+[32m2026-10-19 06:23:19[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mtext_translation: 85.00[0m
+[32m2026-10-19 06:23:19[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mcommonsense_reasoning: 118.57[0m
+[32m2026-10-19 06:23:19[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1martwork: 123.75[0m
+[32m2026-10-19 06:23:19[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mcelebrity: 138.53[0m
+[32m2026-10-19 06:23:19[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mcount: 143.33[0m
+[32m2026-10-19 06:23:19[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mcolor: 170.00[0m
+[32m2026-10-19 06:23:19[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mposition: 138.33[0m
+[32m2026-10-19 06:23:19[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mOCR: 132.50[0m
+[32m2026-10-19 06:23:19[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mlandmark: 162.50[0m
+[32m2026-10-19 06:23:19[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mscene: 155.50[0m
+[32m2026-10-19 06:23:19[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mexistence: 190.00[0m
+[32m2026-10-19 06:23:19[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mposters: 133.67[0m
+[32m2026-10-19 06:23:19[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_aggregated[0m:[36m188[0m - [1mSaving results aggregated[0m
+[32m2026-10-19 06:23:22[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E4/freeze7b_s16/lmms/models__llava-1.5-7b-hf/20261019_033117_samples_blink_local.jsonl[0m
+[32m2026-10-19 06:23:27[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E4/freeze7b_s16/lmms/models__llava-1.5-7b-hf/20261019_033117_samples_mmbench_cn_local.jsonl[0m
+[32m2026-10-19 06:23:32[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E4/freeze7b_s16/lmms/models__llava-1.5-7b-hf/20261019_033117_samples_mmbench_en_local.jsonl[0m
+[32m2026-10-19 06:23:35[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E4/freeze7b_s16/lmms/models__llava-1.5-7b-hf/20261019_033117_samples_mme_local.jsonl[0m
+[32m2026-10-19 06:23:47[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E4/freeze7b_s16/lmms/models__llava-1.5-7b-hf/20261019_033117_samples_pope_local.jsonl[0m
+[32m2026-10-19 06:23:49[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E4/freeze7b_s16/lmms/models__llava-1.5-7b-hf/20261019_033117_samples_scienceqa_local.jsonl[0m
+[32m2026-10-19 06:24:12[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E4/freeze7b_s16/lmms/models__llava-1.5-7b-hf/20261019_033117_samples_seedbench_local.jsonl[0m
+dpvr_hf (pretrained=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/models/llava-1.5-7b-hf,checkpoint=config:/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E4/freeze7b_s16/method_config.json,use_cache=False,dtype=bfloat16), gen_kwargs: (), limit: None, num_fewshot: None, batch_size: 1
+|     Tasks      |Version|Filter|n-shot|       Metric       |   |  Value  |   |Stderr|
+|----------------|-------|------|-----:|--------------------|---|--------:|---|------|
+|blink_local     |Yaml   |none  |     0|accuracy            |↑  |   0.3924|±  |0.0112|
+|mmbench_cn_local|Yaml   |none  |     0|accuracy            |↑  |   0.7126|±  |0.0069|
+|mmbench_en_local|Yaml   |none  |     0|accuracy            |↑  |   0.7406|±  |0.0067|
+|mme_local       |Yaml   |none  |     0|mme_cognition_score |↑  | 316.0714|±  |   N/A|
+|mme_local       |Yaml   |none  |     0|mme_perception_score|↑  |1488.1195|±  |   N/A|
+|pope_local      |Yaml   |none  |     0|pope_accuracy       |↑  |   0.8537|±  |   N/A|
+|pope_local      |Yaml   |none  |     0|pope_f1_score       |↑  |   0.8389|±  |   N/A|
+|pope_local      |Yaml   |none  |     0|pope_precision      |↑  |   0.9333|±  |   N/A|
+|pope_local      |Yaml   |none  |     0|pope_recall         |↑  |   0.7618|±  |   N/A|
+|pope_local      |Yaml   |none  |     0|pope_yes_ratio      |↑  |   0.5000|±  |   N/A|
+|scienceqa_local |Yaml   |none  |     0|mc_accuracy         |↑  |   0.6420|±  |0.0107|
+|seedbench_local |Yaml   |none  |     0|seed_all            |↑  |   0.6017|±  |   N/A|
+|seedbench_local |Yaml   |none  |     0|seed_image          |↑  |   0.6531|±  |   N/A|
+|seedbench_local |Yaml   |none  |     0|seed_video          |↑  |   0.4070|±  |   N/A|
+
+{
+  "blink_local": {
+    "accuracy,none": 0.3924250394529195,
+    "accuracy_stderr,none": 0.011202152703440727
+  },
+  "mmbench_cn_local": {
+    "accuracy,none": 0.7126357126357127,
+    "accuracy_stderr,none": 0.006878703064415933
+  },
+  "mmbench_en_local": {
+    "accuracy,none": 0.7405867405867406,
+    "accuracy_stderr,none": 0.006662549141042551
+  },
+  "mme_local": {
+    "mme_cognition_score,none": 316.07142857142856,
+    "mme_perception_score,none": 1488.1195478191278
+  },
+  "pope_local": {
+    "pope_accuracy,none": 0.8536666666666667,
+    "pope_precision,none": 0.9332970323985843,
+    "pope_recall,none": 0.7617777777777778,
+    "pope_f1_score,none": 0.8388596598556222,
+    "pope_yes_ratio,none": 0.5
+  },
+  "scienceqa_local": {
+    "mc_accuracy,none": 0.6420426375805652,
+    "mc_accuracy_stderr,none": 0.010677075676168189
+  },
+  "seedbench_local": {
+    "seed_image,none": 0.6530597906274151,
+    "seed_all,none": 0.6016675931072818,
+    "seed_video,none": 0.4069736491881821
+  }
+}
