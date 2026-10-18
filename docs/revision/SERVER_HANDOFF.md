@@ -1,13 +1,13 @@
 # 服务器端执行手册（给服务器上的 Claude Code）
 
-你在 GPU 服务器上负责 DPVR 大修的环境搭建与实验运行。代码改动由云端 Claude 以 PR 形式提交，作者合入 main 后你 `git pull` 使用。动手前先读 [PLAN.md](PLAN.md) 和 [REVIEWS.md](REVIEWS.md)。
+你在 GPU 服务器上负责 DPVR 大修的环境搭建、实验运行和问题修复。2026-10-17 起你有自主决策权，代码修复在 `server-fixes` 分支上做并直接用它跑实验，规则以根目录 [AGENTS.md](../../AGENTS.md) 为准；本手册里和 AGENTS.md 冲突的旧规则作废。动手前先读 [PLAN.md](PLAN.md) 和 [REVIEWS.md](REVIEWS.md)。
 
 ## 0. 基本规则
 
-- **不要改模型代码或训练代码。** 发现 bug 时在 RESULTS.md 的"问题"一节写清现象和复现命令，然后停下来等。你只直接提交 `docs/revision/RESULTS.md` 和 `results/revision/**` 下的小文件（json / md / csv / 日志摘要），大文件（checkpoint、完整日志）留在服务器上。
+- **代码修复按 AGENTS.md"代码修复"一节做**（`server-fixes` 分支、跑测试、开 PR、在 RESULTS.md 记一笔），不停下来等。main 上你只直接提交 `docs/revision/RESULTS.md` 和 `results/revision/**` 下的小文件（json / md / csv / 日志摘要），大文件（checkpoint、完整日志）留在服务器上。
 - **不覆盖旧结果，不删除旧 checkpoint。** 新结果写到 `results/revision/<实验编号>/<配置名>/`。
 - **评测口径不变**：精度一律用 lmms-eval 0.5.0 的现有 handler，`use_cache=False`（与论文已有数字对齐）；新基线必须在同一套评测代码下重测，不从原论文抄数。
-- **异常就停**：出现 loss NaN、精度偏离预期 > 2pp、显存或耗时远超估计时，先停止，在 RESULTS.md 记录并报告，不要自行改超参数。
+- **异常先自己排查**：loss NaN、显存或耗时远超估计时停这一项，按 AGENTS.md"异常处理"排查修复或跳过，不改超参数。精度以本机新基线为准，和论文的差异只记录。
 - 长任务用 tmux 或 nohup，日志写进结果目录；不占用别人正在用的 GPU；`CUDA_VISIBLE_DEVICES` 每次显式指定。
 - 每条结果都带 run meta：git commit、config、seed、GPU 型号、软件版本（`src/dpvr/utils/run_meta.py`）。
 
@@ -93,11 +93,11 @@ python scripts/revision/run_queue.py jobs/E0.yaml --gpus 0-7 --set prov_ckpt=<�
 - [ ] `check_env.py` 无 ✗
 - [ ] `provenance_7b`：起点结论写入 RESULTS.md（13B 配置显式关掉了替换，起点就是 llava-1.5-13b-hf，不用核查）
 - [ ] `assets_verify`：八项评测集样本数与上表一致；不一致的写进 RESULTS.md "问题"
-- [ ] `reeval_vanilla7b`：八项与论文 vanilla LLaVA-1.5-7B 行差距 < 0.3pp（SEED 只和完整集的行比）。对不上说明评测链路不同，先停
+- [x] `reeval_vanilla7b`：八项跑通即可。原要求与论文 vanilla 行差 < 0.3pp，2026-10-17 作者决定取消：论文旧结果未保存，改以本机重测的数字（commit `bcfe97a`）为新基线，所有表格行都在本机重测
 - [ ] `latency_vanilla7b` / `latency_lf7b`：B=1、n_img=576、n_txt=128、bf16、10 warmup + 100 次，记录 GPU 型号
 - [ ] `smoke_train_lf7b`：50 步 loss 正常下降，显存与论文相近
 
-vanilla 对不上时先停，在 RESULTS.md "问题"里贴 `summary.json` 和 `lmms/` 里的样本日志，等云端排查。
+（旧规则"vanilla 对不上时先停"已于 2026-10-17 取消，见上一条。）
 
 ### 1.6 评测入口
 
@@ -177,7 +177,7 @@ C0–C10 已全部合入 main（2026-10-11），下列任务文件都可以直�
 
 E2 / E8（`jobs/E2.yaml`、`jobs/E8.yaml`，入口 `scripts/revision/saturation.py`）：
 - 每个模型 500 个 LLaVA-665k 样本（seed 0），单卡 bf16、eager attention；输出 `curves.npz`（逐样本逐层）、`summary.json`（逐层中位数与 IQR、各指标的转折层）、`saturation.pdf`；`compare` 任务把各模型叠在一张图上（横轴 layer/L）并写转折层表 `compare.md`。
-- 先跑 `llava15_7b`，核对与论文 Figure 2 一致（图像余弦 ≥0.92、L18 后注意力质量约 0.04、图像 KL 50% 转折在 L22），不一致先停下排查，再跑其他模型。
+- 先跑 `llava15_7b`，核对与论文 Figure 2 一致（图像余弦 ≥0.92、L18 后注意力质量约 0.04、图像 KL 50% 转折在 L22），不一致时自己排查（例如核对层号、图像 token 范围），把差异和结论记进 RESULTS.md，然后接着跑其他模型。
 - LLaVA-1.5 以外的模型要先下载 HF 格式权重到 `${MODEL_ROOT}/<目录名>`（目录名见任务文件；第二骨干已定为 Qwen2.5-VL-7B-Instruct，即 `qwen25vl_7b` 一项）。Qwen2.5-VL 的图像 token 数用 `--max_pixels` 限制在约 640。
 - E8 在 projector 之后把 24×24 图像特征平均池化成 12×24 / 12×12 / 6×6，只支持 LLaVA-1.5 结构。
 
