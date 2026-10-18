@@ -6,7 +6,7 @@
 
 | 项 | 值 |
 | --- | --- |
-| GPU 型号 × 数量 | **8 × NVIDIA H100 80GB HBM3**（81559 MiB/卡，700 W，sm_90）。⚠️ 申请的是 `worker.gcoresh800-80g = 8`，拿到的既不是文档写的 H800、也不是中途出现过的 H20-3e，见"问题" §1 |
+| GPU 型号 × 数量 | **2026-10-18 起：8 × NVIDIA H20-3e**（143771 MiB/卡，500 W，sm_90），本地容器 `psxob0gxrs643dy3-worker-0`，8 卡全空闲，不经过 hope 队列，直接在容器里跑。<br>**2026-10-16 前**：8 × NVIDIA H100 80GB HBM3（81559 MiB/卡，700 W，sm_90），申请的是 `worker.gcoresh800-80g = 8`，拿到的既不是文档写的 H800、也不是中途出现过的 H20-3e，见"问题" §1。**E0 的延迟数字是在 H100 上测的，引用时按 H100 标注；从 E1 起的延迟表在 H20-3e 上重测。** |
 | 驱动 / CUDA | 驱动 550.127.08；nvidia-smi 报 CUDA 12.4；torch 自带 CUDA 12.8（`torch==2.9.0+cu128`） |
 | 容器镜像 | `.../aipnlp_base_pytorch2.3.1_cuda12.4.0_python3.9_1_18_glibc_2.28_2532322d`（CentOS 7 壳 + 换过的 glibc 2.28）。原镜像 glibc 2.17 跑不动本环境，见"问题" §6 |
 | 环境（pip freeze 路径） | `results/revision/E0/pip-freeze.txt`（175 包）。关键版本：`torch==2.9.0+cu128`、`torchvision==0.24.0+cu128`、`transformers==4.57.1`、`lmms_eval==0.5.0`、`accelerate==1.11.0`、`bitsandbytes==0.49.2`、`numpy==1.26.4`、`qwen-vl-utils==0.0.14` |
@@ -47,6 +47,13 @@
 > MMB-CN .7138 / SQA .6406 / SEED .6540 / BLINK .3898，见上表）即**新的 vanilla LLaVA-1.5-7B 基线**，
 > **E0 视为通过**，进入阶段 2。与论文的差异只记录、不阻塞（分析见"问题" §11）。
 > 大修所有表格的行都必须用本机、本仓库的评测链路重测，不从论文抄数字。
+
+> **进行中（2026-10-18）**：自主连续运行第 3 步开始。本机 8×H20-3e 全空闲，直接在容器内跑，
+> 不再提 AFO 作业。按推荐顺序先跑 **E1 + E5**（延迟/生成表，只占 GPU 0，其余卡空着）。
+> 环境沿用 `worker.sh` 的导出（conda 前缀环境、`TMPDIR=/workdir/dpvr_tmp`、HF 缓存上盘、
+> shim 里的 `device_map` 补丁），代码用 `server-fixes` 分支（worktree `../dpvr-fixes`）。
+> E12 的 `--set hsf=` 指向 `${CKPT_ROOT}/legacy`——中转来的 checkpoint 实际落在 `legacy/` 而不是
+> 文档假定的 `hsf/`（与 `worker.sh` 里 E0 起点核查的处理一致）。
 
 ## 问题
 
