@@ -1,0 +1,44 @@
+
+===== 2026-10-18T17:39:35+00:00 start 13b_g6x6 on GPUs [1] =====
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:01<00:05,  1.05s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:02<00:03,  1.00it/s]Loading checkpoint shards:  50%|█████     | 3/6 [00:02<00:02,  1.05it/s]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:03<00:01,  1.11it/s]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:04<00:00,  1.16it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:05<00:00,  1.33it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:05<00:00,  1.18it/s]
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+[run] 50/500  6s
+[run] 100/500  11s
+[run] 150/500  16s
+[run] 200/500  22s
+[run] 250/500  27s
+[run] 300/500  32s
+[run] 350/500  37s
+[run] 400/500  42s
+[run] 450/500  47s
+[run] 500/500  52s
+{
+  "kl_img": {
+    "median_curve": 37,
+    "per_sample_median": 37.0,
+    "per_sample_iqr": [
+      36.0,
+      38.0
+    ]
+  },
+  "kl_txt": {
+    "median_curve": 27,
+    "per_sample_median": 27.0,
+    "per_sample_iqr": [
+      25.0,
+      30.0
+    ]
+  },
+  "resid_img": {
+    "median_curve": 38
+  },
+  "resid_txt": {
+    "median_curve": 38
+  },
+  "cos_img": {
+    "tau": 0.95,
+    "plateau_from": null
+  }
+}
+[plot] /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E8/13b_g6x6/saturation.pdf

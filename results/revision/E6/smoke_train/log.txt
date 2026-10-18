@@ -1,0 +1,33 @@
+
+===== 2026-10-18T10:14:02+00:00 start smoke_train on GPUs [5] =====
+The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. Note that this behavior will be extended to all models in a future release.
+所有指定的模块已尝试导入。
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 5/5 [00:00<00:00, 73.39it/s]
+trainable params: 233,057,792 | all params: 8,525,224,448 | trainable%: 2.733744
+[load_raw_dataset] Filtered 34 text-only entries (631 remaining).
+  0%|          | 0/20 [00:00<?, ?it/s]/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/install/conda_env_dpvr/lib/python3.10/site-packages/torch/utils/checkpoint.py:85: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn(
+  5%|▌         | 1/20 [00:01<00:24,  1.31s/it]                                              {'loss': 1.0217, 'grad_norm': 0.162109375, 'learning_rate': 0.0, 'epoch': 0.0}
+  5%|▌         | 1/20 [00:01<00:24,  1.31s/it] 10%|█         | 2/20 [00:01<00:14,  1.27it/s]                                              {'loss': 1.7586, 'grad_norm': 1.1953125, 'learning_rate': 0.0001, 'epoch': 0.0}
+ 10%|█         | 2/20 [00:01<00:14,  1.27it/s] 15%|█▌        | 3/20 [00:02<00:10,  1.67it/s]                                              {'loss': 0.012, 'grad_norm': 0.033935546875, 'learning_rate': 9.931806517013612e-05, 'epoch': 0.0}
+ 15%|█▌        | 3/20 [00:02<00:10,  1.67it/s] 20%|██        | 4/20 [00:02<00:07,  2.04it/s]                                              {'loss': 1.8965, 'grad_norm': 0.328125, 'learning_rate': 9.729086208503174e-05, 'epoch': 0.01}
+ 20%|██        | 4/20 [00:02<00:07,  2.04it/s] 25%|██▌       | 5/20 [00:02<00:06,  2.25it/s]                                              {'loss': 3.4338, 'grad_norm': 1.1796875, 'learning_rate': 9.397368756032445e-05, 'epoch': 0.01}
+ 25%|██▌       | 5/20 [00:02<00:06,  2.25it/s] 30%|███       | 6/20 [00:03<00:05,  2.38it/s]                                              {'loss': 2.358, 'grad_norm': 0.93359375, 'learning_rate': 8.945702546981969e-05, 'epoch': 0.01}
+ 30%|███       | 6/20 [00:03<00:05,  2.38it/s] 35%|███▌      | 7/20 [00:03<00:05,  2.53it/s]                                              {'loss': 1.467, 'grad_norm': 0.1826171875, 'learning_rate': 8.386407858128706e-05, 'epoch': 0.01}
+ 35%|███▌      | 7/20 [00:03<00:05,  2.53it/s] 40%|████      | 8/20 [00:03<00:04,  2.56it/s]                                              {'loss': 2.7595, 'grad_norm': 1.265625, 'learning_rate': 7.734740790612136e-05, 'epoch': 0.01}
+ 40%|████      | 8/20 [00:03<00:04,  2.56it/s] 45%|████▌     | 9/20 [00:04<00:03,  2.76it/s]                                              {'loss': 5.2229, 'grad_norm': 0.51953125, 'learning_rate': 7.008477123264848e-05, 'epoch': 0.01}
+ 45%|████▌     | 9/20 [00:04<00:03,  2.76it/s] 50%|█████     | 10/20 [00:04<00:03,  2.86it/s]                                               {'loss': 2.8726, 'grad_norm': 1.4453125, 'learning_rate': 6.227427435703997e-05, 'epoch': 0.02}
+ 50%|█████     | 10/20 [00:04<00:03,  2.86it/s] 55%|█████▌    | 11/20 [00:04<00:03,  2.97it/s]                                               {'loss': 1.2138, 'grad_norm': 1.0234375, 'learning_rate': 5.4128967273616625e-05, 'epoch': 0.02}
+ 55%|█████▌    | 11/20 [00:04<00:03,  2.97it/s] 60%|██████    | 12/20 [00:05<00:02,  2.87it/s]                                               {'loss': 0.9875, 'grad_norm': 0.25390625, 'learning_rate': 4.5871032726383386e-05, 'epoch': 0.02}
+ 60%|██████    | 12/20 [00:05<00:02,  2.87it/s] 65%|██████▌   | 13/20 [00:05<00:02,  2.72it/s]                                               {'loss': 0.0179, 'grad_norm': 0.0208740234375, 'learning_rate': 3.772572564296005e-05, 'epoch': 0.02}
+ 65%|██████▌   | 13/20 [00:05<00:02,  2.72it/s] 70%|███████   | 14/20 [00:06<00:02,  2.60it/s]                                               {'loss': 1.3958, 'grad_norm': 0.1279296875, 'learning_rate': 2.991522876735154e-05, 'epoch': 0.02}
+ 70%|███████   | 14/20 [00:06<00:02,  2.60it/s] 75%|███████▌  | 15/20 [00:06<00:01,  2.69it/s]                                               {'loss': 2.0904, 'grad_norm': 0.35546875, 'learning_rate': 2.2652592093878666e-05, 'epoch': 0.02}
+ 75%|███████▌  | 15/20 [00:06<00:01,  2.69it/s] 80%|████████  | 16/20 [00:06<00:01,  2.77it/s]                                               {'loss': 1.578, 'grad_norm': 0.23828125, 'learning_rate': 1.6135921418712956e-05, 'epoch': 0.03}
+ 80%|████████  | 16/20 [00:06<00:01,  2.77it/s] 85%|████████▌ | 17/20 [00:07<00:01,  2.70it/s]                                               {'loss': 2.2999, 'grad_norm': 0.291015625, 'learning_rate': 1.0542974530180327e-05, 'epoch': 0.03}
+ 85%|████████▌ | 17/20 [00:07<00:01,  2.70it/s] 90%|█████████ | 18/20 [00:07<00:00,  2.66it/s]                                               {'loss': 1.8712, 'grad_norm': 0.228515625, 'learning_rate': 6.026312439675552e-06, 'epoch': 0.03}
+ 90%|█████████ | 18/20 [00:07<00:00,  2.66it/s] 95%|█████████▌| 19/20 [00:07<00:00,  2.69it/s]                                               {'loss': 0.0032, 'grad_norm': 0.007080078125, 'learning_rate': 2.7091379149682685e-06, 'epoch': 0.03}
+ 95%|█████████▌| 19/20 [00:07<00:00,  2.69it/s]100%|██████████| 20/20 [00:08<00:00,  2.79it/s]                                               {'loss': 2.5224, 'grad_norm': 2.421875, 'learning_rate': 6.819348298638839e-07, 'epoch': 0.03}
+100%|██████████| 20/20 [00:08<00:00,  2.79it/s]                                               {'train_runtime': 8.186, 'train_samples_per_second': 2.443, 'train_steps_per_second': 2.443, 'train_loss': 1.8391346045886166, 'epoch': 0.03}
+100%|██████████| 20/20 [00:08<00:00,  2.79it/s]100%|██████████| 20/20 [00:08<00:00,  2.44it/s]
+model saved to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision/E6/smoke_s22

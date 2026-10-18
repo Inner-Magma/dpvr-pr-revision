@@ -1,0 +1,112 @@
+
+===== 2026-10-18T10:19:38+00:00 start smoke_eval on GPUs [5] =====
+/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/install/conda_env_dpvr/bin/python -m lmms_eval --model dpvr_qwen25vl --model_args pretrained=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/models/Qwen2.5-VL-7B-Instruct,checkpoint=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision/E6/smoke_s22,use_cache=False --tasks pope_local,scienceqa_local --include_path /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E6/smoke_eval/tasks --batch_size 1 --output_path /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E6/smoke_eval/lmms --log_samples --limit 20
+[32m2026-10-18 18:20:00[0m | [1mINFO    [0m | [36m__main__[0m:[36mcli_evaluate[0m:[36m311[0m - [1mVerbosity set to INFO[0m
+[32m2026-10-18 18:20:01[0m | [1mINFO    [0m | [36m__main__[0m:[36mcli_evaluate_single[0m:[36m390[0m - [1mIncluding path: /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E6/smoke_eval/tasks[0m
+[32m2026-10-18 18:20:06[0m | [1mINFO    [0m | [36m__main__[0m:[36mcli_evaluate_single[0m:[36m400[0m - [1mEvaluation tracker args: {'output_path': '/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E6/smoke_eval/lmms', 'token': 'hf_RLyyREDACTED'}[0m
+[32m2026-10-18 18:20:06[0m | [1mINFO    [0m | [36m__main__[0m:[36mcli_evaluate_single[0m:[36m424[0m - [1mIncluding path: /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E6/smoke_eval/tasks[0m
+[32m2026-10-18 18:20:06[0m | [33m[1mWARNING [0m | [36m__main__[0m:[36mcli_evaluate_single[0m:[36m430[0m - [33m[1m --limit SHOULD ONLY BE USED FOR TESTING.REAL METRICS SHOULD NOT BE COMPUTED USING LIMIT.[0m
+[32m2026-10-18 18:20:06[0m | [1mINFO    [0m | [36m__main__[0m:[36mcli_evaluate_single[0m:[36m480[0m - [1mSelected Tasks: ['pope_local', 'scienceqa_local'][0m
+[32m2026-10-18 18:20:06[0m | [1mINFO    [0m | [36mlmms_eval.evaluator[0m:[36msimple_evaluate[0m:[36m161[0m - [1mSetting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234[0m
+`torch_dtype` is deprecated! Use `dtype` instead!
+
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]
+Loading checkpoint shards:  20%|██        | 1/5 [00:00<00:03,  1.26it/s]
+Loading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.35it/s]
+Loading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.40it/s]
+Loading checkpoint shards:  80%|████████  | 4/5 [00:02<00:00,  1.44it/s]
+Loading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.91it/s]
+Loading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.63it/s]
+The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. Note that this behavior will be extended to all models in a future release.
+所有指定的模块已尝试导入。
+
+Loading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]
+Loading checkpoint shards: 100%|██████████| 5/5 [00:00<00:00, 78.38it/s]
+[32m2026-10-18 18:20:26[0m | [1mINFO    [0m | [36mdpvr.lmms_plugin.models.dpvr_qwen25vl[0m:[36m__init__[0m:[36m41[0m - [1m[dpvr_qwen25vl] loaded /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision/E6/smoke_s22: method=token_diversion_x3_fusion_qwen25vl tensors=741 missing=0 unexpected=0[0m
+[32m2026-10-18 18:20:35[0m | [1mINFO    [0m | [36mlmms_eval.evaluator[0m:[36mevaluate[0m:[36m402[0m - [1mRunning on rank 0 (local rank 0)[0m
+[32m2026-10-18 18:20:35[0m | [1mINFO    [0m | [36mlmms_eval.evaluator_utils[0m:[36mfrom_taskdict[0m:[36m91[0m - [1mNo metadata found in task config for scienceqa_local, using default n_shot=0[0m
+[32m2026-10-18 18:20:35[0m | [1mINFO    [0m | [36mlmms_eval.evaluator_utils[0m:[36mfrom_taskdict[0m:[36m91[0m - [1mNo metadata found in task config for pope_local, using default n_shot=0[0m
+[32m2026-10-18 18:20:35[0m | [1mINFO    [0m | [36mlmms_eval.api.task[0m:[36mbuild_all_requests[0m:[36m427[0m - [1mBuilding contexts for scienceqa_local on rank 0...[0m
+
+  0%|          | 0/20 [00:00<?, ?it/s]
+100%|██████████| 20/20 [00:00<00:00, 12620.14it/s]
+[32m2026-10-18 18:20:35[0m | [1mINFO    [0m | [36mlmms_eval.api.task[0m:[36mbuild_all_requests[0m:[36m427[0m - [1mBuilding contexts for pope_local on rank 0...[0m
+
+  0%|          | 0/20 [00:00<?, ?it/s]
+100%|██████████| 20/20 [00:00<00:00, 23418.78it/s]
+[32m2026-10-18 18:20:35[0m | [1mINFO    [0m | [36mlmms_eval.evaluator[0m:[36mevaluate[0m:[36m495[0m - [1mRunning generate_until requests[0m
+
+Model Responding:   0%|          | 0/40 [00:00<?, ?it/s]
+Model Responding:   2%|▎         | 1/40 [00:01<00:51,  1.31s/it]
+Model Responding:   5%|▌         | 2/40 [00:01<00:31,  1.20it/s]
+Model Responding:   8%|▊         | 3/40 [00:02<00:25,  1.47it/s]
+Model Responding:  10%|█         | 4/40 [00:02<00:21,  1.64it/s]
+Model Responding:  12%|█▎        | 5/40 [00:03<00:19,  1.80it/s]
+Model Responding:  15%|█▌        | 6/40 [00:03<00:18,  1.86it/s]
+Model Responding:  18%|█▊        | 7/40 [00:04<00:18,  1.76it/s]
+Model Responding:  20%|██        | 8/40 [00:04<00:17,  1.78it/s]
+Model Responding:  22%|██▎       | 9/40 [00:05<00:17,  1.81it/s]
+Model Responding:  25%|██▌       | 10/40 [00:05<00:15,  1.99it/s]
+Model Responding:  28%|██▊       | 11/40 [00:06<00:13,  2.14it/s]
+Model Responding:  30%|███       | 12/40 [00:06<00:12,  2.26it/s]
+Model Responding:  32%|███▎      | 13/40 [00:07<00:12,  2.23it/s]
+Model Responding:  35%|███▌      | 14/40 [00:07<00:11,  2.20it/s]
+Model Responding:  38%|███▊      | 15/40 [00:08<00:11,  2.19it/s]
+Model Responding:  40%|████      | 16/40 [00:08<00:10,  2.22it/s]
+Model Responding:  42%|████▎     | 17/40 [00:08<00:10,  2.17it/s]
+Model Responding:  45%|████▌     | 18/40 [00:09<00:09,  2.21it/s]
+Model Responding:  48%|████▊     | 19/40 [00:09<00:09,  2.25it/s]
+Model Responding:  50%|█████     | 20/40 [00:10<00:08,  2.36it/s]
+Model Responding:  52%|█████▎    | 21/40 [00:10<00:10,  1.87it/s]
+Model Responding:  55%|█████▌    | 22/40 [00:11<00:09,  1.86it/s]
+Model Responding:  57%|█████▊    | 23/40 [00:12<00:09,  1.86it/s]
+Model Responding:  60%|██████    | 24/40 [00:12<00:08,  1.97it/s]
+Model Responding:  62%|██████▎   | 25/40 [00:13<00:07,  1.97it/s]
+Model Responding:  65%|██████▌   | 26/40 [00:13<00:07,  1.99it/s]
+Model Responding:  68%|██████▊   | 27/40 [00:13<00:06,  2.09it/s]
+Model Responding:  70%|███████   | 28/40 [00:14<00:05,  2.10it/s]
+Model Responding:  72%|███████▎  | 29/40 [00:14<00:05,  2.13it/s]
+Model Responding:  75%|███████▌  | 30/40 [00:15<00:04,  2.18it/s]
+Model Responding:  78%|███████▊  | 31/40 [00:15<00:03,  2.29it/s]
+Model Responding:  80%|████████  | 32/40 [00:16<00:03,  2.28it/s]
+Model Responding:  82%|████████▎ | 33/40 [00:16<00:03,  2.26it/s]
+Model Responding:  85%|████████▌ | 34/40 [00:16<00:02,  2.29it/s]
+Model Responding:  88%|████████▊ | 35/40 [00:17<00:02,  2.21it/s]
+Model Responding:  90%|█████████ | 36/40 [00:17<00:01,  2.19it/s]
+Model Responding:  92%|█████████▎| 37/40 [00:18<00:01,  2.11it/s]
+Model Responding:  95%|█████████▌| 38/40 [00:18<00:00,  2.06it/s]
+Model Responding:  98%|█████████▊| 39/40 [00:19<00:00,  2.08it/s]
+Model Responding: 100%|██████████| 40/40 [00:19<00:00,  2.02it/s]
+Model Responding: 100%|██████████| 40/40 [00:19<00:00,  2.00it/s]
+
+Postprocessing:   0%|          | 0/20 [00:00<?, ?it/s]
+Postprocessing: 100%|██████████| 20/20 [00:00<00:00, 8952.62it/s]
+
+Postprocessing:   0%|          | 0/20 [00:00<?, ?it/s]
+Postprocessing: 100%|██████████| 20/20 [00:00<00:00, 13976.35it/s]
+[32m2026-10-18 18:20:55[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_aggregated[0m:[36m188[0m - [1mSaving results aggregated[0m
+[32m2026-10-18 18:20:55[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E6/smoke_eval/lmms/models__Qwen2.5-VL-7B-Instruct/20261018_182006_samples_pope_local.jsonl[0m
+[32m2026-10-18 18:20:55[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E6/smoke_eval/lmms/models__Qwen2.5-VL-7B-Instruct/20261018_182006_samples_scienceqa_local.jsonl[0m
+dpvr_qwen25vl (pretrained=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/models/Qwen2.5-VL-7B-Instruct,checkpoint=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision/E6/smoke_s22,use_cache=False), gen_kwargs: (), limit: 20.0, num_fewshot: None, batch_size: 1
+|     Tasks     |Version|Filter|n-shot|    Metric    |   |Value|   |Stderr|
+|---------------|-------|------|-----:|--------------|---|----:|---|------|
+|pope_local     |Yaml   |none  |     0|pope_accuracy |↑  | 0.80|±  |   N/A|
+|pope_local     |Yaml   |none  |     0|pope_f1_score |↑  | 0.80|±  |   N/A|
+|pope_local     |Yaml   |none  |     0|pope_precision|↑  | 0.80|±  |   N/A|
+|pope_local     |Yaml   |none  |     0|pope_recall   |↑  | 0.80|±  |   N/A|
+|pope_local     |Yaml   |none  |     0|pope_yes_ratio|↑  | 0.50|±  |   N/A|
+|scienceqa_local|Yaml   |none  |     0|mc_accuracy   |↑  | 0.85|±  |0.0819|
+
+{
+  "pope_local": {
+    "pope_accuracy,none": 0.8,
+    "pope_precision,none": 0.8,
+    "pope_recall,none": 0.8,
+    "pope_f1_score,none": 0.8000000000000002,
+    "pope_yes_ratio,none": 0.5
+  },
+  "scienceqa_local": {
+    "mc_accuracy,none": 0.85,
+    "mc_accuracy_stderr,none": 0.0819178021909125
+  }
+}

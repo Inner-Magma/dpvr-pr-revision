@@ -1,0 +1,14 @@
+{
+  "state": "done",
+  "started": "2026-10-18T17:35:05+00:00",
+  "gpus": [
+    0
+  ],
+  "cmd": "python scripts/revision/saturation.py --model llava-1.5-7b-hf --image_grid 6x6 --n_samples 500 --out /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E8/7b_g6x6",
+  "host": "psxob0gxrs643dy3-worker-0",
+  "git_sha": "97a32d6",
+  "pid": 3378733,
+  "returncode": 0,
+  "finished": "2026-10-18T17:36:35+00:00",
+  "duration_s": 89.9
+}

@@ -1,0 +1,12 @@
+{
+  "state": "done",
+  "started": "2026-10-18T17:41:15+00:00",
+  "gpus": [],
+  "cmd": "python scripts/revision/compare_saturation.py \"576=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E8/compare_13b/../13b_g24x24\" \"288=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E8/compare_13b/../13b_g12x24\" \"144=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E8/compare_13b/../13b_g12x12\" \"36=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E8/compare_13b/../13b_g6x6\" --out /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E8/compare_13b/compare",
+  "host": "psxob0gxrs643dy3-worker-0",
+  "git_sha": "97a32d6",
+  "pid": 3384566,
+  "returncode": 0,
+  "finished": "2026-10-18T17:41:25+00:00",
+  "duration_s": 10.0
+}

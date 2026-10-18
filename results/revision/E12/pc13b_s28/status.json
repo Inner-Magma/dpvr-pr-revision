@@ -1,0 +1,14 @@
+{
+  "state": "done",
+  "started": "2026-10-18T09:25:35+00:00",
+  "gpus": [
+    1
+  ],
+  "cmd": "ck=$(python scripts/revision/find_ckpt.py /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/legacy/token_diversion/llava665k_13b_split28_d1) && python scripts/revision/eval_lmms.py --checkpoint \"$ck\" --base_model llava-1.5-13b-hf --tasks eight --out /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E12/pc13b_s28",
+  "host": "psxob0gxrs643dy3-worker-0",
+  "git_sha": "d53c945",
+  "pid": 2988212,
+  "returncode": 0,
+  "finished": "2026-10-18T14:33:10+00:00",
+  "duration_s": 18455.2
+}

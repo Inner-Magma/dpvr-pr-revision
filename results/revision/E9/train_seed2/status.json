@@ -1,0 +1,11 @@
+{
+  "state": "running",
+  "started": "2026-10-18T09:07:22+00:00",
+  "gpus": [
+    7
+  ],
+  "cmd": "python scripts/train.py --config configs/method/token_diversion_x3_fusion.yaml seed=2 training.output_subdir=revision/E9/lf7b_s18_seed2",
+  "host": "psxob0gxrs643dy3-worker-0",
+  "git_sha": "dc0ce0c",
+  "pid": 2963990
+}

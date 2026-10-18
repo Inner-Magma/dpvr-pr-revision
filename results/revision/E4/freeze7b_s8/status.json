@@ -1,0 +1,14 @@
+{
+  "state": "done",
+  "started": "2026-10-18T13:32:48+00:00",
+  "gpus": [
+    3
+  ],
+  "cmd": "python scripts/revision/eval_lmms.py --method_config configs/method/freeze_image.yaml --override method.split_layer=8 --tasks eight --out /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E4/freeze7b_s8",
+  "host": "psxob0gxrs643dy3-worker-0",
+  "git_sha": "97a32d6",
+  "pid": 3187621,
+  "returncode": 0,
+  "finished": "2026-10-18T16:36:43+00:00",
+  "duration_s": 11035.3
+}

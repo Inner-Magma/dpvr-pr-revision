@@ -1,0 +1,14 @@
+{
+  "state": "done",
+  "started": "2026-10-18T10:19:38+00:00",
+  "gpus": [
+    5
+  ],
+  "cmd": "python scripts/revision/eval_lmms.py --checkpoint ${CKPT_ROOT}/revision/E6/smoke_s22 --base_model Qwen2.5-VL-7B-Instruct --tasks pope,scienceqa --limit 20 --out /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E6/smoke_eval",
+  "host": "psxob0gxrs643dy3-worker-0",
+  "git_sha": "97a32d6",
+  "pid": 3032713,
+  "returncode": 0,
+  "finished": "2026-10-18T10:21:08+00:00",
+  "duration_s": 90.1
+}

@@ -1,0 +1,43 @@
+
+===== 2026-10-18T09:08:25+00:00 start lf13b_s24_cache_False on GPUs [1] =====
+/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/install/conda_env_dpvr/bin/python -m lmms_eval --model dpvr_hf --model_args pretrained=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/models/llava-1.5-13b-hf,checkpoint=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/legacy/hsf_lf_13b/llava665k_s24_d1,use_cache=False,dtype=bfloat16 --tasks pope_local,mme_local,mmbench_en_local,mmbench_cn_local,scienceqa_local,seedbench_local,blink_local --include_path /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E12/lf13b_s24_cache_False/tasks --batch_size 1 --output_path /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E12/lf13b_s24_cache_False/lmms --log_samples
+[32m2026-10-18 17:08:45[0m | [1mINFO    [0m | [36m__main__[0m:[36mcli_evaluate[0m:[36m311[0m - [1mVerbosity set to INFO[0m
+[32m2026-10-18 17:08:46[0m | [1mINFO    [0m | [36m__main__[0m:[36mcli_evaluate_single[0m:[36m390[0m - [1mIncluding path: /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E12/lf13b_s24_cache_False/tasks[0m
+[32m2026-10-18 17:08:50[0m | [1mINFO    [0m | [36m__main__[0m:[36mcli_evaluate_single[0m:[36m400[0m - [1mEvaluation tracker args: {'output_path': '/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E12/lf13b_s24_cache_False/lmms', 'token': 'hf_RLyyREDACTED'}[0m
+[32m2026-10-18 17:08:50[0m | [1mINFO    [0m | [36m__main__[0m:[36mcli_evaluate_single[0m:[36m424[0m - [1mIncluding path: /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E12/lf13b_s24_cache_False/tasks[0m
+[32m2026-10-18 17:08:50[0m | [1mINFO    [0m | [36m__main__[0m:[36mcli_evaluate_single[0m:[36m480[0m - [1mSelected Tasks: ['blink_local', 'mmbench_cn_local', 'mmbench_en_local', 'mme_local', 'pope_local', 'scienceqa_local', 'seedbench_local'][0m
+[32m2026-10-18 17:08:50[0m | [1mINFO    [0m | [36mlmms_eval.evaluator[0m:[36msimple_evaluate[0m:[36m161[0m - [1mSetting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234[0m
+`torch_dtype` is deprecated! Use `dtype` instead!
+
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]
+Loading checkpoint shards:  17%|█▋        | 1/6 [00:06<00:33,  6.67s/it]
+Loading checkpoint shards:  33%|███▎      | 2/6 [00:08<00:15,  3.98s/it]
+Loading checkpoint shards:  50%|█████     | 3/6 [00:10<00:09,  3.13s/it]
+Loading checkpoint shards:  67%|██████▋   | 4/6 [00:13<00:05,  2.77s/it]
+Loading checkpoint shards:  83%|████████▎ | 5/6 [00:15<00:02,  2.57s/it]
+Loading checkpoint shards: 100%|██████████| 6/6 [00:16<00:00,  1.95s/it]
+Loading checkpoint shards: 100%|██████████| 6/6 [00:16<00:00,  2.68s/it]
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+[32m2026-10-18 17:09:06[0m | [1mINFO    [0m | [36mlmms_eval.models.simple.llava_hf[0m:[36m__init__[0m:[36m134[0m - [1mUsing single device: cuda[0m
+所有指定的模块已尝试导入。
+Traceback (most recent call last):
+  File "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/install/conda_env_dpvr/lib/python3.10/site-packages/lmms_eval/__main__.py", line 349, in cli_evaluate
+    results, samples = cli_evaluate_single(args)
+  File "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/install/conda_env_dpvr/lib/python3.10/site-packages/lmms_eval/__main__.py", line 484, in cli_evaluate_single
+    results = evaluator.simple_evaluate(
+  File "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/install/conda_env_dpvr/lib/python3.10/site-packages/lmms_eval/utils.py", line 536, in _wrapper
+    return fn(*args, **kwargs)
+  File "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/install/conda_env_dpvr/lib/python3.10/site-packages/lmms_eval/evaluator.py", line 189, in simple_evaluate
+    lm = lmms_eval.models.get_model(model, force_simple).create_from_arg_string(
+  File "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/install/conda_env_dpvr/lib/python3.10/site-packages/lmms_eval/api/model.py", line 306, in create_from_arg_string
+    return cls(**args, **args2)
+  File "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/workspace/dpvr-fixes/src/dpvr/lmms_plugin/models/dpvr_hf.py", line 70, in __init__
+    model, report = load_trained(self.checkpoint)
+  File "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/workspace/dpvr-fixes/src/dpvr/models/checkpoint_io.py", line 79, in load_trained
+    cfg = read_training_config(checkpoint_dir, paths)
+  File "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/workspace/dpvr-fixes/src/dpvr/models/checkpoint_io.py", line 64, in read_training_config
+    raise FileNotFoundError(f"training_config.json not found in {checkpoint_dir}")
+FileNotFoundError: training_config.json not found in /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/legacy/hsf_lf_13b/llava665k_s24_d1
+[32m2026-10-18 17:09:15[0m | [31m[1mERROR   [0m | [36m__main__[0m:[36mcli_evaluate[0m:[36m371[0m - [31m[1mError during evaluation: training_config.json not found in /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/legacy/hsf_lf_13b/llava665k_s24_d1. Please set `--verbosity=DEBUG` to get more information.[0m
+{}
+lmms-eval finished but no *_results.json was found

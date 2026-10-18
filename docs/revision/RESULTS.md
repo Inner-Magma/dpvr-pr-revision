@@ -32,6 +32,11 @@
 
 | 日期 | 实验 | 配置 | 关键数字 | 结果路径 | commit |
 | --- | --- | --- | --- | --- | --- |
+| 2026-10-19 | **E12 中转 checkpoint 重测（5/6）** | hsf 中转来的 6 组 checkpoint，本机 lmms-eval 八项重测；代码 `d53c945`（checkpoint_io：`checkpoint-*/training_config.json` 查找 + `/nvme/lsy/...` 旧路径 rebase）、`97a32d6`（LoRA `logits_to_keep`） | 顺序 POPE / MME-P / MME-C / MMB-EN / MMB-CN / SQA / SEED / BLINK：`lora7b` 84.71 / 1484.7 / 337.9 / 72.60 / 70.18 / 62.12 / 65.51 / 40.19；`pc7b_s18` 85.19 / 1474.5 / 338.9 / 73.97 / 71.70 / 63.31 / 65.38 / 40.72；`pc13b_s28` 85.43 / 1537.7 / 287.5 / 76.81 / 73.74 / 68.52 / 67.69 / 41.08；`lf13b_s24` **86.03 / 1536.7 / 270.0 / 76.62 / 73.74 / 68.57 / 67.55 / 40.77**。`lf13b_s24` 跑了两遍（`use_cache=True/False` 两种缓存变体，仅验证加载路径不影响数字）**八项逐位一致**，说明 checkpoint_io 修复后的数值可复现。`fullft7b` 仍在跑（POPE 段 ~75%）。对照本机 vanilla7b（85.36 / 1489.8 / 343.9 / 74.13 / 71.26 / 63.61 / 65.45 / 39.08）：**LF 13B 在 POPE、MME-P、MMB-EN、MMB-CN、SQA、SEED、BLINK 七项更高，MME-C 更低（270.0 vs 343.9）**；7B 各法基本持平，LoRA 略低。中转 checkpoint 的 7B token-diversion（pc7b）与本机训练口径可比 | `results/revision/E12/`；`revision_runs/E12/<job>/` | d53c945, 97a32d6 |
+| 2026-10-19 | **E8 图像 token 数 × 饱和层** | LLaVA-1.5-7B / 13B，图 token 576 / 288 / 144 / 36（网格 24×24、12×24、12×12、6×6 双线性缩放），每格 500 样本 seed 0，测 cos / resid / 图文 KL 转折层 | **7B**：kl_img 转折层随图 token **576→288→144→36 = 21→21→22→24**（/32）；kl_txt 恒 22，resid_img/txt 恒 30。**13B**：kl_img **32→34→35→37**（/40）；kl_txt 25→25→26→27，resid 恒 38。**结论：饱和层随图像 token 减少而单调后移**（7B +3 层 / 13B +5 层），与"融合阶段需要处理的图文混合序列越长、饱和越晚"一致；resid 类指标对 token 数不敏感（恒 94~95% 深度） | `results/revision/E8/compare_{7b,13b}/compare.md`（含 8 个单格 run） | 见本次提交 |
+| 2026-10-19 | **E6 Qwen2.5-VL-7B vanilla 基线** | `vanilla_eval`，lmms-eval 八项，代码 `97a32d6` | **87.44 / 1690.0 / 638.2 / 87.46 / 86.12 / 83.09 / 77.43 / 51.24**（POPE / MME-P / MME-C / MMB-EN / MMB-CN / SQA / SEED / BLINK），rc=0，27487.5 s。**这是 Qwen2.5-VL-7B 在本机链路上的新基线**，E6 训练后的对照行 | `revision_runs/E6/vanilla_eval/` | 97a32d6 |
+| 2026-10-19 | **E3_vtw（部分，3 行）** | vanilla 7B 与 VTW 图像 token 合并，`split=8/12`，其余同 LF 配置 | **vanilla7b** 85.36 / 1489.8 / 343.9 / 74.13 / 71.26 / 63.61 / 65.45 / 39.08（与 E0 逐位吻合，链路可复现）；**vtw7b_s12** 81.33 / 1436.2 / 313.9 / 73.76 / 70.46 / 63.71 / 64.32 / 37.82（比 vanilla 低约 4pp，仍可用）；**vtw7b_s8** 51.49 / 788.0 / 358.6 / 55.72 / 48.19 / 62.32 / 45.87 / 37.30（**分割层过早，模型严重退化**）。`s16` 跑到 47%（1h15m，八项进度条 19818/41940）时被主动中止以腾卡（见"问题" §16），`s18/s20/s24` 与 13B 待续 | `results/revision/E3/`；`revision_runs/E3/<job>/` | 见本次提交 |
+| 2026-10-19 | **E4 冻结基线（部分，1 行）** | 冻结视觉塔 + projector 的 `freeze_image`，`split=8` | **freeze7b_s8** 74.92 / 1334.8 / 305.7 / 71.68 / 68.01 / 63.16 / 62.78 / 38.56，POPE 比 vanilla 低 10.4pp、MME-P 低 155 —— 可作为"只训浅层/冻结视觉"的下限行。`s12` 正在跑，`s16…s28`、`nobranch` 待续 | `results/revision/E4/`；`revision_runs/E4/freeze7b_s8/` | 见本次提交 |
 | 2026-10-18 | **E6 前置关卡（冒烟通过）** | Qwen2.5-VL-7B，`split=22`（E2 结论）；`smoke_train` 20 step / subset 0.001，`smoke_eval` pope + scienceqa limit 20；代码 `97a32d6`（含 checkpoint_io / LoRA generate 两处修复） | **两道关卡全过**：`smoke_train` 20/20 step，rc=0，140.2 s，trainable 233.1M / 8.53B（2.73%）；`smoke_eval` pope_accuracy **0.80**、scienceqa **0.85**（±0.082），rc=0。`vanilla_eval`（Qwen2.5-VL-7B 八项本机基线）与全量训练待跑；全量训练按红线 2 用 4 卡 × batch 1，当前等 4 张空卡 | `revision_runs/E6/{smoke_train,smoke_eval}/`（status.json / summary.json） | 97a32d6 |
 | 2026-10-18 | **E1 生成延迟** | 10 个任务，batch 1，576 图 token + 128 文 token，bf16，greedy，新生成 64 / 256 token，KV cache 开/关两套；卡型 **H20-3e** | **7B**：TTFT vanilla 95.4 → LF s=18 **72.8 ms（1.31×）**。无 cache 解码（ms/token）：L64 vanilla 94.3 → LF **73.8（1.28×）**，L256 105.7 → **85.4（1.24×）**。**开 cache** 后两者几乎持平、LF 略慢：L64 14.9 → 15.4，L256 14.9 → 15.2。**13B**：TTFT 170.6 → LF s=24 **129.5（1.32×）**；无 cache L64 172.6 → **133.8（1.29×）**，L256 194.9 → **155.6（1.25×）**；开 cache L64 18.1 → 18.9（LF 慢 4%），s=28 同理。**结论：论文的加速来自省掉深层的整段前向/解码，在 cache 解码（每步只算新 token）下这部分本来就被摊薄，所以优势只出现在 prefill/TTFT 与无 cache 解码**——Table 7 的协议（`use_cache=False`）要如实写明，不能暗示开 cache 也更快 | `results/revision/E1/` | 见本次提交 |
 | 2026-10-18 | **E5 prefill 效率** | 解析 FLOPs（与实测无关）+ B=1 / B=4 前向延迟，batch=1 时 n_img 576、n_txt 128、bf16、`use_cache=False`、warmup 10 / iters 100；卡型 **H20-3e** | **实测（B=1，ms）**：7B vanilla 94.36±0.05 → LF s18 K=1 **70.78（1.33×）**、K=2 72.98（1.29×）。**B=4**：vanilla 346.14 → K=1 249.10（1.39×）、K=2 257.04（1.35×）。**13B（B=1）**：vanilla 170.17 → s24 **127.67（1.33×）**、s28 140.10（1.21×）、s34 159.11（1.07×）。**解析 FLOPs（total / LM / 深层栈）**：7B s18 K=1 **−29.0% / −30.9% / −70.5%**，K=2 −26.6%；13B s24 **−27.8% / −28.8% / −71.9%**。峰值显存：7B vanilla 13.26 G / LF 13.64 G，13B vanilla 25.11 G / LF 25.71 G。**结论：分割层越靠后省得越少（13B s34 只剩 7.9% FLOPs、1.07× 实测），实测加速与解析 FLOPs 的 total 降幅基本一致** | `results/revision/E5/`（含 `analytic_flops/analytic_flops.md`） | 见本次提交 |
@@ -614,3 +619,17 @@ E0 六项 2026-10-16 全部 `done`、`rc=0`，`reeval_vanilla7b` 耗时 4834.8 s
 - 需要作者做：在 VS Code 里重新登录 GitHub 账号（或给容器配一个 fine-grained PAT 写进
   `credential.helper store` / `GITHUB_TOKEN`）。恢复后我会补推这两个 commit 和 RESULTS.md。
 - 另记：`.env` 的 SMTP 段仍只有空值（§9），完成邮件继续发不出去；按 AGENTS.md 不换途径，只记录。
+
+### 16. E3_vtw `vtw7b_s16` 主动中止（腾卡给 E6 全量训练）
+
+- 现象：2026-10-19 凌晨，E6 前置关卡全过、需要 4 张空卡开全量训练，但当时只有 0/1/4 三张空；
+  GPU 5 上有另一个用户的任务（PID `2885860`，容器外 `[Not Found]`，占用 14.6 GB、利用率 70%），
+  按红线 4 不能动。E12 `fullft7b`（GPU 2）还要约 1 h。为不在**别人的卡**上冒风险，我把当时唯一
+  由我占用、剩余价值最低的任务停掉：`E3_vtw` 队列里的 `vtw7b_s16` 评测（已跑 47%，1h15m）。
+- 处置：停止 `E3vtw` tmux 会话，`vtw7b_s16` 的 `status.json` 会停在 `state=running`（队列已被杀，
+  不会有收尾写回）；该文件保留作历史记录，不删。后续在空卡上重跑 `jobs/E3_vtw.yaml` 时，队列会把它
+  当作未完成重新开跑，**按红线 4 不删旧结果**，新结果覆盖到同一 `out` 目录。
+- 取舍：E3_vtw 只做"退化点"扫描，s12 已能给出主结论（比 vanilla 低 4pp），s16 重跑只需约 3 h；
+  E6 全量训练是 4 卡 × 24 h 级，越晚启动越危险（截止 2026-10-25），优先级明显更高。
+- 另一个观察：`vtw7b_s8` 的 POPE 只有 51.49（接近随机），MME-P 788 —— **分割层 8 太浅**，
+  E3 的结论应以 s12 及以后为准，s8 作为下限行保留。

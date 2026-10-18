@@ -1,0 +1,44 @@
+{
+  "meta": {
+    "checkpoint": "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision/E6/smoke_s22",
+    "base_model": "Qwen2.5-VL-7B-Instruct",
+    "backbone": "qwen2_5_vl",
+    "method_config": null,
+    "overrides": [],
+    "use_cache": "False",
+    "limit": 20,
+    "python": "3.10.22",
+    "git_sha": "97a32d6",
+    "torch": "2.9.0+cu128",
+    "transformers": "4.57.1",
+    "gpu": "NVIDIA H20-3e",
+    "lmms_eval": "0.5.0",
+    "method": {
+      "name": "token_diversion_x3_fusion_qwen25vl",
+      "split_layer": 22,
+      "vision_depth": 1,
+      "fusion_count": 1,
+      "freeze_strategy": "all_but_single",
+      "branch_init": "random"
+    },
+    "seed": 42
+  },
+  "tasks": [
+    "pope",
+    "scienceqa"
+  ],
+  "metrics": {
+    "pope_local": {
+      "pope_accuracy,none": 0.8,
+      "pope_precision,none": 0.8,
+      "pope_recall,none": 0.8,
+      "pope_f1_score,none": 0.8000000000000002,
+      "pope_yes_ratio,none": 0.5
+    },
+    "scienceqa_local": {
+      "mc_accuracy,none": 0.85,
+      "mc_accuracy_stderr,none": 0.0819178021909125
+    }
+  },
+  "returncode": 0
+}

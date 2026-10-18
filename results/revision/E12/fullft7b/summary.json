@@ -1,0 +1,28 @@
+{
+  "meta": {
+    "checkpoint": "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/legacy/full_ft/llava665k",
+    "base_model": "llava-1.5-7b-hf",
+    "backbone": "llava",
+    "method_config": null,
+    "overrides": [],
+    "use_cache": "False",
+    "limit": null,
+    "python": "3.10.22",
+    "git_sha": "dc0ce0c",
+    "torch": "2.9.0+cu128",
+    "transformers": "4.57.1",
+    "gpu": "NVIDIA H20-3e",
+    "lmms_eval": "0.5.0"
+  },
+  "tasks": [
+    "pope",
+    "mme",
+    "mmbench_en",
+    "mmbench_cn",
+    "scienceqa",
+    "seedbench",
+    "blink"
+  ],
+  "metrics": {},
+  "returncode": 0
+}
