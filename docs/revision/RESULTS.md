@@ -32,7 +32,7 @@
 
 | 日期 | 实验 | 配置 | 关键数字 | 结果路径 | commit |
 | --- | --- | --- | --- | --- | --- |
-| 2026-10-16 | E0 验收 | `reeval_vanilla7b`（vanilla 7B 八基准重测，**首次跑通**） | **跑通但八项全部偏离论文 vanilla 行，验收不通过**。实测：POPE .8536 / MME-P 1495.46 / MME-C 328.93 / MMB-EN .7413 / MMB-CN .7138 / SQA .6406 / SEED(`seed_image`) .6540 / BLINK .3898。论文行（`paper/ms.tex:900`）：.857 / 1457 / 318 / .737 / .693 / .627 / .641 / .385。差：**−0.34pp / +38.5 / +10.9 / +0.43pp / +2.08pp / +1.36pp / +1.30pp / +0.48pp**，门槛是 <0.3pp，**八项全在外**，MMB-CN 已过 §7 的 2pp 线。详见"问题" §11 | `results/revision/E0/reeval_vanilla7b/`（`summary.json`、`log_tail.txt`、`lmms/` 样本） | 见本次提交 |
+| 2026-10-16 | E0 验收 | `reeval_vanilla7b`（vanilla 7B 八基准重测，**首次跑通，本机新基线**） | **2026-10-17 作者决定：本行即新的 vanilla 基线，E0 视为通过**（论文旧结果未保存，不再作为验收目标；详见"问题" §11）。与论文 vanilla 行的差只作记录。实测：POPE .8536 / MME-P 1495.46 / MME-C 328.93 / MMB-EN .7413 / MMB-CN .7138 / SQA .6406 / SEED(`seed_image`) .6540 / BLINK .3898。论文行（`paper/ms.tex:900`）：.857 / 1457 / 318 / .737 / .693 / .627 / .641 / .385。差：**−0.34pp / +38.5 / +10.9 / +0.43pp / +2.08pp / +1.36pp / +1.30pp / +0.48pp**，门槛是 <0.3pp，**八项全在外**，MMB-CN 已过 §7 的 2pp 线。详见"问题" §11 | `results/revision/E0/reeval_vanilla7b/`（`summary.json`、`log_tail.txt`、`lmms/` 样本） | 见本次提交 |
 | 2026-10-14 | E0 验收 | `provenance_7b`（训练起点核查） | **verdict: language_model=llava_hf, projector=llava_hf**。11 个探针权重与 `llava-1.5-7b-hf` 的距离全为 **0.0**，与 vicuna / stage1_projector 参照均为非零（4e-3 ~ 1.3e-2）。即该 checkpoint 的 LM 与 projector 都等于 llava-1.5-7b-hf 原版 | `results/revision/E0/provenance.json` | 014ea25 |
 | 2026-10-14 | E0 验收 | `latency_vanilla7b` | **28.65 ± 0.40 ms**（p50 28.56），peak 13.26 GB。协议 batch=1, n_img=576, n_txt=128, bf16, use_cache=False, warmup=10, iters=100。卡型 **H100 80GB HBM3** | `results/revision/E0/latency_vanilla7b.json` | 014ea25 |
 | 2026-10-14 | E0 验收 | `latency_lf7b` | **25.48 ± 0.93 ms**（p50 24.97），peak 13.64 GB。同上协议；method=token_diversion_x3_fusion, split_layer=18, vision_depth=1, freeze=all_but_single。**相对 vanilla 加速 1.124×** | `results/revision/E0/latency_lf7b.json` | 014ea25 |
@@ -41,7 +41,12 @@
 | 2026-10-13 | E0 验收 | `check_env.py` | 软件栈/路径/8 卡可用性全过；模型与 665k 图像在跑这条时尚未下载完 | `results/revision/E0/env_check.json` | 4b4f56a |
 
 > 延迟两项与 `latency_vanilla7b`/`latency_lf7b` 的 `latency.json` 里都写了 `"gpu": "NVIDIA H100 80GB HBM3"`，Table 7 引用时按 H100 标注。
-> **E0 六项 2026-10-16 已全部 done**（`reeval_vanilla7b` 于 18:05 跑完，rc=0，耗时 4834.8 s）。但 §1.5 的验收**仍未全过**：`reeval_vanilla7b` 八项指标与论文 vanilla 行全部偏离 >0.3pp，见"问题" §11。按 AGENTS.md 阶段门，**不进阶段 2**，等云端排查。
+> **E0 六项 2026-10-16 已全部 done**（`reeval_vanilla7b` 于 18:05 跑完，rc=0，耗时 4834.8 s）。
+> **2026-10-17 作者决定：验收改为以本机重测为准。** 论文旧结果未保存，原「八项与论文 vanilla 行差 <0.3pp」
+> 的门槛取消；`reeval_vanilla7b` 的八项（POPE .8536 / MME-P 1495.46 / MME-C 328.93 / MMB-EN .7413 /
+> MMB-CN .7138 / SQA .6406 / SEED .6540 / BLINK .3898，见上表）即**新的 vanilla LLaVA-1.5-7B 基线**，
+> **E0 视为通过**，进入阶段 2。与论文的差异只记录、不阻塞（分析见"问题" §11）。
+> 大修所有表格的行都必须用本机、本仓库的评测链路重测，不从论文抄数字。
 
 ## 问题
 
@@ -419,11 +424,14 @@ if log.exists():
 **根子上是同一件事**：`collect_results.py` 把「日志」当成了随手拷贝的附属文件，
 而不是需要**脱敏 + 带版本 + 明确新旧**的产物。建议云端重做这一小段。
 
-### 11. 【E0 验收未过】`reeval_vanilla7b` 八项全部偏离论文 vanilla 行，远超 0.3pp 门槛
+### 11. 【2026-10-17 已决定：本机重测为新基线】`reeval_vanilla7b` 八项偏离论文 vanilla 行，原 0.3pp 门槛取消
 
-E0 六项 2026-10-16 全部 `done`、`rc=0`，`reeval_vanilla7b` 耗时 4834.8 s。**但 SERVER_HANDOFF §1.5 的验收门槛（八项差距 < 0.3pp）八项全不满足**，按 AGENTS.md 阶段门**不进阶段 2**。
+> **决定（作者，2026-10-17）：** 论文旧结果未保存，无法作为复现目标。`reeval_vanilla7b` 的八项
+> 就是新的 vanilla LLaVA-1.5-7B 基线，**E0 视为通过**，进入阶段 2。大修所有表格的数字都用本机、
+> 本仓库的评测链路重新测；和论文的差异只记录，不作为停下的理由。
+> 下面保留发现时的完整分析，作为「为什么两条链路的数字不同」的档案，供论文写作时引用。
 
-**这是本条最该看的结果**——请云端排查后再放行。
+E0 六项 2026-10-16 全部 `done`、`rc=0`，`reeval_vanilla7b` 耗时 4834.8 s。按当时的 SERVER_HANDOFF §1.5 门槛（八项差距 < 0.3pp）八项全不满足；该门槛已按上面的决定取消。
 
 **实测 vs 论文**（`paper/ms.tex:900`，第 900 行是 `Vanilla LLaVA-1.5-7B` 那一行）：
 
@@ -488,7 +496,7 @@ E0 六项 2026-10-16 全部 `done`、`rc=0`，`reeval_vanilla7b` 耗时 4834.8 s
 3. **论文那一行本身可能不是当前这条链路跑出来的**，或者当时用了不同的
    `lmms-eval` 版本 / 不同的 postprocess。
 
-**我按 §1.5 和 §7 停在这一项，没有自己「修」任何东西。**
+**当时的处置：** 按旧 §1.5 和 §7 停在这一项，没有自己「修」任何东西。**2026-10-17 作者已取消该门槛**（见本节开头的决定），这一项不再是阻塞项。
 
 **复现**：
 
@@ -514,6 +522,7 @@ E0 六项 2026-10-16 全部 `done`、`rc=0`，`reeval_vanilla7b` 耗时 4834.8 s
 **本次运行的完整日志只在服务器上**：`<CK>/revision_runs/E0/reeval_vanilla7b/log.txt`。
 `log_tail.txt` 是新的（18 KB，末尾是完整的 `seedbench_local` 三项指标）。
 
-**邮件**：按 AGENTS.md 第 7 条应发主题
+**邮件**：当时按旧 AGENTS.md 第 7 条应发主题
 `BLOCKED: E0 reeval_vanilla7b 八项偏离论文 vanilla > 2pp`，
 但 `.env` 的 SMTP 配置仍为空（§9），**邮件发不出去**，只在此记录。
+2026-10-17 门槛取消后已无需发信。
