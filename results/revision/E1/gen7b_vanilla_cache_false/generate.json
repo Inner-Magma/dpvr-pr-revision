@@ -1,0 +1,38 @@
+{
+  "method": "vanilla",
+  "base_model": "llava-1.5-7b-hf",
+  "protocol": {
+    "batch": 1,
+    "n_img": 576,
+    "n_txt": 128,
+    "dtype": "bfloat16",
+    "use_cache": false,
+    "warmup": 2,
+    "iters": 5,
+    "decoding": "greedy, min_new_tokens = max_new_tokens"
+  },
+  "ttft_ms": {
+    "mean": 95.41204869747162,
+    "std": 0.14983772790003735
+  },
+  "by_length": {
+    "64": {
+      "total_ms": {
+        "mean": 6036.757889389992,
+        "std": 1.4344321432938345
+      },
+      "decode_ms_per_token": 94.30707683638921
+    },
+    "256": {
+      "total_ms": {
+        "mean": 27049.531092494726,
+        "std": 82.300500794579
+      },
+      "decode_ms_per_token": 105.70242762273433
+    }
+  },
+  "gpu": "NVIDIA H20-3e",
+  "torch": "2.9.0+cu128",
+  "python": "3.10.22",
+  "peak_mem_gb": 13.282926559448242
+}

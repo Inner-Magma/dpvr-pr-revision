@@ -1,0 +1,140 @@
+{
+  "n_img": 576,
+  "n_txt": 128,
+  "attention": "dense",
+  "models": {
+    "llava-1.5-7b": {
+      "dims_source": "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/models/llava-1.5-7b-hf/config.json",
+      "rho_analytic": 0.8223036409434394,
+      "rows": [
+        {
+          "method": "dpvr_lf",
+          "split_layer": 18,
+          "tflops_total": 7.074785886208,
+          "saving_total": -0.2903254635306882,
+          "saving_lm": -0.30862147927639116,
+          "saving_deep": -0.7054205240603226
+        },
+        {
+          "method": "dpvr_lf",
+          "split_layer": 18,
+          "fusion_count": 2,
+          "tflops_total": 7.315773816832,
+          "saving_total": -0.26615187005223573,
+          "saving_lm": -0.2829244904969086,
+          "saving_deep": -0.6466845497072198
+        },
+        {
+          "method": "lf_no_branch",
+          "split_layer": 18,
+          "tflops_total": 6.836213874688,
+          "saving_total": -0.3142567152198832,
+          "saving_lm": -0.33406085413327224,
+          "saving_deep": -0.7635676665903366
+        },
+        {
+          "method": "vtw",
+          "split_layer": 8,
+          "tflops_total": 4.185346637824,
+          "saving_total": -0.5801662434828612,
+          "saving_lm": -0.6167277307075796,
+          "saving_deep": -0.8223036409434394
+        },
+        {
+          "method": "vtw",
+          "split_layer": 12,
+          "tflops_total": 5.14929836032,
+          "saving_total": -0.48347186956905097,
+          "saving_lm": -0.5139397755896497,
+          "saving_deep": -0.8223036409434394
+        },
+        {
+          "method": "vtw",
+          "split_layer": 16,
+          "tflops_total": 6.113250082816,
+          "saving_total": -0.3867774956552408,
+          "saving_lm": -0.4111518204717197,
+          "saving_deep": -0.8223036409434394
+        },
+        {
+          "method": "vtw",
+          "split_layer": 18,
+          "tflops_total": 6.595225944064,
+          "saving_total": -0.3384303086983357,
+          "saving_lm": -0.3597578429127547,
+          "saving_deep": -0.8223036409434394
+        },
+        {
+          "method": "vtw",
+          "split_layer": 20,
+          "tflops_total": 7.077201805312,
+          "saving_total": -0.2900831217414306,
+          "saving_lm": -0.3083638653537898,
+          "saving_deep": -0.8223036409434394
+        },
+        {
+          "method": "vtw",
+          "split_layer": 24,
+          "tflops_total": 8.041153527808,
+          "saving_total": -0.1933887478276204,
+          "saving_lm": -0.20557591023585986,
+          "saving_deep": -0.8223036409434394
+        }
+      ]
+    },
+    "llava-1.5-13b": {
+      "dims_source": "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/models/llava-1.5-13b-hf/config.json",
+      "rho_analytic": 0.8214876033057852,
+      "rows": [
+        {
+          "method": "dpvr_lf",
+          "split_layer": 24,
+          "tflops_total": 13.663559319552,
+          "saving_total": -0.2778128541349242,
+          "saving_lm": -0.2876859504132231,
+          "saving_deep": -0.7192148760330579
+        },
+        {
+          "method": "dpvr_lf",
+          "split_layer": 28,
+          "tflops_total": 15.164449062912,
+          "saving_total": -0.19848335772294068,
+          "saving_lm": -0.2055371900826446,
+          "saving_deep": -0.6851239669421487
+        },
+        {
+          "method": "dpvr_lf",
+          "split_layer": 34,
+          "tflops_total": 17.415783677952,
+          "saving_total": -0.07948911310496543,
+          "saving_lm": -0.0823140495867769,
+          "saving_deep": -0.5487603305785125
+        },
+        {
+          "method": "vtw",
+          "split_layer": 24,
+          "tflops_total": 12.916134346752,
+          "saving_total": -0.3173179856479341,
+          "saving_lm": -0.3285950413223141,
+          "saving_deep": -0.8214876033057852
+        },
+        {
+          "method": "vtw",
+          "split_layer": 28,
+          "tflops_total": 14.417024090112,
+          "saving_total": -0.23798848923595062,
+          "saving_lm": -0.2464462809917355,
+          "saving_deep": -0.8214876033057852
+        },
+        {
+          "method": "vtw",
+          "split_layer": 34,
+          "tflops_total": 16.668358705152,
+          "saving_total": -0.11899424461797525,
+          "saving_lm": -0.1232231404958678,
+          "saving_deep": -0.8214876033057852
+        }
+      ]
+    }
+  }
+}

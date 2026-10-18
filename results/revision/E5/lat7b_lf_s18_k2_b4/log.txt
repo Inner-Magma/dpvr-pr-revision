@@ -1,0 +1,6 @@
+
+===== 2026-10-18T09:00:13+00:00 start lat7b_lf_s18_k2_b4 on GPUs [0] =====
+所有指定的模块已尝试导入。
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.42it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:00,  1.83it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  2.23it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  2.04it/s]
+token_diversion_x3_fusion: 257.04 ± 0.17 ms on NVIDIA H20-3e

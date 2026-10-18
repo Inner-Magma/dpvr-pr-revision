@@ -1,0 +1,12 @@
+{
+  "state": "done",
+  "started": "2026-10-18T08:56:17+00:00",
+  "gpus": [],
+  "cmd": "python scripts/revision/analytic_flops.py --out /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E5/analytic_flops/analytic_flops.json > /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E5/analytic_flops/analytic_flops.md",
+  "host": "psxob0gxrs643dy3-worker-0",
+  "git_sha": "dc0ce0c",
+  "pid": 2951448,
+  "returncode": 0,
+  "finished": "2026-10-18T08:56:31+00:00",
+  "duration_s": 13.6
+}

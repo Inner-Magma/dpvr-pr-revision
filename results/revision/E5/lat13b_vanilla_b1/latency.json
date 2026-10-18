@@ -1,0 +1,25 @@
+{
+  "method": "vanilla",
+  "base_model": "llava-1.5-13b-hf",
+  "protocol": {
+    "batch": 1,
+    "n_img": 576,
+    "n_txt": 128,
+    "dtype": "bfloat16",
+    "use_cache": false,
+    "warmup": 10,
+    "iters": 100
+  },
+  "latency_ms": {
+    "mean": 170.16536590576172,
+    "std": 0.10640497053816475,
+    "p50": 170.13282012939453,
+    "min": 170.01866149902344,
+    "max": 170.57305908203125
+  },
+  "peak_mem_gb": 25.10854959487915,
+  "gpu": "NVIDIA H20-3e",
+  "torch": "2.9.0+cu128",
+  "cuda": "12.8",
+  "python": "3.10.22"
+}

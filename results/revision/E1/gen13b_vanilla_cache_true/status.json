@@ -1,0 +1,14 @@
+{
+  "state": "done",
+  "started": "2026-10-18T08:30:23+00:00",
+  "gpus": [
+    0
+  ],
+  "cmd": "python scripts/revision/bench_generate.py --vanilla --base_model llava-1.5-13b-hf --use_cache true --new_tokens 64,256 --out /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E1/gen13b_vanilla_cache_true/generate.json",
+  "host": "psxob0gxrs643dy3-worker-0",
+  "git_sha": "dc0ce0c",
+  "pid": 2927808,
+  "returncode": 0,
+  "finished": "2026-10-18T08:32:29+00:00",
+  "duration_s": 126.3
+}

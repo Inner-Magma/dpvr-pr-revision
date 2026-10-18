@@ -1,0 +1,14 @@
+
+===== 2026-10-18T09:01:53+00:00 start lat13b_lf_s24_b1 on GPUs [0] =====
+所有指定的模块已尝试导入。
+`torch_dtype` is deprecated! Use `dtype` instead!
+
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]
+Loading checkpoint shards:  17%|█▋        | 1/6 [00:00<00:03,  1.66it/s]
+Loading checkpoint shards:  33%|███▎      | 2/6 [00:01<00:01,  2.07it/s]
+Loading checkpoint shards:  50%|█████     | 3/6 [00:01<00:01,  2.30it/s]
+Loading checkpoint shards:  67%|██████▋   | 4/6 [00:01<00:00,  2.39it/s]
+Loading checkpoint shards:  83%|████████▎ | 5/6 [00:02<00:00,  2.40it/s]
+Loading checkpoint shards: 100%|██████████| 6/6 [00:02<00:00,  3.05it/s]
+Loading checkpoint shards: 100%|██████████| 6/6 [00:02<00:00,  2.56it/s]
+token_diversion_x3_fusion: 127.67 ± 0.37 ms on NVIDIA H20-3e

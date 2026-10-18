@@ -1,0 +1,44 @@
+
+===== 2026-10-18T09:07:22+00:00 start llava16_mistral_7b on GPUs [5] =====
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:40<02:02, 40.86s/it]Loading checkpoint shards:  50%|█████     | 2/4 [01:18<01:18, 39.10s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [02:25<00:51, 51.70s/it]Loading checkpoint shards: 100%|██████████| 4/4 [02:31<00:00, 33.75s/it]Loading checkpoint shards: 100%|██████████| 4/4 [02:31<00:00, 37.91s/it]
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+[run] 50/500  37s
+[run] 100/500  74s
+[run] 150/500  110s
+[run] 200/500  147s
+[run] 250/500  185s
+[run] 300/500  222s
+[run] 350/500  260s
+[run] 400/500  296s
+[run] 450/500  333s
+[run] 500/500  372s
+{
+  "kl_img": {
+    "median_curve": 29,
+    "per_sample_median": 29.0,
+    "per_sample_iqr": [
+      28.0,
+      29.0
+    ]
+  },
+  "kl_txt": {
+    "median_curve": 26,
+    "per_sample_median": 26.0,
+    "per_sample_iqr": [
+      26.0,
+      27.0
+    ]
+  },
+  "resid_img": {
+    "median_curve": 1
+  },
+  "resid_txt": {
+    "median_curve": 30
+  },
+  "cos_img": {
+    "tau": 0.95,
+    "plateau_from": null
+  }
+}
+[plot] /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E2/llava16_mistral_7b/saturation.pdf

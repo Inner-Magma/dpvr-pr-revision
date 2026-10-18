@@ -1,0 +1,49 @@
+
+===== 2026-10-18T09:10:59+00:00 start internvl3_8b on GPUs [4] =====
+`torch_dtype` is deprecated! Use `dtype` instead!
+
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]
+Loading checkpoint shards:  25%|██▌       | 1/4 [00:29<01:27, 29.04s/it]
+Loading checkpoint shards:  50%|█████     | 2/4 [00:57<00:56, 28.45s/it]
+Loading checkpoint shards:  75%|███████▌  | 3/4 [01:08<00:20, 20.72s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [01:15<00:00, 15.30s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [01:15<00:00, 18.90s/it]
+[run] 50/500  95s
+[run] 100/500  201s
+[run] 150/500  288s
+[run] 200/500  378s
+[run] 250/500  477s
+[run] 300/500  586s
+[run] 350/500  684s
+[run] 400/500  775s
+[run] 450/500  865s
+[run] 500/500  964s
+{
+  "kl_img": {
+    "median_curve": 25,
+    "per_sample_median": 25.0,
+    "per_sample_iqr": [
+      24.0,
+      25.0
+    ]
+  },
+  "kl_txt": {
+    "median_curve": 23,
+    "per_sample_median": 23.0,
+    "per_sample_iqr": [
+      23.0,
+      24.0
+    ]
+  },
+  "resid_img": {
+    "median_curve": 3
+  },
+  "resid_txt": {
+    "median_curve": 26
+  },
+  "cos_img": {
+    "tau": 0.95,
+    "plateau_from": null
+  }
+}
+[plot] /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E2/internvl3_8b/saturation.pdf

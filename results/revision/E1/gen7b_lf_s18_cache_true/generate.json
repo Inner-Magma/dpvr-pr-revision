@@ -1,0 +1,44 @@
+{
+  "method": {
+    "name": "token_diversion_x3_fusion",
+    "split_layer": 18,
+    "vision_depth": 1,
+    "freeze_strategy": "all_but_single"
+  },
+  "config": "configs/method/token_diversion_x3_fusion.yaml",
+  "overrides": [],
+  "protocol": {
+    "batch": 1,
+    "n_img": 576,
+    "n_txt": 128,
+    "dtype": "bfloat16",
+    "use_cache": true,
+    "warmup": 2,
+    "iters": 5,
+    "decoding": "greedy, min_new_tokens = max_new_tokens"
+  },
+  "ttft_ms": {
+    "mean": 73.74932393431664,
+    "std": 0.09201246882277929
+  },
+  "by_length": {
+    "64": {
+      "total_ms": {
+        "mean": 1040.980176627636,
+        "std": 3.8377457299399556
+      },
+      "decode_ms_per_token": 15.352870677671735
+    },
+    "256": {
+      "total_ms": {
+        "mean": 3958.1937439739704,
+        "std": 9.559689905401893
+      },
+      "decode_ms_per_token": 15.233115372704525
+    }
+  },
+  "gpu": "NVIDIA H20-3e",
+  "torch": "2.9.0+cu128",
+  "python": "3.10.22",
+  "peak_mem_gb": 13.931276798248291
+}

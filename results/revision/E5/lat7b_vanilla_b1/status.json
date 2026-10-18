@@ -1,0 +1,14 @@
+{
+  "state": "done",
+  "started": "2026-10-18T08:56:18+00:00",
+  "gpus": [
+    0
+  ],
+  "cmd": "python scripts/revision/bench_latency.py --vanilla --base_model llava-1.5-7b-hf --batch 1 --n_txt 128 --out /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E5/lat7b_vanilla_b1/latency.json",
+  "host": "psxob0gxrs643dy3-worker-0",
+  "git_sha": "dc0ce0c",
+  "pid": 2951469,
+  "returncode": 0,
+  "finished": "2026-10-18T08:56:56+00:00",
+  "duration_s": 37.6
+}

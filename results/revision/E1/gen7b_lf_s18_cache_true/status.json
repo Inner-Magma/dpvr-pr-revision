@@ -1,0 +1,14 @@
+{
+  "state": "done",
+  "started": "2026-10-18T08:25:34+00:00",
+  "gpus": [
+    0
+  ],
+  "cmd": "python scripts/revision/bench_generate.py --config configs/method/token_diversion_x3_fusion.yaml --use_cache true --new_tokens 64,256 --out /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E1/gen7b_lf_s18_cache_true/generate.json",
+  "host": "psxob0gxrs643dy3-worker-0",
+  "git_sha": "dc0ce0c",
+  "pid": 2922799,
+  "returncode": 0,
+  "finished": "2026-10-18T08:26:49+00:00",
+  "duration_s": 74.4
+}

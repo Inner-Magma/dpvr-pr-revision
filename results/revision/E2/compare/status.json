@@ -1,0 +1,12 @@
+{
+  "state": "done",
+  "started": "2026-10-18T09:28:50+00:00",
+  "gpus": [],
+  "cmd": "python scripts/revision/compare_saturation.py \"LLaVA-1.5-7B=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E2/compare/../llava15_7b\" \"LLaVA-1.5-13B=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E2/compare/../llava15_13b\" \"LLaVA-1.6-Mistral-7B=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E2/compare/../llava16_mistral_7b\" \"Qwen2.5-VL-7B=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E2/compare/../qwen25vl_7b\" \"InternVL3-8B=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E2/compare/../internvl3_8b\" --normalize --out /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E2/compare/compare",
+  "host": "psxob0gxrs643dy3-worker-0",
+  "git_sha": "d53c945",
+  "pid": 2992078,
+  "returncode": 0,
+  "finished": "2026-10-18T09:29:00+00:00",
+  "duration_s": 10.0
+}

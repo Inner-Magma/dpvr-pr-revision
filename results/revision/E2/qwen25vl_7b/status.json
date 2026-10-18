@@ -1,0 +1,14 @@
+{
+  "state": "done",
+  "started": "2026-10-18T09:10:08+00:00",
+  "gpus": [
+    3
+  ],
+  "cmd": "python scripts/revision/saturation.py --model Qwen2.5-VL-7B-Instruct --n_samples 500 --out /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E2/qwen25vl_7b",
+  "host": "psxob0gxrs643dy3-worker-0",
+  "git_sha": "dc0ce0c",
+  "pid": 2969451,
+  "returncode": 0,
+  "finished": "2026-10-18T09:17:10+00:00",
+  "duration_s": 422.0
+}

@@ -32,6 +32,9 @@
 
 | 日期 | 实验 | 配置 | 关键数字 | 结果路径 | commit |
 | --- | --- | --- | --- | --- | --- |
+| 2026-10-18 | **E1 生成延迟** | 10 个任务，batch 1，576 图 token + 128 文 token，bf16，greedy，新生成 64 / 256 token，KV cache 开/关两套；卡型 **H20-3e** | **7B**：TTFT vanilla 95.4 → LF s=18 **72.8 ms（1.31×）**。无 cache 解码（ms/token）：L64 vanilla 94.3 → LF **73.8（1.28×）**，L256 105.7 → **85.4（1.24×）**。**开 cache** 后两者几乎持平、LF 略慢：L64 14.9 → 15.4，L256 14.9 → 15.2。**13B**：TTFT 170.6 → LF s=24 **129.5（1.32×）**；无 cache L64 172.6 → **133.8（1.29×）**，L256 194.9 → **155.6（1.25×）**；开 cache L64 18.1 → 18.9（LF 慢 4%），s=28 同理。**结论：论文的加速来自省掉深层的整段前向/解码，在 cache 解码（每步只算新 token）下这部分本来就被摊薄，所以优势只出现在 prefill/TTFT 与无 cache 解码**——Table 7 的协议（`use_cache=False`）要如实写明，不能暗示开 cache 也更快 | `results/revision/E1/` | 见本次提交 |
+| 2026-10-18 | **E5 prefill 效率** | 解析 FLOPs（与实测无关）+ B=1 / B=4 前向延迟，batch=1 时 n_img 576、n_txt 128、bf16、`use_cache=False`、warmup 10 / iters 100；卡型 **H20-3e** | **实测（B=1，ms）**：7B vanilla 94.36±0.05 → LF s18 K=1 **70.78（1.33×）**、K=2 72.98（1.29×）。**B=4**：vanilla 346.14 → K=1 249.10（1.39×）、K=2 257.04（1.35×）。**13B（B=1）**：vanilla 170.17 → s24 **127.67（1.33×）**、s28 140.10（1.21×）、s34 159.11（1.07×）。**解析 FLOPs（total / LM / 深层栈）**：7B s18 K=1 **−29.0% / −30.9% / −70.5%**，K=2 −26.6%；13B s24 **−27.8% / −28.8% / −71.9%**。峰值显存：7B vanilla 13.26 G / LF 13.64 G，13B vanilla 25.11 G / LF 25.71 G。**结论：分割层越靠后省得越少（13B s34 只剩 7.9% FLOPs、1.07× 实测），实测加速与解析 FLOPs 的 total 降幅基本一致** | `results/revision/E5/`（含 `analytic_flops/analytic_flops.md`） | 见本次提交 |
+| 2026-10-18 | **E2 饱和分析** | 5 个模型 × 500 张 LLaVA-665k 样本（seed 0），训练无关，逐层测 cos / resid / 图文注意力 / logit-lens KL | 转折层 = 曲线升到峰值 50% 后再跌回峰值 50% 的那一层（括号内为 / 总层数）：**LLaVA-1.5-7B** kl_img 21(.66) kl_txt 22(.69) resid 30/30(.94)；**LLaVA-1.5-13B** kl_img 32(.80) kl_txt 25(.62) resid 38(.95)；**LLaVA-1.6-Mistral-7B** kl_img 29(.91) kl_txt 26(.81) resid_img 1；**Qwen2.5-VL-7B** kl_img 25(.89) kl_txt 26(.93) resid_img 2、resid_txt 26；**InternVL3-8B** kl_img 25(.89) kl_txt 23(.82) resid_img 3。图像 token 数（500 样本均值）：LLaVA 系 576 / 576，Mistral-1.6 2115.8，Qwen 321.0，InternVL3 2377.7。**结论：Qwen2.5-VL-7B 的 kl_img 转折层 25/28，per-sample IQR [24,25]，kl_txt 26/28、IQR [26,26]——判定明确，不需要跑 `E6_split.yaml`。** 按论文两个 LLaVA 的「分割层 / 转折层」比例（7B 18/21=0.86，13B 28/32=0.88）折算，**E6 取 `split=22`**（0.88×25≈22；若直接用 18/32 的比例则是 16/28，正好是 config 里的默认值，但 E2 显示它的饱和点比 LLaVA-7B 更靠后，所以仍上调到 22）。cos_img 的 tau=0.95 平台在所有模型上都判为 null（曲线单调升不到 0.95），该指标本批不可用，只作记录 | `results/revision/E2/`（5 个模型 + `compare/`） | 见本次提交（代码 `d53c945` 前的 E2 不受两处修复影响：E2 只读 vanilla HF 模型，不经过 checkpoint_io / LoRA） |
 | 2026-10-16 | E0 验收 | `reeval_vanilla7b`（vanilla 7B 八基准重测，**首次跑通，本机新基线**） | **2026-10-17 作者决定：本行即新的 vanilla 基线，E0 视为通过**（论文旧结果未保存，不再作为验收目标；详见"问题" §11）。与论文 vanilla 行的差只作记录。实测：POPE .8536 / MME-P 1495.46 / MME-C 328.93 / MMB-EN .7413 / MMB-CN .7138 / SQA .6406 / SEED(`seed_image`) .6540 / BLINK .3898。论文行（`paper/ms.tex:900`）：.857 / 1457 / 318 / .737 / .693 / .627 / .641 / .385。差：**−0.34pp / +38.5 / +10.9 / +0.43pp / +2.08pp / +1.36pp / +1.30pp / +0.48pp**，门槛是 <0.3pp，**八项全在外**，MMB-CN 已过 §7 的 2pp 线。详见"问题" §11 | `results/revision/E0/reeval_vanilla7b/`（`summary.json`、`log_tail.txt`、`lmms/` 样本） | 见本次提交 |
 | 2026-10-14 | E0 验收 | `provenance_7b`（训练起点核查） | **verdict: language_model=llava_hf, projector=llava_hf**。11 个探针权重与 `llava-1.5-7b-hf` 的距离全为 **0.0**，与 vicuna / stage1_projector 参照均为非零（4e-3 ~ 1.3e-2）。即该 checkpoint 的 LM 与 projector 都等于 llava-1.5-7b-hf 原版 | `results/revision/E0/provenance.json` | 014ea25 |
 | 2026-10-14 | E0 验收 | `latency_vanilla7b` | **28.65 ± 0.40 ms**（p50 28.56），peak 13.26 GB。协议 batch=1, n_img=576, n_txt=128, bf16, use_cache=False, warmup=10, iters=100。卡型 **H100 80GB HBM3** | `results/revision/E0/latency_vanilla7b.json` | 014ea25 |
@@ -569,3 +572,44 @@ E0 六项 2026-10-16 全部 `done`、`rc=0`，`reeval_vanilla7b` 耗时 4834.8 s
 
 此后实验改用 `server-fixes` 的代码跑。`worker.sh` 里 shim 的补丁 1（`tasks` 子包）已不再需要，
 补丁 2（空 `device_map`）仍需要，下次提作业前把 shim 精简掉。
+
+### 13. E12 六个 checkpoint 全部加载失败：旧服务器绝对路径 + 分散的 training_config（已修 `d53c945`）
+
+- 现象（2026-10-18 17:08）：E12 六个任务都在初始化阶段死掉，分两类：
+  `pc7b_s18/pc13b_s28` 等报 `OSError: Can't load the configuration of '/nvme/lsy/models/llava-1.5-7b-hf'`；
+  `lora7b`、`lf13b_s24_*` 报 `FileNotFoundError: training_config.json not found in .../llava665k_*`。
+- 原因一：中转 checkpoint 里的 `training_config.json` 是旧机器（`/nvme/lsy`）写的，存的是绝对路径。
+  `resolve_paths` 只在相对键存在时才覆盖，旧 trainer 保存的配置有些只留了 `*_path`，于是照用不存在的路径。
+- 原因二：中转目录布局不统一——权重在运行目录、配置只在 `checkpoint-156153/` 里（LoRA、13B LF 都是这样）。
+  原来的实现只在运行目录找配置。
+- 修复：`src/dpvr/models/checkpoint_io.py` 加 `_training_config_file()`（运行目录优先，否则取最大
+  `checkpoint-N/` 下的）和 `_rebase_stale()`（不存在的 `model.*_path` / `data.*_path` 先按 basename、
+  再按路径尾部逐级到 `MODEL_ROOT` / `DATA_ROOT` 下找；找不到就保持原值）。
+  回归测试 `tests/test_checkpoint_io.py` 7 条，与 `test_find_ckpt.py` 一起 12 passed。
+- 之后 `pc13b_s28` 已能加载 6 个分片；`lf13b_s24` 的两次 failed 是 17:09 旧代码留下的，
+  队列在轮到它时会用新代码重试（`training_config.json` 确认在 `checkpoint-156153/` 下）。
+
+### 14. E12/lora7b 生成第一步崩：包装类漏声明 `logits_to_keep`（已修 `97a32d6`）
+
+- 现象：权重加载正常（`missing=0`），lmms-eval 一开始采样就报
+  `Tensors must have same number of dimensions: got 2 and 3`（表现为 `llava_hf.py:377` 的 `IndexError`）。
+- 原因：`GenerationMixin._supports_logits_to_keep()` 用 `inspect.signature` 检查 `forward` 有没有这个参数。
+  `LoRALlava.forward` 只有 `**kwargs`，检查失败 → `generate` 不把默认值设成 1 → 基类
+  `prepare_inputs_for_generation` 传入 `logits_to_keep=None` → `hidden_states[:, None, :]` 让 logits 多一维
+  → `_sample` 里 `torch.cat([input_ids, next_tokens[:, None]], -1)` 维度不匹配。
+- 修复：`forward` 显式声明 `logits_to_keep: int = 0` 并透传给内层模型。`use_cache` True/False 下各跑一次
+  `generate()` 均通过（输出形状 (1, 583)）。回归测试 `tests/test_lora_generate.py` 2 条。
+
+### 15. 【BLOCKED：GitHub 凭据失效】push 全部卡死，结果只能先在本地提交
+
+- 现象（2026-10-18 17:59 起）：`git push origin server-fixes` 在 240 s 内一行 trace 都不输出就超时。
+  查下来是 **`401 Unauthorized` → git 转去 `GIT_ASKPASS`（VS Code 的 `askpass.sh`）→ 永远不回**。
+  直接调 askpass 也挂（超时），向它的 IPC socket（`/tmp/vscode-git-92cdb9df81.sock`）发请求返回
+  **500 Internal Server Error**——VS Code 侧托管的 GitHub 凭据取不出来了。
+  本机没有 `~/.git-credentials`、没有 `credential.helper`、没有 `GITHUB_TOKEN`、没有 ssh key，
+  所以没有备用来源。17:44 之前的 push（`d53c945` 上分支）是走同一通道成功的，之后失效。
+- 影响：**`d53c945`（checkpoint_io 修复）和 `97a32d6`（LoRA 修复）已提交到本地 `server-fixes`，
+  但没有推到远端**；RESULTS.md 的更新同样推不上去。实验本身不受影响（在 worktree 里跑）。
+- 需要作者做：在 VS Code 里重新登录 GitHub 账号（或给容器配一个 fine-grained PAT 写进
+  `credential.helper store` / `GITHUB_TOKEN`）。恢复后我会补推这两个 commit 和 RESULTS.md。
+- 另记：`.env` 的 SMTP 段仍只有空值（§9），完成邮件继续发不出去；按 AGENTS.md 不换途径，只记录。

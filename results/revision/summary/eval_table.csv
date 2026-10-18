@@ -1,2 +1,8 @@
 experiment,job,POPE,MME-P,MME-C,MMB-EN,MMB-CN,SQA,SEED,BLINK,limit,checkpoint,gpu,git_sha
 E0,reeval_vanilla7b,85.36,1495.46,328.93,74.13,71.38,64.06,65.4,38.98,,none,NVIDIA H100 80GB HBM3,75444e5
+E12,fullft7b,,,,,,,,,,/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/legacy/full_ft/llava665k,NVIDIA H20-3e,dc0ce0c
+E12,lf13b_s24_cache_False,,,,,,,,,,/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/legacy/hsf_lf_13b/llava665k_s24_d1,NVIDIA H20-3e,dc0ce0c
+E12,lf13b_s24_cache_True,,,,,,,,,,/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/legacy/hsf_lf_13b/llava665k_s24_d1,NVIDIA H20-3e,dc0ce0c
+E12,lora7b,,,,,,,,,,/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/legacy/lora/llava665k_r16,NVIDIA H20-3e,d53c945
+E12,pc13b_s28,,,,,,,,,,/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/legacy/token_diversion/llava665k_13b_split28_d1,NVIDIA H20-3e,dc0ce0c
+E12,pc7b_s18,,,,,,,,,,/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/legacy/token_diversion/llava665k_split18_d1,NVIDIA H20-3e,dc0ce0c

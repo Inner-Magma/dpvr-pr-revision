@@ -1,0 +1,14 @@
+{
+  "state": "done",
+  "started": "2026-10-18T08:58:36+00:00",
+  "gpus": [
+    0
+  ],
+  "cmd": "python scripts/revision/bench_latency.py --config configs/method/token_diversion_x3_fusion.yaml --batch 4 --n_txt 128 --out /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E5/lat7b_lf_s18_k1_b4/latency.json method.fusion_count=1",
+  "host": "psxob0gxrs643dy3-worker-0",
+  "git_sha": "dc0ce0c",
+  "pid": 2954197,
+  "returncode": 0,
+  "finished": "2026-10-18T08:59:36+00:00",
+  "duration_s": 60.1
+}
