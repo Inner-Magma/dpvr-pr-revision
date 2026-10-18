@@ -620,6 +620,7 @@ E0 六项 2026-10-16 全部 `done`、`rc=0`，`reeval_vanilla7b` 耗时 4834.8 s
 - 需要作者做：在 VS Code 里重新登录 GitHub 账号（或给容器配一个 fine-grained PAT 写进
   `credential.helper store` / `GITHUB_TOKEN`）。恢复后我会补推这两个 commit 和 RESULTS.md。
 - 另记：`.env` 的 SMTP 段仍只有空值（§9），完成邮件继续发不出去；按 AGENTS.md 不换途径，只记录。
+- **2026-10-19 04:41 更新**：`git push` 不再挂起，改为立即返回 `remote: No anonymous write access.` / `Authentication failed`——VS Code 凭据已彻底丢失，本机无任何可用副本。本地待推：main 上 `6f0f3dc`、`8edbee0`、`c592f26`、`16c6817`、`e668b43`；server-fixes 上 `dc0ce0c`、`d53c945`、`97a32d6`。恢复凭据后按序推送即可，无需 rebase。
 
 ### 16. E3_vtw `vtw7b_s16` 主动中止（腾卡给 E6 全量训练）
 
