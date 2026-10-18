@@ -87,11 +87,17 @@ class LoRALlava(PreTrainedModel, GenerationMixin):
         )
 
     def forward(self, input_ids=None, pixel_values=None, attention_mask=None,
-                labels=None, **kwargs):
+                labels=None, logits_to_keep=0, **kwargs):
+        # logits_to_keep 必须显式声明：GenerationMixin._supports_logits_to_keep()
+        # 用签名判断，漏掉它时 generate 不会设成 1，基类的
+        # prepare_inputs_for_generation 又会传 None，forward 里就变成
+        # hidden_states[:, None, :]，logits 多一维，采样阶段 torch.cat 报
+        # "Tensors must have same number of dimensions: got 2 and 3"。
         return self.llava_model(
             input_ids=input_ids,
             pixel_values=pixel_values,
             attention_mask=attention_mask,
             labels=labels,
+            logits_to_keep=logits_to_keep,
             **kwargs,
         )
