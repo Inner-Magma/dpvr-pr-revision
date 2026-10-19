@@ -640,6 +640,7 @@ E0 六项 2026-10-16 全部 `done`、`rc=0`，`reeval_vanilla7b` 耗时 4834.8 s
 - **2026-10-19 16:05 更新**：仍然 `No anonymous write access.`（已按上次办法带 `https_proxy`）。本地待推**累加**：main 上 `6f0f3dc`、`8edbee0`、`c592f26`、`16c6817`、`e668b43`、`6f89b3e`；server-fixes 上 `dc0ce0c`、`d53c945`、`97a32d6`、`35b5499`。仍按红线不换途径（不改 remote、不用别的身份），只在这里记录。
 - **2026-10-19 18:47 更新**：`git push origin main` 仍 `No anonymous write access.` / `Authentication failed`；`send_results.py` 仍缺 `SMTP_HOST/SMTP_USER/SMTP_PASSWORD/MAIL_TO`（§9）。本轮新增本地待推：main 上 `8def34d`（PruMerge、冻结 s=28 两行）。累计待推 main：`6f0f3dc`、`8edbee0`、`c592f26`、`16c6817`、`e668b43`、`6f89b3e`、`b2f66c0`、`8def34d`；server-fixes：`dc0ce0c`、`d53c945`、`97a32d6`、`35b5499`。
 - **2026-10-19 20:40 更新**：push 仍 `No anonymous write access.`，邮件仍缺 SMTP 配置。新增本地待推 main：`e7cecc9`（E9 seed1、VisionZip-64）。累计待推 main 10 个：`6f0f3dc`、`8edbee0`、`c592f26`、`16c6817`、`e668b43`、`6f89b3e`、`b2f66c0`、`8def34d`、`02fd42d`、`2d9d622`、`e7cecc9`；server-fixes 4 个：`dc0ce0c`、`d53c945`、`97a32d6`、`35b5499`。
+- **2026-10-19 21:35 更新**：push 仍 401、邮件仍缺 SMTP。新增本地待推 main：`e897474`（E7 r0.5、E4 无分支 k1、VisionZip-128）。累计待推 main 12 个（`6f0f3dc`…`e7cecc9`、`e65a834`、`e897474`）；server-fixes 4 个不变。
 
 ### 16. E3_vtw `vtw7b_s16` 主动中止（腾卡给 E6 全量训练）
 
