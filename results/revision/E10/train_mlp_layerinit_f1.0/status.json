@@ -1,0 +1,11 @@
+{
+  "state": "running",
+  "started": "2026-10-19T15:32:49+00:00",
+  "gpus": [
+    7
+  ],
+  "cmd": "python scripts/train.py --config configs/method/token_diversion_x3_fusion.yaml data.subset_fraction=1.0 seed=1 method.branch_type=mlp method.branch_init=layer training.output_subdir=revision/E10/lf7b_s18_mlp_layerinit_f1.0",
+  "host": "psxob0gxrs643dy3-worker-0",
+  "git_sha": "35b5499",
+  "pid": 2532185
+}

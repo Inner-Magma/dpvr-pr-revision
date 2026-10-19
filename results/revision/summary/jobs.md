@@ -1,6 +1,6 @@
 # Job states
 
-done: 79, interrupted: 1, running: 8
+done: 80, interrupted: 1, running: 8
 
 | experiment | job | state | started | finished | returncode | error |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -22,6 +22,7 @@ done: 79, interrupted: 1, running: 8
 | E1 | gen7b_vanilla_cache_true | done | 2026-10-18T08:20:08+00:00 | 2026-10-18T08:21:13+00:00 | 0 |  |
 | E10 | train_lora16_f1.0 | running | 2026-10-19T10:40:38+00:00 |  |  |  |
 | E10 | train_mlp_f1.0 | running | 2026-10-19T10:40:37+00:00 |  |  |  |
+| E10 | train_mlp_layerinit_f1.0 | running | 2026-10-19T15:32:49+00:00 |  |  |  |
 | E12 | fullft7b | done | 2026-10-18T09:21:35+00:00 | 2026-10-18T19:52:42+00:00 | 0 |  |
 | E12 | lf13b_s24_cache_False | done | 2026-10-18T13:42:04+00:00 | 2026-10-18T17:23:43+00:00 | 0 |  |
 | E12 | lf13b_s24_cache_True | done | 2026-10-18T14:33:12+00:00 | 2026-10-18T17:03:11+00:00 | 0 |  |
@@ -88,7 +89,7 @@ done: 79, interrupted: 1, running: 8
 | E8 | compare_13b | done | 2026-10-18T17:41:15+00:00 | 2026-10-18T17:41:25+00:00 | 0 |  |
 | E8 | compare_7b | done | 2026-10-18T17:36:36+00:00 | 2026-10-18T17:36:46+00:00 | 0 |  |
 | E9 | eval_seed1 | done | 2026-10-19T09:58:59+00:00 | 2026-10-19T12:27:12+00:00 | 0 |  |
-| E9 | eval_seed2 | running | 2026-10-19T12:27:13+00:00 |  |  |  |
+| E9 | eval_seed2 | done | 2026-10-19T12:27:13+00:00 | 2026-10-19T14:56:22+00:00 | 0 |  |
 | E9 | train_seed1 | done | 2026-10-18T09:07:21+00:00 | 2026-10-19T09:57:36+00:00 | 0 |  |
 | E9 | train_seed2 | done | 2026-10-18T09:07:22+00:00 | 2026-10-19T09:58:59+00:00 | 0 |  |
 | E9 | train_seed3 | running | 2026-10-19T09:57:36+00:00 |  |  |  |
