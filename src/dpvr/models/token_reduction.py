@@ -301,21 +301,57 @@ def visionzip(hidden_with_cls: torch.Tensor, attn: torch.Tensor, keys: torch.Ten
     return torch.cat([dominant_tokens, contextual_tokens], dim=1)
 
 
-def splice_image_tokens(input_ids, embed, image_token_id: int, features: torch.Tensor):
-    """Replace the image placeholder run in input_ids with ``features`` (B=1).
+def _placeholder_runs(input_ids: torch.Tensor, image_token_id: int) -> list[tuple[int, int]]:
+    """Contiguous ``[start, end)`` runs of image placeholders in a 1-row input_ids."""
+    pos = (input_ids[0] == image_token_id).nonzero().squeeze(1).tolist()
+    runs: list[tuple[int, int]] = []
+    for p in pos:
+        if runs and p == runs[-1][1]:
+            runs[-1] = (runs[-1][0], p + 1)
+        else:
+            runs.append((p, p + 1))
+    return runs
+
+
+def splice_image_tokens(input_ids, embed, image_token_id: int, features):
+    """Replace every image placeholder run in input_ids with its reduced block (B=1).
+
+    ``features`` holds the reduced features of one ``pixel_values`` image each,
+    in input order: a list of (n_keep, H) (or (1, n_keep, H)) tensors, or, for
+    a single image, one such tensor. The batch dim of ``pixel_values`` counts
+    images, not samples, so a sample may carry several runs (LLaVA-v1.5
+    interleaved data); every block may have a different length (prumerge's
+    IQR count is per image).
 
     Returns inputs_embeds (1, S', H) and the image mask (1, S').
     """
     if input_ids.shape[0] != 1:
         raise ValueError("vision-side reduction needs batch size 1")
-    pos = (input_ids[0] == image_token_id).nonzero().squeeze(1)
-    if pos.numel() == 0:
+    runs = _placeholder_runs(input_ids, image_token_id)
+    if not runs:
         return embed(input_ids), None
-    start, end = int(pos[0]), int(pos[-1]) + 1
+    blocks = list(features) if isinstance(features, (list, tuple)) else [features]
+    blocks = [b[0] if b.dim() == 3 else b for b in blocks]
+    if len(blocks) != len(runs):
+        raise ValueError(
+            f"input has {len(runs)} image placeholder runs but got "
+            f"{len(blocks)} reduced image blocks")
     text = embed(input_ids)
-    emb = torch.cat([text[:, :start], features.to(text.dtype), text[:, end:]], dim=1)
-    img = torch.zeros(1, emb.shape[1], dtype=torch.bool, device=emb.device)
-    img[:, start:start + features.shape[1]] = True
+    length = (text.shape[1] - sum(b - a for a, b in runs)
+              + sum(b.shape[0] for b in blocks))
+    pieces = []
+    img = torch.zeros(1, length, dtype=torch.bool, device=text.device)
+    cursor, pos = 0, 0
+    for (a, b), f in zip(runs, blocks):
+        seg = text[:, cursor:a]
+        f = f.to(text.dtype)[None]
+        pieces += [seg, f]
+        img[:, pos + seg.shape[1]:pos + seg.shape[1] + f.shape[1]] = True
+        pos += seg.shape[1] + f.shape[1]
+        cursor = b
+    pieces.append(text[:, cursor:])
+    emb = torch.cat(pieces, dim=1)
+    assert emb.shape[1] == length, (emb.shape, length)
     return emb, img
 
 
@@ -388,14 +424,21 @@ class ReducedLlava(PreTrainedModel, GenerationMixin):
         feature_layer = int(p.get("feature_layer", -2))
         hidden, attn, keys = clip_features_attention_keys(
             mm.vision_tower, pixel_values, feature_layer, p.get("key_layer"))
-        if self.reduction == "prumerge":
-            feats = prumerge(hidden[:, 1:], attn[:, :, 0, 1:].mean(1), keys[:, 1:],
-                             n_keep=p.get("n_keep"), k_neighbors=int(p.get("k_neighbors", 32)))
-        else:
-            feats = visionzip(hidden, attn, keys, int(p.get("dominant", 54)),
-                              int(p.get("contextual", 10)), bool(p.get("keep_cls", True)),
+        # pixel_values 的 batch 维是图片数（一个样本可有多张图）→ 逐图缩减：
+        # prumerge 的 n_keep 由每张图自己的 IQR 决定，visionzip 的合并也只在本图内。
+        feats = []
+        for i in range(hidden.shape[0]):
+            if self.reduction == "prumerge":
+                f = prumerge(hidden[i:i + 1, 1:], attn[i:i + 1, :, 0, 1:].mean(1),
+                             keys[i:i + 1, 1:], n_keep=p.get("n_keep"),
+                             k_neighbors=int(p.get("k_neighbors", 32)))
+            else:
+                f = visionzip(hidden[i:i + 1], attn[i:i + 1], keys[i:i + 1],
+                              int(p.get("dominant", 54)), int(p.get("contextual", 10)),
+                              bool(p.get("keep_cls", True)),
                               key_heads=mm.vision_tower.config.num_attention_heads)
-        feats = mm.multi_modal_projector(feats)
+            feats.append(mm.multi_modal_projector(f))
+        # n_keep 逐图不同 → 以列表传给 splice（每图占一个占位符 run）
         return splice_image_tokens(input_ids, mm.get_input_embeddings(),
                                    self.llava_model.config.image_token_index, feats)
 

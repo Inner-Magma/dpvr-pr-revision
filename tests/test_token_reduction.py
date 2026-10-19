@@ -190,6 +190,26 @@ def test_splice_image_tokens():
     torch.testing.assert_close(emb[0, 2:4], feats[0])
 
 
+def test_splice_two_images():
+    """Interleaved sample: two placeholder runs, each replaced by its own block."""
+    embed = nn.Embedding(10, 4)
+    ids = torch.tensor([[1, 9, 9, 2, 9, 9, 9, 3]])
+    feats = [torch.full((3, 4), 0.5), torch.full((2, 4), 0.25)]
+    emb, img = tr.splice_image_tokens(ids, embed, 9, feats)
+    assert emb.shape == (1, 8, 4)  # 3 text + 3 + 2
+    assert img.tolist() == [[False, True, True, True, False, True, True, False]]
+    torch.testing.assert_close(emb[0, 1:4], feats[0])
+    torch.testing.assert_close(emb[0, 4], embed(torch.tensor(2)))
+    torch.testing.assert_close(emb[0, 5:7], feats[1])
+
+
+def test_splice_rejects_image_run_mismatch():
+    embed = nn.Embedding(10, 4)
+    ids = torch.tensor([[1, 9, 9, 2, 9, 9, 3]])
+    with pytest.raises(ValueError, match="placeholder runs"):
+        tr.splice_image_tokens(ids, embed, 9, torch.ones(1, 2, 4))
+
+
 def _tiny_llava():
     from transformers import CLIPVisionConfig, LlamaConfig, LlavaConfig
 
