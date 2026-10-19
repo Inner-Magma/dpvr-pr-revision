@@ -661,6 +661,14 @@ E0 六项 2026-10-16 全部 `done`、`rc=0`，`reeval_vanilla7b` 耗时 4834.8 s
     本地待推更新为 **`1be4aaf`、`aa89bcf`**（后者含 E4 k=2、VisionZip-192、E7 LF+PruMerge 三行 + §19）。
     另修 §19：E4 `nobranch k=3` 曾被两个队列写同一目录，已 kill 重跑、旧目录改名保留（未删）。
   - 同日 `send_results.py` 在不 `source .tmp/env.sh` 时会因裸 `python`=2.7.5 报 `SyntaxError`；source 后行为不变，仍是 `missing in .env / environment: SMTP_HOST, SMTP_USER, SMTP_PASSWORD, MAIL_TO`（§9）。
+  - **2026-10-20 02:42 复核：故障形态又变回 401（凭据丢失），不再是挂起。** `git push origin main` 立即返回
+    `connect /tmp/vscode-git-92cdb9df81.sock` 失败 + `remote: No anonymous write access.` /
+    `fatal: Authentication failed`——与 2026-10-19 04:41 那次完全一致：VS Code 侧托管的 GitHub 凭据又没了。
+    与 23:58 的 receive-pack 挂起是两回事（后者修不修凭据都无用，前者说明凭据通道时好时坏）。
+    本地待推 main **4 个**：`1be4aaf`（E9 seed2）、`6b6065b`（E4 k=2、VisionZip-192、E7 PruMerge、§19）、
+    `cc538d9`（E6 Qwen）、`5933ddf`（E7 VisionZip-64）。全部只含 `RESULTS.md` + `results/revision/**` 小文件。
+    按红线不换通道、不 force push；恢复后按序一次性推送即可（这些 commit 的父链就是远端 `c5f472e` 之后）。
+    **需要作者：**在 VS Code 里重新登录 GitHub（与 §15 正文同一诉求，这是本机唯一凭据来源）。
 
 ### 16. E3_vtw `vtw7b_s16` 主动中止（腾卡给 E6 全量训练）
 
