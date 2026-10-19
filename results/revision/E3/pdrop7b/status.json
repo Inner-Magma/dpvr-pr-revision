@@ -1,5 +1,5 @@
 {
-  "state": "running",
+  "state": "done",
   "started": "2026-10-19T04:56:41+00:00",
   "gpus": [
     4
@@ -7,5 +7,8 @@
   "cmd": "python scripts/revision/eval_lmms.py --method_config configs/method/pdrop.yaml --tasks eight --out /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E3/pdrop7b",
   "host": "psxob0gxrs643dy3-worker-0",
   "git_sha": "c0193ef",
-  "pid": 1181262
+  "pid": 1181262,
+  "returncode": 0,
+  "finished": "2026-10-19T07:12:39+00:00",
+  "duration_s": 8157.9
 }

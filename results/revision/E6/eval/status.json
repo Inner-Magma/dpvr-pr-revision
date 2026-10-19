@@ -1,0 +1,11 @@
+{
+  "state": "running",
+  "started": "2026-10-19T10:04:38+00:00",
+  "gpus": [
+    0
+  ],
+  "cmd": "python scripts/revision/eval_lmms.py --checkpoint ${CKPT_ROOT}/revision/E6/qwen25vl_lf_s22 --base_model Qwen2.5-VL-7B-Instruct --tasks eight --out /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E6/eval",
+  "host": "psxob0gxrs643dy3-worker-0",
+  "git_sha": "b2f66c0",
+  "pid": 1135913
+}

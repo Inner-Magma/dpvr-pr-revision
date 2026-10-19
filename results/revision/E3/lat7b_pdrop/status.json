@@ -1,0 +1,14 @@
+{
+  "state": "done",
+  "started": "2026-10-19T07:22:33+00:00",
+  "gpus": [
+    4
+  ],
+  "cmd": "python scripts/revision/bench_latency.py --config configs/method/pdrop.yaml --batch 1 --n_txt 128 --out /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E3/lat7b_pdrop/latency.json",
+  "host": "psxob0gxrs643dy3-worker-0",
+  "git_sha": "b59408c",
+  "pid": 2920845,
+  "returncode": 0,
+  "finished": "2026-10-19T07:23:13+00:00",
+  "duration_s": 40.1
+}

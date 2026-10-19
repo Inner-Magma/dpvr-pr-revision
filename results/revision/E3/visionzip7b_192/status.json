@@ -1,0 +1,14 @@
+{
+  "state": "running",
+  "started": "2026-10-19T13:30:55+00:00",
+  "gpus": [
+    4
+  ],
+  "cmd": "python scripts/revision/eval_lmms.py --method_config configs/method/visionzip.yaml --override method.params.dominant=$(( 192 * 54 / 64 )) --override method.params.contextual=$(( 192 * 10 / 64 )) --tasks eight --out /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E3/visionzip7b_192",
+  "host": "psxob0gxrs643dy3-worker-0",
+  "git_sha": "35b5499",
+  "pid": 624502,
+  "returncode": 1,
+  "finished": "2026-10-19T07:21:51+00:00",
+  "duration_s": 147.2
+}

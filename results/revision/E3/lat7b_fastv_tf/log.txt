@@ -1,0 +1,11 @@
+
+===== 2026-10-19T07:21:51+00:00 start lat7b_fastv_tf on GPUs [4] =====
+所有指定的模块已尝试导入。
+`torch_dtype` is deprecated! Use `dtype` instead!
+
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:03<00:06,  3.15s/it]
+Loading checkpoint shards:  67%|██████▋   | 2/3 [00:04<00:02,  2.18s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:05<00:00,  1.71s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:05<00:00,  1.93s/it]
+reduced: 66.18 ± 0.94 ms on NVIDIA H20-3e

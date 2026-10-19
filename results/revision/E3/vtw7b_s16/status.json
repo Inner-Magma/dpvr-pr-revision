@@ -1,5 +1,5 @@
 {
-  "state": "running",
+  "state": "interrupted",
   "started": "2026-10-18T17:27:54+00:00",
   "gpus": [
     5
@@ -7,5 +7,6 @@
   "cmd": "python scripts/revision/eval_lmms.py --method_config configs/method/vtw.yaml --override method.split_layer=16 --tasks eight --out /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E3/vtw7b_s16",
   "host": "psxob0gxrs643dy3-worker-0",
   "git_sha": "97a32d6",
-  "pid": 3372082
+  "pid": 3372082,
+  "note": "pid \u5df2\u4e0d\u5b58\u5728\uff0c\u6807\u8bb0\u4e3a\u4e2d\u65ad\u4ee5\u4fbf\u91cd\u6392"
 }
