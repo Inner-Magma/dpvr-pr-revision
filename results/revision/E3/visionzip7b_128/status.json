@@ -1,5 +1,5 @@
 {
-  "state": "running",
+  "state": "done",
   "started": "2026-10-19T11:34:17+00:00",
   "gpus": [
     4
@@ -8,7 +8,7 @@
   "host": "psxob0gxrs643dy3-worker-0",
   "git_sha": "35b5499",
   "pid": 2331766,
-  "returncode": 1,
-  "finished": "2026-10-19T07:19:24+00:00",
-  "duration_s": 139.3
+  "returncode": 0,
+  "finished": "2026-10-19T13:30:54+00:00",
+  "duration_s": 6997.8
 }
