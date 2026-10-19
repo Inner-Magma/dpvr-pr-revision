@@ -1,0 +1,11 @@
+{
+  "state": "running",
+  "started": "2026-10-19T14:38:31+00:00",
+  "gpus": [
+    5
+  ],
+  "cmd": "python scripts/revision/eval_lmms.py --method_config configs/method/lf_prumerge.yaml --override method.checkpoint=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision/E9/lf7b_s18_seed1 --tasks eight --out /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E7/lf7b_prumerge",
+  "host": "psxob0gxrs643dy3-worker-0",
+  "git_sha": "35b5499",
+  "pid": 1271019
+}
