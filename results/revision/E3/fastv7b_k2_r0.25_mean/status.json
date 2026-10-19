@@ -1,5 +1,5 @@
 {
-  "state": "running",
+  "state": "done",
   "started": "2026-10-19T03:02:52+00:00",
   "gpus": [
     4
@@ -7,5 +7,8 @@
   "cmd": "python scripts/revision/eval_lmms.py --method_config configs/method/fastv_tf.yaml --override method.params.keep_ratio=0.25 --override method.params.score=mean --tasks eight --out /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E3/fastv7b_k2_r0.25_mean",
   "host": "psxob0gxrs643dy3-worker-0",
   "git_sha": "a27e612",
-  "pid": 36852
+  "pid": 36852,
+  "returncode": 0,
+  "finished": "2026-10-19T04:56:41+00:00",
+  "duration_s": 6828.5
 }
