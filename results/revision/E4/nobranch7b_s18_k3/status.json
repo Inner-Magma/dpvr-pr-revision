@@ -1,0 +1,11 @@
+{
+  "state": "running",
+  "started": "2026-10-19T15:34:58+00:00",
+  "gpus": [
+    3
+  ],
+  "cmd": "python scripts/revision/eval_lmms.py --method_config configs/method/lf_no_branch.yaml --override method.split_layer=18 --override method.fusion_count=3 --tasks eight --out /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E4/nobranch7b_s18_k3",
+  "host": "psxob0gxrs643dy3-worker-0",
+  "git_sha": "35b5499",
+  "pid": 2580053
+}

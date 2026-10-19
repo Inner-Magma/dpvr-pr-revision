@@ -32,6 +32,9 @@
 
 | 日期 | 实验 | 配置 | 关键数字 | 结果路径 | commit |
 | --- | --- | --- | --- | --- | --- |
+| 2026-10-20 | **E7 LF+PruMerge** | 训练好的 7B DPVR-LF s=18（seed1）叠 PruMerge（vision-side，n_keep 每图 IQR 自适应） | **76.28 / 1257.99 / 320.00 / 70.46 / 67.04 / 63.21 / 55.79 / 38.72**，rc=0，114.4 min。与 vanilla+PruMerge（76.53 / 1284.75 / 312.50 / 70.69 / 67.15 / 63.41 / 51.90 / 38.56）几乎重合（POPE −0.25pp、SEED +3.89pp），**但两者都远低于 vanilla 的 85.36 / 65.45**：PruMerge 本身在 POPE −8.8pp、SEED −13.6pp，叠加 LF 不能挽回 → **vision-side 自适应合并在 7B 上本身就是重损失，LF 与它不同源、无互补** | `results/revision/E7/`；`revision_runs/E7/lf7b_prumerge/` | 0ae51ed（代码 35b5499） |
+| 2026-10-20 | **E4 无分支 LF s=18 k=2** | `lf_no_branch`：图结构但侧分支换 identity，不训练，融合 2 份视觉后缀 | **85.46 / 1484.73 / 316.43 / 74.01 / 71.52 / 63.61 / 65.39 / 39.03**，rc=0，154.2 min。与 k=1（85.43 / 1462.61 / 336.07 / 74.15 / 71.38 / 63.66 / 65.44 / 39.08）几乎逐项重合（最大差 MME-C −19.6、MME-P +22.1）。与 vanilla（85.36 / 1489.8 / 343.9 / 74.13 / 71.26 / 63.61 / 65.45 / 39.08）八项全在噪声内 → **k=1→2 不带来增益，也不掉点**；侧分支即便不训练，图结构本身对精度是中性的 | `results/revision/E4/`；`revision_runs/E4/nobranch7b_s18_k2/` | 1be4aaf（代码 35b5499） |
+| 2026-10-20 | **E3_baselines VisionZip 192** | `visionzip7b_192`：dominant=162 + contextual=30（保留 192/576 图 token） | **84.70 / 1425.58 / 349.29 / 73.34 / 70.43 / 64.25 / 62.48 / 38.35**，rc=0，128.5 min。与 VisionZip-128（82.81 / 1393.56 / 336.07 / 72.67 / 69.97 / 64.50 / 60.68 / 38.14）：POPE **+1.89pp**、SEED **+1.80pp**、MME-P +32.0、MME-C +13.2。距 vanilla（85.36 / 1489.8 / 343.9 / 74.13 / 71.26 / 63.61 / 65.45 / 39.08）只差 POPE −0.66pp、SEED −2.97pp、MME-P −64.2 → **VisionZip 曲线随预算单调逼近 vanilla，192 token 时 POPE 已基本追平，SEED 仍差约 3pp** | `results/revision/E3/`；`revision_runs/E3/visionzip7b_192/` | 1be4aaf（代码 35b5499） |
 | 2026-10-19 | **E7 LF+FastV r=0.25** | E7：训练好的 7B DPVR-LF s=18（seed1）叠 FastV k=2，保留 **25%** 图 token，last 打分 | **79.52 / 1392.02 / 348.21 / 73.18 / 69.72 / 64.35 / 56.58 / 39.24**，rc=0，111.7 min。与 r=0.5（83.20 / 1451.40 / 335.00 / 73.97 / 70.46 / 64.45 / 64.36 / 38.82）：POPE **−3.68pp**、MME-P −59.4、MME-C +13.2、MMB-EN −0.79pp、MMB-CN −0.74pp、SQA −0.10pp、SEED **−7.78pp**、BLINK +0.42pp。与 LF 单独相比 POPE −5.88pp、SEED −8.31pp → **预算砍半后 LF+FastV 掉得比 LF 自身在 576 token 时多得多**，SEED/POPE 是主要损失位；与 LF 曲线同一形态（vision-side/LLM-side 压到 1/4 token 时退化集中在计数与多选） | `results/revision/E7/`；`revision_runs/E7/lf7b_fastv_k2_r0.25/` | 35b5499（代码） |
 | 2026-10-19 | **E7 LF+FastV r=0.5** | E7：训练好的 7B DPVR-LF s=18（seed1）叠 FastV k=2，保留 50% 图 token，last 打分 | **83.20 / 1451.40 / 335.00 / 73.97 / 70.46 / 64.45 / 64.36 / 38.82**，rc=0，126.2 min。与 LF 单独（85.40 / 1479.26 / 341.79 / 73.90 / 70.55 / 64.40 / 64.89 / 38.30）：POPE **−2.20pp**、MME-P −27.9、MME-C −6.8、MMB-EN +0.07pp、MMB-CN −0.09pp、SQA +0.05pp、SEED −0.53pp、BLINK +0.52pp。与 vanilla+FastV r=0.5 last（83.03 / 1462.3 / 335.7 / 74.08 / 71.01 / 64.80 / 64.50 / 38.93）几乎重合：**LF 与 FastV 叠加没有额外增益也没有额外损失**，说明两者压缩的是同一类冗余 | `results/revision/E7/`；`revision_runs/E7/lf7b_fastv_k2_r0.5/` | 35b5499（代码） |
 | 2026-10-19 | **E4 无分支 LF s=18 k=1** | `lf_no_branch`：DPVR-LF 图结构但侧分支换 identity，不训练，k=1 | **85.43 / 1462.61 / 336.07 / 74.15 / 71.38 / 63.66 / 65.44 / 39.08**，rc=0，151.6 min。与 vanilla（85.36 / 1489.8 / 343.9 / 74.13 / 71.26 / 63.61 / 65.45 / 39.08）**逐项在噪声内**；与训练后的 LF（85.40 / 1479.26 / 341.79 / 73.90 / 70.55 / 64.40 / 64.89 / 38.30）也几乎相同 → **训练后的侧分支在精度上不贡献可测增益**，其价值需从效率/稳定性角度论证（k=2/3/4 仍待跑） | `results/revision/E4/`；`revision_runs/E4/nobranch7b_s18_k1/` | 35b5499（代码） |
@@ -650,6 +653,11 @@ E0 六项 2026-10-16 全部 `done`、`rc=0`，`reeval_vanilla7b` 耗时 4834.8 s
 - **2026-10-19 23:58 更新：push 间歇性挂起（不是 401，也不是 GH013）。** 22:47 的 `c5f472e` push 成功；23:45 的 `7f23630`（E9 seed2 入表）连续 3 次 `git push origin main` **一行输出都没有就挂到超时**（150 s / 300 s / 45 s 各一次，`GIT_HTTP_LOW_SPEED_*` 也不生效）。同时 `git ls-remote origin -h refs/heads/main` **100 s 内正常返回**（`c5f472e`），说明代理到 GitHub 的读路径通、**写路径（receive-pack）卡住**——与本机凭据无关（20:40 起已不再报 `Authentication failed`）。
   - 未做：不换通道、不改写历史、不 force push。`7f23630` 只提交在本机（submit 内容与远端差异仅 `RESULTS.md` + `results/revision/**` 小文件，`git count-objects` 包体 1.31 MiB）。
   - 下次自检先重试一次；若继续挂起，等下一个成功窗口一起推，并在此处累计待推 commit。
+  - **00:12 复核**：又试 1 次（90 s）仍一行输出没有就超时。`ls-remote` 依旧秒回（远端仍 `c5f472e`）。
+    **本地待推 main：`1be4aaf`（E9 seed2）、`864754b`（E4 k=2、VisionZip-192）**，两笔都是 RESULTS.md + `results/revision/**` 小文件。不做 force push、不换通道。
+  - **00:41 复核**：本小时又试 2 次（90 s、60 s），仍一行输出没有就超时；`ls-remote` 仍正常。
+    本地待推更新为 **`1be4aaf`、`aa89bcf`**（后者含 E4 k=2、VisionZip-192、E7 LF+PruMerge 三行 + §19）。
+    另修 §19：E4 `nobranch k=3` 曾被两个队列写同一目录，已 kill 重跑、旧目录改名保留（未删）。
   - 同日 `send_results.py` 在不 `source .tmp/env.sh` 时会因裸 `python`=2.7.5 报 `SyntaxError`；source 后行为不变，仍是 `missing in .env / environment: SMTP_HOST, SMTP_USER, SMTP_PASSWORD, MAIL_TO`（§9）。
 
 ### 16. E3_vtw `vtw7b_s16` 主动中止（腾卡给 E6 全量训练）
@@ -693,3 +701,18 @@ E0 六项 2026-10-16 全部 `done`、`rc=0`，`reeval_vanilla7b` 耗时 4834.8 s
   `tests/test_token_reduction.py` 21 passed。
 - 影响：四项旧结果作废（本来也没有产出数字），在 GPU 4 上用 `server-fixes` 重跑；其余任务不受影响。
 - 验证：`prumerge7b` 重跑 41940/41940 完成（rc=0，110.9 min，数字已入表），远超旧版 371 条即崩；`visionzip7b_64` 在跑，128/192 排队。修复有效。
+
+### 19. E4 `nobranch k=3` 两个队列撞同一输出目录（已重跑）
+
+- 现象：2026-10-20 00:30 自检发现同一个 `revision_runs/E4/nobranch7b_s18_k3` 有**两个**
+  `eval_lmms.py` 进程（PID 2580053 在 GPU 3、PID 3208584 在 GPU 4），各占 14 GB 显存。
+- 原因：E4 原队列（`--gpus 3`）本来就排着 k=3、k=4；我在 GPU 4 空出后另起了
+  `--only nobranch7b_s18_k3 --only nobranch7b_s18_k4`（tmux `E4b`），两个队列对同一个 out 目录
+  各写各的 `log.txt` 和 `tasks/*/`。`run_queue` 的跳过只认 DONE 文件，看不到"别的队列正在跑"。
+- 处置：kill 掉两个进程和两个队列（`E4b` 会话删除），把目录整体改名为
+  `nobranch7b_s18_k3.collided-20261020` 保留（**未删**，按红线 4），在 GPU 3+4 上用
+  `--only nobranch7b_s18_k3 --only nobranch7b_s18_k4` 重新起一个队列（tmux `E4c`），两卡各跑一项。
+  代价约 60 分钟 GPU 时间；此前没有任何数字入表，不影响已发表格。
+- 教训：**同一个 yaml 只能有一个队列持有某个任务**；给新卡补位前先查 `ps -eo cmd | grep <method>.yaml`
+  和 `run_queue` 进程的 `--gpus`，确认目标任务没有被其他队列 pending/在跑。再遇到空卡优先选
+  未被任何队列覆盖的任务。
