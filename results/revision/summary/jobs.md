@@ -1,6 +1,6 @@
 # Job states
 
-done: 84, interrupted: 2, running: 7
+done: 85, interrupted: 2, running: 7
 
 | experiment | job | state | started | finished | returncode | error |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -20,6 +20,7 @@ done: 84, interrupted: 2, running: 7
 | E1 | gen7b_lf_s18_cache_true | done | 2026-10-18T08:25:34+00:00 | 2026-10-18T08:26:49+00:00 | 0 |  |
 | E1 | gen7b_vanilla_cache_false | done | 2026-10-18T08:21:13+00:00 | 2026-10-18T08:25:34+00:00 | 0 |  |
 | E1 | gen7b_vanilla_cache_true | done | 2026-10-18T08:20:08+00:00 | 2026-10-18T08:21:13+00:00 | 0 |  |
+| E10 | train_layerinit_f1.0 | running | 2026-10-19T17:36:28+00:00 |  |  |  |
 | E10 | train_lora16_f1.0 | running | 2026-10-19T10:40:38+00:00 |  |  |  |
 | E10 | train_mlp_f1.0 | running | 2026-10-19T10:40:37+00:00 |  |  |  |
 | E10 | train_mlp_layerinit_f1.0 | running | 2026-10-19T15:32:49+00:00 |  |  |  |
@@ -81,7 +82,7 @@ done: 84, interrupted: 2, running: 7
 | E7 | lf7b_fastv_k2_r0.25 | done | 2026-10-19T12:46:47+00:00 | 2026-10-19T14:38:31+00:00 | 0 |  |
 | E7 | lf7b_fastv_k2_r0.5 | done | 2026-10-19T10:40:35+00:00 | 2026-10-19T12:46:47+00:00 | 0 |  |
 | E7 | lf7b_prumerge | done | 2026-10-19T14:38:31+00:00 | 2026-10-19T16:33:57+00:00 | 0 |  |
-| E7 | lf7b_visionzip_64 | running | 2026-10-19T16:33:58+00:00 |  |  |  |
+| E7 | lf7b_visionzip_64 | done | 2026-10-19T16:33:58+00:00 | 2026-10-19T18:10:43+00:00 | 0 |  |
 | E8 | 13b_g12x12 | done | 2026-10-18T17:38:54+00:00 | 2026-10-18T17:40:45+00:00 | 0 |  |
 | E8 | 13b_g12x24 | done | 2026-10-18T17:36:35+00:00 | 2026-10-18T17:38:54+00:00 | 0 |  |
 | E8 | 13b_g24x24 | done | 2026-10-18T17:36:13+00:00 | 2026-10-18T17:39:35+00:00 | 0 |  |
