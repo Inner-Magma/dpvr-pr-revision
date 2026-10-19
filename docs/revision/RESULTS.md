@@ -32,7 +32,9 @@
 
 | 日期 | 实验 | 配置 | 关键数字 | 结果路径 | commit |
 | --- | --- | --- | --- | --- | --- |
-| 2026-10-19 | **E3_baselines FastV k=2 r=0.25（mean 打分）+ E3_baselines 全段小结** | 同 `fastv_tf.yaml`，保留 25% 图 token，mean 打分；至此 2×2 网格（r=0.5/0.25 × last/mean）跑齐 | **70.38 / 1189.5 / 365.4 / 67.38 / 62.76 / 62.67 / 54.88 / 37.93**，rc=0，113.8 min。**全表（POPE / MME-P / SEED）**：vanilla 85.36 / 1489.8 / 65.45；r0.5-last 83.03 / 1462.3 / 64.50；r0.5-mean 78.88 / 1364.0 / 61.08；r0.25-last 79.36 / 1402.5 / 61.22；r0.25-mean **70.38 / 1189.5 / 54.88**。**两个因子单调可加：打分方式（last ≫ mean）影响大于保留比例（0.5 > 0.25）**；mean 在 r=0.25 时 recall 只剩 43.6%（precision 93.8%），模型几乎全答 "no"。结论：FastV 类方法里"在哪一层取注意力"是主要矛盾，与本方法用深层（饱和层附近）做分裂/融合的动机一致 | `results/revision/E3/`；`revision_runs/E3/fastv7b_k2_r0.{5,25}_{last,mean}/` | c0193ef（代码） |
+| 2026-10-19 | **E3_baselines PyramidDrop** | `pdrop7b`：PyramidDrop，阶段边界 8/16/24，每段保留 50% 剩余图 token，按最后一层（last）注意力打分 | **84.91 / 1470.88 / 316.43 / 73.85 / 71.66 / 63.21 / 64.3 / 39.66**，rc=0，136.0 min。与 vanilla（85.36 / 1489.8 / 343.9 / 74.13 / 71.26 / 63.61 / 65.45 / 39.08）：POPE **−0.45pp**、MME-P −18.9、MME-C −27.5、MMB-EN −0.28pp、MMB-CN +0.40pp、SQA −0.40pp、SEED −1.15pp、BLINK +0.58pp。**多阶段渐进剪枝比单层 FastV 稳得多**（同 50% 预算下 FastV r=0.5 last 的 POPE 是 83.03、SEED 64.50），几乎贴住 vanilla；代价是需要三次打分，且仍会累积误差 | `results/revision/E3/`；`revision_runs/E3/pdrop7b/` | 35b5499（代码） |
+| 2026-10-19 | **E4 冻结基线 s=24** | `freeze_image`，冻结视觉塔 + projector，`split=24` | **85.41 / 1493.32 / 318.93 / 74.10 / 71.43 / 63.71 / 65.34 / 39.14**，rc=0，182.5 min。与 vanilla：POPE +0.05pp、MME-P +3.5、MME-C −25.0、MMB-EN −0.03pp，其余 ±0.2pp。**冻结扫描 s=8/12/16/18/20/24 完成**：s=8 崩塌（POPE 74.92），**s≥12 全部在 vanilla 噪声内、对分割层不敏感**——深层图像 token 不参与更新不损精度 | `results/revision/E4/`；`revision_runs/E4/freeze7b_s24/` | 97a32d6（代码） |
+ | 同 `fastv_tf.yaml`，保留 25% 图 token，mean 打分；至此 2×2 网格（r=0.5/0.25 × last/mean）跑齐 | **70.38 / 1189.5 / 365.4 / 67.38 / 62.76 / 62.67 / 54.88 / 37.93**，rc=0，113.8 min。**全表（POPE / MME-P / SEED）**：vanilla 85.36 / 1489.8 / 65.45；r0.5-last 83.03 / 1462.3 / 64.50；r0.5-mean 78.88 / 1364.0 / 61.08；r0.25-last 79.36 / 1402.5 / 61.22；r0.25-mean **70.38 / 1189.5 / 54.88**。**两个因子单调可加：打分方式（last ≫ mean）影响大于保留比例（0.5 > 0.25）**；mean 在 r=0.25 时 recall 只剩 43.6%（precision 93.8%），模型几乎全答 "no"。结论：FastV 类方法里"在哪一层取注意力"是主要矛盾，与本方法用深层（饱和层附近）做分裂/融合的动机一致 | `results/revision/E3/`；`revision_runs/E3/fastv7b_k2_r0.{5,25}_{last,mean}/` | c0193ef（代码） |
 | 2026-10-19 | **E4 冻结基线 s=20** | `freeze_image`，冻结视觉塔 + projector，`split=20` | **85.43 / 1472.4 / 336.1 / 74.17 / 71.24 / 63.61 / 65.40 / 38.93**，rc=0，180.0 min。与 vanilla（85.36 / 1489.8 / 343.9 / 74.13 / 71.26 / 63.61 / 65.45 / 39.08）：POPE **+0.07pp**、MME-P −17.4、MME-C −7.9，其余五项逐项与 vanilla 相差 ≤0.04pp。s=12→20 全段平：**冻结视觉不损精度，且对分割层不敏感（s≥12）**；s=24 正在跑 | `results/revision/E4/`；`revision_runs/E4/freeze7b_s20/` | 97a32d6（代码） |
 | 2026-10-19 | **E3_baselines FastV k=2 r=0.25（last 打分）** | 同 `fastv_tf.yaml`，**保留 25% 图 token（576→144）**，last 打分 | **79.36 / 1402.5 / 365.7 / 73.23 / 69.81 / 64.85 / 61.22 / 38.98**，rc=0，112.8 min。相对 r=0.5 last（83.03 / 1462.3 / 335.7 / 74.08 / 71.01 / 64.80 / 64.50 / 38.93）：POPE −3.67pp（recall 60.67%，precision 96.88%）、MME-P −59.7、MMB-EN −0.85pp、SEED −3.28pp；MME-C +30。**砍到 1/4 后 POPE/SEED 掉得明显，但 SQA/BLINK/MMB-CN 几乎不动**——与"剪枝主要伤细粒度视觉判别、不伤文本主导任务"一致 | `results/revision/E3/`；`revision_runs/E3/fastv7b_k2_r0.25_last/` | a27e612（代码） |
 | 2026-10-19 | **E4 冻结基线 s=18** | `freeze_image`，冻结视觉塔 + projector，`split=18`（与 LF 7B 主配置同层） | **85.38 / 1484.1 / 334.3 / 74.17 / 71.31 / 64.06 / 65.33 / 38.98**，rc=0，179.0 min。与 vanilla（85.36 / 1489.8 / 343.9 / 74.13 / 71.26 / 63.61 / 65.45 / 39.08）**逐项在噪声内**（POPE +0.02pp、MME-P −5.7、MME-C −9.6，MMB/SQA/SEED/BLINK ±0.45pp）。s=12/16/18 三行同结论：**在 s≥12 冻结视觉、让文本侧正常前向，精度不掉**——图像 token 的深层更新对最终精度不是必需 | `results/revision/E4/`；`revision_runs/E4/freeze7b_s18/` | 97a32d6（代码） |
@@ -653,3 +655,19 @@ E0 六项 2026-10-16 全部 `done`、`rc=0`，`reeval_vanilla7b` 耗时 4834.8 s
 - 结论与处置：**中转的 full_ft checkpoint 存坏了**（projector 未保存/被清零），不是评测链路或代码问题，重跑无意义；
   按 AGENTS.md 异常处理记入本节并跳过。E12 有效结果 5/6。原始文件按红线 4 保留。
 - 若作者手上有该 full_ft 的原始 projector（`mm_projector.bin`），可只替换 `linear_1/linear_2` 两个张量后重测。
+
+### 18. vision-side 缩减基线在多图样本上崩溃（已修 `35b5499`）
+
+- 现象：2026-10-19 15:32 自检发现 E3_baselines 的 `prumerge7b`、`visionzip7b_64/128/192` 四项全部 rc=1，
+  约 2.2–2.5 min、第 371 条样本左右崩溃。表面报错是 `llava_hf.py:377 IndexError: list index out of range`
+  （被 `except: cont=""` 吞掉），真因是生成阶段的
+  `Sizes of tensors must match except in dimension 1. Expected size 1 but got size 2 for tensor number 1`。
+- 原因：`pixel_values` 的 batch 维是**图片数**而不是样本数（LLaVA-v1.5 interleaved 数据里有双图样本）。
+  原 `_embed` 把全部图片一次缩减成 `(n_images, n_keep, C)`，再与 batch=1 的文本 embedding 在
+  `splice_image_tokens` 里 `cat(dim=1)`，dim 0 对不上。同批 fastv / pdrop（LLM 侧剪枝，走标准
+  `prepare_multimodal_input`）全部通过，旁证只有 vision-side 路径受影响。
+- 修复（`server-fixes` `35b5499`）：`_embed` 逐图缩减、逐图投影（PruMerge 的 `n_keep` 由每张图自己的
+  IQR 决定，VisionZip 的合并只在本图内）；`splice_image_tokens` 识别 `input_ids` 中每段连续占位符 run，
+  按顺序用各自的块替换（块长可不同），run 数与图数不一致时报错。新增多图拼接与不匹配的单测，
+  `tests/test_token_reduction.py` 21 passed。
+- 影响：四项旧结果作废（本来也没有产出数字），在 GPU 4 上用 `server-fixes` 重跑；其余任务不受影响。
