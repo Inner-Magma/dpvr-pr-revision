@@ -1,0 +1,53 @@
+{
+  "seed": 42,
+  "model": {
+    "base_model": "llava-1.5-7b-hf",
+    "llama_subdir": "llava1.5-7b-pretrained/vicuna-7b-v1.5",
+    "vision_tower_subdir": "llava1.5-7b-pretrained/clip-vit-large-patch14-336",
+    "projector_subdir": "llava1.5-7b-pretrained/llava-v1.5-7b-pretrain/mm_projector.bin",
+    "base_model_path": "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/models/llava-1.5-7b-hf",
+    "llama_path": "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/models/llava1.5-7b-pretrained/vicuna-7b-v1.5",
+    "vision_tower_path": "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/models/llava1.5-7b-pretrained/clip-vit-large-patch14-336",
+    "projector_weights_path": "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/models/llava1.5-7b-pretrained/llava-v1.5-7b-pretrain/mm_projector.bin"
+  },
+  "data": {
+    "json_rel": "llava-1.5-665k-instructions/llava_v1_5_mix665k.json",
+    "image_rel": "llava-1.5-665k-instructions",
+    "json_path": "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/datasets/llava-1.5-665k-instructions/llava_v1_5_mix665k.json",
+    "image_base_path": "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/datasets/llava-1.5-665k-instructions"
+  },
+  "training": {
+    "output_subdir": "token_diversion/default",
+    "per_device_train_batch_size": 4,
+    "gradient_accumulation_steps": 1,
+    "learning_rate": 5e-05,
+    "num_train_epochs": 1,
+    "lr_scheduler_type": "cosine",
+    "warmup_ratio": 0.03,
+    "weight_decay": 0.0,
+    "max_grad_norm": 1.0,
+    "optim": "adamw_torch",
+    "bf16": true,
+    "fp16": false,
+    "gradient_checkpointing": true,
+    "logging_steps": 1,
+    "save_strategy": "steps",
+    "save_steps": 6000,
+    "save_total_limit": 2,
+    "report_to": "none",
+    "output_dir": "/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/token_diversion/default"
+  },
+  "runtime": {
+    "detect_anomaly": false
+  },
+  "chat_template": "A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions. {% for message in messages %}{% if message['role'] == 'user' %}USER: {{ message['content'] }}{% else %} ASSISTANT: {{ message['content'] }}{{ eos_token }}{% endif %}{% endfor %}\n",
+  "method": {
+    "name": "reduced",
+    "reduction": "visionzip",
+    "params": {
+      "dominant": 54,
+      "contextual": 10,
+      "keep_cls": true
+    }
+  }
+}

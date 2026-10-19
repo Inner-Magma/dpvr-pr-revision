@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "checkpoint": "config:/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E3/visionzip7b_128/method_config.json",
+    "base_model": "llava-1.5-7b-hf",
+    "backbone": "llava",
+    "method_config": "configs/method/visionzip.yaml",
+    "overrides": [
+      "method.params.dominant=108",
+      "method.params.contextual=20"
+    ],
+    "use_cache": "False",
+    "limit": null,
+    "python": "3.10.22",
+    "git_sha": "b59408c",
+    "torch": "2.9.0+cu128",
+    "transformers": "4.57.1",
+    "gpu": "NVIDIA H20-3e",
+    "lmms_eval": "0.5.0"
+  },
+  "tasks": [
+    "pope",
+    "mme",
+    "mmbench_en",
+    "mmbench_cn",
+    "scienceqa",
+    "seedbench",
+    "blink"
+  ],
+  "metrics": {},
+  "returncode": 0
+}
