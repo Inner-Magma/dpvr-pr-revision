@@ -670,6 +670,9 @@ E0 六项 2026-10-16 全部 `done`、`rc=0`，`reeval_vanilla7b` 耗时 4834.8 s
     `cc538d9`（E6 Qwen）、`5933ddf`（E7 VisionZip-64）。全部只含 `RESULTS.md` + `results/revision/**` 小文件。
     按红线不换通道、不 force push；恢复后按序一次性推送即可（这些 commit 的父链就是远端 `c5f472e` 之后）。
     **需要作者：**在 VS Code 里重新登录 GitHub（与 §15 正文同一诉求，这是本机唯一凭据来源）。
+  - **2026-10-20 03:40 复核**：仍 `No anonymous write access.`。本地待推 main **6 个**：
+    `1be4aaf`、`6b6065b`、`cc538d9`、`5933ddf`、`5303878`（§15 记录）、`0927608`（E4 k=3/k=4 入表）。
+    E4 已全部收尾（k=1..4），GPU 3/4 已分别接 E10 `ref`、E3_vtw 续跑。
 
 ### 16. E3_vtw `vtw7b_s16` 主动中止（腾卡给 E6 全量训练）
 
