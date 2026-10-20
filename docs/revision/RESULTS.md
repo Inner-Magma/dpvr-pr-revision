@@ -779,3 +779,6 @@ E0 六项 2026-10-16 全部 `done`、`rc=0`，`reeval_vanilla7b` 耗时 4834.8 s
   `fatal: Authentication failed`（凭据 socket 路径未变）。本地 main=`1a3785b`，远端 main=`58923ad`。
   **积压 6 个提交**：`b675cc6`(E3_vtw s=20 入表)、`0a5ae7a`/`6c211f1`/`18fe934`(§15 三次复核)、
   `503902c`(§20 I/O 风暴)、`1a3785b`(E3_vtw s=24 入表)。工作树干净，未换任何推送途径。
+- 16:51 复核：仍 `No anonymous write access.` / `fatal: Authentication failed`。本地 main=`5e22b1a`，
+  远端 `58923ad`，**积压 8 个**（新增 `7570c8e` §15 复核、`5e22b1a` 问题 §0 SMTP）。
+  GPU4 已开跑 E3_vtw 13B（vanilla13b 7% @1.76 s/it）；整机 load 4689、D 态 4033，风暴未退。
