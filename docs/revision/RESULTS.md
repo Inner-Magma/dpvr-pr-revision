@@ -95,6 +95,13 @@
 
 ## 问题
 
+### 0. 邮件发送始终不可用（.env 缺 SMTP 配置）
+
+- 2026-10-20 15:43 又一次尝试：`python scripts/revision/send_results.py --subject "E3_vtw 7B 扫描完成 + E3_vtw 13B 启动"`
+  → `missing in .env / environment: SMTP_HOST, SMTP_USER, SMTP_PASSWORD, MAIL_TO`。
+- 自本会话开始每次"实验结束"都试过，报错完全一致；按 AGENTS.md 不换途径，只在这里记。
+- 需要作者：把上述四项填进 `$CKPT_ROOT` 侧的 `.env`（**不要提交**），或确认改用别的通知方式。
+
 ### 1. 卡型与文档不符：申请 H800，拿到的是 8×H100-80G（中途还有一版 H20-3e）
 
 `AGENTS.md` 全文以及 `SERVER_HANDOFF` 都按 8×H800 写。实际拿到的卡型换过两次：
