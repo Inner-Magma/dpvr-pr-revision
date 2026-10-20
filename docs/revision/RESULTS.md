@@ -816,3 +816,9 @@ E0 六项 2026-10-16 全部 `done`、`rc=0`，`reeval_vanilla7b` 耗时 4834.8 s
   **E9 train_seed3 已完成**（rc=0，05:17，127208 s ≈ 35.3 h），队列随即自动起 `E9/eval_seed3`（05:31 起，
   GPU0）；E10 train_mlp 已到 100%（05:27，保存中）、lora16 到 100%（05:32）；vtw13b_s24 17%。
   无任务失败。注意 GPU6 显存降到 14.2 G 是 seed3 训练退出后的释放态。
+- 06:37 复核：仍 401。本地 main=`35d8de0`，远端 `58923ad`，积压 23 个。load 5086、D 态仍在高位，
+  吞吐 1.09–1.53 s/it。**E10 train_mlp（05:54）与 train_lora16（06:22）均已 rc=0 完成**，两条队列随即
+  自动起 `eval_mlp_f1.0`（GPU1，4%）与 `eval_lora16_f1.0`（GPU2，刚起步）；四张训练卡
+  （layerinit 73%、mlp_layerinit 82%、depth2 66%、ref 65%）继续推进；`E9/eval_seed3` 9%（GPU6）、
+  `E3/vtw13b_s24` 26%（GPU4）。无任务失败；8 张卡全部在跑，尚无空卡可启 E3_baselines/E8/E7。
+  训练完成不算结果，E10 两行等八项评测出数后再入表。
