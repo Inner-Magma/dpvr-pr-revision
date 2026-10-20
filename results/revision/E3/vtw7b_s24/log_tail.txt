@@ -1,200 +1,200 @@
-Model Responding:  23%|██▎       | 9725/41940 [48:29<1:45:37,  5.08it/s]
-Model Responding:  23%|██▎       | 9726/41940 [48:30<1:48:03,  4.97it/s]
-Model Responding:  23%|██▎       | 9727/41940 [48:30<1:46:15,  5.05it/s]
-Model Responding:  23%|██▎       | 9728/41940 [48:30<2:51:31,  3.13it/s]
-Model Responding:  23%|██▎       | 9729/41940 [48:31<2:42:38,  3.30it/s]
-Model Responding:  23%|██▎       | 9730/41940 [48:31<2:26:36,  3.66it/s]
-Model Responding:  23%|██▎       | 9731/41940 [48:31<2:16:05,  3.94it/s]
-Model Responding:  23%|██▎       | 9732/41940 [48:31<2:14:27,  3.99it/s]
-Model Responding:  23%|██▎       | 9733/41940 [48:32<2:09:45,  4.14it/s]
-Model Responding:  23%|██▎       | 9734/41940 [48:32<2:06:14,  4.25it/s]
-Model Responding:  23%|██▎       | 9735/41940 [48:32<1:59:36,  4.49it/s]
-Model Responding:  23%|██▎       | 9736/41940 [48:32<2:05:45,  4.27it/s]
-Model Responding:  23%|██▎       | 9737/41940 [48:32<1:58:17,  4.54it/s]
-Model Responding:  23%|██▎       | 9738/41940 [48:33<1:54:35,  4.68it/s]
-Model Responding:  23%|██▎       | 9739/41940 [48:33<1:54:14,  4.70it/s]
-Model Responding:  23%|██▎       | 9740/41940 [48:33<1:49:53,  4.88it/s]
-Model Responding:  23%|██▎       | 9741/41940 [48:33<1:52:14,  4.78it/s]
-Model Responding:  23%|██▎       | 9742/41940 [48:33<1:46:35,  5.03it/s]
-Model Responding:  23%|██▎       | 9743/41940 [48:34<1:42:37,  5.23it/s]
-Model Responding:  23%|██▎       | 9744/41940 [48:34<1:40:59,  5.31it/s]
-Model Responding:  23%|██▎       | 9745/41940 [48:34<1:39:14,  5.41it/s]
-Model Responding:  23%|██▎       | 9746/41940 [48:34<1:37:47,  5.49it/s]
-Model Responding:  23%|██▎       | 9747/41940 [48:34<1:37:24,  5.51it/s]
-Model Responding:  23%|██▎       | 9748/41940 [48:34<1:36:35,  5.56it/s]
-Model Responding:  23%|██▎       | 9749/41940 [48:35<1:37:27,  5.50it/s]
-Model Responding:  23%|██▎       | 9750/41940 [48:35<1:36:30,  5.56it/s]
-Model Responding:  23%|██▎       | 9751/41940 [48:35<1:37:48,  5.49it/s]
-Model Responding:  23%|██▎       | 9752/41940 [48:35<1:36:58,  5.53it/s]
-Model Responding:  23%|██▎       | 9753/41940 [48:35<1:36:50,  5.54it/s]
-Model Responding:  23%|██▎       | 9754/41940 [48:36<1:36:51,  5.54it/s]
-Model Responding:  23%|██▎       | 9755/41940 [48:36<1:36:08,  5.58it/s]
-Model Responding:  23%|██▎       | 9756/41940 [48:36<1:35:37,  5.61it/s]
-Model Responding:  23%|██▎       | 9757/41940 [48:36<1:35:56,  5.59it/s]
-Model Responding:  23%|██▎       | 9758/41940 [48:36<1:35:54,  5.59it/s]
-Model Responding:  23%|██▎       | 9759/41940 [48:36<1:35:21,  5.62it/s]
-Model Responding:  23%|██▎       | 9760/41940 [48:37<1:37:48,  5.48it/s]
-Model Responding:  23%|██▎       | 9761/41940 [48:37<1:43:00,  5.21it/s]
-Model Responding:  23%|██▎       | 9762/41940 [48:37<1:44:19,  5.14it/s]
-Model Responding:  23%|██▎       | 9763/41940 [48:37<1:47:25,  4.99it/s]
-Model Responding:  23%|██▎       | 9764/41940 [48:37<1:49:14,  4.91it/s]
-Model Responding:  23%|██▎       | 9765/41940 [48:38<1:50:43,  4.84it/s]
-Model Responding:  23%|██▎       | 9766/41940 [48:38<1:49:56,  4.88it/s]
-Model Responding:  23%|██▎       | 9767/41940 [48:38<1:47:24,  4.99it/s]
-Model Responding:  23%|██▎       | 9768/41940 [48:38<1:47:03,  5.01it/s]
-Model Responding:  23%|██▎       | 9769/41940 [48:39<1:57:06,  4.58it/s]
-Model Responding:  23%|██▎       | 9770/41940 [48:39<1:53:20,  4.73it/s]
-Model Responding:  23%|██▎       | 9771/41940 [48:39<2:17:29,  3.90it/s]
-Model Responding:  23%|██▎       | 9772/41940 [48:39<2:09:04,  4.15it/s]
-Model Responding:  23%|██▎       | 9773/41940 [48:39<2:00:58,  4.43it/s]
-Model Responding:  23%|██▎       | 9774/41940 [48:40<1:54:37,  4.68it/s]
-Model Responding:  23%|██▎       | 9775/41940 [48:40<1:49:24,  4.90it/s]
-Model Responding:  23%|██▎       | 9776/41940 [48:40<1:50:41,  4.84it/s]
-Model Responding:  23%|██▎       | 9777/41940 [48:40<1:52:01,  4.78it/s]
-Model Responding:  23%|██▎       | 9778/41940 [48:40<1:47:22,  4.99it/s]
-Model Responding:  23%|██▎       | 9779/41940 [48:41<1:43:31,  5.18it/s]
-Model Responding:  23%|██▎       | 9780/41940 [48:41<1:40:35,  5.33it/s]
-Model Responding:  23%|██▎       | 9781/41940 [48:41<1:41:46,  5.27it/s]
-Model Responding:  23%|██▎       | 9782/41940 [48:41<1:42:24,  5.23it/s]
-Model Responding:  23%|██▎       | 9783/41940 [48:41<1:41:57,  5.26it/s]
-Model Responding:  23%|██▎       | 9784/41940 [48:42<1:39:38,  5.38it/s]
-Model Responding:  23%|██▎       | 9785/41940 [48:42<1:45:08,  5.10it/s]
-Model Responding:  23%|██▎       | 9786/41940 [48:42<1:41:51,  5.26it/s]
-Model Responding:  23%|██▎       | 9787/41940 [48:42<1:39:18,  5.40it/s]
-Model Responding:  23%|██▎       | 9788/41940 [48:42<1:38:10,  5.46it/s]
-Model Responding:  23%|██▎       | 9789/41940 [48:42<1:36:51,  5.53it/s]
-Model Responding:  23%|██▎       | 9790/41940 [48:43<1:36:24,  5.56it/s]
-Model Responding:  23%|██▎       | 9791/41940 [48:43<1:35:43,  5.60it/s]
-Model Responding:  23%|██▎       | 9792/41940 [48:43<1:35:00,  5.64it/s]
-Model Responding:  23%|██▎       | 9793/41940 [48:43<1:35:24,  5.62it/s]
-Model Responding:  23%|██▎       | 9794/41940 [48:43<1:36:40,  5.54it/s]
-Model Responding:  23%|██▎       | 9795/41940 [48:44<1:37:29,  5.49it/s]
-Model Responding:  23%|██▎       | 9796/41940 [48:44<1:37:35,  5.49it/s]
-Model Responding:  23%|██▎       | 9797/41940 [48:44<1:37:04,  5.52it/s]
-Model Responding:  23%|██▎       | 9798/41940 [48:44<1:36:51,  5.53it/s]
-Model Responding:  23%|██▎       | 9799/41940 [48:44<1:37:09,  5.51it/s]
-Model Responding:  23%|██▎       | 9800/41940 [48:44<1:35:56,  5.58it/s]
-Model Responding:  23%|██▎       | 9801/41940 [48:45<1:35:30,  5.61it/s]
-Model Responding:  23%|██▎       | 9802/41940 [48:45<1:35:13,  5.63it/s]
-Model Responding:  23%|██▎       | 9803/41940 [48:45<1:35:15,  5.62it/s]
-Model Responding:  23%|██▎       | 9804/41940 [48:45<1:38:32,  5.44it/s]
-Model Responding:  23%|██▎       | 9805/41940 [48:45<1:37:06,  5.52it/s]
-Model Responding:  23%|██▎       | 9806/41940 [48:46<1:35:58,  5.58it/s]
-Model Responding:  23%|██▎       | 9807/41940 [48:46<1:40:36,  5.32it/s]
-Model Responding:  23%|██▎       | 9808/41940 [48:46<1:38:24,  5.44it/s]
-Model Responding:  23%|██▎       | 9809/41940 [48:46<1:37:20,  5.50it/s]
-Model Responding:  23%|██▎       | 9810/41940 [48:46<1:36:34,  5.55it/s]
-Model Responding:  23%|██▎       | 9811/41940 [48:46<1:35:36,  5.60it/s]
-Model Responding:  23%|██▎       | 9812/41940 [48:47<1:34:43,  5.65it/s]
-Model Responding:  23%|██▎       | 9813/41940 [48:47<1:34:24,  5.67it/s]
-Model Responding:  23%|██▎       | 9814/41940 [48:47<1:34:06,  5.69it/s]
-Model Responding:  23%|██▎       | 9815/41940 [48:47<1:33:36,  5.72it/s]
-Model Responding:  23%|██▎       | 9816/41940 [48:47<1:33:14,  5.74it/s]
-Model Responding:  23%|██▎       | 9817/41940 [48:47<1:33:37,  5.72it/s]
-Model Responding:  23%|██▎       | 9818/41940 [48:48<1:33:46,  5.71it/s]
-Model Responding:  23%|██▎       | 9819/41940 [48:48<1:36:23,  5.55it/s]
-Model Responding:  23%|██▎       | 9820/41940 [48:48<1:35:27,  5.61it/s]
-Model Responding:  23%|██▎       | 9821/41940 [48:48<1:35:03,  5.63it/s]
-Model Responding:  23%|██▎       | 9822/41940 [48:48<1:34:39,  5.65it/s]
-Model Responding:  23%|██▎       | 9823/41940 [48:49<1:34:21,  5.67it/s]
-Model Responding:  23%|██▎       | 9824/41940 [48:49<1:35:55,  5.58it/s]
-Model Responding:  23%|██▎       | 9825/41940 [48:49<1:37:18,  5.50it/s]
-Model Responding:  23%|██▎       | 9826/41940 [48:49<1:36:53,  5.52it/s]
-Model Responding:  23%|██▎       | 9827/41940 [48:49<1:37:45,  5.47it/s]
-Model Responding:  23%|██▎       | 9828/41940 [48:49<1:36:45,  5.53it/s]
-Model Responding:  23%|██▎       | 9829/41940 [48:50<1:38:22,  5.44it/s]
-Model Responding:  23%|██▎       | 9830/41940 [48:50<1:38:53,  5.41it/s]
-Model Responding:  23%|██▎       | 9831/41940 [48:50<1:37:21,  5.50it/s]
-Model Responding:  23%|██▎       | 9832/41940 [48:50<1:37:18,  5.50it/s]
-Model Responding:  23%|██▎       | 9833/41940 [48:50<1:36:03,  5.57it/s]
-Model Responding:  23%|██▎       | 9834/41940 [48:51<1:35:19,  5.61it/s]
-Model Responding:  23%|██▎       | 9835/41940 [48:51<1:37:22,  5.50it/s]
-Model Responding:  23%|██▎       | 9836/41940 [48:51<1:38:12,  5.45it/s]
-Model Responding:  23%|██▎       | 9837/41940 [48:51<1:36:41,  5.53it/s]
-Model Responding:  23%|██▎       | 9838/41940 [48:51<1:35:55,  5.58it/s]
-Model Responding:  23%|██▎       | 9839/41940 [48:51<1:36:17,  5.56it/s]
-Model Responding:  23%|██▎       | 9840/41940 [48:52<1:37:08,  5.51it/s]
-Model Responding:  23%|██▎       | 9841/41940 [48:52<1:35:59,  5.57it/s]
-Model Responding:  23%|██▎       | 9842/41940 [48:52<1:35:06,  5.62it/s]
-Model Responding:  23%|██▎       | 9843/41940 [48:52<1:39:11,  5.39it/s]
-Model Responding:  23%|██▎       | 9844/41940 [48:52<1:39:47,  5.36it/s]
-Model Responding:  23%|██▎       | 9845/41940 [48:53<1:39:16,  5.39it/s]
-Model Responding:  23%|██▎       | 9846/41940 [48:53<1:37:40,  5.48it/s]
-Model Responding:  23%|██▎       | 9847/41940 [48:53<1:36:59,  5.51it/s]
-Model Responding:  23%|██▎       | 9848/41940 [48:53<1:37:30,  5.49it/s]
-Model Responding:  23%|██▎       | 9849/41940 [48:53<1:36:20,  5.55it/s]
-Model Responding:  23%|██▎       | 9850/41940 [48:53<1:35:31,  5.60it/s]
-Model Responding:  23%|██▎       | 9851/41940 [48:54<1:34:56,  5.63it/s]
-Model Responding:  23%|██▎       | 9852/41940 [48:54<1:35:44,  5.59it/s]
-Model Responding:  23%|██▎       | 9853/41940 [48:54<1:34:50,  5.64it/s]
-Model Responding:  23%|██▎       | 9854/41940 [48:54<1:34:55,  5.63it/s]
-Model Responding:  23%|██▎       | 9855/41940 [48:54<1:39:53,  5.35it/s]
-Model Responding:  24%|██▎       | 9856/41940 [48:55<2:40:37,  3.33it/s]
-Model Responding:  24%|██▎       | 9857/41940 [48:55<2:55:06,  3.05it/s]
-Model Responding:  24%|██▎       | 9858/41940 [48:56<2:46:08,  3.22it/s]
-Model Responding:  24%|██▎       | 9859/41940 [48:56<2:24:05,  3.71it/s]
-Model Responding:  24%|██▎       | 9860/41940 [48:56<2:08:50,  4.15it/s]
-Model Responding:  24%|██▎       | 9861/41940 [48:56<1:58:08,  4.53it/s]
-Model Responding:  24%|██▎       | 9862/41940 [48:56<1:50:44,  4.83it/s]
-Model Responding:  24%|██▎       | 9863/41940 [48:56<1:45:13,  5.08it/s]
-Model Responding:  24%|██▎       | 9864/41940 [48:57<1:41:47,  5.25it/s]
-Model Responding:  24%|██▎       | 9865/41940 [48:57<1:39:01,  5.40it/s]
-Model Responding:  24%|██▎       | 9866/41940 [48:57<1:37:09,  5.50it/s]
-Model Responding:  24%|██▎       | 9867/41940 [48:57<1:35:57,  5.57it/s]
-Model Responding:  24%|██▎       | 9868/41940 [48:57<1:35:02,  5.62it/s]
-Model Responding:  24%|██▎       | 9869/41940 [48:58<1:34:39,  5.65it/s]
-Model Responding:  24%|██▎       | 9870/41940 [48:58<1:36:27,  5.54it/s]
-Model Responding:  24%|██▎       | 9871/41940 [48:58<1:35:49,  5.58it/s]
-Model Responding:  24%|██▎       | 9872/41940 [48:58<1:35:31,  5.60it/s]
-Model Responding:  24%|██▎       | 9873/41940 [48:58<1:35:13,  5.61it/s]
-Model Responding:  24%|██▎       | 9874/41940 [48:58<1:34:54,  5.63it/s]
-Model Responding:  24%|██▎       | 9875/41940 [48:59<1:35:10,  5.62it/s]
-Model Responding:  24%|██▎       | 9876/41940 [48:59<1:34:25,  5.66it/s]
-Model Responding:  24%|██▎       | 9877/41940 [48:59<1:34:10,  5.67it/s]
-Model Responding:  24%|██▎       | 9878/41940 [48:59<1:33:43,  5.70it/s]
-Model Responding:  24%|██▎       | 9879/41940 [48:59<1:35:29,  5.60it/s]
-Model Responding:  24%|██▎       | 9880/41940 [48:59<1:35:13,  5.61it/s]
-Model Responding:  24%|██▎       | 9881/41940 [49:00<1:35:37,  5.59it/s]
-Model Responding:  24%|██▎       | 9882/41940 [49:00<1:34:58,  5.63it/s]
-Model Responding:  24%|██▎       | 9883/41940 [49:00<1:34:29,  5.65it/s]
-Model Responding:  24%|██▎       | 9884/41940 [49:00<1:34:56,  5.63it/s]
-Model Responding:  24%|██▎       | 9885/41940 [49:00<1:34:31,  5.65it/s]
-Model Responding:  24%|██▎       | 9886/41940 [49:01<1:34:07,  5.68it/s]
-Model Responding:  24%|██▎       | 9887/41940 [49:01<1:33:39,  5.70it/s]
-Model Responding:  24%|██▎       | 9888/41940 [49:01<1:34:30,  5.65it/s]
-Model Responding:  24%|██▎       | 9889/41940 [49:01<1:35:21,  5.60it/s]
-Model Responding:  24%|██▎       | 9890/41940 [49:01<1:34:31,  5.65it/s]
-Model Responding:  24%|██▎       | 9891/41940 [49:01<1:34:10,  5.67it/s]
-Model Responding:  24%|██▎       | 9892/41940 [49:02<1:34:05,  5.68it/s]
-Model Responding:  24%|██▎       | 9893/41940 [49:02<1:34:08,  5.67it/s]
-Model Responding:  24%|██▎       | 9894/41940 [49:02<1:33:56,  5.69it/s]
-Model Responding:  24%|██▎       | 9895/41940 [49:02<1:34:43,  5.64it/s]
-Model Responding:  24%|██▎       | 9896/41940 [49:02<1:34:51,  5.63it/s]
-Model Responding:  24%|██▎       | 9897/41940 [49:02<1:34:19,  5.66it/s]
-Model Responding:  24%|██▎       | 9898/41940 [49:03<1:34:08,  5.67it/s]
-Model Responding:  24%|██▎       | 9899/41940 [49:03<1:33:37,  5.70it/s]
-Model Responding:  24%|██▎       | 9900/41940 [49:03<1:33:39,  5.70it/s]
-Model Responding:  24%|██▎       | 9901/41940 [49:03<1:34:51,  5.63it/s]
-Model Responding:  24%|██▎       | 9902/41940 [49:03<1:36:36,  5.53it/s]
-Model Responding:  24%|██▎       | 9903/41940 [49:04<1:35:47,  5.57it/s]
-Model Responding:  24%|██▎       | 9904/41940 [49:04<1:34:53,  5.63it/s]
-Model Responding:  24%|██▎       | 9905/41940 [49:04<1:37:15,  5.49it/s]
-Model Responding:  24%|██▎       | 9906/41940 [49:04<1:41:42,  5.25it/s]
-Model Responding:  24%|██▎       | 9907/41940 [49:04<1:42:01,  5.23it/s]
-Model Responding:  24%|██▎       | 9908/41940 [49:04<1:40:33,  5.31it/s]
-Model Responding:  24%|██▎       | 9909/41940 [49:05<1:44:42,  5.10it/s]
-Model Responding:  24%|██▎       | 9910/41940 [49:05<1:43:16,  5.17it/s]
-Model Responding:  24%|██▎       | 9911/41940 [49:05<1:40:21,  5.32it/s]
-Model Responding:  24%|██▎       | 9912/41940 [49:05<1:44:26,  5.11it/s]
-Model Responding:  24%|██▎       | 9913/41940 [49:05<1:41:13,  5.27it/s]
-Model Responding:  24%|██▎       | 9914/41940 [49:06<1:40:18,  5.32it/s]
-Model Responding:  24%|██▎       | 9915/41940 [49:06<1:38:40,  5.41it/s]
-Model Responding:  24%|██▎       | 9916/41940 [49:06<1:37:25,  5.48it/s]
-Model Responding:  24%|██▎       | 9917/41940 [49:06<1:36:23,  5.54it/s]
-Model Responding:  24%|██▎       | 9918/41940 [49:06<1:35:28,  5.59it/s]
-Model Responding:  24%|██▎       | 9919/41940 [49:07<1:34:53,  5.62it/s]
-Model Responding:  24%|██▎       | 9920/41940 [49:07<1:36:53,  5.51it/s]
-Model Responding:  24%|██▎       | 9921/41940 [49:07<1:35:49,  5.57it/s]
-Model Responding:  24%|██▎       | 9922/41940 [49:07<1:35:20,  5.60it/s]
-Model Responding:  24%|██▎       | 9923/41940 [49:07<1:35:02,  5.61it/s]
-Model Responding:  24%|██▎       | 9924/41940 [49:07<1:35:41,  5.58it/s]
+Postprocessing: 100%|█████████▉| 17922/17990 [00:10<00:00, 1227.66it/s]
+Postprocessing: 100%|██████████| 17990/17990 [00:10<00:00, 1698.40it/s]
+
+Postprocessing:   0%|          | 0/2017 [00:00<?, ?it/s]
+Postprocessing:   7%|▋         | 136/2017 [00:00<00:01, 1220.05it/s]
+Postprocessing:  13%|█▎        | 259/2017 [00:00<00:01, 1203.96it/s]
+Postprocessing:  19%|█▉        | 387/2017 [00:00<00:01, 1227.69it/s]
+Postprocessing:  32%|███▏      | 655/2017 [00:00<00:00, 1743.53it/s]
+Postprocessing:  41%|████      | 829/2017 [00:00<00:00, 1690.62it/s]
+Postprocessing:  49%|████▉     | 998/2017 [00:00<00:00, 1477.01it/s]
+Postprocessing:  57%|█████▋    | 1150/2017 [00:00<00:00, 1351.60it/s]
+Postprocessing:  64%|██████▍   | 1289/2017 [00:00<00:00, 1351.24it/s]
+Postprocessing:  71%|███████▏  | 1442/2017 [00:01<00:00, 1401.03it/s]
+Postprocessing:  79%|███████▊  | 1585/2017 [00:01<00:00, 1401.34it/s]
+Postprocessing:  88%|████████▊ | 1781/2017 [00:01<00:00, 1548.66it/s]
+Postprocessing:  96%|█████████▌| 1938/2017 [00:01<00:00, 1315.63it/s]
+Postprocessing: 100%|██████████| 2017/2017 [00:01<00:00, 1415.70it/s]
+
+Postprocessing:   0%|          | 0/9000 [00:00<?, ?it/s]
+Postprocessing:   2%|▏         | 212/9000 [00:00<00:04, 2118.75it/s]
+Postprocessing:   5%|▌         | 493/9000 [00:00<00:03, 2468.23it/s]
+Postprocessing:   8%|▊         | 740/9000 [00:00<00:04, 1820.76it/s]
+Postprocessing:  11%|█         | 1002/9000 [00:00<00:03, 2050.41it/s]
+Postprocessing:  15%|█▍        | 1340/9000 [00:00<00:03, 2465.16it/s]
+Postprocessing:  18%|█▊        | 1634/9000 [00:00<00:02, 2559.49it/s]
+Postprocessing:  22%|██▏       | 1939/9000 [00:00<00:02, 2707.00it/s]
+Postprocessing:  25%|██▍       | 2218/9000 [00:00<00:02, 2396.96it/s]
+Postprocessing:  27%|██▋       | 2469/9000 [00:01<00:02, 2401.06it/s]
+Postprocessing:  31%|███▏      | 2821/9000 [00:01<00:02, 2708.49it/s]
+Postprocessing:  34%|███▍      | 3101/9000 [00:01<00:02, 2580.88it/s]
+Postprocessing:  37%|███▋      | 3366/9000 [00:01<00:02, 2032.03it/s]
+Postprocessing:  40%|███▉      | 3591/9000 [00:01<00:02, 1851.46it/s]
+Postprocessing:  43%|████▎     | 3909/9000 [00:01<00:02, 2151.76it/s]
+Postprocessing:  46%|████▌     | 4145/9000 [00:01<00:02, 1818.52it/s]
+Postprocessing:  49%|████▉     | 4436/9000 [00:02<00:02, 2064.83it/s]
+Postprocessing:  52%|█████▏    | 4666/9000 [00:02<00:02, 2105.24it/s]
+Postprocessing:  54%|█████▍    | 4894/9000 [00:02<00:01, 2060.64it/s]
+Postprocessing:  57%|█████▋    | 5112/9000 [00:02<00:01, 1975.40it/s]
+Postprocessing:  59%|█████▉    | 5321/9000 [00:02<00:01, 1983.61it/s]
+Postprocessing:  61%|██████▏   | 5526/9000 [00:02<00:02, 1641.24it/s]
+Postprocessing:  64%|██████▍   | 5794/9000 [00:02<00:01, 1884.00it/s]
+Postprocessing:  69%|██████▉   | 6217/9000 [00:02<00:01, 2479.96it/s]
+Postprocessing:  76%|███████▌  | 6808/9000 [00:02<00:00, 3368.19it/s]
+Postprocessing:  80%|███████▉  | 7169/9000 [00:03<00:00, 2608.22it/s]
+Postprocessing:  83%|████████▎ | 7472/9000 [00:03<00:00, 1911.40it/s]
+Postprocessing:  86%|████████▋ | 7766/9000 [00:03<00:00, 2046.53it/s]
+Postprocessing:  89%|████████▉ | 8014/9000 [00:03<00:00, 1946.10it/s]
+Postprocessing:  92%|█████████▏| 8238/9000 [00:03<00:00, 1755.30it/s]
+Postprocessing:  95%|█████████▍| 8507/9000 [00:03<00:00, 1937.28it/s]
+Postprocessing:  97%|█████████▋| 8723/9000 [00:04<00:00, 1959.22it/s]
+Postprocessing: 100%|██████████| 9000/9000 [00:04<00:00, 2165.81it/s]
+
+Postprocessing:   0%|          | 0/2374 [00:00<?, ?it/s]
+Postprocessing:  16%|█▋        | 388/2374 [00:00<00:00, 3693.22it/s]
+Postprocessing:  32%|███▏      | 758/2374 [00:00<00:00, 3300.75it/s]
+Postprocessing:  46%|████▌     | 1091/2374 [00:00<00:00, 2915.68it/s]
+Postprocessing:  58%|█████▊    | 1387/2374 [00:00<00:00, 2746.08it/s]
+Postprocessing:  70%|███████   | 1666/2374 [00:00<00:00, 2754.78it/s]
+Postprocessing:  82%|████████▏ | 1943/2374 [00:00<00:00, 2742.75it/s]
+Postprocessing: 100%|██████████| 2374/2374 [00:00<00:00, 3118.09it/s]
+
+Postprocessing:   0%|          | 0/4329 [00:00<?, ?it/s]
+Postprocessing:   3%|▎         | 149/4329 [00:01<00:52, 80.27it/s]
+Postprocessing:   8%|▊         | 332/4329 [00:01<00:19, 204.26it/s]
+Postprocessing:  15%|█▍        | 633/4329 [00:02<00:08, 458.90it/s]
+Postprocessing:  19%|█▉        | 815/4329 [00:02<00:05, 603.79it/s]
+Postprocessing:  23%|██▎       | 987/4329 [00:02<00:04, 733.08it/s]
+Postprocessing:  29%|██▉       | 1258/4329 [00:02<00:02, 1048.68it/s]
+Postprocessing:  34%|███▍      | 1477/4329 [00:02<00:02, 1251.88it/s]
+Postprocessing:  39%|███▉      | 1678/4329 [00:02<00:02, 1254.66it/s]
+Postprocessing:  43%|████▎     | 1855/4329 [00:02<00:01, 1315.56it/s]
+Postprocessing:  48%|████▊     | 2068/4329 [00:02<00:01, 1484.31it/s]
+Postprocessing:  52%|█████▏    | 2248/4329 [00:03<00:01, 1371.06it/s]
+Postprocessing:  56%|█████▌    | 2428/4329 [00:03<00:01, 1457.77it/s]
+Postprocessing:  60%|██████    | 2604/4329 [00:03<00:01, 1479.23it/s]
+Postprocessing:  64%|██████▍   | 2765/4329 [00:03<00:01, 1364.10it/s]
+Postprocessing:  67%|██████▋   | 2912/4329 [00:03<00:01, 1322.78it/s]
+Postprocessing:  70%|███████   | 3051/4329 [00:03<00:01, 1267.79it/s]
+Postprocessing:  74%|███████▍  | 3199/4329 [00:03<00:00, 1309.19it/s]
+Postprocessing:  77%|███████▋  | 3334/4329 [00:03<00:00, 1206.58it/s]
+Postprocessing:  81%|████████▏ | 3522/4329 [00:04<00:00, 1379.07it/s]
+Postprocessing:  89%|████████▉ | 3856/4329 [00:04<00:00, 1846.12it/s]
+Postprocessing:  95%|█████████▍| 4107/4329 [00:04<00:00, 2021.69it/s]
+Postprocessing: 100%|█████████▉| 4315/4329 [00:04<00:00, 1801.13it/s]
+Postprocessing: 100%|██████████| 4329/4329 [00:04<00:00, 986.93it/s] 
+
+Postprocessing:   0%|          | 0/4329 [00:00<?, ?it/s]
+Postprocessing:   3%|▎         | 129/4329 [00:00<00:03, 1282.79it/s]
+Postprocessing:   6%|▌         | 258/4329 [00:00<00:03, 1033.58it/s]
+Postprocessing:   9%|▉         | 395/4329 [00:00<00:03, 1168.75it/s]
+Postprocessing:  12%|█▏        | 516/4329 [00:00<00:03, 1173.59it/s]
+Postprocessing:  15%|█▍        | 636/4329 [00:00<00:03, 1077.43it/s]
+Postprocessing:  21%|██        | 896/4329 [00:00<00:02, 1538.36it/s]
+Postprocessing:  29%|██▉       | 1267/4329 [00:00<00:01, 2198.26it/s]
+Postprocessing:  38%|███▊      | 1661/4329 [00:00<00:00, 2725.54it/s]
+Postprocessing:  45%|████▍     | 1943/4329 [00:00<00:00, 2699.34it/s]
+Postprocessing:  52%|█████▏    | 2269/4329 [00:01<00:00, 2840.26it/s]
+Postprocessing:  59%|█████▉    | 2558/4329 [00:01<00:00, 2644.64it/s]
+Postprocessing:  65%|██████▌   | 2828/4329 [00:01<00:00, 1913.63it/s]
+Postprocessing:  70%|███████   | 3051/4329 [00:01<00:00, 1818.36it/s]
+Postprocessing:  75%|███████▌  | 3254/4329 [00:01<00:00, 1209.40it/s]
+Postprocessing:  79%|███████▉  | 3414/4329 [00:02<00:00, 1176.49it/s]
+Postprocessing:  85%|████████▍ | 3671/4329 [00:02<00:00, 1435.07it/s]
+Postprocessing:  89%|████████▉ | 3849/4329 [00:02<00:00, 1423.48it/s]
+Postprocessing:  93%|█████████▎| 4016/4329 [00:02<00:00, 1455.37it/s]
+Postprocessing:  97%|█████████▋| 4208/4329 [00:02<00:00, 1549.57it/s]
+Postprocessing: 100%|██████████| 4329/4329 [00:02<00:00, 1624.05it/s]
+
+Postprocessing:   0%|          | 0/1901 [00:00<?, ?it/s]
+Postprocessing:   2%|▏         | 47/1901 [00:00<00:04, 402.78it/s]
+Postprocessing:   5%|▌         | 104/1901 [00:00<00:04, 443.31it/s]
+Postprocessing:  13%|█▎        | 246/1901 [00:00<00:01, 846.52it/s]
+Postprocessing:  18%|█▊        | 344/1901 [00:00<00:01, 885.75it/s]
+Postprocessing:  23%|██▎       | 436/1901 [00:00<00:01, 825.39it/s]
+Postprocessing:  30%|███       | 577/1901 [00:00<00:01, 994.07it/s]
+Postprocessing:  38%|███▊      | 716/1901 [00:00<00:01, 1087.45it/s]
+Postprocessing:  45%|████▍     | 852/1901 [00:00<00:00, 1168.72it/s]
+Postprocessing:  52%|█████▏    | 990/1901 [00:00<00:00, 1165.35it/s]
+Postprocessing:  58%|█████▊    | 1108/1901 [00:01<00:00, 966.10it/s]
+Postprocessing:  64%|██████▍   | 1213/1901 [00:01<00:00, 982.57it/s]
+Postprocessing:  71%|███████   | 1352/1901 [00:01<00:00, 1090.04it/s]
+Postprocessing:  77%|███████▋  | 1466/1901 [00:01<00:00, 1066.13it/s]
+Postprocessing:  85%|████████▌ | 1625/1901 [00:01<00:00, 1203.78it/s]
+Postprocessing:  92%|█████████▏| 1749/1901 [00:01<00:00, 1139.64it/s]
+Postprocessing:  98%|█████████▊| 1866/1901 [00:01<00:00, 1037.75it/s]
+Postprocessing: 100%|██████████| 1901/1901 [00:01<00:00, 996.22it/s] 
+[32m2026-10-20 15:08:05[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mcode_reasoning: 67.50[0m
+[32m2026-10-20 15:08:05[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mnumerical_calculation: 55.00[0m
+[32m2026-10-20 15:08:05[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mtext_translation: 85.00[0m
+[32m2026-10-20 15:08:05[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mcommonsense_reasoning: 121.43[0m
+[32m2026-10-20 15:08:05[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1martwork: 124.25[0m
+[32m2026-10-20 15:08:05[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mcelebrity: 141.47[0m
+[32m2026-10-20 15:08:05[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mcount: 143.33[0m
+[32m2026-10-20 15:08:05[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mcolor: 158.33[0m
+[32m2026-10-20 15:08:05[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mposition: 128.33[0m
+[32m2026-10-20 15:08:05[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mOCR: 130.00[0m
+[32m2026-10-20 15:08:05[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mlandmark: 159.50[0m
+[32m2026-10-20 15:08:05[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mscene: 155.50[0m
+[32m2026-10-20 15:08:05[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mexistence: 190.00[0m
+[32m2026-10-20 15:08:05[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mposters: 137.76[0m
+[32m2026-10-20 15:08:06[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_aggregated[0m:[36m188[0m - [1mSaving results aggregated[0m
+[32m2026-10-20 15:08:30[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E3/vtw7b_s24/lmms/models__llava-1.5-7b-hf/20261020_104426_samples_blink_local.jsonl[0m
+[32m2026-10-20 15:09:24[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E3/vtw7b_s24/lmms/models__llava-1.5-7b-hf/20261020_104426_samples_mmbench_cn_local.jsonl[0m
+[32m2026-10-20 15:10:24[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E3/vtw7b_s24/lmms/models__llava-1.5-7b-hf/20261020_104426_samples_mmbench_en_local.jsonl[0m
+[32m2026-10-20 15:10:55[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E3/vtw7b_s24/lmms/models__llava-1.5-7b-hf/20261020_104426_samples_mme_local.jsonl[0m
+[32m2026-10-20 15:12:56[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E3/vtw7b_s24/lmms/models__llava-1.5-7b-hf/20261020_104426_samples_pope_local.jsonl[0m
+[32m2026-10-20 15:13:22[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E3/vtw7b_s24/lmms/models__llava-1.5-7b-hf/20261020_104426_samples_scienceqa_local.jsonl[0m
+[32m2026-10-20 15:17:34[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E3/vtw7b_s24/lmms/models__llava-1.5-7b-hf/20261020_104426_samples_seedbench_local.jsonl[0m
+dpvr_hf (pretrained=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/models/llava-1.5-7b-hf,checkpoint=config:/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E3/vtw7b_s24/method_config.json,use_cache=False,dtype=bfloat16), gen_kwargs: (), limit: None, num_fewshot: None, batch_size: 1
+|     Tasks      |Version|Filter|n-shot|       Metric       |   |  Value  |   |Stderr|
+|----------------|-------|------|-----:|--------------------|---|--------:|---|------|
+|blink_local     |Yaml   |none  |     0|accuracy            |↑  |   0.3887|±  |0.0112|
+|mmbench_cn_local|Yaml   |none  |     0|accuracy            |↑  |   0.7161|±  |0.0069|
+|mmbench_en_local|Yaml   |none  |     0|accuracy            |↑  |   0.7408|±  |0.0067|
+|mme_local       |Yaml   |none  |     0|mme_cognition_score |↑  | 328.9286|±  |   N/A|
+|mme_local       |Yaml   |none  |     0|mme_perception_score|↑  |1468.4757|±  |   N/A|
+|pope_local      |Yaml   |none  |     0|pope_accuracy       |↑  |   0.8552|±  |   N/A|
+|pope_local      |Yaml   |none  |     0|pope_f1_score       |↑  |   0.8411|±  |   N/A|
+|pope_local      |Yaml   |none  |     0|pope_precision      |↑  |   0.9321|±  |   N/A|
+|pope_local      |Yaml   |none  |     0|pope_recall         |↑  |   0.7662|±  |   N/A|
+|pope_local      |Yaml   |none  |     0|pope_yes_ratio      |↑  |   0.5000|±  |   N/A|
+|scienceqa_local |Yaml   |none  |     0|mc_accuracy         |↑  |   0.6381|±  |0.0107|
+|seedbench_local |Yaml   |none  |     0|seed_all            |↑  |   0.6027|±  |   N/A|
+|seedbench_local |Yaml   |none  |     0|seed_image          |↑  |   0.6544|±  |   N/A|
+|seedbench_local |Yaml   |none  |     0|seed_video          |↑  |   0.4067|±  |   N/A|
+
+{
+  "blink_local": {
+    "accuracy,none": 0.3887427669647554,
+    "accuracy_stderr,none": 0.011183207055725506
+  },
+  "mmbench_cn_local": {
+    "accuracy,none": 0.7161007161007161,
+    "accuracy_stderr,none": 0.006853707668358417
+  },
+  "mmbench_en_local": {
+    "accuracy,none": 0.7408177408177408,
+    "accuracy_stderr,none": 0.006660620605133425
+  },
+  "mme_local": {
+    "mme_cognition_score,none": 328.92857142857144,
+    "mme_perception_score,none": 1468.4756902761105
+  },
+  "pope_local": {
+    "pope_accuracy,none": 0.8552222222222222,
+    "pope_precision,none": 0.9321438226547716,
+    "pope_recall,none": 0.7662222222222222,
+    "pope_f1_score,none": 0.8410781802658862,
+    "pope_yes_ratio,none": 0.5
+  },
+  "scienceqa_local": {
+    "mc_accuracy,none": 0.638076351016361,
+    "mc_accuracy_stderr,none": 0.010702852527582955
+  },
+  "seedbench_local": {
+    "seed_image,none": 0.6543947165038994,
+    "seed_all,none": 0.6026681489716509,
+    "seed_video,none": 0.4067074793718392
+  }
+}
