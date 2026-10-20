@@ -768,3 +768,7 @@ E0 六项 2026-10-16 全部 `done`、`rc=0`，`reeval_vanilla7b` 耗时 4834.8 s
   （且 3000 个进程里杀哪个都可能触发 agent 立刻重新拉起，风险大于收益）。改为降低自检的 I/O 强度：
   用有界读取（只读日志尾部 2 KB）取进度，不再对整机做全量 `ps` 统计。等风暴自行退去。
 - 记录口径：本轮起若吞吐仍低于 1.5 it/s，报告里注明"整机 I/O 争用"，不要把慢算成任务异常。
+- 15:41 复核：`git push origin main` 仍立即返回 `remote: No anonymous write access.` /
+  `fatal: Authentication failed`（凭据 socket 路径未变）。本地 main=`1a3785b`，远端 main=`58923ad`。
+  **积压 6 个提交**：`b675cc6`(E3_vtw s=20 入表)、`0a5ae7a`/`6c211f1`/`18fe934`(§15 三次复核)、
+  `503902c`(§20 I/O 风暴)、`1a3785b`(E3_vtw s=24 入表)。工作树干净，未换任何推送途径。
