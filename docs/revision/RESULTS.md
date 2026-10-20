@@ -782,3 +782,6 @@ E0 六项 2026-10-16 全部 `done`、`rc=0`，`reeval_vanilla7b` 耗时 4834.8 s
 - 16:51 复核：仍 `No anonymous write access.` / `fatal: Authentication failed`。本地 main=`5e22b1a`，
   远端 `58923ad`，**积压 8 个**（新增 `7570c8e` §15 复核、`5e22b1a` 问题 §0 SMTP）。
   GPU4 已开跑 E3_vtw 13B（vanilla13b 7% @1.76 s/it）；整机 load 4689、D 态 4033，风暴未退。
+- 17:56 复核：仍 401。本地 main=`ca0f4d5`，远端 `58923ad`，积压 9 个。整机 load 4879、
+  D 态 4847（风暴继续加深），但**训练吞吐已恢复**到 1.4–1.8 it/s，GPU4 的 13B 评测从 1.76 s/it
+  升到 2.71 it/s。判断为风暴的 D 态进程多挂在目录项锁上、不占 GPU，故进度反而回快；不改处置。
