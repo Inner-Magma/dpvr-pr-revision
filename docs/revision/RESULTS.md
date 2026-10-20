@@ -679,6 +679,12 @@ E0 六项 2026-10-16 全部 `done`、`rc=0`，`reeval_vanilla7b` 耗时 4834.8 s
     `d19c4fe`、`458e9c5`）。本小时新增 `458e9c5`（E3_vtw s=16 补跑入表）。
   - **2026-10-20 08:35 复核**：仍 `No anonymous write access.`；本地待推 main **10 个**（加 `81e1be3`，
     E3_vtw s=18 入表）。远端仍 `c5f472e`。
+  - **2026-10-20 08:52 已恢复，积压清零。** 再次 `git push origin main` 一次成功：`c5f472e..e72682e`，
+    10 个 commit（E9 seed2、E4 k=2..4、E3 VisionZip-192、E6 Qwen、E7 PruMerge/VisionZip-64、
+    E3_vtw s16/s18、§15/§19）全部推送，`git ls-remote` 核对远端 main = `e72682e`、
+    server-fixes = `35b5499`，本地 `origin/main..HEAD` 为 0。**未换通道、未 force push、未改写历史。**
+    凭据通道时好时坏（`/tmp/vscode-git-*.sock`），按作者 08:50 指示：**每小时自检那一轮都先做一次
+    `git push origin main`**，成功即清零，失败照旧只记本节，不换途径。
 
 ### 16. E3_vtw `vtw7b_s16` 主动中止（腾卡给 E6 全量训练）
 
