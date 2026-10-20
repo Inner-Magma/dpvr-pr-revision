@@ -677,6 +677,8 @@ E0 六项 2026-10-16 全部 `done`、`rc=0`，`reeval_vanilla7b` 耗时 4834.8 s
     E4 已全部收尾（k=1..4），GPU 3/4 已分别接 E10 `ref`、E3_vtw 续跑。
   - **2026-10-20 06:35 复核**：仍 `No anonymous write access.`；本地待推 main **8 个**（上面 6 个 +
     `d19c4fe`、`458e9c5`）。本小时新增 `458e9c5`（E3_vtw s=16 补跑入表）。
+  - **2026-10-20 08:35 复核**：仍 `No anonymous write access.`；本地待推 main **10 个**（加 `81e1be3`，
+    E3_vtw s=18 入表）。远端仍 `c5f472e`。
 
 ### 16. E3_vtw `vtw7b_s16` 主动中止（腾卡给 E6 全量训练）
 
