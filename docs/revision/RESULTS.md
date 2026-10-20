@@ -822,3 +822,7 @@ E0 六项 2026-10-16 全部 `done`、`rc=0`，`reeval_vanilla7b` 耗时 4834.8 s
   （layerinit 73%、mlp_layerinit 82%、depth2 66%、ref 65%）继续推进；`E9/eval_seed3` 9%（GPU6）、
   `E3/vtw13b_s24` 26%（GPU4）。无任务失败；8 张卡全部在跑，尚无空卡可启 E3_baselines/E8/E7。
   训练完成不算结果，E10 两行等八项评测出数后再入表。
+- 07:32 复核：仍 401。本地 main=`a7f78c6`，远端 `58923ad`，积压 24 个。load 5082，吞吐 1.15–1.52 s/it，
+  GPU 利用率明显回升（card5 89%、card7 80%）。进度：eval_mlp 13%、eval_lora16 8%、eval_seed3 18%、
+  vtw13b_s24 32%、layerinit 74%、mlp_layerinit 84%、depth2 67%、ref 66%。近 90 分钟内唯一的完成项是
+  E10 train_lora16（已在上一轮记录），**本轮无新完成结果**，故无新表行、未发邮件。无任务失败。
