@@ -689,6 +689,8 @@ E0 六项 2026-10-16 全部 `done`、`rc=0`，`reeval_vanilla7b` 耗时 4834.8 s
   - **2026-10-20 11:35 复核**：又回到 401（`No anonymous write access.` / `Authentication failed`）。
     本地待推 main **1 个**：`b675cc6`（E3_vtw s=20 入表）。09:31、10:31 两轮无待推内容、push 挂到超时；
     本轮有内容时立即 401——**挂起与 401 交替出现，同一通道**。仍只记本节。
+  - **2026-10-20 12:35 复核**：仍 401（`No anonymous write access.`）。本地待推 main **2 个**：
+    `b675cc6`（E3_vtw s=20）、`0a5ae7a`（§15 11:35 记录）。
 
 ### 16. E3_vtw `vtw7b_s16` 主动中止（腾卡给 E6 全量训练）
 
