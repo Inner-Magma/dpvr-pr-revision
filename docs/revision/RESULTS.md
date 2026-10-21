@@ -854,3 +854,8 @@ E0 六项 2026-10-16 全部 `done`、`rc=0`，`reeval_vanilla7b` 耗时 4834.8 s
   eval_lora16 61%、mlp_layerinit 92%、layerinit 83%、depth2 76%、ref 74%。**评测端明显提速**
   （eval_lora16 2.55 it/s、eval_seed3 2.22、vtw13b_s24 2.07、eval_mlp 1.86），训练端 1.17–1.31 s/it。
   **本轮无新完成结果**。无任务失败。
+- 14:32 复核：仍 401，积压 4 个（`70425f3`、`2d66cb3`、`f5bc43d`、`bba2724`）。load 6326（14:19 为 6333，
+  高位持平不再攀升）。进度：vtw13b_s24 93%（39166/41940，约 42 分钟收尾）、eval_seed3 81%、
+  eval_mlp 76%、eval_lora16 72%、mlp_layerinit 93%、layerinit 84%、depth2 77%、ref 76%。
+  `mlp_layerinit` 13:49 那次近乎停滞已自行恢复（现 1.35 s/it）。吞吐 1.01–1.20 it/s。
+  **本轮无新完成结果**。无任务失败。
