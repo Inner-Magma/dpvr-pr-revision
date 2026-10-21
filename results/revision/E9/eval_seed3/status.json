@@ -1,0 +1,14 @@
+{
+  "state": "done",
+  "started": "2026-10-20T21:17:46+00:00",
+  "gpus": [
+    6
+  ],
+  "cmd": "python scripts/revision/eval_lmms.py --checkpoint ${CKPT_ROOT}/revision/E9/lf7b_s18_seed3 --tasks eight --out /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E9/eval_seed3",
+  "host": "psxob0gxrs643dy3-worker-0",
+  "git_sha": "35b5499",
+  "pid": 2591708,
+  "returncode": 0,
+  "finished": "2026-10-21T08:47:47+00:00",
+  "duration_s": 41401.1
+}
