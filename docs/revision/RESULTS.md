@@ -835,3 +835,8 @@ E0 六项 2026-10-16 全部 `done`、`rc=0`，`reeval_vanilla7b` 耗时 4834.8 s
   local=remote=`050a866`、ahead=0。未换途径、未 force push，凭据仍是同一个 VS Code socket。
   进度：eval_seed3 34%、eval_mlp 30%、eval_lora16 27%、vtw13b_s24 45%、layerinit 77%、
   mlp_layerinit 86%、depth2 70%、ref 69%。load 5012。**本轮无新完成结果**。无任务失败。
+- 10:34 复核：无待推提交（local=remote=`f2bb7e7`，ahead=0），`git push` 因无内容而挂在
+  120 s 超时被杀（rc=143），不算失败；09:32 起推送通道已恢复。load 5336（本轮最高）。
+  评测端明显提速：eval_seed3 43%（3.13 it/s）、eval_mlp 39%（2.08 it/s）、eval_lora16 36%
+  （1.91 it/s）、vtw13b_s24 55%（1.82 it/s）；训练端 1.06–1.14 s/it：mlp_layerinit 88%、
+  layerinit 79%、depth2 72%、ref 70%。**本轮无新完成结果**。无任务失败。
