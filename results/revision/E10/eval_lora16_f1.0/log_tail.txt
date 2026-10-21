@@ -1,0 +1,200 @@
+Postprocessing:   8%|▊         | 730/9000 [00:00<00:03, 2184.73it/s]
+Postprocessing:  11%|█         | 948/9000 [00:00<00:04, 1911.80it/s]
+Postprocessing:  15%|█▍        | 1316/9000 [00:00<00:03, 2457.52it/s]
+Postprocessing:  17%|█▋        | 1573/9000 [00:00<00:03, 2474.65it/s]
+Postprocessing:  20%|██        | 1828/9000 [00:00<00:03, 2244.66it/s]
+Postprocessing:  23%|██▎       | 2061/9000 [00:01<00:03, 1846.58it/s]
+Postprocessing:  25%|██▌       | 2277/9000 [00:01<00:03, 1850.02it/s]
+Postprocessing:  27%|██▋       | 2472/9000 [00:01<00:03, 1849.59it/s]
+Postprocessing:  31%|███       | 2793/9000 [00:01<00:02, 2206.21it/s]
+Postprocessing:  34%|███▎      | 3025/9000 [00:01<00:03, 1982.55it/s]
+Postprocessing:  37%|███▋      | 3361/9000 [00:01<00:02, 2286.44it/s]
+Postprocessing:  40%|████      | 3601/9000 [00:01<00:03, 1727.85it/s]
+Postprocessing:  42%|████▏     | 3800/9000 [00:01<00:03, 1710.38it/s]
+Postprocessing:  45%|████▌     | 4073/9000 [00:02<00:02, 1814.20it/s]
+Postprocessing:  49%|████▉     | 4409/9000 [00:02<00:02, 2062.00it/s]
+Postprocessing:  53%|█████▎    | 4752/9000 [00:02<00:01, 2339.50it/s]
+Postprocessing:  60%|██████    | 5407/9000 [00:02<00:01, 3394.01it/s]
+Postprocessing:  64%|██████▍   | 5775/9000 [00:02<00:01, 1916.27it/s]
+Postprocessing:  67%|██████▋   | 6060/9000 [00:02<00:01, 1847.50it/s]
+Postprocessing:  70%|███████   | 6309/9000 [00:03<00:01, 1657.71it/s]
+Postprocessing:  72%|███████▏  | 6520/9000 [00:03<00:01, 1599.78it/s]
+Postprocessing:  75%|███████▍  | 6711/9000 [00:03<00:01, 1614.25it/s]
+Postprocessing:  77%|███████▋  | 6895/9000 [00:03<00:01, 1650.00it/s]
+Postprocessing:  79%|███████▊  | 7077/9000 [00:03<00:01, 1068.73it/s]
+Postprocessing:  80%|████████  | 7220/9000 [00:04<00:01, 1055.98it/s]
+Postprocessing:  82%|████████▏ | 7377/9000 [00:04<00:01, 1096.77it/s]
+Postprocessing:  85%|████████▍ | 7644/9000 [00:04<00:00, 1390.62it/s]
+Postprocessing:  87%|████████▋ | 7857/9000 [00:04<00:00, 1536.38it/s]
+Postprocessing:  90%|████████▉ | 8087/9000 [00:04<00:00, 1717.78it/s]
+Postprocessing:  92%|█████████▏| 8279/9000 [00:04<00:00, 1229.51it/s]
+Postprocessing:  95%|█████████▍| 8518/9000 [00:04<00:00, 1295.32it/s]
+Postprocessing:  96%|█████████▋| 8671/9000 [00:05<00:00, 1337.50it/s]
+Postprocessing:  99%|█████████▉| 8932/9000 [00:05<00:00, 1622.40it/s]
+Postprocessing: 100%|██████████| 9000/9000 [00:05<00:00, 1722.76it/s]
+
+Postprocessing:   0%|          | 0/2374 [00:00<?, ?it/s]
+Postprocessing:   1%|▏         | 34/2374 [00:00<00:09, 255.41it/s]
+Postprocessing:  11%|█         | 263/2374 [00:00<00:01, 1308.21it/s]
+Postprocessing:  24%|██▎       | 561/2374 [00:00<00:00, 2018.01it/s]
+Postprocessing:  33%|███▎      | 776/2374 [00:00<00:00, 2010.71it/s]
+Postprocessing:  44%|████▍     | 1043/2374 [00:00<00:00, 2237.30it/s]
+Postprocessing:  54%|█████▎    | 1273/2374 [00:00<00:00, 2180.34it/s]
+Postprocessing:  63%|██████▎   | 1496/2374 [00:00<00:00, 1581.78it/s]
+Postprocessing:  71%|███████   | 1679/2374 [00:01<00:00, 1283.93it/s]
+Postprocessing:  77%|███████▋  | 1831/2374 [00:01<00:00, 1244.10it/s]
+Postprocessing:  83%|████████▎ | 1971/2374 [00:01<00:00, 1246.15it/s]
+Postprocessing:  94%|█████████▍| 2231/2374 [00:01<00:00, 1263.90it/s]
+Postprocessing: 100%|██████████| 2374/2374 [00:01<00:00, 1456.74it/s]
+
+Postprocessing:   0%|          | 0/4329 [00:00<?, ?it/s]
+Postprocessing:   2%|▏         | 88/4329 [00:00<00:06, 688.25it/s]
+Postprocessing:   4%|▎         | 157/4329 [00:00<00:06, 673.06it/s]
+Postprocessing:   5%|▌         | 227/4329 [00:00<00:06, 676.06it/s]
+Postprocessing:   7%|▋         | 295/4329 [00:00<00:07, 521.93it/s]
+Postprocessing:   9%|▉         | 411/4329 [00:00<00:05, 665.56it/s]
+Postprocessing:  13%|█▎        | 554/4329 [00:00<00:04, 800.40it/s]
+Postprocessing:  15%|█▍        | 637/4329 [00:01<00:06, 571.16it/s]
+Postprocessing:  17%|█▋        | 745/4329 [00:01<00:05, 644.12it/s]
+Postprocessing:  21%|██▏       | 927/4329 [00:01<00:03, 907.06it/s]
+Postprocessing:  24%|██▍       | 1034/4329 [00:01<00:03, 945.28it/s]
+Postprocessing:  26%|██▋       | 1141/4329 [00:01<00:03, 953.91it/s]
+Postprocessing:  29%|██▉       | 1245/4329 [00:01<00:03, 773.38it/s]
+Postprocessing:  31%|███       | 1334/4329 [00:01<00:03, 795.03it/s]
+Postprocessing:  40%|████      | 1738/4329 [00:01<00:01, 1556.73it/s]
+Postprocessing:  46%|████▌     | 1986/4329 [00:01<00:01, 1787.62it/s]
+Postprocessing:  50%|█████     | 2181/4329 [00:02<00:01, 1645.57it/s]
+Postprocessing:  56%|█████▋    | 2441/4329 [00:02<00:00, 1888.54it/s]
+Postprocessing:  61%|██████    | 2644/4329 [00:02<00:00, 1872.16it/s]
+Postprocessing:  66%|██████▌   | 2841/4329 [00:02<00:01, 1464.20it/s]
+Postprocessing:  69%|██████▉   | 3007/4329 [00:02<00:01, 1302.50it/s]
+Postprocessing:  73%|███████▎  | 3153/4329 [00:02<00:01, 1070.13it/s]
+Postprocessing:  77%|███████▋  | 3340/4329 [00:03<00:00, 1198.29it/s]
+Postprocessing:  81%|████████  | 3508/4329 [00:03<00:00, 1276.22it/s]
+Postprocessing:  84%|████████▍ | 3649/4329 [00:03<00:00, 910.84it/s] 
+Postprocessing:  87%|████████▋ | 3763/4329 [00:03<00:00, 892.31it/s]
+Postprocessing:  89%|████████▉ | 3868/4329 [00:03<00:00, 799.53it/s]
+Postprocessing:  94%|█████████▍| 4065/4329 [00:03<00:00, 1015.61it/s]
+Postprocessing:  97%|█████████▋| 4186/4329 [00:03<00:00, 1050.83it/s]
+Postprocessing: 100%|██████████| 4329/4329 [00:04<00:00, 1077.36it/s]
+
+Postprocessing:   0%|          | 0/4329 [00:00<?, ?it/s]
+Postprocessing:  10%|▉         | 423/4329 [00:00<00:00, 4226.77it/s]
+Postprocessing:  20%|█▉        | 846/4329 [00:00<00:01, 2299.74it/s]
+Postprocessing:  26%|██▌       | 1123/4329 [00:00<00:02, 1141.99it/s]
+Postprocessing:  30%|███       | 1301/4329 [00:00<00:02, 1159.89it/s]
+Postprocessing:  34%|███▎      | 1457/4329 [00:01<00:03, 936.72it/s] 
+Postprocessing:  37%|███▋      | 1586/4329 [00:01<00:03, 891.83it/s]
+Postprocessing:  39%|███▉      | 1692/4329 [00:01<00:03, 678.16it/s]
+Postprocessing:  45%|████▍     | 1936/4329 [00:01<00:02, 939.63it/s]
+Postprocessing:  49%|████▉     | 2136/4329 [00:01<00:01, 1118.95it/s]
+Postprocessing:  53%|█████▎    | 2306/4329 [00:02<00:01, 1041.34it/s]
+Postprocessing:  56%|█████▌    | 2435/4329 [00:02<00:01, 1013.89it/s]
+Postprocessing:  59%|█████▉    | 2574/4329 [00:02<00:01, 1076.05it/s]
+Postprocessing:  64%|██████▎   | 2754/4329 [00:02<00:01, 1168.66it/s]
+Postprocessing:  67%|██████▋   | 2882/4329 [00:02<00:01, 1023.60it/s]
+Postprocessing:  69%|██████▉   | 2994/4329 [00:02<00:01, 855.20it/s] 
+Postprocessing:  74%|███████▍  | 3216/4329 [00:02<00:01, 1075.42it/s]
+Postprocessing:  77%|███████▋  | 3335/4329 [00:03<00:01, 963.04it/s] 
+Postprocessing:  82%|████████▏ | 3561/4329 [00:03<00:00, 1225.16it/s]
+Postprocessing:  87%|████████▋ | 3759/4329 [00:03<00:00, 1259.39it/s]
+Postprocessing:  90%|████████▉ | 3896/4329 [00:03<00:00, 868.71it/s] 
+Postprocessing:  93%|█████████▎| 4013/4329 [00:03<00:00, 887.55it/s]
+Postprocessing:  95%|█████████▌| 4118/4329 [00:03<00:00, 912.09it/s]
+Postprocessing:  98%|█████████▊| 4252/4329 [00:04<00:00, 886.93it/s]
+Postprocessing: 100%|██████████| 4329/4329 [00:04<00:00, 1019.83it/s]
+
+Postprocessing:   0%|          | 0/1901 [00:00<?, ?it/s]
+Postprocessing:   3%|▎         | 52/1901 [00:00<00:05, 362.50it/s]
+Postprocessing:   5%|▍         | 89/1901 [00:00<00:07, 232.88it/s]
+Postprocessing:   9%|▊         | 163/1901 [00:00<00:04, 374.23it/s]
+Postprocessing:  16%|█▋        | 310/1901 [00:00<00:02, 659.11it/s]
+Postprocessing:  22%|██▏       | 416/1901 [00:00<00:01, 773.69it/s]
+Postprocessing:  26%|██▋       | 502/1901 [00:00<00:02, 569.14it/s]
+Postprocessing:  31%|███       | 594/1901 [00:01<00:02, 649.10it/s]
+Postprocessing:  35%|███▌      | 671/1901 [00:01<00:02, 440.77it/s]
+Postprocessing:  51%|█████     | 963/1901 [00:01<00:01, 886.96it/s]
+Postprocessing:  57%|█████▋    | 1089/1901 [00:01<00:01, 800.24it/s]
+Postprocessing:  63%|██████▎   | 1196/1901 [00:01<00:01, 646.17it/s]
+Postprocessing:  67%|██████▋   | 1283/1901 [00:02<00:01, 600.10it/s]
+Postprocessing:  72%|███████▏  | 1376/1901 [00:02<00:00, 649.07it/s]
+Postprocessing:  76%|███████▋  | 1454/1901 [00:02<00:00, 599.26it/s]
+Postprocessing:  84%|████████▎ | 1589/1901 [00:02<00:00, 736.34it/s]
+Postprocessing:  88%|████████▊ | 1674/1901 [00:02<00:00, 565.20it/s]
+Postprocessing:  92%|█████████▏| 1751/1901 [00:02<00:00, 585.44it/s]
+Postprocessing:  97%|█████████▋| 1835/1901 [00:02<00:00, 617.74it/s]
+Postprocessing: 100%|██████████| 1901/1901 [00:03<00:00, 621.80it/s]
+[32m2026-10-21 17:34:35[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mcode_reasoning: 67.50[0m
+[32m2026-10-21 17:34:35[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mnumerical_calculation: 55.00[0m
+[32m2026-10-21 17:34:35[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mtext_translation: 92.50[0m
+[32m2026-10-21 17:34:35[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mcommonsense_reasoning: 120.71[0m
+[32m2026-10-21 17:34:35[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1martwork: 125.00[0m
+[32m2026-10-21 17:34:35[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mcelebrity: 139.71[0m
+[32m2026-10-21 17:34:35[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mcount: 143.33[0m
+[32m2026-10-21 17:34:35[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mcolor: 163.33[0m
+[32m2026-10-21 17:34:35[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mposition: 128.33[0m
+[32m2026-10-21 17:34:35[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mOCR: 130.00[0m
+[32m2026-10-21 17:34:35[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mlandmark: 160.75[0m
+[32m2026-10-21 17:34:35[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mscene: 155.25[0m
+[32m2026-10-21 17:34:35[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mexistence: 190.00[0m
+[32m2026-10-21 17:34:35[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mposters: 139.80[0m
+[32m2026-10-21 17:34:37[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_aggregated[0m:[36m188[0m - [1mSaving results aggregated[0m
+[32m2026-10-21 17:35:50[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E10/eval_lora16_f1.0/lmms/models__llava-1.5-7b-hf/20261021_062941_samples_blink_local.jsonl[0m
+[32m2026-10-21 17:38:06[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E10/eval_lora16_f1.0/lmms/models__llava-1.5-7b-hf/20261021_062941_samples_mmbench_cn_local.jsonl[0m
+[32m2026-10-21 17:40:43[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E10/eval_lora16_f1.0/lmms/models__llava-1.5-7b-hf/20261021_062941_samples_mmbench_en_local.jsonl[0m
+[32m2026-10-21 17:42:08[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E10/eval_lora16_f1.0/lmms/models__llava-1.5-7b-hf/20261021_062941_samples_mme_local.jsonl[0m
+[32m2026-10-21 17:47:47[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E10/eval_lora16_f1.0/lmms/models__llava-1.5-7b-hf/20261021_062941_samples_pope_local.jsonl[0m
+[32m2026-10-21 17:49:02[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E10/eval_lora16_f1.0/lmms/models__llava-1.5-7b-hf/20261021_062941_samples_scienceqa_local.jsonl[0m
+[32m2026-10-21 18:00:16[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E10/eval_lora16_f1.0/lmms/models__llava-1.5-7b-hf/20261021_062941_samples_seedbench_local.jsonl[0m
+dpvr_hf (pretrained=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/models/llava-1.5-7b-hf,checkpoint=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision/E10/lf7b_s18_lora16_f1.0,use_cache=False,dtype=bfloat16), gen_kwargs: (), limit: None, num_fewshot: None, batch_size: 1
+|     Tasks      |Version|Filter|n-shot|       Metric       |   |  Value  |   |Stderr|
+|----------------|-------|------|-----:|--------------------|---|--------:|---|------|
+|blink_local     |Yaml   |none  |     0|accuracy            |↑  |   0.3861|±  |0.0112|
+|mmbench_cn_local|Yaml   |none  |     0|accuracy            |↑  |   0.7025|±  |0.0069|
+|mmbench_en_local|Yaml   |none  |     0|accuracy            |↑  |   0.7392|±  |0.0067|
+|mme_local       |Yaml   |none  |     0|mme_cognition_score |↑  | 335.7143|±  |   N/A|
+|mme_local       |Yaml   |none  |     0|mme_perception_score|↑  |1475.5018|±  |   N/A|
+|pope_local      |Yaml   |none  |     0|pope_accuracy       |↑  |   0.8542|±  |   N/A|
+|pope_local      |Yaml   |none  |     0|pope_f1_score       |↑  |   0.8394|±  |   N/A|
+|pope_local      |Yaml   |none  |     0|pope_precision      |↑  |   0.9343|±  |   N/A|
+|pope_local      |Yaml   |none  |     0|pope_recall         |↑  |   0.7620|±  |   N/A|
+|pope_local      |Yaml   |none  |     0|pope_yes_ratio      |↑  |   0.5000|±  |   N/A|
+|scienceqa_local |Yaml   |none  |     0|mc_accuracy         |↑  |   0.6391|±  |0.0107|
+|seedbench_local |Yaml   |none  |     0|seed_all            |↑  |   0.5938|±  |   N/A|
+|seedbench_local |Yaml   |none  |     0|seed_image          |↑  |   0.6468|±  |   N/A|
+|seedbench_local |Yaml   |none  |     0|seed_video          |↑  |   0.3929|±  |   N/A|
+
+{
+  "blink_local": {
+    "accuracy,none": 0.38611257233035245,
+    "accuracy_stderr,none": 0.01116926360053845
+  },
+  "mmbench_cn_local": {
+    "accuracy,none": 0.7024717024717024,
+    "accuracy_stderr,none": 0.006949201899982747
+  },
+  "mmbench_en_local": {
+    "accuracy,none": 0.7392007392007393,
+    "accuracy_stderr,none": 0.006674069859903825
+  },
+  "mme_local": {
+    "mme_cognition_score,none": 335.7142857142857,
+    "mme_perception_score,none": 1475.5018007202884
+  },
+  "pope_local": {
+    "pope_accuracy,none": 0.8542222222222222,
+    "pope_precision,none": 0.9343324250681199,
+    "pope_recall,none": 0.762,
+    "pope_f1_score,none": 0.8394124847001225,
+    "pope_yes_ratio,none": 0.5
+  },
+  "scienceqa_local": {
+    "mc_accuracy,none": 0.639067922657412,
+    "mc_accuracy_stderr,none": 0.010696482530981386
+  },
+  "seedbench_local": {
+    "seed_image,none": 0.6468067167849364,
+    "seed_all,none": 0.5937743190661479,
+    "seed_video,none": 0.39286664892201223
+  }
+}

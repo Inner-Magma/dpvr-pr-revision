@@ -1,6 +1,6 @@
 # Job states
 
-done: 98, interrupted: 1, running: 6
+done: 99, interrupted: 1, running: 6
 
 | experiment | job | state | started | finished | returncode | error |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -20,11 +20,12 @@ done: 98, interrupted: 1, running: 6
 | E1 | gen7b_lf_s18_cache_true | done | 2026-10-18T08:25:34+00:00 | 2026-10-18T08:26:49+00:00 | 0 |  |
 | E1 | gen7b_vanilla_cache_false | done | 2026-10-18T08:21:13+00:00 | 2026-10-18T08:25:34+00:00 | 0 |  |
 | E1 | gen7b_vanilla_cache_true | done | 2026-10-18T08:20:08+00:00 | 2026-10-18T08:21:13+00:00 | 0 |  |
-| E10 | eval_lora16_f1.0 | running | 2026-10-20T22:22:35+00:00 |  |  |  |
+| E10 | eval_lora16_f1.0 | done | 2026-10-20T22:22:35+00:00 | 2026-10-21T10:03:03+00:00 | 0 |  |
 | E10 | eval_mlp_f1.0 | done | 2026-10-20T21:54:16+00:00 | 2026-10-21T09:25:47+00:00 | 0 |  |
 | E10 | train_depth2_f1.0 | running | 2026-10-21T09:25:52+00:00 |  |  |  |
 | E10 | train_layerinit_f1.0 | running | 2026-10-19T17:36:28+00:00 |  |  |  |
 | E10 | train_lora16_f1.0 | done | 2026-10-19T10:40:38+00:00 | 2026-10-20T22:22:33+00:00 | 0 |  |
+| E10 | train_lora64_f1.0 | running | 2026-10-21T10:03:05+00:00 |  |  |  |
 | E10 | train_mlp_f1.0 | done | 2026-10-19T10:40:37+00:00 | 2026-10-20T21:54:15+00:00 | 0 |  |
 | E10 | train_mlp_layerinit_f1.0 | running | 2026-10-19T15:32:49+00:00 |  |  |  |
 | E10 | train_ref_f1.0 | running | 2026-10-19T19:38:39+00:00 |  |  |  |
