@@ -1,5 +1,6 @@
 experiment,job,POPE,MME-P,MME-C,MMB-EN,MMB-CN,SQA,SEED,BLINK,limit,checkpoint,gpu,git_sha
 E0,reeval_vanilla7b,85.36,1495.46,328.93,74.13,71.38,64.06,65.4,38.98,,none,NVIDIA H100 80GB HBM3,75444e5
+E10,eval_layerinit_f1.0,85.59,1469.54,319.64,73.67,71.08,64.25,64.92,37.77,,/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision/E10/lf7b_s18_layerinit_f1.0,NVIDIA H20-3e,35b5499
 E10,eval_lora16_f1.0,85.42,1475.5,335.71,73.92,70.25,63.91,64.68,38.61,,/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision/E10/lf7b_s18_lora16_f1.0,NVIDIA H20-3e,35b5499
 E10,eval_mlp_f1.0,85.59,1459.82,352.5,73.78,70.52,64.55,64.65,39.61,,/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision/E10/lf7b_s18_mlp_f1.0,NVIDIA H20-3e,35b5499
 E10,eval_mlp_layerinit_f1.0,85.37,1466.77,336.07,73.74,70.25,64.35,64.81,38.14,,/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision/E10/lf7b_s18_mlp_layerinit_f1.0,NVIDIA H20-3e,35b5499

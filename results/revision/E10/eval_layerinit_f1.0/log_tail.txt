@@ -1,0 +1,200 @@
+Model Responding: 100%|█████████▉| 41867/41940 [2:19:48<00:11,  6.58it/s]
+Model Responding: 100%|█████████▉| 41868/41940 [2:19:48<00:11,  6.31it/s]
+Model Responding: 100%|█████████▉| 41869/41940 [2:19:48<00:11,  6.40it/s]
+Model Responding: 100%|█████████▉| 41870/41940 [2:19:48<00:10,  6.49it/s]
+Model Responding: 100%|█████████▉| 41871/41940 [2:19:48<00:10,  6.57it/s]
+Model Responding: 100%|█████████▉| 41872/41940 [2:19:48<00:10,  6.46it/s]
+Model Responding: 100%|█████████▉| 41873/41940 [2:19:48<00:10,  6.50it/s]
+Model Responding: 100%|█████████▉| 41874/41940 [2:19:49<00:10,  6.51it/s]
+Model Responding: 100%|█████████▉| 41875/41940 [2:19:49<00:09,  6.56it/s]
+Model Responding: 100%|█████████▉| 41876/41940 [2:19:49<00:09,  6.58it/s]
+Model Responding: 100%|█████████▉| 41877/41940 [2:19:49<00:09,  6.56it/s]
+Model Responding: 100%|█████████▉| 41878/41940 [2:19:49<00:09,  6.49it/s]
+Model Responding: 100%|█████████▉| 41879/41940 [2:19:49<00:09,  6.55it/s]
+Model Responding: 100%|█████████▉| 41880/41940 [2:19:50<00:09,  6.61it/s]
+Model Responding: 100%|█████████▉| 41881/41940 [2:19:50<00:09,  6.46it/s]
+Model Responding: 100%|█████████▉| 41882/41940 [2:19:50<00:09,  6.43it/s]
+Model Responding: 100%|█████████▉| 41883/41940 [2:19:50<00:09,  6.26it/s]
+Model Responding: 100%|█████████▉| 41884/41940 [2:19:50<00:08,  6.32it/s]
+Model Responding: 100%|█████████▉| 41885/41940 [2:19:50<00:08,  6.42it/s]
+Model Responding: 100%|█████████▉| 41886/41940 [2:19:50<00:08,  6.50it/s]
+Model Responding: 100%|█████████▉| 41887/41940 [2:19:51<00:08,  6.57it/s]
+Model Responding: 100%|█████████▉| 41888/41940 [2:19:51<00:08,  6.41it/s]
+Model Responding: 100%|█████████▉| 41889/41940 [2:19:51<00:07,  6.47it/s]
+Model Responding: 100%|█████████▉| 41890/41940 [2:19:51<00:07,  6.55it/s]
+Model Responding: 100%|█████████▉| 41891/41940 [2:19:51<00:07,  6.57it/s]
+Model Responding: 100%|█████████▉| 41892/41940 [2:19:51<00:07,  6.36it/s]
+Model Responding: 100%|█████████▉| 41893/41940 [2:19:52<00:07,  6.44it/s]
+Model Responding: 100%|█████████▉| 41894/41940 [2:19:52<00:07,  6.48it/s]
+Model Responding: 100%|█████████▉| 41895/41940 [2:19:52<00:06,  6.46it/s]
+Model Responding: 100%|█████████▉| 41896/41940 [2:19:52<00:06,  6.53it/s]
+Model Responding: 100%|█████████▉| 41897/41940 [2:19:52<00:06,  6.43it/s]
+Model Responding: 100%|█████████▉| 41898/41940 [2:19:52<00:06,  6.49it/s]
+Model Responding: 100%|█████████▉| 41899/41940 [2:19:52<00:06,  6.57it/s]
+Model Responding: 100%|█████████▉| 41900/41940 [2:19:53<00:06,  6.36it/s]
+Model Responding: 100%|█████████▉| 41901/41940 [2:19:53<00:06,  6.48it/s]
+Model Responding: 100%|█████████▉| 41902/41940 [2:19:53<00:05,  6.59it/s]
+Model Responding: 100%|█████████▉| 41903/41940 [2:19:53<00:05,  6.59it/s]
+Model Responding: 100%|█████████▉| 41904/41940 [2:19:53<00:05,  6.53it/s]
+Model Responding: 100%|█████████▉| 41905/41940 [2:19:53<00:05,  6.53it/s]
+Model Responding: 100%|█████████▉| 41906/41940 [2:19:54<00:05,  6.56it/s]
+Model Responding: 100%|█████████▉| 41907/41940 [2:19:54<00:05,  6.56it/s]
+Model Responding: 100%|█████████▉| 41908/41940 [2:19:54<00:04,  6.49it/s]
+Model Responding: 100%|█████████▉| 41909/41940 [2:19:54<00:04,  6.57it/s]
+Model Responding: 100%|█████████▉| 41910/41940 [2:19:54<00:04,  6.55it/s]
+Model Responding: 100%|█████████▉| 41911/41940 [2:19:54<00:04,  6.44it/s]
+Model Responding: 100%|█████████▉| 41912/41940 [2:19:54<00:04,  6.52it/s]
+Model Responding: 100%|█████████▉| 41913/41940 [2:19:55<00:04,  6.53it/s]
+Model Responding: 100%|█████████▉| 41914/41940 [2:19:55<00:04,  6.37it/s]
+Model Responding: 100%|█████████▉| 41915/41940 [2:19:55<00:03,  6.30it/s]
+Model Responding: 100%|█████████▉| 41916/41940 [2:19:55<00:03,  6.33it/s]
+Model Responding: 100%|█████████▉| 41917/41940 [2:19:55<00:03,  6.44it/s]
+Model Responding: 100%|█████████▉| 41918/41940 [2:19:55<00:03,  6.43it/s]
+Model Responding: 100%|█████████▉| 41919/41940 [2:19:56<00:03,  6.42it/s]
+Model Responding: 100%|█████████▉| 41920/41940 [2:19:56<00:03,  6.49it/s]
+Model Responding: 100%|█████████▉| 41921/41940 [2:19:56<00:02,  6.38it/s]
+Model Responding: 100%|█████████▉| 41922/41940 [2:19:56<00:02,  6.48it/s]
+Model Responding: 100%|█████████▉| 41923/41940 [2:19:56<00:02,  6.47it/s]
+Model Responding: 100%|█████████▉| 41924/41940 [2:19:56<00:02,  6.54it/s]
+Model Responding: 100%|█████████▉| 41925/41940 [2:19:56<00:02,  6.52it/s]
+Model Responding: 100%|█████████▉| 41926/41940 [2:19:57<00:02,  6.55it/s]
+Model Responding: 100%|█████████▉| 41927/41940 [2:19:57<00:01,  6.57it/s]
+Model Responding: 100%|█████████▉| 41928/41940 [2:19:57<00:01,  6.59it/s]
+Model Responding: 100%|█████████▉| 41929/41940 [2:19:57<00:01,  6.63it/s]
+Model Responding: 100%|█████████▉| 41930/41940 [2:19:57<00:01,  6.45it/s]
+Model Responding: 100%|█████████▉| 41931/41940 [2:19:57<00:01,  6.49it/s]
+Model Responding: 100%|█████████▉| 41932/41940 [2:19:58<00:01,  6.55it/s]
+Model Responding: 100%|█████████▉| 41933/41940 [2:19:58<00:01,  6.59it/s]
+Model Responding: 100%|█████████▉| 41934/41940 [2:19:58<00:00,  6.53it/s]
+Model Responding: 100%|█████████▉| 41935/41940 [2:19:58<00:00,  6.55it/s]
+Model Responding: 100%|█████████▉| 41936/41940 [2:19:58<00:00,  6.62it/s]
+Model Responding: 100%|█████████▉| 41937/41940 [2:19:58<00:00,  6.67it/s]
+Model Responding: 100%|█████████▉| 41938/41940 [2:19:58<00:00,  6.66it/s]
+Model Responding: 100%|█████████▉| 41939/41940 [2:19:59<00:00,  6.66it/s]
+Model Responding: 100%|██████████| 41940/41940 [2:19:59<00:00,  6.67it/s]
+Model Responding: 100%|██████████| 41940/41940 [2:19:59<00:00,  4.99it/s]
+
+Postprocessing:   0%|          | 0/17990 [00:00<?, ?it/s]
+Postprocessing:   6%|▋         | 1143/17990 [00:00<00:01, 11424.81it/s]
+Postprocessing:  13%|█▎        | 2344/17990 [00:00<00:01, 11767.05it/s]
+Postprocessing:  20%|█▉        | 3521/17990 [00:00<00:01, 11651.52it/s]
+Postprocessing:  26%|██▋       | 4732/17990 [00:00<00:01, 11829.66it/s]
+Postprocessing:  33%|███▎      | 5918/17990 [00:00<00:01, 11837.55it/s]
+Postprocessing:  40%|███▉      | 7111/17990 [00:00<00:00, 11864.52it/s]
+Postprocessing:  46%|████▌     | 8298/17990 [00:00<00:00, 11239.30it/s]
+Postprocessing:  52%|█████▏    | 9429/17990 [00:00<00:00, 10696.91it/s]
+Postprocessing:  59%|█████▊    | 10554/17990 [00:00<00:00, 10859.21it/s]
+Postprocessing:  65%|██████▌   | 11708/17990 [00:01<00:00, 11057.91it/s]
+Postprocessing:  72%|███████▏  | 12912/17990 [00:01<00:00, 11348.23it/s]
+Postprocessing:  78%|███████▊  | 14103/17990 [00:01<00:00, 11513.20it/s]
+Postprocessing:  85%|████████▍ | 15290/17990 [00:01<00:00, 11619.53it/s]
+Postprocessing:  92%|█████████▏| 16485/17990 [00:01<00:00, 11717.28it/s]
+Postprocessing:  98%|█████████▊| 17659/17990 [00:01<00:00, 11702.91it/s]
+Postprocessing: 100%|██████████| 17990/17990 [00:01<00:00, 11494.33it/s]
+
+Postprocessing:   0%|          | 0/2017 [00:00<?, ?it/s]
+Postprocessing:  47%|████▋     | 947/2017 [00:00<00:00, 9462.41it/s]
+Postprocessing: 100%|██████████| 2017/2017 [00:00<00:00, 10476.77it/s]
+
+Postprocessing:   0%|          | 0/9000 [00:00<?, ?it/s]
+Postprocessing:  17%|█▋        | 1552/9000 [00:00<00:00, 15511.18it/s]
+Postprocessing:  34%|███▍      | 3104/9000 [00:00<00:00, 15206.76it/s]
+Postprocessing:  52%|█████▏    | 4672/9000 [00:00<00:00, 15418.51it/s]
+Postprocessing:  69%|██████▉   | 6215/9000 [00:00<00:00, 15262.08it/s]
+Postprocessing:  86%|████████▋ | 7764/9000 [00:00<00:00, 15342.49it/s]
+Postprocessing: 100%|██████████| 9000/9000 [00:00<00:00, 15318.74it/s]
+
+Postprocessing:   0%|          | 0/2374 [00:00<?, ?it/s]
+Postprocessing:  73%|███████▎  | 1728/2374 [00:00<00:00, 17277.67it/s]
+Postprocessing: 100%|██████████| 2374/2374 [00:00<00:00, 17368.35it/s]
+
+Postprocessing:   0%|          | 0/4329 [00:00<?, ?it/s]
+Postprocessing:  26%|██▋       | 1137/4329 [00:00<00:00, 11363.21it/s]
+Postprocessing:  53%|█████▎    | 2274/4329 [00:00<00:00, 11106.11it/s]
+Postprocessing:  79%|███████▉  | 3418/4329 [00:00<00:00, 11254.03it/s]
+Postprocessing: 100%|██████████| 4329/4329 [00:00<00:00, 11311.55it/s]
+
+Postprocessing:   0%|          | 0/4329 [00:00<?, ?it/s]
+Postprocessing:  26%|██▌       | 1131/4329 [00:00<00:00, 11304.40it/s]
+Postprocessing:  52%|█████▏    | 2268/4329 [00:00<00:00, 11339.51it/s]
+Postprocessing:  79%|███████▊  | 3402/4329 [00:00<00:00, 11206.15it/s]
+Postprocessing: 100%|██████████| 4329/4329 [00:00<00:00, 11302.54it/s]
+
+Postprocessing:   0%|          | 0/1901 [00:00<?, ?it/s]
+Postprocessing:  37%|███▋      | 696/1901 [00:00<00:00, 6959.72it/s]
+Postprocessing:  85%|████████▌ | 1619/1901 [00:00<00:00, 8292.28it/s]
+Postprocessing: 100%|██████████| 1901/1901 [00:00<00:00, 7731.49it/s]
+[32m2026-10-22 01:56:06[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mcode_reasoning: 60.00[0m
+[32m2026-10-22 01:56:06[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mnumerical_calculation: 57.50[0m
+[32m2026-10-22 01:56:06[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mtext_translation: 85.00[0m
+[32m2026-10-22 01:56:06[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mcommonsense_reasoning: 117.14[0m
+[32m2026-10-22 01:56:06[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1martwork: 123.50[0m
+[32m2026-10-22 01:56:06[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mcelebrity: 141.47[0m
+[32m2026-10-22 01:56:06[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mcount: 148.33[0m
+[32m2026-10-22 01:56:06[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mcolor: 158.33[0m
+[32m2026-10-22 01:56:06[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mposition: 123.33[0m
+[32m2026-10-22 01:56:06[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mOCR: 130.00[0m
+[32m2026-10-22 01:56:06[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mlandmark: 158.50[0m
+[32m2026-10-22 01:56:06[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mscene: 155.25[0m
+[32m2026-10-22 01:56:06[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mexistence: 190.00[0m
+[32m2026-10-22 01:56:06[0m | [1mINFO    [0m | [36mutils[0m:[36mmme_aggregate_results[0m:[36m124[0m - [1mposters: 140.82[0m
+[32m2026-10-22 01:56:06[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_aggregated[0m:[36m188[0m - [1mSaving results aggregated[0m
+[32m2026-10-22 01:56:09[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E10/eval_layerinit_f1.0/lmms/models__llava-1.5-7b-hf/20261021_233519_samples_blink_local.jsonl[0m
+[32m2026-10-22 01:56:14[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E10/eval_layerinit_f1.0/lmms/models__llava-1.5-7b-hf/20261021_233519_samples_mmbench_cn_local.jsonl[0m
+[32m2026-10-22 01:56:20[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E10/eval_layerinit_f1.0/lmms/models__llava-1.5-7b-hf/20261021_233519_samples_mmbench_en_local.jsonl[0m
+[32m2026-10-22 01:56:23[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E10/eval_layerinit_f1.0/lmms/models__llava-1.5-7b-hf/20261021_233519_samples_mme_local.jsonl[0m
+[32m2026-10-22 01:56:34[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E10/eval_layerinit_f1.0/lmms/models__llava-1.5-7b-hf/20261021_233519_samples_pope_local.jsonl[0m
+[32m2026-10-22 01:56:37[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E10/eval_layerinit_f1.0/lmms/models__llava-1.5-7b-hf/20261021_233519_samples_scienceqa_local.jsonl[0m
+[32m2026-10-22 01:57:00[0m | [1mINFO    [0m | [36mlmms_eval.loggers.evaluation_tracker[0m:[36msave_results_samples[0m:[36m287[0m - [1mSaving samples to /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision_runs/E10/eval_layerinit_f1.0/lmms/models__llava-1.5-7b-hf/20261021_233519_samples_seedbench_local.jsonl[0m
+dpvr_hf (pretrained=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/models/llava-1.5-7b-hf,checkpoint=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision/E10/lf7b_s18_layerinit_f1.0,use_cache=False,dtype=bfloat16), gen_kwargs: (), limit: None, num_fewshot: None, batch_size: 1
+|     Tasks      |Version|Filter|n-shot|       Metric       |   |  Value  |   |Stderr|
+|----------------|-------|------|-----:|--------------------|---|--------:|---|------|
+|blink_local     |Yaml   |none  |     0|accuracy            |↑  |   0.3777|±  |0.0111|
+|mmbench_cn_local|Yaml   |none  |     0|accuracy            |↑  |   0.7108|±  |0.0069|
+|mmbench_en_local|Yaml   |none  |     0|accuracy            |↑  |   0.7367|±  |0.0067|
+|mme_local       |Yaml   |none  |     0|mme_cognition_score |↑  | 319.6429|±  |   N/A|
+|mme_local       |Yaml   |none  |     0|mme_perception_score|↑  |1469.5369|±  |   N/A|
+|pope_local      |Yaml   |none  |     0|pope_accuracy       |↑  |   0.8559|±  |   N/A|
+|pope_local      |Yaml   |none  |     0|pope_f1_score       |↑  |   0.8417|±  |   N/A|
+|pope_local      |Yaml   |none  |     0|pope_precision      |↑  |   0.9334|±  |   N/A|
+|pope_local      |Yaml   |none  |     0|pope_recall         |↑  |   0.7664|±  |   N/A|
+|pope_local      |Yaml   |none  |     0|pope_yes_ratio      |↑  |   0.5000|±  |   N/A|
+|scienceqa_local |Yaml   |none  |     0|mc_accuracy         |↑  |   0.6425|±  |0.0107|
+|seedbench_local |Yaml   |none  |     0|seed_all            |↑  |   0.5966|±  |   N/A|
+|seedbench_local |Yaml   |none  |     0|seed_image          |↑  |   0.6492|±  |   N/A|
+|seedbench_local |Yaml   |none  |     0|seed_video          |↑  |   0.3971|±  |   N/A|
+
+{
+  "blink_local": {
+    "accuracy,none": 0.37769594950026303,
+    "accuracy_stderr,none": 0.011122327455011783
+  },
+  "mmbench_cn_local": {
+    "accuracy,none": 0.7107877107877107,
+    "accuracy_stderr,none": 0.006891832292818172
+  },
+  "mmbench_en_local": {
+    "accuracy,none": 0.7366597366597366,
+    "accuracy_stderr,none": 0.006694967504779595
+  },
+  "mme_local": {
+    "mme_cognition_score,none": 319.6428571428571,
+    "mme_perception_score,none": 1469.5369147659064
+  },
+  "pope_local": {
+    "pope_accuracy,none": 0.8558888888888889,
+    "pope_precision,none": 0.933423545331529,
+    "pope_recall,none": 0.7664444444444445,
+    "pope_f1_score,none": 0.841732763880415,
+    "pope_yes_ratio,none": 0.5
+  },
+  "scienceqa_local": {
+    "mc_accuracy,none": 0.6425384234010907,
+    "mc_accuracy_stderr,none": 0.010673797789593972
+  },
+  "seedbench_local": {
+    "seed_image,none": 0.6491955315112766,
+    "seed_all,none": 0.5965536409116176,
+    "seed_video,none": 0.39712536598349746
+  }
+}
