@@ -840,3 +840,8 @@ E0 六项 2026-10-16 全部 `done`、`rc=0`，`reeval_vanilla7b` 耗时 4834.8 s
   评测端明显提速：eval_seed3 43%（3.13 it/s）、eval_mlp 39%（2.08 it/s）、eval_lora16 36%
   （1.91 it/s）、vtw13b_s24 55%（1.82 it/s）；训练端 1.06–1.14 s/it：mlp_layerinit 88%、
   layerinit 79%、depth2 72%、ref 70%。**本轮无新完成结果**。无任务失败。
+- 11:32 复核：**401 再次出现**（`remote: No anonymous write access.`），09:32 的恢复是间歇性的。
+  本地 `70425f3`、ahead=1 未推上。load 5670（风暴最深的一轮），吞吐分化明显：eval_mlp 1.45 it/s、
+  eval_seed3 1.01 it/s、vtw13b_s24 1.03 it/s，而 eval_lora16 掉到 3.18 s/it；训练端 1.35–1.47 s/it。
+  进度：eval_seed3 52%、eval_mlp 47%、eval_lora16 43%、vtw13b_s24 64%、layerinit 80%、
+  mlp_layerinit 89%、depth2 73%、ref 72%。**本轮无新完成结果**。无任务失败。
