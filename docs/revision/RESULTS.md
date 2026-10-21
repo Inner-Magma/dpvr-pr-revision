@@ -849,3 +849,8 @@ E0 六项 2026-10-16 全部 `done`、`rc=0`，`reeval_vanilla7b` 耗时 4834.8 s
   的 5670 再涨 240）。进度：eval_seed3 60%、eval_mlp 55%、eval_lora16 52%、vtw13b_s24 72%、
   mlp_layerinit 91%、layerinit 81%、depth2 74%、ref 73%。吞吐 1.15–1.49 it/s，未继续恶化；
   eval_lora16 已从上一轮的 3.18 s/it 回到 1.49 it/s。**本轮无新完成结果**。无任务失败。
+- 13:32 复核：仍 401（`No anonymous write access.`），积压 3 个（`70425f3`、`2d66cb3`、`f5bc43d`）。
+  load 6149（较 12:32 的 5910 又涨 240）。进度：vtw13b_s24 82%、eval_seed3 71%、eval_mlp 65%、
+  eval_lora16 61%、mlp_layerinit 92%、layerinit 83%、depth2 76%、ref 74%。**评测端明显提速**
+  （eval_lora16 2.55 it/s、eval_seed3 2.22、vtw13b_s24 2.07、eval_mlp 1.86），训练端 1.17–1.31 s/it。
+  **本轮无新完成结果**。无任务失败。
