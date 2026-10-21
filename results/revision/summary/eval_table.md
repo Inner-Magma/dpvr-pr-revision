@@ -5,6 +5,7 @@ POPE/MMB/SQA/SEED/BLINK in %, MME as scores. `limit` set = smoke run, not a resu
 | experiment | job | POPE | MME-P | MME-C | MMB-EN | MMB-CN | SQA | SEED | BLINK | limit | checkpoint |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | E0 | reeval_vanilla7b | 85.36 | 1495.46 | 328.93 | 74.13 | 71.38 | 64.06 | 65.4 | 38.98 |  | none |
+| E10 | eval_mlp_f1.0 | 85.59 | 1459.82 | 352.5 | 73.78 | 70.52 | 64.55 | 64.65 | 39.61 |  | /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/revision/E10/lf7b_s18_mlp_f1.0 |
 | E12 | fullft7b | 0.0 | 0.0 | 0.0 | 5.15 | 0.12 | 8.03 | 5.45 | 10.78 |  | /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/legacy/full_ft/llava665k |
 | E12 | lf13b_s24_cache_False | 86.03 | 1536.66 | 270.0 | 76.62 | 73.74 | 68.57 | 67.55 | 40.77 |  | /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/legacy/hsf_lf_13b/llava665k_s24_d1 |
 | E12 | lf13b_s24_cache_True | 86.03 | 1536.66 | 270.0 | 76.62 | 73.74 | 68.57 | 67.55 | 40.77 |  | /mnt/dolphinfs/hdd_pool/docker/user/hadoop-speech-dolphinfs/hadoop-speech/users/fengmingkuan/dpvr/checkpoints/legacy/hsf_lf_13b/llava665k_s24_d1 |
