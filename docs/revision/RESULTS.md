@@ -830,3 +830,8 @@ E0 六项 2026-10-16 全部 `done`、`rc=0`，`reeval_vanilla7b` 耗时 4834.8 s
   吞吐 1.42–1.61 s/it，GPU 瞬时利用率偏低仍属风暴抖动。进度：eval_seed3 27%、eval_mlp 22%、
   eval_lora16 18%、vtw13b_s24 38%、layerinit 76%、mlp_layerinit 85%、depth2 69%、ref 67%。
   **本轮无新完成结果**。无任务失败。
+- 09:32 复核：**推送已恢复**。`timeout 50` 的一次仍超时（exit 124，无输出），改用 `timeout 120`
+  后成功：`58923ad..050a866  main -> main`，26 个积压提交全部推上，`git fetch` 核对
+  local=remote=`050a866`、ahead=0。未换途径、未 force push，凭据仍是同一个 VS Code socket。
+  进度：eval_seed3 34%、eval_mlp 30%、eval_lora16 27%、vtw13b_s24 45%、layerinit 77%、
+  mlp_layerinit 86%、depth2 70%、ref 69%。load 5012。**本轮无新完成结果**。无任务失败。
