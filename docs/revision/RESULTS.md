@@ -845,3 +845,7 @@ E0 六项 2026-10-16 全部 `done`、`rc=0`，`reeval_vanilla7b` 耗时 4834.8 s
   eval_seed3 1.01 it/s、vtw13b_s24 1.03 it/s，而 eval_lora16 掉到 3.18 s/it；训练端 1.35–1.47 s/it。
   进度：eval_seed3 52%、eval_mlp 47%、eval_lora16 43%、vtw13b_s24 64%、layerinit 80%、
   mlp_layerinit 89%、depth2 73%、ref 72%。**本轮无新完成结果**。无任务失败。
+- 12:32 复核：仍 401，积压回到 2 个（`70425f3`、`2d66cb3`）。load 5910（继续创新高，较 11:32
+  的 5670 再涨 240）。进度：eval_seed3 60%、eval_mlp 55%、eval_lora16 52%、vtw13b_s24 72%、
+  mlp_layerinit 91%、layerinit 81%、depth2 74%、ref 73%。吞吐 1.15–1.49 it/s，未继续恶化；
+  eval_lora16 已从上一轮的 3.18 s/it 回到 1.49 it/s。**本轮无新完成结果**。无任务失败。
