@@ -826,3 +826,7 @@ E0 六项 2026-10-16 全部 `done`、`rc=0`，`reeval_vanilla7b` 耗时 4834.8 s
   GPU 利用率明显回升（card5 89%、card7 80%）。进度：eval_mlp 13%、eval_lora16 8%、eval_seed3 18%、
   vtw13b_s24 32%、layerinit 74%、mlp_layerinit 84%、depth2 67%、ref 66%。近 90 分钟内唯一的完成项是
   E10 train_lora16（已在上一轮记录），**本轮无新完成结果**，故无新表行、未发邮件。无任务失败。
+- 08:32 复核：仍 401。本地 main=`fbe4f7f`，远端 `58923ad`，积压 25 个。load 5049（首次明显回落），
+  吞吐 1.42–1.61 s/it，GPU 瞬时利用率偏低仍属风暴抖动。进度：eval_seed3 27%、eval_mlp 22%、
+  eval_lora16 18%、vtw13b_s24 38%、layerinit 76%、mlp_layerinit 85%、depth2 69%、ref 67%。
+  **本轮无新完成结果**。无任务失败。
