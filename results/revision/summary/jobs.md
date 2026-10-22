@@ -1,6 +1,6 @@
 # Job states
 
-done: 110, interrupted: 1, running: 1
+done: 111, interrupted: 1
 
 | experiment | job | state | started | finished | returncode | error |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -20,7 +20,7 @@ done: 110, interrupted: 1, running: 1
 | E1 | gen7b_lf_s18_cache_true | done | 2026-10-18T08:25:34+00:00 | 2026-10-18T08:26:49+00:00 | 0 |  |
 | E1 | gen7b_vanilla_cache_false | done | 2026-10-18T08:21:13+00:00 | 2026-10-18T08:25:34+00:00 | 0 |  |
 | E1 | gen7b_vanilla_cache_true | done | 2026-10-18T08:20:08+00:00 | 2026-10-18T08:21:13+00:00 | 0 |  |
-| E10 | eval_depth2_f1.0 | running | 2026-10-22T14:07:06+00:00 | 2026-10-21T20:03:11+00:00 | 0 |  |
+| E10 | eval_depth2_f1.0 | done | 2026-10-22T14:07:06+00:00 | 2026-10-22T16:31:54+00:00 | 0 |  |
 | E10 | eval_layerinit_f1.0 | done | 2026-10-21T15:34:52+00:00 | 2026-10-21T17:57:11+00:00 | 0 |  |
 | E10 | eval_lora16_f1.0 | done | 2026-10-20T22:22:35+00:00 | 2026-10-21T10:03:03+00:00 | 0 |  |
 | E10 | eval_lora64_f1.0 | done | 2026-10-22T12:51:20+00:00 | 2026-10-22T15:14:18+00:00 | 0 |  |

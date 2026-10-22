@@ -32,36 +32,36 @@
   ],
   "metrics": {
     "blink_local": {
-      "accuracy,none": 0.37190952130457655,
-      "accuracy_stderr,none": 0.011087993251772524
+      "accuracy,none": 0.38085218306154656,
+      "accuracy_stderr,none": 0.01114034388864472
     },
     "mmbench_cn_local": {
-      "accuracy,none": 0.7036267036267037,
-      "accuracy_stderr,none": 0.006941399909981471
+      "accuracy,none": 0.7082467082467082,
+      "accuracy_stderr,none": 0.006909657786499122
     },
     "mmbench_en_local": {
-      "accuracy,none": 0.7378147378147378,
-      "accuracy_stderr,none": 0.006685504335879902
+      "accuracy,none": 0.7412797412797413,
+      "accuracy_stderr,none": 0.006656756300730223
     },
     "mme_local": {
-      "mme_cognition_score,none": 324.2857142857143,
-      "mme_perception_score,none": 1500.37274909964
+      "mme_cognition_score,none": 302.8571428571429,
+      "mme_perception_score,none": 1479.8808523409366
     },
     "pope_local": {
-      "pope_accuracy,none": 0.8535555555555555,
-      "pope_precision,none": 0.9382920110192837,
-      "pope_recall,none": 0.7568888888888889,
-      "pope_f1_score,none": 0.8378843788437885,
+      "pope_accuracy,none": 0.8527777777777777,
+      "pope_precision,none": 0.9391424619640387,
+      "pope_recall,none": 0.7544444444444445,
+      "pope_f1_score,none": 0.8367221195317314,
       "pope_yes_ratio,none": 0.5
     },
     "scienceqa_local": {
-      "mc_accuracy,none": 0.6420426375805652,
-      "mc_accuracy_stderr,none": 0.01067707567616819
+      "mc_accuracy,none": 0.6365889935547844,
+      "mc_accuracy_stderr,none": 0.010712315056461513
     },
     "seedbench_local": {
-      "seed_image,none": 0.6492657907679337,
-      "seed_all,none": 0.5965536409116176,
-      "seed_video,none": 0.39685919616715465
+      "seed_image,none": 0.6520059017775592,
+      "seed_all,none": 0.599444135630906,
+      "seed_video,none": 0.4003194037796114
     }
   },
   "returncode": 0
