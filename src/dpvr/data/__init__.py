@@ -87,8 +87,20 @@ class LlavaDataCollator:
         # where only the "ASSISTANT:" response contributes to the loss.
         labels = torch.full_like(encoding["input_ids"], -100)
         tokenizer = self.processor.tokenizer
+        attn = encoding.get("attention_mask")
+        if attn is None:
+            attn = torch.ones_like(encoding["input_ids"])
 
         for i, sample in enumerate(batch):
+            # 真实 token 在行内的起始偏移：左 padding 时 pad 占据行首，offset = pad 长度；
+            # 右 padding 时 offset = 0。labels 与 input_ids 同形，写入位置必须带上这个
+            # 偏移，否则监督窗口会整体左移 offset 个位置（左 padding 是 LLaMA tokenizer
+            # 的默认行为），把监督内容替换成 prompt 尾部和 pad token。
+            n_real = int(attn[i].sum())
+            if n_real == 0:                     # 整行 padding，无监督
+                continue
+            offset = int((attn[i] != 0).nonzero().flatten()[0])
+
             cumulative = ""
             for conv in sample.get("conversations", []):
                 role = conv.get("from") or conv.get("role", "")
@@ -106,7 +118,8 @@ class LlavaDataCollator:
                                              return_tensors="pt").input_ids[0])
                     n_img_a = answer_end.count("<image>")
                     L_a = L_a_text + n_img_a * (self.image_patch_tokens - 1)
-                    L_a = min(L_a, labels.shape[1])
+                    # 截断后的有效长度是 n_real（不含 padding），不是整行宽度。
+                    L_a = min(L_a, n_real)
                     #
                     # L_p: start position — subtract the answer-only token count from L_a.
                     # Using (L_a - L_ans) instead of tokenizing the prefix avoids a
@@ -116,7 +129,8 @@ class LlavaDataCollator:
                     L_ans = len(tokenizer(f"{value}</s>", add_special_tokens=False,
                                           return_tensors="pt").input_ids[0])
                     L_p = max(0, L_a - L_ans)
-                    labels[i, L_p:L_a] = encoding["input_ids"][i, L_p:L_a]
+                    labels[i, L_p + offset:L_a + offset] = \
+                        encoding["input_ids"][i, L_p + offset:L_a + offset]
                     cumulative = answer_end
 
         encoding["labels"] = labels

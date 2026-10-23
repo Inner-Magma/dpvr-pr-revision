@@ -205,3 +205,69 @@ def test_pad_tokens_masked():
         pad_positions = input_ids == pad_id
         assert torch.all(labels[pad_positions] == -100), \
             "Pad token positions have non-(-100) labels"
+
+def test_batch_padding_does_not_shift_labels():
+    """Regression: 同一 batch 内长度不等时（左 padding），监督窗口不得整体左移。
+
+    旧实现在未 padding 的文本坐标里算 L_p/L_a，却写进已左 padding 的张量，
+    导致每行监督窗口左移 pad_len 位：错标 prompt 尾部 / pad token，漏标答案。
+    这里对两条长度差很大的样本逐行断言：非 -100 的位置恰好等于 gold 区间 + pad。
+    """
+    tokenizer = _get_tokenizer()
+    processor = _FakeProcessor(tokenizer)
+    collator = LlavaDataCollator(processor, image_base_path="/tmp")
+
+    batch = [
+        _make_sample("Hi?", "Yes."),
+        _make_sample(
+            "Please describe in detail what you can see in this picture "
+            "and explain every object and its spatial relationship.",
+            "A small wooden table stands beside a window, with two red cups "
+            "and a folded newspaper resting on its surface.",
+        ),
+        _make_sample("What is 2+2?", "Four."),
+    ]
+
+    out = collator(batch)
+    ids, labels = out["input_ids"], out["labels"]
+    pad_id = tokenizer.pad_token_id
+    W = ids.shape[1]
+
+    pads = []
+    for i in range(len(batch)):
+        pad = 0
+        while pad < W and ids[i, pad] == pad_id:
+            pad += 1
+        pads.append(pad)
+    assert max(pads) > 0, "expected at least one left-padded row"
+    assert min(pads) == 0, "expected the longest row to be unpadded"
+
+    for i, sample in enumerate(batch):
+        pad = pads[i]
+
+        # 真实 gold 区间（无 padding 坐标）
+        cum, gold = "", []
+        for c in sample["conversations"]:
+            if c["from"] == "human":
+                cum += f"USER: {c['value']} "
+            else:
+                aend = cum + "ASSISTANT: " + f"{c['value']}</s>"
+                L_a = len(tokenizer(aend, add_special_tokens=True).input_ids)
+                L_ans = len(tokenizer(f"{c['value']}</s>", add_special_tokens=False).input_ids)
+                gold.append((L_a - L_ans, L_a))
+                cum = aend
+
+        expected = torch.zeros(W, dtype=torch.bool)
+        for (gs, ge) in gold:
+            expected[gs + pad:ge + pad] = True
+        masked = labels[i] != -100
+
+        assert torch.equal(masked, expected), (
+            f"row {i}: unmasked positions differ from gold+pad "
+            f"(pad={pad}, masked={int(masked.sum())}, expected={int(expected.sum())})"
+        )
+        # 额外保证：答案 token 必须被监督
+        for (gs, ge) in gold:
+            assert masked[gs + pad:ge + pad].all()
+        # 非监督位置不得落在 padding 上
+        assert torch.all(labels[i][:pad] == -100), f"row {i}: pad positions are supervised"
