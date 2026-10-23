@@ -890,6 +890,9 @@ E0 六项 2026-10-16 全部 `done`、`rc=0`，`reeval_vanilla7b` 耗时 4834.8 s
 - 10:32 复核：推送**连续第二轮挂起**——`timeout 75 git push origin main` 挂满被终止（rc=124，无输出），按「不改途径」处理，积压 26 个，远端 `f2bb7e7`。本轮无新完成、无任务失败。`train_lora64` 58%（89836/156153，约 9.3 h），GPU1 的 depth2 冗余份约 58%；GPU0/3/4/5/6/7 六卡空闲，load 3.5。延迟测量仍待 10-23 停表后的安静窗口。
 - 01:32 复核：**`E10/eval_depth2_f1.0` 重跑完成**（rc=0，8687.9 s，10-22 16:31 UTC 收尾），已入表：85.28 / 1479.88 / 302.86 / 74.13 / 70.82 / 63.66 / 65.20 / 38.09。同配置首跑为 85.36 / 1500.37 / 324.29 / 73.78 / 70.36 / 64.20 / 64.93 / 37.19，**六项重跑抖动 ≤0.9pp，MME-P/MME-C 约 −20~−21 分**——MME 两项的组间波动比其余六项大一个量级，E10 各变体在 MME 上的 ±20–35 分差异不足以区分模型；旧行保留。**E10 至此全部收尾**。
   - 环境事故（已处置）：本轮 `collect_results.py` 在裸 shell 下连续失败两次——先是 `/usr/bin/python3` 无 `yaml`，改用 `software/envs/tah/bin/python` 后又报 `Path roots not set`。原因是非交互 shell 里没有 `CKPT_ROOT/DATA_ROOT/MODEL_ROOT`。手工 export 三个根路径后 collect 正常（rc=0，done 111 / interrupted 1）。教训：每次 collect 前必须先 source 根路径，不能依赖登录 shell。
+- 16:32 复核：推送仍不通——`41868b1423`、`92cdb9df81` 两个 socket 各 `timeout 45` 被终止（rc=124，无输出），按「不改途径」只记账。本轮起积压 **2 个**：main 上 1 个（本条 §15/§21 记录），server-fixes 上 1 个（`a86e52b`，collator 标签修复）。远端 main 仍 `f8a670a`。
+  本轮**无新完成、无任务失败**：全库 `status.json` 除已弃用的重复副本 `E4/nobranch7b_s18_k3.collided-20261020` 外全部 done，最后一项 `E10/eval_depth2_f1.0` 于 10-23 00:32 CST 结束。**8 张卡全部空闲（各 1 MiB / 0%）**，外部 `rsi_es` 作业已退出——延迟测量（§2）的安静窗口首次具备，GPU 1/2 可用于同一 forward 的梯度分解与真实 checkpoint 计时，但需遵守安静测量要求，不干扰他人。
+  另：本轮按任务文档 §1 完成了训练标签审计（详见 §21），结论会改变论文核心主张的适用范围，**已按停止条件先报告，未自动排队重训**。
 - 00:32 复核：推送仍 **401**（`No anonymous write access.` + `fatal: Authentication failed`，7775999172／65e3abaa95 两个 socket 均同），积压 5 个，远端仍 `f2bb7e7`；按「不改途径」只记账。本轮无任务完成、无任务失败（`4175d9f` 已把 lora64 行与结果目录入表）。`E10/eval_depth2_f1.0` 52%（21761/41940，5.1 it/s，约 1.1 h），E10 只剩这一项。GPU2 空闲；GPU0/3/4/5/6/7 仍被外部进程占用（各约 116–118 GB，55–60%），八卡不安静，延迟测量继续阻塞。
 - 23:32 复核：`E10/eval_lora64_f1.0` **完成并入表**（rc=0，8577.9 s，10-22 15:14 UTC 收尾），是 E10 的第四行：85.36 / 1485.73 / 317.50 / 73.92 / 70.36 / 64.25 / 64.43 / 38.35。与 LoRA-16 逐项差 ≤0.34pp（POPE −0.06、MME-P +10.2、MME-C −18.2、MMB-EN ±0.00、MMB-CN +0.11、SQA +0.34、SEED −0.25、BLINK −0.26），与 MLP-only 也全在噪声内——**rank 16→64 无可测差异**，与 E4「侧分支对精度无价值」一致。已 collect（`4175d9f`，含结果目录与四张 summary 表），推送仍 **401**（`No anonymous write access.` + `fatal: Authentication failed`，新出现的 7775999172／41868b1423 两个 socket 同样 401），积压 3 个，远端仍 `f2bb7e7`；按「不改途径」只记账。GPU2 已释放（评测退出），**GPU1 的 `eval_depth2_f1.0` 48%**（20070/41940，5.3 it/s，约 1.1 h）。GPU0/3/4/5/6/7 仍被外部进程占用（各约 116–118 GB，55–58%），延迟测量继续阻塞。本轮 1 项新完成、无任务失败。
 - 23:32 邮箱：`send_results.py --subject "E10 lora64 done"` 仍报 `missing in .env / environment: SMTP_HOST, SMTP_USER, SMTP_PASSWORD, MAIL_TO`（§9），按 AGENTS 不换途径，只记录；本轮无邮件发出。
@@ -914,3 +917,35 @@ E0 六项 2026-10-16 全部 `done`、`rc=0`，`reeval_vanilla7b` 耗时 4834.8 s
 - 12:32 复核：推送**第四轮挂起**（`timeout 75 git push origin main` 被终止，rc=124，无输出），积压 28 个，远端 `f2bb7e7`。本轮无新完成、无任务失败。**整机外部占用骤增**：12:31 GPU0/3/4/5/6/7 各被一个 ~118.9 GB、50–62% 利用率的外部进程占用（宿主机 PID 259217/259226/259234/259299/259308/259328，容器内不可见，与本仓库无关），按红线 4 未干预；本仓库仅剩 GPU1、GPU2。`train_lora64` 66%（102647/156153，2.01 it/s，约 7.4 h）；GPU1 的 depth2 冗余份 63%（98306/156153，1.70 it/s，约 9.5 h）——注意其 `status.json` 仍是 GPU5 那份 01:35 的 `done`，实际该卡仍在训练，进度以 log.txt 与 PID 1377085 为准。延迟测量仍待整机安静窗口，当前条件更不满足。
 - 11:32 复核：推送**连续第三轮挂起**——`timeout 75 git push origin main` 挂满被终止（rc=124，无输出），按「不改途径」处理，积压 27 个，远端 `f2bb7e7`。本轮无新完成、无任务失败。`train_lora64` 62%（96140/156153，约 9.3 h），GPU1 的 depth2 冗余份约 62%。10:40–11:15 期间 GPU0/3/4 被三个外部进程（各约 102 GB，宿主机 PID 3071019/3071023/3071095，容器内不可见）占用，11:18 前已全部退出，按红线 4 未干预；六卡恢复空闲。load 1.9。延迟测量仍待 10-23 停表后的安静窗口。
 - 03:32 复核：推送仍 401（`No anonymous write access.` + `fatal: Authentication failed`，socket `/tmp/vscode-git-92cdb9df81.sock`），积压 18 个，远端 `f2bb7e7`。本轮无新完成、无任务失败。`eval_ref` 81%（33858/41940，6.6 it/s，约 20 分钟）、`eval_depth2` 74%（30836/41940，5.8 it/s，约 32 分钟）、`E3/vtw13b_s34` 88%（36758/41940，3.5 it/s，约 24 分钟）、`train_lora64` 28%（44109/156153，约 15 h）、GPU1 的 depth2 份仍在跑。`train_ref`/GPU5 的 depth2 份均于 01:35 已完成训练（对应两项评测正在跑）。GPU0/6/7 三卡空闲，延迟测量仍需整机安静，继续保留。load 20.0。
+
+### 21. 【重要：训练标签缺陷】LLaVA collator 左 padding 下监督窗口整体左移
+
+- **缺陷**：`src/dpvr/data/__init__.py::LlavaDataCollator.__call__` 在**未 padding 的文本坐标**里计算
+  `L_p/L_a`，却写入已左 padding 的 `labels` 张量（LLaMA tokenizer `padding_side='left'`）。真实位置是
+  `[L_p-pad_len, L_a-pad_len)`，即每行监督窗口左移 `pad_len`：监督到 prompt 尾部、576 个 `<image>` 展开 id、
+  甚至 `<pad>`（32001）；当 `L_p < pad_len` 时负索引绕到行尾，标的是行尾的 pad。窗口长度仍为 `L_ans`，
+  **loss 分母基本不变**（`gradient_accumulation_steps=1`），属直接错误梯度而非归一化漂移。
+  另有次要缺陷：`L_a = min(L_a, labels.shape[1])` 先于 `L_p` 计算，2048 截断行的窗口左移 `true_len-2048`。
+- **全量审计**（E9 seed1 的 tokenizer/processor 与真实语料 `llava_v1_5_mix665k.json` 的图像子集 624,610 条，
+  3,356,161 个 assistant 轮；bs=4、2 epoch 完整随机排列模拟；解析模型经真实 collator 对拍 400 行 / 2,082 轮
+  **0 mismatch**）：
+  - 有左 padding 的行 935,740 / 1,248,000 = **75.0%**；
+  - 正确监督 token 丢失 50,915,481 / 117,242,765 = **43.43%**；错标 token 同量级（窗口长度不变）；
+  - 完全失去正确监督的轮 3,521,023 / 6,712,304 = **52.5%**；没有任何正确监督的行 **67.3%**；
+  - 超 2048 的样本仅 **177 / 624,610 = 0.028%**（截断缺陷可忽略，但确实存在）；
+  - 修正后全空监督样本 **0**（175 条样本的**最后一轮**被截空，同一样本其它轮仍有监督，不会产生空 batch）。
+- **同 forward 梯度分解**（真实 E9 seed1 checkpoint、bf16、GPU 1、不更新权重）：一批 3 条长度不等样本
+  （W=1128，pad=0/414/496/446）中三条 padding 行的正确监督 token 均为 0，loss 恰为 `ln(V)≈3.86`；
+  合并梯度 `cos(G_actual, G_ideal) = 0.0010`，模长 0.740 vs 0.090——**更新方向与正确方向近乎正交**。
+- **范围**：LLaVA 路径全部受影响（E9 三个 seed、E10 七个变体、E0 训练行）；Qwen 路径（E6/E6_split）
+  结构安全（右 padding、先截断后扫描、`attention_mask==0` 置 -100），不受影响；E3/E4/E7/E8/E12 是评测/计时，
+  其数值是对「受污染 checkpoint」的有效测量，只需标注口径。**遗留 13B/LoRA 谱系的 collator 是否同源尚未取证**，
+  列为开口项。
+- **测试为何未拦住**：`tests/test_collator_labels.py` 原有 5 个用例全部用单样本 batch，永不触发 padding。
+- **修复**：`server-fixes` 分支 `a86e52b`——按 `attention_mask` 求每行 `n_real` 与起始 `offset`，
+  `L_a = min(L_a, n_real)`，写入 `labels[i, L_p+offset : L_a+offset]`（同时兼容左右 padding）；
+  新增不等长 batch 回归测试（3 行、逐行断言 mask 集合恰等于 gold+pad），`test_collator_labels.py` 6 项全过。
+  **尚未推送**（§15），也**尚未重训**。
+- **是否需要核心配置重训**：需要。该缺陷在 52.5% 的轮上给出零正确监督、在 43.4% 的正样本 token 上给出
+  正交方向梯度，不是「占比小可忽略」的量级。但在作者决定前不自动排队；建议的最小验证是
+  同配方重训 E9 seed1 一臂 + eight-task 评测（约 25 h 训练 + 2.5 h 评测，1 卡）。
